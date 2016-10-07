@@ -1,0 +1,23 @@
+{
+    "name": "Lachesis",
+    "version": "1.0.0",
+    "description": "Builds Lachesis for desktop and mobile devices",
+    "license": "MIT",
+    "author": {
+        "name": "Álan Crístoffer",
+        "email": "acristoffers@gmail.com",
+        "url": "https://github.com/acristoffers/moirai"
+    },
+    "scripts": {
+        "build": "coffee build.coffee",
+        "start": "coffee run.coffee"
+    },
+    "dependencies": {
+        "coffee-script": "*",
+        "sass": "*",
+        "html-minifier": "*",
+        "fs-extra": "*",
+        "uglifyjs": "*",
+        "bower": "*"
+    }
+}

@@ -1,0 +1,14 @@
+* text=auto
+
+*.jpg   binary
+*.png   binary
+*.gif   binary
+
+*.html -text
+*.htm -text
+*.css -text
+*.scss -text
+*.sass -text
+*.js -text
+*.coffee -text
+*.sql -text

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="me.acristoffers.lachesis" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Lachesis</name>
+    <description>
+        Moirai supervisor.
+    </description>
+    <author email="acristoffers@gmail.com" href="https://github.com/acristoffers/lachesis">
+        Álan Crístoffer
+    </author>
+    <content src="index.htm"/>
+    <plugin name="cordova-plugin-whitelist" spec="1"/>
+    <access origin="*"/>
+    <allow-intent href="http://*/*"/>
+    <allow-intent href="https://*/*"/>
+    <platform name="android">
+        <allow-intent href="market:*"/>
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*"/>
+        <allow-intent href="itms-apps:*"/>
+    </platform>
+</widget>

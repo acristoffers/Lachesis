@@ -1,0 +1,12 @@
+{
+    "name": "Lachesis",
+    "version": "1.0.0",
+    "description": "Moirai supervisor",
+    "license": "MIT",
+    "author": {
+        "name": "Álan Crístoffer",
+        "email": "acristoffers@gmail.com",
+        "url": "https://github.com/acristoffers/moirai"
+    },
+    "main": "index.js"
+}
