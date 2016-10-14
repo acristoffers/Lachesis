@@ -32,8 +32,7 @@
         <link rel="stylesheet" href="fonts/material_icons.css" charset="utf-8">
         <link rel="stylesheet" href="fonts/roboto.css" charset="utf-8">
 
-        <link rel="stylesheet" type="text/css" href="deps/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="deps/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+        <link rel="stylesheet" type="text/css" href="deps/material-design-lite/material.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
 
         <!-- Fix for Electron not importing some libraries -->
@@ -46,54 +45,51 @@
         </script>
 
         <script src="deps/jquery/dist/jquery.min.js" charset="utf-8"></script>
-        <script src="deps/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
-        <script src="deps/bootstrap-material-design/dist/js/material.min.js" charset="utf-8"></script>
-        <script src="deps/bootstrap-material-design/dist/js/ripples.min.js" charset="utf-8"></script>
+        <script src="deps/material-design-lite/material.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script src="js/platform.js" charset="utf-8"></script>
         <script src="js/app.js" charset="utf-8"></script>
     </head>
 
     <body unresolved>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">Lachesis</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                        <i class="material-icons">more_vert</i>
                     </button>
-                    <a class="navbar-brand" normal-cursor>
-                        <img alt="Brand" src="imgs/icon.svg"> Lachesis
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a id="selection-size" href="#"></a>
+                    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                        <li class="mdl-menu__item"><span data-tr="About"></span></li>
+                        <li class="mdl-menu__item" disabled><span data-tr="Language"></span></li>
+                        <li class="mdl-menu__item">
+                            <a data-lang="en" href="#"><img src="imgs/en.svg"> <span data-tr="English"></span></a>
                         </li>
-                        <li><a id="info-toggle" href="#"><i class="material-icons">info_outline</i> Info</a></li>
-                        <li id="languages" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span data-tr="Language"></span> <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a data-lang="en" href="#"><img src="imgs/en.svg"> <span data-tr="English"></span></a>
-                                </li>
-                                <li>
-                                    <a data-lang="de" href="#"><img src="imgs/de.svg"> <span data-tr="German"></span></a>
-                                </li>
-                                <li>
-                                    <a data-lang="fr" href="#"><img src="imgs/fr.svg"> <span data-tr="French"></span></a>
-                                </li>
-                                <li>
-                                    <a data-lang="pt" href="#"><img src="imgs/pt.svg"> <span data-tr="Portuguese"></span></a>
-                                </li>
-                            </ul>
+                        <li class="mdl-menu__item">
+                            <a data-lang="de" href="#"><img src="imgs/de.svg"> <span data-tr="German"></span></a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a data-lang="fr" href="#"><img src="imgs/fr.svg"> <span data-tr="French"></span></a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a data-lang="pt" href="#"><img src="imgs/pt.svg"> <span data-tr="Portuguese"></span></a>
                         </li>
                     </ul>
                 </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Lachesis</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                </nav>
             </div>
-        </nav>
+            <main class="mdl-layout__content">
+            </main>
+        </div>
     </body>
 
 </html>

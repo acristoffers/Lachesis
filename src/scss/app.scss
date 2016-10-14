@@ -36,22 +36,23 @@ html {
     width: 100%;
     font-size: 14pt;
     font-family: "Roboto";
+
+    a,
+    a:active,
+    a:hover,
+    a:link,
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
 }
 
 [unresolved] {
     display: none;
 }
 
-nav.navbar {
-    .navbar-brand {
-        img {
-            display: inline-block;
-            width: 2rem;
-            height: auto;
-        }
-    }
-
-    #languages {
+.mdl-layout header {
+    ul {
         img {
             width: 2rem;
             height: auto;

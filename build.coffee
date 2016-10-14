@@ -75,12 +75,13 @@ uglify = () ->
 copy_files_to_desktop = () ->
     console.log 'Copying files around'
     fs.copySync 'mobile/www',  'desktop/www'
+    fs.copySync 'src/desktop', 'desktop/www'
 
 clean_bower = (pkg) ->
-    contents = fs.readdirSync ['bower_components', pkg].join('/')
-    contents = contents.filter (e) -> e != 'dist'
-    fs.removeSync ['bower_components/', pkg, e].join('/') for e in contents
     predicate = (name) -> name.includes('.map') || !( name.includes('.min.') || name.includes('font') )
+    contents = fs.readdirSync ['bower_components', pkg].join('/')
+    contents = contents.filter (e) -> e != 'dist' && predicate(e)
+    fs.removeSync ['bower_components/', pkg, e].join('/') for e in contents
     files = Finder.from('bower_components').findFiles().filter predicate
     fs.removeSync file for file in files
 
@@ -93,8 +94,7 @@ exists = (path) ->
 
 install_dependencies = () ->
     console.log 'Installing dependencies'
-    # bootstrap-material-design brings jquery and bootstrap
-    components = ['bootstrap-material-design#0.5.10']
+    components = ['material-design-lite', 'jquery']
     for component in components
         unless exists ['bower_components', component.split('#')[0]].join '/'
             console.log '... installing ' + component
@@ -109,9 +109,38 @@ copy_assets = () ->
     fs.copySync 'src/imgs',  'mobile/www/imgs'
     fs.copySync 'src/fonts',  'mobile/www/fonts'
 
+gen_desktop_icons = () ->
+    # ImageMagick must be installed and it's "convert" utility needs to be in
+    # path
+    console.log 'Generating desktop icons'
+    if process.platform == 'darwin'
+        # Creates macOS ICNS icon file
+        fs.mkdirsSync 'desktop/build/icon.iconset'
+        input = 'desktop/www/imgs/icon.svg'
+        sizes = [16, 32, 128, 256, 512]
+        out1x = ([size, "icon_#{size}x#{size}.png"] for size in sizes)
+        out2x = ([size * 2, "icon_#{size}x#{size}@2x.png"] for size in sizes)
+        outputs = out1x.concat out2x
+        input2 = 'desktop/www/imgs/icon.png'
+        execute "convert -background none -resize 1024x1024 #{input} #{input2}"
+        for [size, name] in outputs
+            output = "desktop/build/icon.iconset/#{name}"
+            execute "convert -resize #{size}x#{size} #{input2} #{output}"
+        execute 'iconutil -c icns desktop/build/icon.iconset'
+        fs.removeSync x for x in ['desktop/build/icon.iconset', input2]
+    # Creates Windows ICO icon file
+    sizes = [16, 24, 32, 48, 64, 128, 256].join ','
+    output = 'desktop/build/icon.ico'
+    opts = "-define icon:auto-resize=#{sizes} -compress zip"
+    cmd = "convert #{input} #{opts} #{output}"
+    execute cmd
+
+execute 'npm install'
+
 # Removes all contents from mobile/www
 console.log 'Cleaning up'
-fs.emptyDirSync dir for dir in ['mobile/www', 'desktop/www']
+fs.emptyDirSync dir for dir in ['mobile/www', 'desktop/www', 'desktop/build',
+                                'desktop/dist']
 
 # Create directories
 fs.mkdirsSync dir for dir in ['mobile/www/js', 'mobile/www/css']
@@ -136,5 +165,8 @@ copy_assets()
 
 # Copy compiled files to desktop folder
 copy_files_to_desktop()
+
+# Generate desktop icons
+gen_desktop_icons()
 
 console.log ''

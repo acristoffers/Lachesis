@@ -8,5 +8,41 @@
         "email": "acristoffers@gmail.com",
         "url": "https://github.com/acristoffers/moirai"
     },
-    "main": "index.js"
+    "devDependencies": {
+        "electron": "1.4.3",
+        "coffee-script": "1.11.1"
+    },
+    "homepage": "https://github.com/acristoffers/moirai",
+    "productName": "lachesis",
+    "directories": {
+        "app": "www"
+    },
+    "build": {
+        "extraResources": ["www/**/*"],
+        "appId": "me.acristoffers.lachesis",
+        "productName": "Lachesis",
+        "protocols": [{
+            "name": "Moirai supervisor",
+            "role": "Editor",
+            "schemes": ["tcp"]
+        }],
+        "linux": {
+            "category": "public.app-category.productivity",
+            "packageCategory": "productivity",
+            "target": ["AppImage", "deb", "rpm", "freebsd", "pacman", "tar.xz"],
+            "synopsis": "Moirai supervisor"
+        },
+        "mac": {
+            "category": "public.app-category.productivity",
+            "target": ["dmg", "zip"]
+        },
+        "win": {
+            "target": ["nsis", "zip"]
+        },
+        "nsis": {}
+    },
+    "scripts": {
+        "pack": "build --dir",
+        "dist": "build --mac --win --linux"
+    }
 }

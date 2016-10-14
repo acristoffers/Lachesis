@@ -17,6 +17,7 @@
         "sass": "*",
         "html-minifier": "*",
         "fs-extra": "*",
+        "fs-finder": "*",
         "uglifyjs": "*",
         "bower": "*"
     }

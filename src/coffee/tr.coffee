@@ -29,6 +29,7 @@ get_locale = ->
 class I18N
     @tr:
         en:
+            'About': 'About'
             'Language': 'Language'
             'English': 'English'
             'French': 'French'
@@ -41,6 +42,7 @@ class I18N
             'Error': 'Error'
             'Remove': 'Remove'
         fr:
+            'About': 'À propos'
             'Language': 'Langue'
             'English': 'Anglais'
             'French': 'Français'
@@ -53,6 +55,7 @@ class I18N
             'Error': 'Erreur'
             'Remove': 'Supprimer'
         pt:
+            'About': 'Sobre'
             'Language': 'Idioma'
             'English': 'Inglês'
             'French': 'Francês'
@@ -65,6 +68,7 @@ class I18N
             'Error': 'Erro'
             'Remove': 'Remover'
         de:
+            'About': 'Über'
             'Language': 'Sprache'
             'English': 'Englicsh'
             'French': 'Französisch'
@@ -84,6 +88,7 @@ class I18N
 
     @update_translation: ->
         attr_pattern = /data-([a-zA-Z0-9-_]+)-tr/
+        $('html').attr 'lang', I18N.locale
         $('*').each ->
             node = $(this)
             node.html I18N.t node.attr 'data-tr' if node.attr('data-tr')?

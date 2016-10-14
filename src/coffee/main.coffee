@@ -27,9 +27,6 @@ unless Array::first?
     Array::first = -> this[0]
 
 $ ->
-    # Initializes Bootstrap Material
-    $.material.init()
-
     # Verifies platform
     window.platform = 'desktop' unless window.platform?
 

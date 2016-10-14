@@ -23,3 +23,4 @@ THE SOFTWARE.
 
 exec = require('child_process').execSync
 exec 'npm run build -- keep'
+exec 'electron desktop/www'
