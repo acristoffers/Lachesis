@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+npm install
 npm run build -- keep
 
 cd desktop

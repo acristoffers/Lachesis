@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'HelloCordova' target in the 'HelloCordova' project
+// Prefix header for all source files of the 'Lachesis' target in the 'Lachesis' project
 //
 
 #ifdef __OBJC__
