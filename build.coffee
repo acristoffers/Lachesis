@@ -94,7 +94,7 @@ exists = (path) ->
 
 install_dependencies = () ->
     console.log 'Installing dependencies'
-    components = ['material-design-lite', 'jquery']
+    components = ['material-design-lite', 'mdl-themes', 'jquery']
     for component in components
         unless exists ['bower_components', component.split('#')[0]].join '/'
             console.log '... installing ' + component
@@ -135,6 +135,9 @@ gen_desktop_icons = () ->
     cmd = "convert #{input} #{opts} #{output}"
     execute cmd
 
+install_desktop_node = ->
+    execute 'npm --prefix desktop/www install desktop/www'
+
 execute 'npm install'
 
 # Removes all contents from mobile/www
@@ -168,5 +171,8 @@ copy_files_to_desktop()
 
 # Generate desktop icons
 gen_desktop_icons()
+
+# Install node dependencies of desktop version
+install_desktop_node()
 
 console.log ''
