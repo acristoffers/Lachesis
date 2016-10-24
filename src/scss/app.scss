@@ -59,3 +59,31 @@ html {
         }
     }
 }
+
+main {
+    padding: 1rem;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-transform: uppercase;
+    }
+
+    #connect {
+        #connected-pane,
+        form {
+            margin-top: 2rem;
+            text-align: center;
+        }
+    }
+}
+@media (min-width: 900px), handheld and (orientation: landscape) and (min-width: 900px) {
+    #connect {
+        width: 900px;
+        height: auto;
+        margin: 0 auto;
+    }
+}

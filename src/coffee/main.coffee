@@ -20,16 +20,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ###
 
-unless Array::last?
-    Array::last = -> this[this.length - 1]
+# Create functions last and first in array.prototype
+(Array::first = -> this[0]) unless Array::first?
+(Array::last = -> this[this.length - 1]) unless Array::last?
 
-unless Array::first?
-    Array::first = -> this[0]
+# Eases access to cookies and make sure values are encoded correctly
+cookie = (key, val) ->
+    if val?
+        localStorage.setItem key, encodeURIComponent val
+    else
+        decodeURIComponent localStorage.getItem key
 
-$ ->
+# A settings api to save/load key/values pairs. Allows saving objects
+settings = (key, val) ->
+    if val?
+        cookie key, JSON.stringify val
+    else
+        val = cookie key
+        JSON.parse val if val?
+
+# Closes the Material Layout Drawer if it's open
+close_drawer = ->
+    if $('.mdl-layout__drawer').attr('aria-hidden') == "false"
+        document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer()
+
+# Application initialization
+main = ->
     # Verifies platform
     window.platform = 'desktop' unless window.platform?
 
+    # Verifies if we have a saved locale setting
+    window.i18n.locale = settings 'locale' if settings 'locale'
     # Update translations in whole HTML
     window.i18n.update_translation()
 
@@ -37,7 +58,32 @@ $ ->
     $('[data-lang]').click ->
         window.i18n.locale = $(this).attr 'data-lang'
         window.i18n.update_translation()
+        settings 'locale', window.i18n.locale
+
+    # Listens to changes in the HASH part of the URL. It's the only part that
+    # will change in this application and indicates which page is currently
+    # active
+    $(window).on 'hashchange', ->
+        hash = location.hash.slice(1)
+        $('.page').hide()
+        $("##{hash}").show()
+        close_drawer()
+
+    # Disable all form submition. Shall be handled by javascript instead
+    $('form').submit -> false
+
+    Connection.init()
+
+    # Start with the connect page
+    $('.page').hide()
+    $("#connect").show()
 
     # Displays body
     $('body').addClass window.platform
     $('body').removeAttr 'unresolved'
+
+$ ->
+    if window.platform?
+        $(document).on 'deviceready', main
+    else
+        main()

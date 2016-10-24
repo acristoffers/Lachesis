@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="fonts/material_icons.css" charset="utf-8">
         <link rel="stylesheet" href="fonts/roboto.css" charset="utf-8">
 
-        <link rel="stylesheet" type="text/css" href="deps/material-design-lite/material.min.css">
+        <link rel="stylesheet" type="text/css" href="deps/material-design-themes/material.teal-indigo.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
 
         <!-- Fix for Electron not importing some libraries -->
@@ -64,16 +64,16 @@
                         <li class="mdl-menu__item"><span data-tr="About"></span></li>
                         <li class="mdl-menu__item" disabled><span data-tr="Language"></span></li>
                         <li class="mdl-menu__item">
-                            <a data-lang="en" href="#"><img src="imgs/en.svg"> <span data-tr="English"></span></a>
+                            <a data-lang="en"><img src="imgs/en.svg"> <span data-tr="English"></span></a>
                         </li>
                         <li class="mdl-menu__item">
-                            <a data-lang="de" href="#"><img src="imgs/de.svg"> <span data-tr="German"></span></a>
+                            <a data-lang="de"><img src="imgs/de.svg"> <span data-tr="German"></span></a>
                         </li>
                         <li class="mdl-menu__item">
-                            <a data-lang="fr" href="#"><img src="imgs/fr.svg"> <span data-tr="French"></span></a>
+                            <a data-lang="fr"><img src="imgs/fr.svg"> <span data-tr="French"></span></a>
                         </li>
                         <li class="mdl-menu__item">
-                            <a data-lang="pt" href="#"><img src="imgs/pt.svg"> <span data-tr="Portuguese"></span></a>
+                            <a data-lang="pt"><img src="imgs/pt.svg"> <span data-tr="Portuguese"></span></a>
                         </li>
                     </ul>
                 </div>
@@ -81,13 +81,53 @@
             <div class="mdl-layout__drawer">
                 <span class="mdl-layout-title">Lachesis</span>
                 <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="#connect" data-tr="Connect"></a>
+                    <a class="mdl-navigation__link" href="#configure" data-tr="Hardware Configuration"></a>
+                    <a class="mdl-navigation__link" href="#signal" data-tr="Signal Generation"></a>
+                    <a class="mdl-navigation__link" href="#control" data-tr="Control Model"></a>
                 </nav>
             </div>
             <main class="mdl-layout__content">
+                <div id="connect" class="page">
+                    <h3 data-tr="Connect"></h3>
+                    <form id="connect-form">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="conn-address" value="127.0.0.1">
+                            <label class="mdl-textfield__label" for="conn-address" data-tr="Address"></label>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="password" id="conn-password">
+                            <label class="mdl-textfield__label" for="conn-password" data-tr="Password"></label>
+                        </div>
+                        <br>
+                        <button id="conn-connect" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-tr="Connect"></button>
+                    </form>
+                    <div id="connected-pane" unresolved>
+                        <span data-tr="Connected with:"></span> <span id="conn-address-span"></span>
+                        <br><br>
+                        <button id="conn-disconnect" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-tr="Disconnect"></button>
+                        <button id="conn-shutdown" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-tr="Shutdown server"></button>
+                        <br><br><br><br>
+                        <form id="connect-form">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="password" id="new-pswd">
+                                <label class="mdl-textfield__label" for="new-pswd" data-tr="New password"></label>
+                            </div>
+                            <br>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="password" id="confirm-new-pswd">
+                                <label class="mdl-textfield__label" for="confirm-new-pswd" data-tr="Confirm new password"></label>
+                            </div>
+                            <br>
+                            <button id="conn-change-pswd" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-tr="Change password"></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="configure" class="page">Configure</div>
+                <div id="signal" class="page">Signal</div>
+                <div id="control" class="page">Control</div>
             </main>
         </div>
     </body>

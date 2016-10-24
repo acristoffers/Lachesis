@@ -15,6 +15,8 @@
 		3047A5121AB8059700498E2A /* build-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A50F1AB8059700498E2A /* build-debug.xcconfig */; };
 		3047A5131AB8059700498E2A /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5101AB8059700498E2A /* build-release.xcconfig */; };
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
+		16E1D591895147DEAA0F0113 /* SocketPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAEC3D8C05F47C1A9CFA9E5 /* SocketPlugin.m */; };
+		63D4CE168E5447F399353EE9 /* SocketAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4853746C6EF6415B8782917D /* SocketAdapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Lachesis/config.xml"; sourceTree = "<group>"; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		BBAEC3D8C05F47C1A9CFA9E5 /* SocketPlugin.m */ = {isa = PBXFileReference; name = "SocketPlugin.m"; path = "cz.blocshop.socketsforcordova/SocketPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		4853746C6EF6415B8782917D /* SocketAdapter.m */ = {isa = PBXFileReference; name = "SocketAdapter.m"; path = "cz.blocshop.socketsforcordova/SocketAdapter.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E03BE97E1F3644D29CA90031 /* SocketPlugin.h */ = {isa = PBXFileReference; name = "SocketPlugin.h"; path = "cz.blocshop.socketsforcordova/SocketPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		A85D2A09AD7047AFAAC53E85 /* SocketAdapter.h */ = {isa = PBXFileReference; name = "SocketAdapter.h"; path = "cz.blocshop.socketsforcordova/SocketAdapter.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,10 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				BBAEC3D8C05F47C1A9CFA9E5 /* SocketPlugin.m */,
+				4853746C6EF6415B8782917D /* SocketAdapter.m */,
+				E03BE97E1F3644D29CA90031 /* SocketPlugin.h */,
+				A85D2A09AD7047AFAAC53E85 /* SocketAdapter.h */,
 			);
 			name = Plugins;
 			path = "Lachesis/Plugins";
@@ -267,6 +277,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				16E1D591895147DEAA0F0113 /* SocketPlugin.m in Sources */,
+				63D4CE168E5447F399353EE9 /* SocketAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

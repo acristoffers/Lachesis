@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ###
 
-files = ['tr', 'main']
+files = ['tr', 'connection', 'main']
 
 fs = require 'fs-extra'
 files = ([__dirname, "#{file}.coffee"].join '/' for file in files)
