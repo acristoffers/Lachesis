@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="fonts/material_icons.css" charset="utf-8">
         <link rel="stylesheet" href="fonts/roboto.css" charset="utf-8">
 
-        <link rel="stylesheet" type="text/css" href="deps/material-design-themes/material.teal-indigo.min.css">
+        <link rel="stylesheet" type="text/css" href="deps/material-design-lite/material.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
 
         <!-- Fix for Electron not importing some libraries -->
@@ -102,6 +102,8 @@
                         </div>
                         <br>
                         <button id="conn-connect" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-tr="Connect"></button>
+                        <br><br>
+                        <div id='conn-loading' class="mdl-spinner mdl-js-spinner"></div>
                     </form>
                     <div id="connected-pane" unresolved>
                         <span data-tr="Connected with:"></span> <span id="conn-address-span"></span>
@@ -129,7 +131,17 @@
                 <div id="signal" class="page">Signal</div>
                 <div id="control" class="page">Control</div>
             </main>
+
+            <div id="toast" class="mdl-snackbar mdl-js-snackbar">
+                <div class="mdl-snackbar__text"></div>
+                <button type="button" class="mdl-snackbar__action"></button>
+            </div>
         </div>
     </body>
+
+</html>
+</main>
+</div>
+</body>
 
 </html>

@@ -23,7 +23,7 @@ THE SOFTWARE.
 if process?
    process.on 'uncaughtException', (err) ->
        if ~err.toString().indexOf('ECONNREFUSED') # if err contains ECONNREFUSED
-           alert t 'Connection refused'
+           toast t 'Connection refused'
 
 net = null
 
@@ -54,17 +54,18 @@ Connection =
                 Connection._client.onopen = ->
                     Connection.authenticate password
         catch e
-            alert e
+            toast e
 
     disconnect: ->
-        console.log 'Disconnecting...'
         if net?
             Connection._client.destroy()
         else
             Connection._client.close()
         Connection._client = null
         Connection.is_connected = false
+        Connection.hide_loading()
         Connection.show_form()
+        toast t 'Disconnected'
 
     SHA512: (str) ->
         buffer = new TextEncoder("utf-8").encode str
@@ -107,16 +108,19 @@ Connection =
                 [cmd, args...] = data.split ' '
                 args = (atob arg for arg in args)
                 if cmd == 'AUTH'
+                    Connection.hide_loading()
                     if args.first() == 'OK'
                         Connection.is_connected = true
                         $('#conn-address-span').html $('#conn-address').val()
                         Connection.show_info()
                     else
-                        alert 'Connection failed!'
                         Connection.disconnect()
                 else if cmd == 'GENSALT'
                     salt = args.first()
                     Connection.after_gensalt(salt)
+                else if cmd == 'CHANGEPSWD'
+                    if args.first() == 'OK'
+                        toast t 'Password changed'
 
     send: (data) ->
         data = Connection.preprocess_out data
@@ -128,7 +132,7 @@ Connection =
     show_form: ->
         $('#connect-form').removeAttr 'unresolved'
         $('#connected-pane').attr 'unresolved', true
-        $('#conn-password').parent().get(0).change ''
+        $('#conn-password').parent().get(0).MaterialTextfield.change ''
         $('#connect').click()
 
     show_info: ->
@@ -136,6 +140,12 @@ Connection =
         $('#connect-form').attr 'unresolved', true
         $('#new-pswd').parent().get(0).MaterialTextfield.change ''
         $('#confirm-new-pswd').parent().get(0).MaterialTextfield.change ''
+
+    show_loading: ->
+        $('#conn-loading').addClass 'is-active'
+
+    hide_loading: ->
+        $('#conn-loading').removeClass 'is-active'
 
     init: ->
         try
@@ -145,6 +155,7 @@ Connection =
 
         # Connects to a Moirai server
         $('#conn-connect').click ->
+            Connection.show_loading()
             address = $('#conn-address').val()
             password = $('#conn-password').val()
             Connection.connect_to_server address, password
@@ -154,14 +165,14 @@ Connection =
             Connection.disconnect()
 
         $('#conn-shutdown').click ->
-            Connection.send 'QUIT'
+            Connection.send 'QUIT;'
             Connection.disconnect()
 
         $('#conn-change-pswd').click ->
             npswd = $('#new-pswd').val()
             cnpswd = $('#confirm-new-pswd').val()
             if npswd != cnpswd
-                alert t 'pswd-confirm-dont-match'
+                toast t 'pswd-confirm-dont-match'
             else
                 Connection.SHA512(npswd).then( (hash) ->
                     Connection.send "CHANGEPSWD #{btoa hash}"

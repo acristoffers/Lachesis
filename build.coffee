@@ -25,6 +25,7 @@ minify = require('html-minifier').minify
 exec = require('child_process').execSync
 fs = require 'fs-extra'
 Finder = require 'fs-finder'
+request = require 'sync-request'
 
 html_minifier_options =
     removeAttributeQuotes: true
@@ -94,7 +95,7 @@ exists = (path) ->
 
 install_dependencies = () ->
     console.log 'Installing dependencies'
-    components = ['material-design-lite', 'mdl-themes', 'jquery']
+    components = ['material-design-lite', 'jquery']
     for component in components
         unless exists ['bower_components', component.split('#')[0]].join '/'
             console.log '... installing ' + component
@@ -102,6 +103,8 @@ install_dependencies = () ->
             execute cmd
     packages = fs.readdirSync 'bower_components'
     clean_bower pkg.split('#')[0] for pkg in packages
+    res = request('GET', 'https://storage.googleapis.com/code.getmdl.io/1.2.1/material.teal-indigo.min.css').getBody()
+    fs.writeFileSync('bower_components/material-design-lite/material.min.css', res)
     fs.copySync 'bower_components',  'mobile/www/deps'
     fs.removeSync 'bower_components' unless keep_bower
 

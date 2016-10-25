@@ -54,6 +54,8 @@ class I18N
             'Change password': 'Change password'
             'pswd-confirm-dont-match': 'Password and confirmation do not match'
             'Connection refused': 'Connection refused'
+            'Disconnected': 'Disconnected'
+            'Password changed': 'Password changed'
         fr:
             'About': 'À propos'
             'Language': 'Langue'
@@ -80,6 +82,8 @@ class I18N
             'Change password': 'Changer le mot de passe'
             'pswd-confirm-dont-match': "Le mot de passe et sa confirmation n'égalent pas"
             'Connection refused': 'Connexion refusé'
+            'Disconnected': 'Déconnecté'
+            'Password changed': 'Mot de passe changé'
         pt:
             'About': 'Sobre'
             'Language': 'Idioma'
@@ -106,6 +110,8 @@ class I18N
             'Change password': 'Alterar senha'
             'pswd-confirm-dont-match': 'A senha e sua confirmação não são iguais'
             'Connection refused': 'Conexão recusada'
+            'Disconnected': 'Desconectado'
+            'Password changed': 'Senha alterada'
         de:
             'About': 'Über'
             'Language': 'Sprache'
@@ -132,6 +138,8 @@ class I18N
             'Change password': 'Passwort speichern'
             'pswd-confirm-dont-match': 'Das Passwort und seine Bestätigung sind nicht gleich'
             'Connection refused': 'Verbindung abgelehnt'
+            'Disconnected': 'Verbindung getrennt'
+            'Password changed': 'Password geändert'
 
     @locale = get_locale()
 

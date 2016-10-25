@@ -44,6 +44,9 @@ close_drawer = ->
     if $('.mdl-layout__drawer').attr('aria-hidden') == "false"
         document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer()
 
+window.toast = (msg) ->
+    $('#toast').get(0).MaterialSnackbar.showSnackbar message: msg
+
 # Application initialization
 main = ->
     # Verifies platform

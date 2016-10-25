@@ -19,6 +19,7 @@
         "fs-extra": "*",
         "fs-finder": "*",
         "uglifyjs": "*",
-        "bower": "*"
+        "bower": "*",
+        "sync-request": "*"
     }
 }
