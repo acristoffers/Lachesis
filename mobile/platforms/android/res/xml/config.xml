@@ -4,9 +4,6 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="SocketsForCordova">
-        <param name="android-package" value="cz.blocshop.socketsforcordova.SocketPlugin" />
-    </feature>
     <name>Lachesis</name>
     <description>
         Moirai supervisor.

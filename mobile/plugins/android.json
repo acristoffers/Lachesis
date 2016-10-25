@@ -9,9 +9,6 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "me.acristoffers.lachesis"
-        },
-        "cz.blocshop.socketsforcordova": {
-            "PACKAGE_NAME": "me.acristoffers.lachesis"
         }
     },
     "dependent_plugins": {}

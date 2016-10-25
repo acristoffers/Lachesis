@@ -53,6 +53,7 @@ class I18N
             'Confirm new password': 'Confirm new password'
             'Change password': 'Change password'
             'pswd-confirm-dont-match': 'Password and confirmation do not match'
+            'Connection refused': 'Connection refused'
         fr:
             'About': 'À propos'
             'Language': 'Langue'
@@ -78,6 +79,7 @@ class I18N
             'Confirm new password': 'Confirmer le nouveau mot de passe'
             'Change password': 'Changer le mot de passe'
             'pswd-confirm-dont-match': "Le mot de passe et sa confirmation n'égalent pas"
+            'Connection refused': 'Connexion refusé'
         pt:
             'About': 'Sobre'
             'Language': 'Idioma'
@@ -103,6 +105,7 @@ class I18N
             'Confirm new password': 'Confirmar nova senha'
             'Change password': 'Alterar senha'
             'pswd-confirm-dont-match': 'A senha e sua confirmação não são iguais'
+            'Connection refused': 'Conexão recusada'
         de:
             'About': 'Über'
             'Language': 'Sprache'
@@ -128,6 +131,7 @@ class I18N
             'Confirm new password': 'Neues Passwort Bestätigung'
             'Change password': 'Passwort speichern'
             'pswd-confirm-dont-match': 'Das Passwort und seine Bestätigung sind nicht gleich'
+            'Connection refused': 'Verbindung abgelehnt'
 
     @locale = get_locale()
 

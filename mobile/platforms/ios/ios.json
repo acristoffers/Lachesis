@@ -7,12 +7,7 @@
         "files": {
             "config.xml": {
                 "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"SocketsForCordova\"><param name=\"ios-package\" value=\"SocketPlugin\" /></feature>",
-                            "count": 1
-                        }
-                    ]
+                    "/*": []
                 }
             }
         }
@@ -20,24 +15,11 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "me.acristoffers.lachesis"
-        },
-        "cz.blocshop.socketsforcordova": {
-            "PACKAGE_NAME": "me.acristoffers.lachesis"
         }
     },
     "dependent_plugins": {},
-    "modules": [
-        {
-            "id": "cz.blocshop.socketsforcordova.Socket",
-            "file": "plugins/cz.blocshop.socketsforcordova/socket.js",
-            "pluginId": "cz.blocshop.socketsforcordova",
-            "clobbers": [
-                "window.Socket"
-            ]
-        }
-    ],
+    "modules": [],
     "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.3.0",
-        "cz.blocshop.socketsforcordova": "1.1.0"
+        "cordova-plugin-whitelist": "1.3.0"
     }
 }

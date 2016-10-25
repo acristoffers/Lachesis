@@ -20,6 +20,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ###
 
+if process?
+   process.on 'uncaughtException', (err) ->
+       if ~err.toString().indexOf('ECONNREFUSED') # if err contains ECONNREFUSED
+           alert t 'Connection refused'
+
 net = null
 
 Connection =
@@ -27,27 +32,36 @@ Connection =
     _client: null
     _data: ''
     connect_to_server: (address, password) ->
-        if Socket?
-            Connection._client = new net()
-            socket.onData Connection.data_received
-            socket.onClose ->
-                Connection.disconnect() if Connection.is_connected
-            Connection._client.open address, 5000, ->
-                Connection.authenticate password
-        else
-            Connection._client = new net.Socket()
-            Connection._client.connect 5000, address, ->
-                Connection.authenticate password
-            Connection._client.on 'data', Connection.data_received
-            Connection._client.on 'close', ->
-                Connection.disconnect() if Connection.is_connected
+        console.log "Connecting to #{address}"
+        try
+            if net?
+                Connection._client = new net.Socket()
+                Connection._client.connect 5000, address, ->
+                    Connection.authenticate password
+                Connection._client.on 'data', Connection.data_received
+                Connection._client.on 'close', ->
+                    Connection.disconnect() if Connection.is_connected
+            else
+                Connection._client = new WebSocket "ws://#{address}:5001", 'binary'
+                Connection._client.onclose = ->
+                    Connection.disconnect() if Connection.is_connected
+                Connection._client.onmessage = (event) ->
+                    fr = new FileReader()
+                    fr.readAsText(event.data)
+                    fr.onload = (event) ->
+                        data = fr.result
+                        Connection.data_received data
+                Connection._client.onopen = ->
+                    Connection.authenticate password
+        catch e
+            alert e
 
     disconnect: ->
         console.log 'Disconnecting...'
-        if Socket?
-            Connection._client.shutdownWrite()
-        else
+        if net?
             Connection._client.destroy()
+        else
+            Connection._client.close()
         Connection._client = null
         Connection.is_connected = false
         Connection.show_form()
@@ -79,7 +93,6 @@ Connection =
 
     preprocess_out: (data) ->
         data = "#{data};"
-        data = (new TextEncoder).encode(data) if Socket?
         return data
 
     data_received: (data) ->
@@ -107,21 +120,28 @@ Connection =
 
     send: (data) ->
         data = Connection.preprocess_out data
-        Connection._client.write(data)
+        if net?
+            Connection._client.write(data)
+        else
+            Connection._client.send(data)
 
     show_form: ->
         $('#connect-form').removeAttr 'unresolved'
         $('#connected-pane').attr 'unresolved', true
+        $('#conn-password').parent().get(0).change ''
+        $('#connect').click()
 
     show_info: ->
         $('#connected-pane').removeAttr 'unresolved'
         $('#connect-form').attr 'unresolved', true
+        $('#new-pswd').parent().get(0).MaterialTextfield.change ''
+        $('#confirm-new-pswd').parent().get(0).MaterialTextfield.change ''
 
     init: ->
         try
             net = require 'net'
         catch e
-            net = Socket
+            null
 
         # Connects to a Moirai server
         $('#conn-connect').click ->
