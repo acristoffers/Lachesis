@@ -24,6 +24,7 @@ if process?
    process.on 'uncaughtException', (err) ->
        if ~err.toString().indexOf('ECONNREFUSED') # if err contains ECONNREFUSED
            toast t 'Connection refused'
+           Connection.disconnect()
 
 net = null
 
