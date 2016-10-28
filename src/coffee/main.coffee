@@ -67,10 +67,16 @@ main = ->
     # will change in this application and indicates which page is currently
     # active
     $(window).on 'hashchange', ->
-        hash = location.hash.slice(1)
-        $('.page').hide()
-        $("##{hash}").show()
         close_drawer()
+        hash = location.hash.slice(1)
+        return if hash == ''
+        if Connection.is_connected || hash == 'connect'
+            $('.page').hide()
+            $("##{hash}").show()
+            window.location.hash = ''
+        else
+            window.location.hash = '#connect'
+            toast t 'Disconnected'
 
     # Disable all form submition. Shall be handled by javascript instead
     $('form').submit -> false
