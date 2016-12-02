@@ -39,6 +39,9 @@ settings = (key, val) ->
         val = cookie key
         JSON.parse val if val?
 
+update_mdl_components = ->
+    componentHandler.upgradeAllRegistered() if componentHandler?
+
 # Closes the Material Layout Drawer if it's open
 close_drawer = ->
     if $('.mdl-layout__drawer').attr('aria-hidden') == "false"
@@ -63,6 +66,10 @@ main = ->
         window.i18n.update_translation()
         settings 'locale', window.i18n.locale
 
+    activate_page = (page) ->
+        if page == 'hardware'
+            Hardware.activated()
+
     # Listens to changes in the HASH part of the URL. It's the only part that
     # will change in this application and indicates which page is currently
     # active
@@ -74,6 +81,7 @@ main = ->
             $('.page').hide()
             $("##{hash}").show()
             window.location.hash = ''
+            activate_page hash
         else
             window.location.hash = '#connect'
             toast t 'Disconnected'
@@ -82,6 +90,7 @@ main = ->
     $('form').submit -> false
 
     Connection.init()
+    Hardware.init()
 
     # Start with the connect page
     $('.page').hide()
@@ -90,6 +99,9 @@ main = ->
     # Displays body
     $('body').addClass window.platform
     $('body').removeAttr 'unresolved'
+
+    # Focus on Address field
+    $('#conn-address').focus()
 
 $ ->
     if window.platform?

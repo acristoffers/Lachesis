@@ -82,7 +82,7 @@
                 <span class="mdl-layout-title">Lachesis</span>
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link" href="#connect" data-tr="Connect"></a>
-                    <a class="mdl-navigation__link" href="#configure" data-tr="Hardware Configuration"></a>
+                    <a class="mdl-navigation__link" href="#hardware" data-tr="Hardware Configuration"></a>
                     <a class="mdl-navigation__link" href="#signal" data-tr="Signal Generation"></a>
                     <a class="mdl-navigation__link" href="#control" data-tr="Control Model"></a>
                 </nav>
@@ -127,7 +127,71 @@
                     </div>
                 </div>
 
-                <div id="configure" class="page">Configure</div>
+                <div id="hardware" class="page">
+                    <h3 data-tr="Hardware Configuration"></h3>
+                    <form id="hw-config">
+                        <h5 data-tr="Driver"></h5>
+                        <div id="hw-drivers">
+                            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+                        </div>
+                        <div id="hw-driver-setup" unresolved>
+                            <h5 data-tr="Driver setup"></h5>
+                            <div id="hw-driver-setup-args"></div>
+                        </div>
+
+                        <div id="hw-setup-apply">
+                            <button id="hw-setup" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-tr="Apply setup"></button>
+                        </div>
+
+                        <div id="hw-setup-pinmap" unresolved>
+                            <h5 data-tr="Pin mapping"></h5>
+                            <div class="horizontal-scroll">
+                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span id="hw-pin-name-header" data-tr="Pin name"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-name-header" data-tr="pin-name-tooltip"></div>
+                                            </th>
+                                            <th>
+                                                <span id="hw-pin-alias-header" data-tr="Pin alias"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-alias-header" data-tr="pin-alias-tooltip"></div>
+                                            </th>
+                                            <th>
+                                                <span id="hw-pin-digana-header" data-tr="Digital/Analog"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-digana-header" data-tr="pin-digana-tooltip"></div>
+                                            </th>
+                                            <th>
+                                                <span id="hw-pin-inout-header" data-tr="Input/Output"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-inout-header" data-tr="pin-inout-tooltip"></div>
+                                            </th>
+                                            <th>
+                                                <span id="hw-pin-pwm-header" data-tr="PWM"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-pwm-header" data-tr="pin-pwm-tooltip"></div>
+                                            </th>
+                                            <th>
+                                                <span id="hw-pin-initial-value-header" data-tr="Initial value"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-initial-value-header" data-tr="pin-initial-value-tooltip"></div>
+                                            </th>
+                                            <th>
+                                                <span id="hw-pin-internal-id-header" data-tr="Internal ID"></span>
+                                                <div class="mdl-tooltip" data-mdl-for="hw-pin-internal-id-header" data-tr="pin-internal-id-tooltip"></div>
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="margin-top-1rem">
+                                <button id="hw-add-port" class="mdl-button mdl-js-button mdl-button--raised"><i class="material-icons">add</i></button>
+                                <button id="hw-save" class="mdl-button mdl-js-button mdl-button--raised"><i class="material-icons">save</i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <div id="signal" class="page">Signal</div>
                 <div id="control" class="page">Control</div>
             </main>

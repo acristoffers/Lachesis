@@ -28,12 +28,30 @@ if process?
 
 net = null
 
+ConnTCPProcessor =
+    gensalt: (args) ->
+        salt = args.first()
+        Connection.after_gensalt(salt)
+
+    auth: (args) ->
+        Connection.hide_loading()
+        if args.first() == 'OK'
+            Connection.is_connected = true
+            $('#conn-address-span').html $('#conn-address').val()
+            Connection.show_info()
+        else
+            Connection.disconnect()
+
+    changepswd: (args) ->
+        if args.first() == 'OK'
+            toast t 'Password changed'
+
 Connection =
     is_connected: false
     _client: null
     _data: ''
+    _tcp_listeners: [ConnTCPProcessor]
     connect_to_server: (address, password) ->
-        console.log "Connecting to #{address}"
         try
             if net?
                 Connection._client = new net.Socket()
@@ -66,6 +84,7 @@ Connection =
         Connection.is_connected = false
         Connection.hide_loading()
         Connection.show_form()
+        window.location.hash = 'connection'
         toast t 'Disconnected'
 
     SHA512: (str) ->
@@ -84,7 +103,7 @@ Connection =
             else
                 Connection.SHA512(password).then( (hash) ->
                     Connection.SHA512(hash + salt).then( (hash2) ->
-                        Connection.send "AUTH #{btoa hash2}"
+                        Connection.send_cmd 'AUTH', [hash2]
                     )
                 )
         Connection.send 'GENSALT'
@@ -94,8 +113,7 @@ Connection =
         return data.trim()
 
     preprocess_out: (data) ->
-        data = "#{data};"
-        return data
+        "#{data};"
 
     data_received: (data) ->
         data = data.toString() unless typeof(data) == 'string'
@@ -108,20 +126,15 @@ Connection =
                 continue if data == 'ALIVE'
                 [cmd, args...] = data.split ' '
                 args = (atob arg for arg in args)
-                if cmd == 'AUTH'
-                    Connection.hide_loading()
-                    if args.first() == 'OK'
-                        Connection.is_connected = true
-                        $('#conn-address-span').html $('#conn-address').val()
-                        Connection.show_info()
-                    else
-                        Connection.disconnect()
-                else if cmd == 'GENSALT'
-                    salt = args.first()
-                    Connection.after_gensalt(salt)
-                else if cmd == 'CHANGEPSWD'
-                    if args.first() == 'OK'
-                        toast t 'Password changed'
+                cmd = cmd.toLowerCase()
+                for listener in Connection._tcp_listeners
+                    if listener.hasOwnProperty cmd
+                        listener[cmd](args)
+                        break
+
+    send_cmd: (cmd, args) ->
+        args = (btoa(arg) for arg in args)
+        Connection.send "#{cmd} #{args.join ' '}".trim()
 
     send: (data) ->
         data = Connection.preprocess_out data
@@ -166,7 +179,7 @@ Connection =
             Connection.disconnect()
 
         $('#conn-shutdown').click ->
-            Connection.send 'QUIT;'
+            Connection.send 'QUIT'
             Connection.disconnect()
 
         $('#conn-change-pswd').click ->
@@ -176,6 +189,6 @@ Connection =
                 toast t 'pswd-confirm-dont-match'
             else
                 Connection.SHA512(npswd).then( (hash) ->
-                    Connection.send "CHANGEPSWD #{btoa hash}"
+                    Connection.send_cmd 'CHANGEPSWD', [hash]
                     Connection.disconnect()
                 )
