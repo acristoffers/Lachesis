@@ -92,12 +92,33 @@ HardwareTCPProcessor =
     hw_driver_list_ports: (ports) ->
         Hardware.ports = (JSON.parse(port) for port in ports)
         $('#hw-setup-pinmap').removeAttr 'unresolved'
+        Connection.send 'HW_PORT_MAPPING_GET'
+
+    hw_port_mapping_get: (ms) ->
+        $('#hw-setup-pinmap tbody').html ''
+        ms = (JSON.parse(m) for m in ms)
+        ms.sort( (a, b) -> a.map - b.map )
+        for m in ms
+            hw_add_port()
+            row = $($('#hw-setup-pinmap tbody tr').last())
+            select = $(row.find('.hw-port-name'))
+            if select.get(0).MaterialTextfield?
+                select.get(0).MaterialTextfield.change m.id
+            else
+                select.val m.id
+            row.find('.hw-port-alias').get(0).MaterialTextfield.change m.alias
+            $(row.find(".hw-port-digana input[value=#{m.digital}]")).parent().get(0).MaterialRadio.check()
+            $(row.find(".hw-port-inout input[value=#{m.input}]")).parent().get(0).MaterialRadio.check()
+            if m.pwn
+                $(row.find(".hw-port-pwm")).get(0).MaterialSwitch.on()
+            else
+                $(row.find(".hw-port-pwm")).get(0).MaterialSwitch.off()
+            row.find('.hw-port-value').get(0).MaterialTextfield.change m.value
+        enforce_port_integrity row
 
     hw_driver_is_connected: (status) ->
         status = JSON.parse(status)
-        console.log status
         if status
-            console.log 'listing_ports'
             Connection.send 'HW_DRIVER_LIST_PORTS'
 
 loading_tag = '<div class="mdl-spinner mdl-js-spinner is-active"></div>'
