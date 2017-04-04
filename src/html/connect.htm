@@ -1,0 +1,23 @@
+<div flex class="connect-wrapper">
+  <div stretch></div>
+  <div flex-col *ngIf="!isLoggedIn()">
+    <div stretch></div>
+    <md-input-container>
+      <input mdInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress" (keydown.enter)="connect()">
+    </md-input-container>
+    <md-input-container>
+      <input type="password" mdInput [placeholder]="'Password' | translate" [(ngModel)]="connectionPassword" (keydown.enter)="connect()">
+    </md-input-container>
+    <button class="connect-button" md-raised-button color="primary" (click)="connect()">{{ 'Connect' | translate }}</button>
+    <div stretch></div>
+  </div>
+
+  <div flex-col *ngIf="isLoggedIn()">
+    <div stretch></div>
+    <span text-center>{{ 'Connected' | translate }}</span>
+    <br>
+    <button class="connect-button" md-raised-button color="primary" (click)="disconnect()">{{ 'Disconnect' | translate }}</button>
+    <div stretch></div>
+  </div>
+  <div stretch></div>
+</div>

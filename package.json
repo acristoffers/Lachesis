@@ -8,18 +8,32 @@
         "email": "acristoffers@gmail.com",
         "url": "https://github.com/acristoffers/moirai"
     },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/acristoffers/Lachesis.git"
+    },
     "scripts": {
-        "build": "coffee build.coffee",
-        "start": "coffee run.coffee"
+        "clean:all": "bash clean.sh",
+        "clean": "rm -rf desktop/www desktop/build desktop/dist",
+        "build": "bash build.sh",
+        "prestart": "yarn build",
+        "start": "cd desktop && yarn run electron www",
+        "predist": "yarn build",
+        "dist": "bash dist.sh",
+        "build:fast": "bash build-fast.sh",
+        "prestart:fast": "yarn build:fast",
+        "start:fast": "cd desktop && yarn run electron www"
     },
     "dependencies": {
-        "coffee-script": "*",
-        "sass": "*",
-        "html-minifier": "*",
-        "fs-extra": "*",
-        "fs-finder": "*",
-        "uglifyjs": "*",
-        "bower": "*",
-        "sync-request": "*"
+        "fs-extra": "^2.1.2",
+        "fs-finder": "^1.8.1",
+        "html-minifier": "^3.4.2",
+        "sass": "^0.5.0",
+        "sync-request": "^4.0.1",
+        "uglifyjs": "^2.4.10",
+        "webpack": "^2.3.2"
+    },
+    "devDependencies": {
+        "node-sass": "^4.5.1"
     }
 }

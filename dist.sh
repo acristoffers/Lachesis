@@ -20,6 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-rm -r desktop/www desktop/build desktop/dist &> /dev/null
-rm -r node_modules src/typescript/node_modules desktop/node_modules &> /dev/null
-rm yarn.lock src/typescript/yarn.lock desktop/yarn.lock &> /dev/null
+cd desktop
+export CSC_IDENTITY_AUTO_DISCOVERY=false
+yarn run dist

@@ -1,0 +1,7 @@
+<toolbar [(sidebarOpen)]="sidebarOpen"></toolbar>
+<md-sidenav-container>
+  <md-sidenav #sidenav mode="side" [opened]="sidebarOpen">
+    <sidenav></sidenav>
+  </md-sidenav>
+  <router-outlet></router-outlet>
+</md-sidenav-container>

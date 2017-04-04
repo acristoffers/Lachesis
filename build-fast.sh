@@ -20,6 +20,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-rm -r desktop/www desktop/build desktop/dist &> /dev/null
-rm -r node_modules src/typescript/node_modules desktop/node_modules &> /dev/null
-rm yarn.lock src/typescript/yarn.lock desktop/yarn.lock &> /dev/null
+cwd=$(pwd)
+
+# Compile TypeScript
+echo ""
+echo "Compiling TypeScript"
+echo ""
+cd src/typescript
+yarn run webpack
+cd $cwd
+mv src/typescript/dist/index.js desktop/www/js/app.js
+
+# Compile SASS
+echo ""
+echo "Compiling SASS"
+echo ""
+yarn run node-sass --output-style compressed src/scss/app.scss desktop/www/css/app.css
+
+# Minify HTML
+node html-minifier.js
+
+# Copy files
+echo ""
+echo "Building root and copying dependencies"
+echo ""
+cp -r src/imgs desktop/www/imgs
+cp -r src/fonts desktop/www/fonts
+cp -r src/typescript/dist desktop/www/css
+touch src/typescript/dist
+rm -r src/typescript/dist

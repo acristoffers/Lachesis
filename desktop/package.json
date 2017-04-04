@@ -6,38 +6,54 @@
     "author": {
         "name": "Álan Crístoffer",
         "email": "acristoffers@gmail.com",
-        "url": "https://github.com/acristoffers/moirai"
+        "url": "https://github.com/acristoffers/Lachesis"
     },
     "devDependencies": {
-        "electron": "1.4.3",
-        "coffee-script": "1.11.1"
+        "electron": "1.6.2",
+        "electron-builder": "^16.4.2"
     },
-    "homepage": "https://github.com/acristoffers/moirai",
+    "homepage": "https://github.com/acristoffers/Lachesis",
     "productName": "lachesis",
-    "directories": {
-        "app": "www"
-    },
     "build": {
-        "extraResources": ["www/**/*"],
+        "directories": {
+            "app": "www"
+        },
+        "extraResources": [
+            "www/**/*"
+        ],
         "appId": "me.acristoffers.lachesis",
         "productName": "Lachesis",
         "protocols": [{
             "name": "Moirai supervisor",
             "role": "Editor",
-            "schemes": ["tcp"]
+            "schemes": [
+                "tcp"
+            ]
         }],
         "linux": {
             "category": "public.app-category.productivity",
             "packageCategory": "productivity",
-            "target": ["AppImage", "deb", "rpm", "freebsd", "pacman", "tar.xz"],
-            "synopsis": "Moirai supervisor"
+            "target": [
+                "AppImage",
+                "deb",
+                "rpm",
+                "freebsd",
+                "pacman",
+                "tar.xz"
+            ]
         },
         "mac": {
             "category": "public.app-category.productivity",
-            "target": ["dmg", "zip"]
+            "target": [
+                "dmg",
+                "zip"
+            ]
         },
         "win": {
-            "target": ["nsis", "zip"]
+            "target": [
+                "nsis",
+                "zip"
+            ]
         },
         "nsis": {}
     },

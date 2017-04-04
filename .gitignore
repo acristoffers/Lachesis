@@ -47,3 +47,6 @@ bower_components
 www
 .sass-cache
 .gradle
+
+# YARN lock file
+yarn.lock
