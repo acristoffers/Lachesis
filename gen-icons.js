@@ -32,9 +32,9 @@ function execute (cmd) {
 gen_desktop_icons = function () {
   var cmd, i, input, input2, j, len, len1, name, opts, out1x, out2x, output, outputs, ref, ref1, size, sizes, x
   console.log('Generating desktop icons')
+  input = 'desktop/www/imgs/icon.svg'
   if (process.platform === 'darwin') {
     fs.mkdirsSync('desktop/build/icon.iconset')
-    input = 'desktop/www/imgs/icon.svg'
     sizes = [16, 32, 128, 256, 512]
     out1x = (function () {
       var i, len, results
