@@ -25,14 +25,13 @@ const fs = require('fs-extra')
 
 const html_minifier_options = {
   caseSensitive: true,
-  removeAttributeQuotes: true,
+  removeAttributeQuotes: false,
   collapseBooleanAttributes: true,
   collapseInlineTagWhitespace: true,
   collapseWhitespace: true,
   conservativeCollapse: true,
   decodeEntities: true,
   html5: true,
-  removeAttributeQuotes: true,
   removeComments: true,
   removeEmptyAttributes: true,
   removeRedundantAttributes: true,
