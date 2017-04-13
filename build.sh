@@ -55,9 +55,8 @@ yarn run tsc
 rm -r node_modules yarn.lock ../yarn.lock
 cd $cwd
 rm -r desktop/www/index.ts desktop/www/tsconfig.json
-cp -r src/imgs desktop/www/imgs
-cp -r src/fonts desktop/www/fonts
-cp -r src/typescript/dist desktop/www/css
+cp -r src/imgs desktop/www/
+cp -r src/fonts desktop/www/
 touch src/typescript/dist
 rm -r src/typescript/dist
 
@@ -66,6 +65,7 @@ echo ""
 echo "Compiling TypeScript"
 echo ""
 cd src/typescript
+yarn run ngc
 yarn run webpack
 cd $cwd
 mv src/typescript/dist/index.js desktop/www/js/app.js
@@ -74,7 +74,7 @@ mv src/typescript/dist/index.js desktop/www/js/app.js
 echo ""
 echo "Compiling SASS"
 echo ""
-yarn run node-sass --output-style compressed src/scss/app.scss desktop/www/css/app.css
+yarn run node-sass -- src/scss/app.scss desktop/www/css/app.css --output-style compressed
 
 # Minify HTML
 node html-minifier.js

@@ -26,13 +26,13 @@ import { SharedData } from './shared_data.service'
 
 @Component({
     selector: 'sidenav',
-    templateUrl: 'sidenav.htm'
+    templateUrl: '../html/sidenav.htm'
 })
 export class SidenavComponent {
     constructor(private translate: TranslateService) {
     }
 
-    isLoggedIn() {
+    isLoggedIn(): boolean {
         return SharedData.accessToken != null
     }
 }

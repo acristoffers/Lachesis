@@ -27,7 +27,7 @@ import { TRANSLATIONS } from './translation'
 export class TranslateService {
     private _currentLang: string;
 
-    public get currentLang() {
+    public get currentLang(): string {
         return this._currentLang
     }
 
@@ -41,14 +41,14 @@ export class TranslateService {
     private translate(key: string): string {
         let translation = key
 
-        if (this._translations[this.currentLang] && this._translations[this.currentLang][key]) {
-            return this._translations[this.currentLang][key]
+        if (this._translations.get(this.currentLang) && this._translations.get(this.currentLang)[key]) {
+            return this._translations.get(this.currentLang)[key]
         }
 
         return translation
     }
 
-    public instant(key: string) {
+    public instant(key: string): string {
         return this.translate(key)
     }
 }

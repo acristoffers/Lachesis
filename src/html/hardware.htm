@@ -1,0 +1,101 @@
+<div flex>
+  <div stretch></div>
+  <div id="hardware">
+    <h1>{{ 'Hardware Setup' | translate }}</h1>
+    <md-card id="driver">
+      <md-card-header>
+        <md-card-title>{{ 'Driver' | translate }}</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-select placeholder="{{ 'Driver' | translate }}" [(ngModel)]="selectedDriver">
+          <md-option *ngFor="let driver of availableDrivers" [value]="driver">
+            {{ driver.name }}
+          </md-option>
+        </md-select>
+      </md-card-content>
+    </md-card>
+
+    <md-card id="setup" *ngIf="!!selectedDriver && selectedDriver.has_setup">
+      <md-card-header>
+        <md-card-title>{{ 'Setup' | translate }}</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-input-container class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
+          <input mdInput [placeholder]="argument.name" [value]="argument.default_value | removeUndefined">
+        </md-input-container>
+      </md-card-content>
+    </md-card>
+
+    <md-card id="ports" *ngIf="!!selectedDriver">
+      <md-card-header>
+        <md-card-title>{{ 'Ports' | translate }}</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table>
+          <thead>
+              <tr>
+                  <th>
+                      <span>{{ 'Port Name' | translate }}</span>
+                  </th>
+                  <th>
+                      <span>{{ 'Port Alias' | translate }}</span>
+                  </th>
+                  <th>
+                      <span>{{ 'Port Type' | translate }}</span>
+                  </th>
+                  <th>
+                      <span>{{ 'Initial Value' | translate }}</span>
+                  </th>
+                  <th>
+                      <span>{{ 'Internal ID' | translate }}</span>
+                  </th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let port of ports">
+              <td class="port-name">
+                <md-input-container *ngIf="!selectedDriver.ports.length">
+                  <input mdInput [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
+                </md-input-container>
+                <md-select *ngIf="!!selectedDriver.ports.length" [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
+                  <md-option *ngFor="let driverPort of selectedDriver.ports" [value]="driverPort.id">
+                    {{ driverPort.name }}
+                  </md-option>
+                </md-select>
+              </td>
+              <td class="port-alias">
+                <md-input-container>
+                  <input mdInput [placeholder]="'Port Alias' | translate" [(ngModel)]="port.alias">
+                </md-input-container>
+              </td>
+              <td class="port-type">
+                <md-select [placeholder]="'Port Type' | translate" [(ngModel)]="port.type">
+                  <md-option *ngFor="let p of portTypes(port.name)" [value]="p">
+                    {{ portTypeName(p)[0] | translate }} - {{ portTypeName(p)[1] | translate }}
+                  </md-option>
+                </md-select>
+              </td>
+              <td class="port-value">
+                <md-input-container>
+                  <input mdInput [placeholder]="'Initial Value' | translate" [(ngModel)]="port.defaultValue">
+                </md-input-container>
+              </td>
+              <td class="port-id">
+                <span>{{ port.id }}</span>
+              </td>
+              <td>
+                <button md-raised-button color="warn" (click)="removePort(port)">{{ 'Remove' | translate }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button color="secondary" (click)="addPort()">{{ 'Add' | translate }}</button>
+        <button md-raised-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div stretch></div>
+</div>

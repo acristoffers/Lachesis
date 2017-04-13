@@ -26,9 +26,10 @@ import { BrowserModule } from '@angular/platform-browser'
 import { HttpModule } from '@angular/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from '@angular/material'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translation'
+import { RemoveUndefinedPipe } from './remove_undefined.pipe'
 
 import { Router } from './router'
 
@@ -36,12 +37,16 @@ import { AppComponent } from './app.component'
 import { ToolbarComponent } from './toolbar.component'
 import { SidenavComponent } from './sidenav.component'
 import { ConnectComponent } from './connect.component'
+import { HardwareComponent } from './hardware.component'
+
+import { HardwareService } from './hardware.service'
+import { SharedData } from './shared_data.service'
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
@@ -50,12 +55,19 @@ import { ConnectComponent } from './connect.component'
     ],
     declarations: [
         TranslatePipe,
+        RemoveUndefinedPipe,
         AppComponent,
         ToolbarComponent,
         SidenavComponent,
-        ConnectComponent
+        ConnectComponent,
+        HardwareComponent
     ],
-    providers: [TRANSLATION_PROVIDERS, TranslateService],
+    providers: [
+        TRANSLATION_PROVIDERS,
+        SharedData,
+        TranslateService,
+        HardwareService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

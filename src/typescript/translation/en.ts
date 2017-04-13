@@ -38,5 +38,19 @@ export const LANG_EN_TRANS = {
     'Error when connecting. Check address and try again.': 'Error when connecting. Check address and try again.',
     'Wrong password.': 'Wrong password.',
     'Connected': 'Connected',
-    'Disconnect': 'Disconnect'
+    'Disconnect': 'Disconnect',
+    'Driver': 'Driver',
+    'Apply': 'Apply',
+    'Setup': 'Setup',
+    'Ports': 'Ports',
+    'Port Name': 'Port Name',
+    'Port Alias': 'Port Alias',
+    'Port Type': 'Port Type',
+    'Digital': 'Digital',
+    'Analog': 'Analog',
+    'Input': 'Input',
+    'Output': 'Output',
+    'PWM': 'PWM',
+    'Initial Value': 'Initial Value',
+    'Internal ID': 'Internal ID'
 }

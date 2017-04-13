@@ -28,7 +28,7 @@ import { SharedData } from './shared_data.service'
 
 @Component({
     selector: 'connect',
-    templateUrl: 'connect.htm'
+    templateUrl: '../html/connect.htm'
 })
 export class ConnectComponent {
     private connectionAddress = 'localhost:5000'
@@ -42,23 +42,24 @@ export class ConnectComponent {
     ) {
     }
 
-    connect() {
-        const url = `http://${this.connectionAddress}/login`
+    connect(): void {
+        const url = `${SharedData.scheme}://${this.connectionAddress}/login`
         const postData = { password: this.connectionPassword }
         const observer = this.http.post(url, postData)
         observer.subscribe(this.loginSuccessiful(), this.httpError())
     }
 
-    loginSuccessiful() {
+    loginSuccessiful(): (res: Response) => void {
         const self: ConnectComponent = this
         return (res: Response) => {
             const data = res.json()
             SharedData.accessToken = data['token']
+            SharedData.moiraiAddress = this.connectionAddress
             self.applicationRef.tick()
         }
     }
 
-    httpError() {
+    httpError(): (res: Response) => void {
         const self: ConnectComponent = this
         return (error: any) => {
             if (!error.ok) {
@@ -74,12 +75,12 @@ export class ConnectComponent {
         }
     }
 
-    disconnect() {
+    disconnect(): void {
         SharedData.accessToken = null
         this.applicationRef.tick()
     }
 
-    isLoggedIn() {
+    isLoggedIn(): boolean {
         return SharedData.accessToken != null
     }
 }

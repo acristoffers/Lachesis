@@ -1,7 +1,13 @@
 {
+    "angularCompilerOptions": {
+        "genDir": "build",
+        "googleClosureOutput": true,
+        "entryModule": "app.module#AppModule",
+        "skipMetadataEmit": true
+    },
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
+        "target": "es5",
+        "module": "es2015",
         "moduleResolution": "node",
         "sourceMap": false,
         "emitDecoratorMetadata": true,
@@ -11,8 +17,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "watch": false,
         "outDir": "build",
-        "types": ["node"],
-        "experimentalDecorators": true
+        "types": ["node"]
     },
     "include": [
         "*.ts"

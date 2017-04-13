@@ -27,7 +27,6 @@ import { TranslateService } from '../translation'
     name: 'translate',
     pure: false
 })
-
 export class TranslatePipe implements PipeTransform {
     constructor(private _translate: TranslateService) { }
 

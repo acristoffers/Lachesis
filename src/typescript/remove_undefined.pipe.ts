@@ -19,11 +19,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-import { Injectable } from '@angular/core'
 
-@Injectable()
-export class SharedData {
-    public static scheme: string = 'http'
-    public static accessToken: string
-    public static moiraiAddress: string
+import { Component, Pipe, PipeTransform } from '@angular/core'
+
+@Pipe({ name: 'removeUndefined' })
+export class RemoveUndefinedPipe implements PipeTransform {
+    transform(value: string): string {
+        return value != null ? value : ''
+    }
 }

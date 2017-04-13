@@ -38,5 +38,19 @@ export const LANG_DE_TRANS = {
     'Error when connecting. Check address and try again.': 'Verbindung fehlgeschlagen. Überprüfen Sie die Addresse und versuchen Sie es nochmal.',
     'Wrong password.': 'Falsches Passwort',
     'Connected': 'Verbunden',
-    'Disconnect': 'Verbindung trennen'
+    'Disconnect': 'Verbindung trennen',
+    'Driver': 'Treiber',
+    'Apply': 'Verwenden',
+    'Setup': 'Einstellung',
+    'Ports': 'Ports',
+    'Port Name': 'Port Name',
+    'Port Alias': 'Port Alias',
+    'Port Type': 'Port-Typ',
+    'Digital': 'Digital',
+    'Analog': 'Analog',
+    'Input': 'Eingang',
+    'Output': 'Ausgang',
+    'PWM': 'PWM',
+    'Initial Value': 'Anfangswert',
+    'Internal ID': 'Interne ID'
 }

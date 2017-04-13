@@ -24,10 +24,11 @@ import { OnInit, Component } from '@angular/core'
 
 @Component({
     selector: '[app]',
-    templateUrl: 'app.htm'
+    templateUrl: '../html/app.htm'
 })
 export class AppComponent implements OnInit {
-    private connectionToken: string
+    public connectionToken: string
+    public sidebarOpen: boolean = true
 
     constructor() {
     }

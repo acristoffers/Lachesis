@@ -28,7 +28,7 @@ import * as _ from 'lodash'
 
 @Component({
     selector: 'toolbar',
-    templateUrl: 'toolbar.htm'
+    templateUrl: '../html/toolbar.htm'
 })
 export class ToolbarComponent {
     enFlagUrl: string = 'imgs/en.svg'
@@ -54,7 +54,7 @@ export class ToolbarComponent {
         this.registerImages(iconRegistry, sanitizer)
     }
 
-    registerImages(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+    registerImages(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer): void {
         const images = {
             'app-icon': 'imgs/icon.svg',
             'en-flag': this.enFlagUrl,
@@ -69,11 +69,12 @@ export class ToolbarComponent {
         })
     }
 
-    setLanguage(lang: string) {
+    setLanguage(lang: string): void {
+        $('html').attr('lang', lang)
         this.translate.use(lang)
     }
 
-    toggleSidebar() {
+    toggleSidebar(): void {
         this.sidebarOpen = !this.sidebarOpen
     }
 }

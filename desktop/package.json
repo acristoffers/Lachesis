@@ -37,6 +37,7 @@
                 "AppImage",
                 "deb",
                 "rpm",
+                "snap",
                 "freebsd",
                 "pacman",
                 "tar.xz"

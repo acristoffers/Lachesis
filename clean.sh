@@ -22,4 +22,5 @@
 
 rm -r desktop/www desktop/build desktop/dist &> /dev/null
 rm -r node_modules src/typescript/node_modules desktop/node_modules &> /dev/null
+rm -r src/typescript/dist src/typescript/build &> /dev/null
 rm yarn.lock src/typescript/yarn.lock desktop/yarn.lock &> /dev/null

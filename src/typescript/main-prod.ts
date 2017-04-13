@@ -19,11 +19,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-import { Injectable } from '@angular/core'
 
-@Injectable()
-export class SharedData {
-    public static scheme: string = 'http'
-    public static accessToken: string
-    public static moiraiAddress: string
-}
+import 'zone.js'
+import 'hammerjs'
+import 'reflect-metadata'
+import 'jquery'
+import 'rxjs'
+
+import '@angular/platform-browser'
+import '@angular/platform-browser-dynamic'
+import '@angular/core'
+import '@angular/common'
+import '@angular/http'
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { AppModuleNgFactory } from './build/app.module.ngfactory'
+import { enableProdMode } from '@angular/core'
+
+// enableProdMode()
+
+const basePath = location.href.replace(/[^/]*$/, '')
+const baseElement = $('<base href="' + basePath + '">')
+$('head').append(baseElement)
+
+platformBrowserDynamic().bootstrapModuleFactory(AppModuleNgFactory)

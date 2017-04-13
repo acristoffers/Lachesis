@@ -21,11 +21,13 @@ THE SOFTWARE.
 */
 
 import { RouterModule } from '@angular/router'
+import { ModuleWithProviders } from '@angular/core'
 
 import { ConnectComponent } from './connect.component'
+import { HardwareComponent } from './hardware.component'
 
 export class Router {
-    static module() {
+    static module(): ModuleWithProviders {
         return RouterModule.forRoot([
             {
                 path: 'index.htm',
@@ -35,6 +37,10 @@ export class Router {
             {
                 path: 'connect',
                 component: ConnectComponent
+            },
+            {
+                path: 'hardware',
+                component: HardwareComponent
             }
         ])
     }

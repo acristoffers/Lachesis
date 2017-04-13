@@ -29,13 +29,19 @@ import { LANG_PT_NAME, LANG_PT_TRANS } from './pt'
 
 export const TRANSLATIONS = new OpaqueToken('translations');
 
-const dictionary = {
-    [LANG_EN_NAME]: LANG_EN_TRANS,
-    [LANG_DE_NAME]: LANG_DE_TRANS,
-    [LANG_FR_NAME]: LANG_FR_TRANS,
-    [LANG_PT_NAME]: LANG_PT_TRANS
+export class Dictionary {
+    private dictionary = {
+        [LANG_EN_NAME]: LANG_EN_TRANS,
+        [LANG_DE_NAME]: LANG_DE_TRANS,
+        [LANG_FR_NAME]: LANG_FR_TRANS,
+        [LANG_PT_NAME]: LANG_PT_TRANS
+    }
+
+    get(language: string) {
+        return this.dictionary[language]
+    }
 }
 
 export const TRANSLATION_PROVIDERS = [
-    { provide: TRANSLATIONS, useValue: dictionary },
+    { provide: TRANSLATIONS, useClass: Dictionary },
 ];
