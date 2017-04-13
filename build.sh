@@ -25,7 +25,7 @@ cwd=$(pwd)
 # Remove old files
 touch desktop/www desktop/build desktop/dist desktop/node_modules
 rm -r desktop/www desktop/build desktop/dist desktop/node_modules
-mkdir -p desktop/www/js desktop/www/css
+mkdir -p desktop/www/js desktop/www/css desktop/build
 
 # Install build deps
 echo ""
