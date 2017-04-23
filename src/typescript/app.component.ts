@@ -21,6 +21,8 @@ THE SOFTWARE.
 */
 
 import { OnInit, Component } from '@angular/core'
+import * as settings from 'electron-settings'
+import { TranslateService } from './translation/translation.service'
 
 @Component({
     selector: '[app]',
@@ -30,10 +32,12 @@ export class AppComponent implements OnInit {
     public connectionToken: string
     public sidebarOpen: boolean = true
 
-    constructor() {
+    constructor(private translate: TranslateService) {
     }
 
     ngOnInit() {
+        const lang = settings.get('language', 'en') as string
+        this.translate.use(lang)
         $('[unresolved]').removeAttr('unresolved')
     }
 }

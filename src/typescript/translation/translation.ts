@@ -22,7 +22,6 @@ THE SOFTWARE.
 
 import { OpaqueToken } from '@angular/core';
 
-import { LANG_EN_NAME, LANG_EN_TRANS } from './en'
 import { LANG_DE_NAME, LANG_DE_TRANS } from './de'
 import { LANG_FR_NAME, LANG_FR_TRANS } from './fr'
 import { LANG_PT_NAME, LANG_PT_TRANS } from './pt'
@@ -31,7 +30,6 @@ export const TRANSLATIONS = new OpaqueToken('translations');
 
 export class Dictionary {
     private dictionary = {
-        [LANG_EN_NAME]: LANG_EN_TRANS,
         [LANG_DE_NAME]: LANG_DE_TRANS,
         [LANG_FR_NAME]: LANG_FR_TRANS,
         [LANG_PT_NAME]: LANG_PT_TRANS

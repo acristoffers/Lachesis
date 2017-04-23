@@ -17,5 +17,8 @@
         "@types/node": "^7.0.12",
         "electron": "^1.6.2",
         "typescript": "^2.2.2"
+    },
+    "dependencies": {
+        "electron-settings": "^3.0.14"
     }
 }

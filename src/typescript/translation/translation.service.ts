@@ -22,6 +22,7 @@ THE SOFTWARE.
 
 import { Injectable, Inject } from '@angular/core'
 import { TRANSLATIONS } from './translation'
+import * as settings from 'electron-settings'
 
 @Injectable()
 export class TranslateService {
@@ -36,6 +37,7 @@ export class TranslateService {
 
     public use(lang: string): void {
         this._currentLang = lang
+        settings.set('language', lang)
     }
 
     private translate(key: string): string {

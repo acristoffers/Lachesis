@@ -39,6 +39,9 @@ module.exports = {
       jquery: 'jquery/src/jquery'
     }
   },
+  externals: {
+    "electron-settings": "commonjs electron-settings",
+  },
   plugins: [
     new webpack.ProgressPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -55,30 +58,28 @@ module.exports = {
       concurrency: 8
     }),
     new webpack.ContextReplacementPlugin(
-                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-                __dirname, {}
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      __dirname, {}
     )
   ],
   module: {
     exprContextCritical: false,
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: ['ts-loader']
-      }, {
-        test: /\.html?$/,
-        use: 'html-loader'
-      }, {
-        test: /\.css$/,
-        include: /node_modules/,
-        use: ['css-loader']
-      }, {
-        test: /\.component\.(css|scss)$/,
-        use: ['to-string-loader', 'css-loader', 'postcss-loader']
-      }, {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        use: 'file-loader?name=assets/[name].[hash].[ext]'
-      }
-    ]
+    rules: [{
+      test: /\.tsx?$/,
+      use: ['ts-loader']
+    }, {
+      test: /\.html?$/,
+      use: 'html-loader'
+    }, {
+      test: /\.css$/,
+      include: /node_modules/,
+      use: ['css-loader']
+    }, {
+      test: /\.component\.(css|scss)$/,
+      use: ['to-string-loader', 'css-loader', 'postcss-loader']
+    }, {
+      test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+      use: 'file-loader?name=assets/[name].[hash].[ext]'
+    }]
   }
 }
