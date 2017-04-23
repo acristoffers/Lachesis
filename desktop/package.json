@@ -18,9 +18,10 @@
         "directories": {
             "app": "www"
         },
-        "extraResources": [
-            "www/**/*"
-        ],
+        "extraResources": [{
+            "from": "www/node_modules",
+            "to": "node_modules"
+        }],
         "appId": "me.acristoffers.lachesis",
         "productName": "Lachesis",
         "protocols": [{

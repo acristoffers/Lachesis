@@ -40,15 +40,15 @@ const html_minifier_options = {
   useShortDoctype: true
 }
 
-function minify_html () {
+function minify_html() {
   console.log('Minifying HTML')
-  const files = fs.readdirSync('src/html')
-  for (let i = 0; i < files.length; i++) {
-    let file = files[i]
-    let html = fs.readFileSync('src/html/' + file, 'utf8')
-    html = minify(html, html_minifier_options)
-    fs.writeFileSync('desktop/www/' + file, html)
-  }
+
+  const inputFile = 'src/html/index.htm'
+  const outputFile = 'desktop/www/index.htm'
+
+  const html = fs.readFileSync(inputFile, 'utf8')
+  const minifiedHtml = minify(html, html_minifier_options)
+  fs.writeFileSync(outputFile, minifiedHtml)
 }
 
 minify_html()
