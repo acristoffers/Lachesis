@@ -19,6 +19,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#sidenav {
+
+md-sidenav {
+  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+  #sidenav {
     margin: 1rem;
+    button {
+      width: 100%;
+    }
+  }
 }

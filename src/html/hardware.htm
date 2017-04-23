@@ -3,12 +3,9 @@
   <div id="hardware">
     <h1>{{ 'Hardware Setup' | translate }}</h1>
     <md-card id="driver">
-      <md-card-header>
-        <md-card-title>{{ 'Driver' | translate }}</md-card-title>
-      </md-card-header>
       <md-card-content>
-        <md-select placeholder="{{ 'Driver' | translate }}" [(ngModel)]="selectedDriver">
-          <md-option *ngFor="let driver of availableDrivers" [value]="driver">
+        <md-select class="width-100" placeholder="{{ 'Driver' | translate }}" [(ngModel)]="selectedDriver">
+          <md-option *ngFor="let driver of availableDrivers; trackBy:driveTracker" [value]="driver">
             {{ driver.name }}
           </md-option>
         </md-select>
@@ -21,7 +18,7 @@
       </md-card-header>
       <md-card-content>
         <md-input-container class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
-          <input mdInput [placeholder]="argument.name" [value]="argument.default_value | removeUndefined">
+          <input mdInput [placeholder]="argument.name" [value]=" argument.default_value | removeUndefined " [(ngModel)]="argument.value">
         </md-input-container>
       </md-card-content>
     </md-card>
@@ -33,27 +30,27 @@
       <md-card-content>
         <table>
           <thead>
-              <tr>
-                  <th>
-                      <span>{{ 'Port Name' | translate }}</span>
-                  </th>
-                  <th>
-                      <span>{{ 'Port Alias' | translate }}</span>
-                  </th>
-                  <th>
-                      <span>{{ 'Port Type' | translate }}</span>
-                  </th>
-                  <th>
-                      <span>{{ 'Initial Value' | translate }}</span>
-                  </th>
-                  <th>
-                      <span>{{ 'Internal ID' | translate }}</span>
-                  </th>
-                  <th></th>
-              </tr>
+            <tr>
+              <th>
+                <span>{{ 'Port Name' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Port Alias' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Port Type' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Initial Value' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Internal ID' | translate }}</span>
+              </th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let port of ports">
+            <tr *ngFor="let port of ports" inline-form>
               <td class="port-name">
                 <md-input-container *ngIf="!selectedDriver.ports.length">
                   <input mdInput [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">

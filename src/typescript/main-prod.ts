@@ -27,12 +27,11 @@ import 'jquery'
 import 'rxjs'
 
 import '@angular/platform-browser'
-import '@angular/platform-browser-dynamic'
 import '@angular/core'
 import '@angular/common'
 import '@angular/http'
 
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { platformBrowser } from '@angular/platform-browser'
 import { AppModuleNgFactory } from './build/app.module.ngfactory'
 import { enableProdMode } from '@angular/core'
 
@@ -42,4 +41,4 @@ const basePath = location.href.replace(/[^/]*$/, '')
 const baseElement = $('<base href="' + basePath + '">')
 $('head').append(baseElement)
 
-platformBrowserDynamic().bootstrapModuleFactory(AppModuleNgFactory)
+platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)

@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 @import '../typescript/node_modules/@angular/material/theming';
 @include mat-core();
 $app-primary: mat-palette($mat-teal);
@@ -46,7 +47,6 @@ html {
     width: 100%;
     font-size: 14pt;
     font-family: "Roboto";
-
     a,
     a:active,
     a:hover,
@@ -61,7 +61,6 @@ html {
     [app] {
         display: none;
     }
-
     [loading] {
         display: block;
     }
@@ -125,6 +124,10 @@ html {
     text-align: center;
 }
 
+.width-100 {
+    width: 100%;
+}
+
 md-sidenav-container {
     flex: 1;
 }
@@ -134,4 +137,11 @@ md-sidenav {
     min-width: 200px;
     max-width: 300px;
     height: 100%;
+}
+
+[inline-form] {
+    .mat-input-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }

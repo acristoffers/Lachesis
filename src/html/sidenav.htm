@@ -1,10 +1,10 @@
 <md-list id="sidenav">
- <md-list-item>
-   <button md-button routerLink="connect">{{ 'Connection' | translate }}</button>
- </md-list-item>
- <md-list-item *ngIf="isLoggedIn()">
-   <button md-button routerLink="hardware">{{ 'Hardware Setup' | translate }}</button>
- </md-list-item>
- <md-list-item *ngIf="isLoggedIn()">{{ 'System Identification' | translate }}</md-list-item>
- <md-list-item *ngIf="isLoggedIn()">{{ 'System Control' | translate }}</md-list-item>
+  <md-list-item>
+    <button md-button routerLink="connect">{{ 'Connection' | translate }}</button>
+  </md-list-item>
+  <md-list-item *ngIf="isLoggedIn()">
+    <button md-button routerLink="hardware">{{ 'Hardware Setup' | translate }}</button>
+  </md-list-item>
+  <md-list-item *ngIf="isLoggedIn()">{{ 'System Identification' | translate }}</md-list-item>
+  <md-list-item *ngIf="isLoggedIn()">{{ 'System Control' | translate }}</md-list-item>
 </md-list>

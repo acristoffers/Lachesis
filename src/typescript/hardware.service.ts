@@ -46,6 +46,14 @@ interface Port {
     }
 }
 
+export interface PortConfiguration {
+    id?: number
+    name?: string | number
+    alias?: string
+    type?: number
+    defaultValue?: any
+}
+
 export interface Driver {
     name: string,
     has_setup: boolean,
@@ -64,6 +72,7 @@ export class HardwareService {
     private doGet(url: string): Observable<any> {
         const headers = new Headers({
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${SharedData.accessToken}`
         })
         const options = new RequestOptions({ headers: headers });
@@ -74,6 +83,7 @@ export class HardwareService {
     private doPost(url: string, data: any): Observable<Response> {
         const headers = new Headers({
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${SharedData.accessToken}`
         })
         const options = new RequestOptions({ headers: headers });
@@ -85,5 +95,25 @@ export class HardwareService {
         const path = 'hardware/drivers'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         return this.doGet(url)
+    }
+
+    setConfiguration(driver: Driver, ports: PortConfiguration[]): Observable<void> {
+        const path = 'hardware/configuration'
+        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+        const data: any = driver
+        data.ports = ports
+        return this.doPost(url, data).map(response => null)
+    }
+
+    getConfiguration(): Observable<[Driver, PortConfiguration[]]> {
+        const path = 'hardware/configuration'
+        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+        return this.doGet(url).map(res => {
+            res = res || { ports: [] }
+            const driver: Driver = res
+            const ports: PortConfiguration[] = driver.ports
+            driver.ports = []
+            return [driver, ports]
+        })
     }
 }

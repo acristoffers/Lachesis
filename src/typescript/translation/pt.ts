@@ -52,5 +52,6 @@ export const LANG_PT_TRANS = {
     'Output': 'Saída',
     'PWM': 'PWM',
     'Initial Value': 'Valor inicial',
-    'Internal ID': 'ID interno'
+    'Internal ID': 'ID interno',
+    'Success!': 'Sucesso!'
 }

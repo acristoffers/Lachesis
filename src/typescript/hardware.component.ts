@@ -23,10 +23,10 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 
 import { Observable } from 'rxjs'
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MdSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { HardwareService, Driver } from './hardware.service'
+import { HardwareService, Driver, PortConfiguration } from './hardware.service'
 
 enum Types {
     Digital = 1,
@@ -36,21 +36,13 @@ enum Types {
     PWM = 16
 }
 
-interface Port {
-    id?: number
-    name?: string | number
-    alias?: string
-    type?: number[]
-    defaultValue?: any
-}
-
 @Component({
     selector: 'hardware',
     templateUrl: '../html/hardware.htm'
 })
-export class HardwareComponent {
+export class HardwareComponent implements OnInit {
     public availableDrivers: Driver[] = []
-    private ports: Port[] = []
+    private ports: PortConfiguration[] = []
     private _selectedDriver: Driver
 
     get selectedDriver(): Driver {
@@ -67,20 +59,21 @@ export class HardwareComponent {
         private toast: MdSnackBar,
         private hardwareService: HardwareService
     ) {
-        this.hardwareService.listDrivers().subscribe(
-            this.availableDriversLoaded(),
-            this.httpError()
-        )
     }
 
-    availableDriversLoaded(): (drivers: Driver[]) => void {
-        return (drivers: Driver[]) => {
+    ngOnInit(): void {
+        this.hardwareService.listDrivers().flatMap((drivers: Driver[]) => {
             this.availableDrivers = drivers
-        }
+            return this.hardwareService.getConfiguration()
+        }).map(([driver, ports]) => {
+            this.selectedDriver = this.findDriverByName(driver.name)
+            this.selectedDriver.setup_arguments = driver.setup_arguments
+            this.ports = ports
+        }).subscribe(() => { }, this.httpError())
     }
 
-    httpError(): (error: Error) => void {
-        return (error: Error) => {
+    httpError(): () => void {
+        return () => {
             const str = 'Error when connecting. Check address and try again.'
             const message = this.i18n.instant(str)
             this.toast.open(message, null, { duration: 2000 })
@@ -92,17 +85,9 @@ export class HardwareComponent {
         this.redistributeIds()
     }
 
-    removePort(port: Port): void {
+    removePort(port: PortConfiguration): void {
         this.ports = this.ports.filter(p => p !== port)
         this.redistributeIds()
-    }
-
-    private redistributeIds(): void {
-        let count = 0
-        this.ports.map(port => {
-            port.id = count++
-            return port
-        })
     }
 
     portTypes(port: string): Types[] {
@@ -151,5 +136,39 @@ export class HardwareComponent {
             type & Types.Digital ? 'Digital' : 'Analog',
             type & Types.Input ? 'Input' : type & Types.Output ? 'Output' : 'PWM'
         ]
+    }
+
+    applyDriver(): void {
+        let driver = _.merge({}, this.selectedDriver)
+        driver.ports = []
+
+        let ports = this.ports
+        ports = _.uniqBy(ports, port => port.name)
+        ports = _.uniqBy(ports, port => port.alias)
+
+        this.hardwareService.setConfiguration(driver, ports).subscribe(
+            () => {
+                const str = 'Success!'
+                const message = this.i18n.instant(str)
+                this.toast.open(message, null, { duration: 2000 })
+            },
+            this.httpError())
+    }
+
+    driveTracker(index: number, driver: Driver): string {
+        return driver.name
+    }
+
+    private redistributeIds(): void {
+        let count = 0
+        this.ports.map(port => {
+            port.id = count++
+            return port
+        })
+    }
+
+    private findDriverByName(name: string): Driver {
+        const drivers = _.filter(this.availableDrivers, d => d.name === name)
+        return _.first(drivers)
     }
 }
