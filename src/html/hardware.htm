@@ -90,8 +90,65 @@
       </md-card-content>
       <md-card-actions>
         <button md-raised-button color="secondary" (click)="addPort()">{{ 'Add' | translate }}</button>
-        <button md-raised-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
       </md-card-actions>
+    </md-card>
+
+    <md-card id="calibration" *ngIf="!!selectedDriver">
+      <md-card-header>
+        <md-card-title mdTooltip="'Use x in the equation for the value of the port.' | translate">{{ 'Calibration' | translate }}</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span>{{ 'Port' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Alias' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Formula' | translate }}</span>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let calibration of calibrations" inline-form>
+              <td>
+                <md-select [placeholder]="'Port' | translate" [(ngModel)]="calibration.port" class="width-100">
+                  <md-option *ngFor="let port of ports" [value]="port.id">
+                    {{ port.alias }}
+                  </md-option>
+                </md-select>
+              </td>
+              <td>
+                <md-input-container class="width-100">
+                  <input mdInput [placeholder]="'Alias' | translate" [(ngModel)]="calibration.alias">
+                </md-input-container>
+              </td>
+              <td class="calibration-formula">
+                <md-input-container class="width-100">
+                  <input mdInput [placeholder]="'Formula' | translate" [(ngModel)]="calibration.formula">
+                </md-input-container>
+              </td>
+              <td>
+                <button md-raised-button color="warn" (click)="removeCalibration(calibration)">{{ 'Remove' | translate }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button color="secondary" (click)="addCalibration()">{{ 'Add' | translate }}</button>
+      </md-card-actions>
+    </md-card>
+
+    <md-card *ngIf="!!selectedDriver">
+      <md-card-content>
+        <button md-raised-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
+        <button md-raised-button (click)="resetDriver()">{{ 'Reset' | translate }}</button>
+      </md-card-content>
     </md-card>
   </div>
   <div stretch></div>

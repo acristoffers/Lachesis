@@ -29,12 +29,13 @@
     .setup-argument {
         display: block;
     }
-    #ports {
-        table {
-            width: 100%;
-            td {
-                padding-top: 1.5rem;
-            }
+    table {
+        width: 100%;
+        td {
+            padding-top: 1.5rem;
         }
+    }
+    .calibration-formula {
+        width: 40%;
     }
 }

@@ -53,5 +53,12 @@ export const LANG_DE_TRANS = {
     'PWM': 'PWM',
     'Initial Value': 'Anfangswert',
     'Internal ID': 'Interne ID',
-    'Success!': 'Erfolg!'
+    'Success!': 'Erfolg!',
+    'Add': 'Einfügen',
+    'Remove': 'Löschen',
+    'Calibration': 'Kalibrierung',
+    'Port': 'Port',
+    'Alias': 'Alias',
+    'Formula': 'Formel',
+    'Reset': 'Wiederstellen'
 }

@@ -31,12 +31,12 @@ interface SetupArgument {
 }
 
 interface Port {
-    id: number
-    name: string
+    id: number,
+    name: string,
     analog: {
         input: boolean,
         output: boolean,
-        read_range: [number, number]
+        read_range: [number, number],
         write_range: [number, number]
     }
     digital: {
@@ -47,18 +47,24 @@ interface Port {
 }
 
 export interface PortConfiguration {
-    id?: number
-    name?: string | number
-    alias?: string
-    type?: number
+    id?: number,
+    name?: string | number,
+    alias?: string,
+    type?: number,
     defaultValue?: any
 }
 
 export interface Driver {
     name: string,
     has_setup: boolean,
-    ports: Port[]
+    ports: Port[],
     setup_arguments: SetupArgument[]
+}
+
+export interface Calibration {
+    port: number,
+    alias: string,
+    formula: string
 }
 
 @Injectable()
@@ -97,23 +103,26 @@ export class HardwareService {
         return this.doGet(url)
     }
 
-    setConfiguration(driver: Driver, ports: PortConfiguration[]): Observable<void> {
+    setConfiguration(driver: Driver, ports: PortConfiguration[], calibrations: Calibration[]): Observable<void> {
         const path = 'hardware/configuration'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         const data: any = driver
         data.ports = ports
+        data.calibrations = calibrations
         return this.doPost(url, data).map(response => null)
     }
 
-    getConfiguration(): Observable<[Driver, PortConfiguration[]]> {
+    getConfiguration(): Observable<[Driver, PortConfiguration[], Calibration[]]> {
         const path = 'hardware/configuration'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         return this.doGet(url).map(res => {
             res = res || { ports: [] }
-            const driver: Driver = res
-            const ports: PortConfiguration[] = driver.ports
-            driver.ports = []
-            return [driver, ports]
+            const calibrations: Calibration[] = res.calibrations || []
+            delete res.calibrations
+            const ports: PortConfiguration[] = res.ports || []
+            delete res.ports
+            const driver: Driver = res || {}
+            return [driver, ports, calibrations]
         })
     }
 }

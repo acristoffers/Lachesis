@@ -26,7 +26,7 @@ import { Observable } from 'rxjs'
 import { Component, OnInit } from '@angular/core'
 import { MdSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { HardwareService, Driver, PortConfiguration } from './hardware.service'
+import { HardwareService, Driver, PortConfiguration, Calibration } from './hardware.service'
 
 enum Types {
     Digital = 1,
@@ -43,6 +43,7 @@ enum Types {
 export class HardwareComponent implements OnInit {
     public availableDrivers: Driver[] = []
     private ports: PortConfiguration[] = []
+    private calibrations: Calibration[] = []
     private _selectedDriver: Driver
 
     get selectedDriver(): Driver {
@@ -51,6 +52,7 @@ export class HardwareComponent implements OnInit {
 
     set selectedDriver(driver: Driver) {
         this.ports = []
+        this.calibrations = []
         this._selectedDriver = driver
     }
 
@@ -65,10 +67,11 @@ export class HardwareComponent implements OnInit {
         this.hardwareService.listDrivers().flatMap((drivers: Driver[]) => {
             this.availableDrivers = drivers
             return this.hardwareService.getConfiguration()
-        }).map(([driver, ports]) => {
+        }).map(([driver, ports, calibrations]) => {
             this.selectedDriver = this.findDriverByName(driver.name)
             this.selectedDriver.setup_arguments = driver.setup_arguments
             this.ports = ports
+            this.calibrations = calibrations
         }).subscribe(() => { }, this.httpError())
     }
 
@@ -88,6 +91,14 @@ export class HardwareComponent implements OnInit {
     removePort(port: PortConfiguration): void {
         this.ports = this.ports.filter(p => p !== port)
         this.redistributeIds()
+    }
+
+    addCalibration(): void {
+        this.calibrations.push({} as Calibration)
+    }
+
+    removeCalibration(calibration: Calibration): void {
+        this.calibrations = this.calibrations.filter(p => p.port !== calibration.port)
     }
 
     portTypes(port: string): Types[] {
@@ -139,14 +150,16 @@ export class HardwareComponent implements OnInit {
     }
 
     applyDriver(): void {
-        let driver = _.merge({}, this.selectedDriver)
+        const driver = _.merge({}, this.selectedDriver)
         driver.ports = []
 
         let ports = this.ports
         ports = _.uniqBy(ports, port => port.name)
         ports = _.uniqBy(ports, port => port.alias)
 
-        this.hardwareService.setConfiguration(driver, ports).subscribe(
+        const calibrations = this.calibrations
+
+        this.hardwareService.setConfiguration(driver, ports, calibrations).subscribe(
             () => {
                 const str = 'Success!'
                 const message = this.i18n.instant(str)
@@ -157,6 +170,10 @@ export class HardwareComponent implements OnInit {
 
     driveTracker(index: number, driver: Driver): string {
         return driver.name
+    }
+
+    resetDriver(): void {
+        this.selectedDriver = null
     }
 
     private redistributeIds(): void {

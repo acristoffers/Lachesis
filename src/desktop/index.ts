@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import {app, shell, BrowserWindow, Menu} from 'electron'
+import { app, shell, BrowserWindow, Menu } from 'electron'
 
 let windows: Electron.BrowserWindow[] = []
 
@@ -83,7 +83,7 @@ let viewMenu: Electron.MenuItemOptions = {
         {
             label: 'Reload',
             accelerator: 'CmdOrCtrl+R',
-            click: function(item, focusedWindow) {
+            click: function (item, focusedWindow) {
                 if (focusedWindow) {
                     return focusedWindow.reload();
                 }
@@ -91,7 +91,7 @@ let viewMenu: Electron.MenuItemOptions = {
         }, {
             label: 'Toggle Developer Tools',
             accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-            click: function(item, focusedWindow) {
+            click: function (item, focusedWindow) {
                 if (focusedWindow) {
                     return focusedWindow.webContents.toggleDevTools();
                 }
@@ -128,7 +128,7 @@ let helpMenu: Electron.MenuItemOptions = {
     submenu: [
         {
             label: 'Learn More',
-            click: function() {
+            click: function () {
                 shell.openExternal('http://electron.atom.io');
             }
         }
