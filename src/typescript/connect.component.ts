@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component, ApplicationRef } from '@angular/core'
-import { Http, Response } from '@angular/http'
+import { Http, Response, RequestOptions, Headers } from '@angular/http'
 import { MdSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
@@ -33,6 +33,8 @@ import { SharedData } from './shared_data.service'
 export class ConnectComponent {
     private connectionAddress = 'localhost:5000'
     private connectionPassword = ''
+    private newPassword: string
+    private newPasswordConfirmation: string
 
     constructor(
         private http: Http,
@@ -55,6 +57,7 @@ export class ConnectComponent {
             const data = res.json()
             SharedData.accessToken = data['token']
             SharedData.moiraiAddress = this.connectionAddress
+            this.connectionPassword = ''
             self.applicationRef.tick()
         }
     }
@@ -82,5 +85,29 @@ export class ConnectComponent {
 
     isLoggedIn(): boolean {
         return SharedData.accessToken != null
+    }
+
+    setPassword(): void {
+        if (this.newPassword !== this.newPasswordConfirmation) {
+            const str = 'Something went wrong. Please try again later.'
+            const message = this.i18n.instant(str)
+            this.toast.open(message, null, { duration: 2000 })
+        } else {
+            const headers = new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${SharedData.accessToken}`
+            })
+            const options = new RequestOptions({ headers: headers });
+            const url = `${SharedData.scheme}://${this.connectionAddress}/set-password`
+            const postData = { password: this.newPassword }
+            const observer = this.http.post(url, postData, options)
+            this.newPassword = this.newPasswordConfirmation = ''
+            observer.subscribe(() => {
+                let str = 'Success!'
+                const message = this.i18n.instant(str)
+                this.toast.open(message, null, { duration: 2000 })
+            }, this.httpError())
+        }
     }
 }
