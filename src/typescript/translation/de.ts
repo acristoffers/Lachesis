@@ -69,5 +69,6 @@ export const LANG_DE_TRANS = {
     'Just like in Formula, x stands for the input value.': 'Genau wie in der Formel steht x für den Eingabewert.',
     'Something went wrong. Please try again later.': 'Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.',
     'Interlock': 'Verriegelung',
-    'Value': 'Wert'
+    'Value': 'Wert',
+    'Expression': 'Ausdruck'
 }

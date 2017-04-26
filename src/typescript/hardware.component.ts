@@ -23,7 +23,7 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 
 import { Observable } from 'rxjs'
-import { Component, OnInit, Output } from '@angular/core'
+import { Component, OnInit, Output, Input } from '@angular/core'
 import { MdSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { HardwareService, Driver, PortConfiguration, Calibration, Interlock } from './hardware.service'
@@ -59,29 +59,11 @@ export class HardwareComponent implements OnInit {
     }
 
     get inputAliases(): string[] {
-        const ps = _.chain(this.ports)
-            .filter(p => p.type & Types.Input)
-            .map(p => p.alias)
-            .value()
-        const cs = _.chain(this.calibrations)
-            .filter(c => this.findPortById(c.port).type & Types.Input)
-            .map(c => c.alias)
-            .value()
-        const as = _.concat(ps, cs)
-        return _.uniq(as)
+        return this.portAliases(Types.Input)
     }
 
     get outputAliases(): string[] {
-        const ps = _.chain(this.ports)
-            .filter(p => p.type & Types.Output)
-            .map(p => p.alias)
-            .value()
-        const cs = _.chain(this.calibrations)
-            .filter(c => this.findPortById(c.port).type & Types.Output)
-            .map(c => c.alias)
-            .value()
-        const as = _.concat(ps, cs)
-        return _.uniq(as)
+        return this.portAliases(Types.Output | Types.PWM)
     }
 
     constructor(
@@ -231,5 +213,19 @@ export class HardwareComponent implements OnInit {
 
     private findPortById(id: number): PortConfiguration {
         return _.first(_.chain(this.ports).filter(p => p.id === id).value())
+    }
+
+    private portAliases(type: Types): string[] {
+        const ps = _.chain(this.ports)
+            .filter(p => p.type & type)
+            .map(p => p.alias)
+            .value()
+        const cs = _.chain(this.calibrations)
+            .filter(c => this.findPortById(c.port))
+            .filter(c => this.findPortById(c.port).type & type)
+            .map(c => c.alias)
+            .value()
+        const as = _.concat(ps, cs)
+        return _.uniq(as)
     }
 }

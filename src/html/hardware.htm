@@ -21,7 +21,7 @@
         </md-card-title>
       </md-card-header>
       <md-card-content>
-        <md-input-container class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
+        <md-input-container class="width-100" class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
           <input mdInput [placeholder]="argument.name" [value]=" argument.default_value | removeUndefined " [(ngModel)]="argument.value">
         </md-input-container>
       </md-card-content>
@@ -56,29 +56,29 @@
           <tbody>
             <tr *ngFor="let port of ports" inline-form>
               <td class="port-name">
-                <md-input-container *ngIf="!selectedDriver.ports.length">
+                <md-input-container class="width-100" *ngIf="!selectedDriver.ports.length">
                   <input mdInput [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
                 </md-input-container>
-                <md-select *ngIf="!!selectedDriver.ports.length" [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
+                <md-select class="width-100" *ngIf="!!selectedDriver.ports.length" [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
                   <md-option *ngFor="let driverPort of selectedDriver.ports" [value]="driverPort.id">
                     {{ driverPort.name }}
                   </md-option>
                 </md-select>
               </td>
               <td class="port-alias">
-                <md-input-container>
+                <md-input-container class="width-100">
                   <input mdInput [placeholder]="'Port Alias' | translate" [(ngModel)]="port.alias">
                 </md-input-container>
               </td>
               <td class="port-type">
-                <md-select [placeholder]="'Port Type' | translate" [(ngModel)]="port.type">
+                <md-select class="width-100" [placeholder]="'Port Type' | translate" [(ngModel)]="port.type">
                   <md-option *ngFor="let p of portTypes(port.name)" [value]="p">
                     {{ portTypeName(p)[0] | translate }} - {{ portTypeName(p)[1] | translate }}
                   </md-option>
                 </md-select>
               </td>
               <td class="port-value">
-                <md-input-container>
+                <md-input-container class="width-100">
                   <input mdInput [placeholder]="'Initial Value' | translate" [(ngModel)]="port.defaultValue">
                 </md-input-container>
               </td>
@@ -97,7 +97,7 @@
       </md-card-actions>
     </md-card>
 
-    <md-card id="calibration" *ngIf="!!selectedDriver && inputAliases.length > 0">
+    <md-card id="calibration" *ngIf="!!selectedDriver && ((inputAliases?.length > 0) || (outputAliases?.length > 0))">
       <md-card-header>
         <md-card-title>{{ 'Calibration' | translate }}</md-card-title>
       </md-card-header>
@@ -148,7 +148,7 @@
       </md-card-actions>
     </md-card>
 
-    <md-card id="interlocking" *ngIf="!!selectedDriver && inputAliases.length > 0">
+    <md-card id="interlocking" *ngIf="!!selectedDriver && (inputAliases?.length > 0) && (outputAliases?.length > 0)">
       <md-card-header>
         <md-card-title mdTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">{{ 'Interlock' | translate }}</md-card-title>
       </md-card-header>
@@ -174,7 +174,7 @@
           <tbody>
             <tr *ngFor="let interlock of interlocks" inline-form>
               <td>
-                <md-select [placeholder]="'Input' | translate" [(ngModel)]="interlock.sensor">
+                <md-select class="width-100" [placeholder]="'Input' | translate" [(ngModel)]="interlock.sensor">
                   <md-option *ngFor="let alias of inputAliases" [value]="alias">
                     {{ alias }}
                   </md-option>
@@ -186,14 +186,14 @@
                 </md-input-container>
               </td>
               <td>
-                <md-select [placeholder]="'Output' | translate" [(ngModel)]="interlock.actuator">
+                <md-select class="width-100" [placeholder]="'Output' | translate" [(ngModel)]="interlock.actuator">
                   <md-option *ngFor="let alias of outputAliases" [value]="alias">
                     {{ alias }}
                   </md-option>
                 </md-select>
               </td>
               <td>
-                <md-input-container>
+                <md-input-container class="width-100">
                   <input mdInput [placeholder]="'Value' | translate" [(ngModel)]="interlock.actuatorValue">
                 </md-input-container>
               </td>
