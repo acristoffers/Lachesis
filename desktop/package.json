@@ -18,19 +18,23 @@
         "directories": {
             "app": "www"
         },
-        "extraResources": [{
-            "from": "www/node_modules",
-            "to": "node_modules"
-        }],
+        "extraResources": [
+            {
+                "from": "www/node_modules",
+                "to": "node_modules"
+            }
+        ],
         "appId": "me.acristoffers.lachesis",
         "productName": "Lachesis",
-        "protocols": [{
-            "name": "Moirai supervisor",
-            "role": "Editor",
-            "schemes": [
-                "tcp"
-            ]
-        }],
+        "protocols": [
+            {
+                "name": "Moirai supervisor",
+                "role": "Editor",
+                "schemes": [
+                    "tcp"
+                ]
+            }
+        ],
         "linux": {
             "category": "public.app-category.productivity",
             "packageCategory": "productivity",
@@ -59,7 +63,7 @@
         "nsis": {}
     },
     "scripts": {
-        "pack": "build --dir",
-        "dist": "build --mac --win --linux"
+        "dist:pack": "yarn run build -- --dir",
+        "dist": "yarn run build -- --mac --win --linux"
     }
 }
