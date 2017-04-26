@@ -24,14 +24,18 @@ import { app, shell, BrowserWindow, Menu } from 'electron'
 
 let windows: Electron.BrowserWindow[] = []
 
-function createWindow() {
-    let win = new BrowserWindow({ width: 800, height: 600 })
+function createWindow(): Electron.BrowserWindow {
+    const win = new BrowserWindow({ show: false })
     win.loadURL('file://' + __dirname + "/index.htm")
     win.on('closed', () => {
         windows = windows.filter((e) => { return e != win })
     })
-    win.maximize()
+    win.once('ready-to-show', () => {
+        win.show()
+        win.maximize()
+    })
     windows.push(win)
+    return win
 }
 
 app.on('ready', () => {
