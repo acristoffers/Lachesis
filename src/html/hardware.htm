@@ -15,9 +15,8 @@
 
     <md-card id="setup" *ngIf="!!selectedDriver && selectedDriver.has_setup">
       <md-card-header>
-        <md-card-title>
+        <md-card-title mdTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
           {{ 'Setup' | translate }}
-          <md-icon class="tooltip" mdTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">info_outline</md-icon>
         </md-card-title>
       </md-card-header>
       <md-card-content>
