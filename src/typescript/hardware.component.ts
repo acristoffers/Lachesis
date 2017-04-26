@@ -23,10 +23,10 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 
 import { Observable } from 'rxjs'
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output } from '@angular/core'
 import { MdSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { HardwareService, Driver, PortConfiguration, Calibration } from './hardware.service'
+import { HardwareService, Driver, PortConfiguration, Calibration, Interlock } from './hardware.service'
 
 enum Types {
     Digital = 1,
@@ -44,6 +44,7 @@ export class HardwareComponent implements OnInit {
     public availableDrivers: Driver[] = []
     private ports: PortConfiguration[] = []
     private calibrations: Calibration[] = []
+    private interlocks: Interlock[] = []
     private _selectedDriver: Driver
 
     get selectedDriver(): Driver {
@@ -54,6 +55,32 @@ export class HardwareComponent implements OnInit {
         this.ports = []
         this.calibrations = []
         this._selectedDriver = driver
+    }
+
+    get inputAliases(): string[] {
+        const ps = _.chain(this.ports)
+            .filter(p => p.type & Types.Input)
+            .map(p => p.alias)
+            .value()
+        const cs = _.chain(this.calibrations)
+            .filter(c => this.findPortById(c.port).type & Types.Input)
+            .map(c => c.alias)
+            .value()
+        const as = _.concat(ps, cs)
+        return _.uniq(as)
+    }
+
+    get outputAliases(): string[] {
+        const ps = _.chain(this.ports)
+            .filter(p => p.type & Types.Output)
+            .map(p => p.alias)
+            .value()
+        const cs = _.chain(this.calibrations)
+            .filter(c => this.findPortById(c.port).type & Types.Output)
+            .map(c => c.alias)
+            .value()
+        const as = _.concat(ps, cs)
+        return _.uniq(as)
     }
 
     constructor(
@@ -67,11 +94,12 @@ export class HardwareComponent implements OnInit {
         this.hardwareService.listDrivers().flatMap((drivers: Driver[]) => {
             this.availableDrivers = drivers
             return this.hardwareService.getConfiguration()
-        }).map(([driver, ports, calibrations]) => {
+        }).map(([driver, ports, calibrations, interlocks]) => {
             this.selectedDriver = this.findDriverByName(driver.name)
             this.selectedDriver.setup_arguments = driver.setup_arguments
             this.ports = ports
             this.calibrations = calibrations
+            this.interlocks = interlocks
         }).subscribe(() => { }, this.httpError())
     }
 
@@ -99,6 +127,14 @@ export class HardwareComponent implements OnInit {
 
     removeCalibration(calibration: Calibration): void {
         this.calibrations = this.calibrations.filter(p => p.port !== calibration.port)
+    }
+
+    addInterlock(): void {
+        this.interlocks.push({} as Interlock)
+    }
+
+    removeInterlock(interlock: Interlock): void {
+        this.interlocks = this.interlocks.filter(i => i === interlock)
     }
 
     portTypes(port: string): Types[] {
@@ -158,14 +194,17 @@ export class HardwareComponent implements OnInit {
         ports = _.uniqBy(ports, port => port.alias)
 
         const calibrations = this.calibrations
+        const interlocks = this.interlocks
 
-        this.hardwareService.setConfiguration(driver, ports, calibrations).subscribe(
-            () => {
+        this.hardwareService.setConfiguration(
+            driver,
+            ports,
+            calibrations,
+            interlocks).subscribe(() => {
                 const str = 'Success!'
                 const message = this.i18n.instant(str)
                 this.toast.open(message, null, { duration: 2000 })
-            },
-            this.httpError())
+            }, this.httpError())
     }
 
     driveTracker(index: number, driver: Driver): string {
@@ -187,5 +226,9 @@ export class HardwareComponent implements OnInit {
     private findDriverByName(name: string): Driver {
         const drivers = _.filter(this.availableDrivers, d => d.name === name)
         return _.first(drivers)
+    }
+
+    private findPortById(id: number): PortConfiguration {
+        return _.first(_.chain(this.ports).filter(p => p.id === id).value())
     }
 }

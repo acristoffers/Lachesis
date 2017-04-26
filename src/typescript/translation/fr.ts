@@ -60,5 +60,11 @@ export const LANG_FR_TRANS = {
     'Port': 'Port',
     'Alias': 'Alias',
     'Formula': 'Formule',
-    'Reset': 'Réinitialiser'
+    'Reset': 'Réinitialiser',
+    'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.': 'Remplissez les options de configuration du pilote. Pour plus d\'informations sur les arguments, lisez la documentation de la bibliothèque AHIO.',
+    'The name of the port as known by the AHIO driver.': 'Le nom du port tel que connu par le pilote AHIO.',
+    'A valid python variable name that will be used in code to refer to this port value.': 'Un nom de variable python valide qui sera utilisé dans le code pour se référer à cette valeur de port.',
+    'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.': 'La formule qui calibre ce port. Utilisez la variable x au lieu de la valeur de l\'entrée. Si le port est de type Entrée, la valeur de l\'entrée passera à travers l\'expression. S\'il s\'agit d\'une sortie, la valeur attribuée à la variable passera à travers l\'expression avant d\'envoyer au conducteur.',
+    'Sets the output of some port to some value if Expression evaluates to true.': 'Définit la sortie de certains ports à une certaine valeur si Expression evalue sur true.',
+    'Just like in Formula, x stands for the input value.': 'Tout comme dans la formule, x représente la valeur d\'entrée.'
 }

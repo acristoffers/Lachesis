@@ -2,6 +2,7 @@
   <div stretch></div>
   <div id="hardware">
     <h1>{{ 'Hardware Setup' | translate }}</h1>
+
     <md-card id="driver">
       <md-card-content>
         <md-select class="width-100" placeholder="{{ 'Driver' | translate }}" [(ngModel)]="selectedDriver">
@@ -14,7 +15,10 @@
 
     <md-card id="setup" *ngIf="!!selectedDriver && selectedDriver.has_setup">
       <md-card-header>
-        <md-card-title>{{ 'Setup' | translate }}</md-card-title>
+        <md-card-title>
+          {{ 'Setup' | translate }}
+          <md-icon class="tooltip" mdTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">info_outline</md-icon>
+        </md-card-title>
       </md-card-header>
       <md-card-content>
         <md-input-container class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
@@ -32,10 +36,10 @@
           <thead>
             <tr>
               <th>
-                <span>{{ 'Port Name' | translate }}</span>
+                <span mdTooltip="{{ 'The name of the port as known by the AHIO driver.' | translate }}">{{ 'Port Name' | translate }}</span>
               </th>
               <th>
-                <span>{{ 'Port Alias' | translate }}</span>
+                <span mdTooltip="{{ 'A valid python variable name that will be used in code to refer to this port value.' | translate }}">{{ 'Port Alias' | translate }}</span>
               </th>
               <th>
                 <span>{{ 'Port Type' | translate }}</span>
@@ -95,7 +99,7 @@
 
     <md-card id="calibration" *ngIf="!!selectedDriver">
       <md-card-header>
-        <md-card-title mdTooltip="'Use x in the equation for the value of the port.' | translate">{{ 'Calibration' | translate }}</md-card-title>
+        <md-card-title>{{ 'Calibration' | translate }}</md-card-title>
       </md-card-header>
       <md-card-content>
         <table>
@@ -108,7 +112,7 @@
                 <span>{{ 'Alias' | translate }}</span>
               </th>
               <th>
-                <span>{{ 'Formula' | translate }}</span>
+                <span mdTooltip="{{ 'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.' | translate }}">{{ 'Formula' | translate }}</span>
               </th>
               <th></th>
             </tr>
@@ -141,6 +145,67 @@
       </md-card-content>
       <md-card-actions>
         <button md-raised-button color="secondary" (click)="addCalibration()">{{ 'Add' | translate }}</button>
+      </md-card-actions>
+    </md-card>
+
+    <md-card id="interlocking" *ngIf="!!selectedDriver">
+      <md-card-header>
+        <md-card-title mdTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">{{ 'Interlock' | translate }}</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span>{{ 'Input' | translate }}</span>
+              </th>
+              <th>
+                <span mdTooltip="{{ 'Just like in Formula, x stands for the input value.' | translate }}">{{ 'Expression' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Output' | translate }}</span>
+              </th>
+              <th>
+                <span>{{ 'Value' | translate }}</span>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let interlock of interlocks" inline-form>
+              <td>
+                <md-select [placeholder]="'Input' | translate" [(ngModel)]="interlock.sensor">
+                  <md-option *ngFor="let alias of inputAliases" [value]="alias">
+                    {{ alias }}
+                  </md-option>
+                </md-select>
+              </td>
+              <td>
+                <md-input-container stretch>
+                  <input mdInput [placeholder]="'Expression' | translate" [(ngModel)]="interlock.expression">
+                </md-input-container>
+              </td>
+              <td>
+                <md-select [placeholder]="'Output' | translate" [(ngModel)]="interlock.actuator">
+                  <md-option *ngFor="let alias of outputAliases" [value]="alias">
+                    {{ alias }}
+                  </md-option>
+                </md-select>
+              </td>
+              <td>
+                <md-input-container>
+                  <input mdInput [placeholder]="'Value' | translate" [(ngModel)]="interlock.actuatorValue">
+                </md-input-container>
+              </td>
+              <td>
+                <button md-raised-button color="warn" (click)="removeInterlock(interlock)">{{ 'Remove' | translate }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button color="secondary" (click)="addInterlock()">{{ 'Add' | translate }}</button>
       </md-card-actions>
     </md-card>
 

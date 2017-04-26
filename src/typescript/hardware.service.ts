@@ -67,6 +67,13 @@ export interface Calibration {
     formula: string
 }
 
+export interface Interlock {
+    sensor: string,
+    expression: string,
+    actuator: string,
+    actuatorValue: string
+}
+
 @Injectable()
 export class HardwareService {
     constructor(
@@ -103,16 +110,22 @@ export class HardwareService {
         return this.doGet(url)
     }
 
-    setConfiguration(driver: Driver, ports: PortConfiguration[], calibrations: Calibration[]): Observable<void> {
+    setConfiguration(
+        driver: Driver,
+        ports: PortConfiguration[],
+        calibrations: Calibration[],
+        interlocks: Interlock[]
+    ): Observable<void> {
         const path = 'hardware/configuration'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         const data: any = driver
         data.ports = ports
         data.calibrations = calibrations
+        data.interlocks = interlocks
         return this.doPost(url, data).map(response => null)
     }
 
-    getConfiguration(): Observable<[Driver, PortConfiguration[], Calibration[]]> {
+    getConfiguration(): Observable<[Driver, PortConfiguration[], Calibration[], Interlock[]]> {
         const path = 'hardware/configuration'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         return this.doGet(url).map(res => {
@@ -121,8 +134,10 @@ export class HardwareService {
             delete res.calibrations
             const ports: PortConfiguration[] = res.ports || []
             delete res.ports
+            const interlocks: Interlock[] = res.interlocks || []
+            delete res.interlocks
             const driver: Driver = res || {}
-            return [driver, ports, calibrations]
+            return [driver, ports, calibrations, interlocks]
         })
     }
 }
