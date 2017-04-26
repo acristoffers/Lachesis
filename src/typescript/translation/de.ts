@@ -66,5 +66,8 @@ export const LANG_DE_TRANS = {
     'A valid python variable name that will be used in code to refer to this port value.': 'Ein gültiger python-Variablenname, der in Code verwendet wird, um auf diesen Portwert zu verweisen.',
     'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.': 'Die Formel, die diesen Port kalibriert. Verwenden Sie die Variable x anstelle des Wertes der Eingabe. Wenn Port vom Typ Eingang ist, wird der Wert der Eingabe durch den Ausdruck übergeben. Wenn es eine Ausgang ist, wird der Wert, der der Variablen zugewiesen wird, durch den Ausdruck übergeben, bevor er an den Treiber sendet.',
     'Sets the output of some port to some value if Expression evaluates to true.': 'Setzt die Ausgabe eines Portes auf einen Wert, wenn Expression auf Wahr ausgewertet wird.',
-    'Just like in Formula, x stands for the input value.': 'Genau wie in der Formel steht x für den Eingabewert.'
+    'Just like in Formula, x stands for the input value.': 'Genau wie in der Formel steht x für den Eingabewert.',
+    'Something went wrong. Please try again later.': 'Etwas ist schief gelaufen. Bitte versuchen Sie es später noch einmal.',
+    'Interlock': 'Verriegelung',
+    'Value': 'Wert'
 }

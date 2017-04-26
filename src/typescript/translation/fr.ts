@@ -51,7 +51,7 @@ export const LANG_FR_TRANS = {
     'Input': 'Entrée',
     'Output': 'Sortie',
     'PWM': 'PWM',
-    'Initial Value': 'Valuer initiale',
+    'Initial Value': 'Valeur initiale',
     'Internal ID': 'ID interne',
     'Success!': 'Succès!',
     'Add': 'Ajouter',
@@ -66,5 +66,8 @@ export const LANG_FR_TRANS = {
     'A valid python variable name that will be used in code to refer to this port value.': 'Un nom de variable python valide qui sera utilisé dans le code pour se référer à cette valeur de port.',
     'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.': 'La formule qui calibre ce port. Utilisez la variable x au lieu de la valeur de l\'entrée. Si le port est de type Entrée, la valeur de l\'entrée passera à travers l\'expression. S\'il s\'agit d\'une sortie, la valeur attribuée à la variable passera à travers l\'expression avant d\'envoyer au conducteur.',
     'Sets the output of some port to some value if Expression evaluates to true.': 'Définit la sortie de certains ports à une certaine valeur si Expression evalue sur true.',
-    'Just like in Formula, x stands for the input value.': 'Tout comme dans la formule, x représente la valeur d\'entrée.'
+    'Just like in Formula, x stands for the input value.': 'Tout comme dans la formule, x représente la valeur d\'entrée.',
+    'Something went wrong. Please try again later.': 'Quelque chose a mal tourné. Veuillez réessayer plus tard.',
+    'Interlock': 'Verrouillage',
+    'Value': 'Valeur'
 }

@@ -97,7 +97,7 @@
       </md-card-actions>
     </md-card>
 
-    <md-card id="calibration" *ngIf="!!selectedDriver">
+    <md-card id="calibration" *ngIf="!!selectedDriver && inputAliases.length > 0">
       <md-card-header>
         <md-card-title>{{ 'Calibration' | translate }}</md-card-title>
       </md-card-header>
@@ -148,7 +148,7 @@
       </md-card-actions>
     </md-card>
 
-    <md-card id="interlocking" *ngIf="!!selectedDriver">
+    <md-card id="interlocking" *ngIf="!!selectedDriver && inputAliases.length > 0">
       <md-card-header>
         <md-card-title mdTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">{{ 'Interlock' | translate }}</md-card-title>
       </md-card-header>

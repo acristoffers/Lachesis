@@ -54,6 +54,7 @@ export class HardwareComponent implements OnInit {
     set selectedDriver(driver: Driver) {
         this.ports = []
         this.calibrations = []
+        this.interlocks = []
         this._selectedDriver = driver
     }
 

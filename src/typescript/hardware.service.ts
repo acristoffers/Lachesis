@@ -88,7 +88,7 @@ export class HardwareService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${SharedData.accessToken}`
         })
-        const options = new RequestOptions({ headers: headers });
+        const options = new RequestOptions({ headers: headers })
         const observable = this.http.get(url, options)
         return observable.map((res: Response) => res.json())
     }
@@ -99,7 +99,7 @@ export class HardwareService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${SharedData.accessToken}`
         })
-        const options = new RequestOptions({ headers: headers });
+        const options = new RequestOptions({ headers: headers })
         const observable = this.http.post(url, data, options)
         return observable.map((res: Response) => res.json())
     }
