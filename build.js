@@ -118,11 +118,13 @@ Observable.zip.apply(null, ds).finally(() => {
       return ospawn('yarn', ['run', 'ngc'], {
         cwd: path.join(__dirname, 'src/typescript')
       })
-    }).flatMap(() => {
-      return ospawn('yarn', ['run', 'webpack'], {
-        cwd: path.join(__dirname, 'src/typescript')
-      })
-    }).flatMap(() => {
-      return omv('src/typescript/dist/index.js', 'desktop/www/js/app.js')
-    }).subscribe()
+    })
+    // .flatMap(() => {
+    //   return ospawn('yarn', ['run', 'webpack'], {
+    //     cwd: path.join(__dirname, 'src/typescript')
+    //   })
+    // }).flatMap(() => {
+    //   return omv('src/typescript/dist/index.js', 'desktop/www/js/app.js')
+    // })
+    .subscribe()
 }).subscribe()
