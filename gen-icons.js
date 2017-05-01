@@ -22,8 +22,9 @@ THE SOFTWARE.
 
 const exec = require('child_process').execSync
 const fs = require('fs-extra')
+const _ = require('lodash')
 
-function execute (cmd) {
+function execute(cmd) {
   return exec(cmd, function (error, stdout, stderr) {
     return null
   })
@@ -63,17 +64,16 @@ gen_desktop_icons = function () {
       execute('convert -resize ' + size + 'x' + size + ' ' + input2 + ' ' + output)
     }
     execute('iconutil -c icns desktop/build/icon.iconset')
-    ref1 = ['desktop/build/icon.iconset', input2]
-    for (j = 0, len1 = ref1.length; j < len1; j++) {
-      x = ref1[j]
-      fs.removeSync(x)
-    }
+    const rm = ['desktop/build/icon.iconset', input2]
+    _.map(rm, fs.removeSync)
   }
+  execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)
   sizes = [16, 24, 32, 48, 64, 128, 256].join(',')
   output = 'desktop/build/icon.ico'
   opts = '-define icon:auto-resize=' + sizes + ' -compress zip'
-  cmd = 'convert ' + input + ' ' + opts + ' ' + output
+  cmd = 'convert ' + input2 + ' ' + opts + ' ' + output
   execute(cmd)
+  fs.removeSync(input2)
 }
 
 gen_desktop_icons()
