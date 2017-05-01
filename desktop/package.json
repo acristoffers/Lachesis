@@ -16,25 +16,22 @@
     "productName": "lachesis",
     "build": {
         "directories": {
-            "app": "www"
+            "app": "www",
+            "buildResources": "build"
         },
-        "extraResources": [
-            {
-                "from": "www/node_modules",
-                "to": "node_modules"
-            }
-        ],
+        "extraResources": [{
+            "from": "www/node_modules",
+            "to": "node_modules"
+        }],
         "appId": "me.acristoffers.lachesis",
         "productName": "Lachesis",
-        "protocols": [
-            {
-                "name": "Moirai supervisor",
-                "role": "Editor",
-                "schemes": [
-                    "tcp"
-                ]
-            }
-        ],
+        "protocols": [{
+            "name": "Moirai supervisor",
+            "role": "Editor",
+            "schemes": [
+                "tcp"
+            ]
+        }],
         "linux": {
             "category": "public.app-category.productivity",
             "packageCategory": "productivity",

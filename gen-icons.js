@@ -68,12 +68,13 @@ gen_desktop_icons = function () {
     _.map(rm, fs.removeSync)
   }
   execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)
+  output = 'desktop/build/icon.png'
+  execute('convert -background none -resize 1024x1024 ' + input + ' ' + output)
   sizes = [16, 24, 32, 48, 64, 128, 256].join(',')
   output = 'desktop/build/icon.ico'
   opts = '-define icon:auto-resize=' + sizes + ' -compress zip'
   cmd = 'convert ' + input2 + ' ' + opts + ' ' + output
   execute(cmd)
-  fs.removeSync(input2)
 }
 
 gen_desktop_icons()

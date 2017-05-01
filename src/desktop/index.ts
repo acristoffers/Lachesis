@@ -25,8 +25,11 @@ import { app, shell, BrowserWindow, Menu } from 'electron'
 let windows: Electron.BrowserWindow[] = []
 
 function createWindow(): Electron.BrowserWindow {
-    const win = new BrowserWindow({ show: false })
-    win.loadURL('file://' + __dirname + "/index.htm")
+    const win = new BrowserWindow({
+        show: false,
+        icon: `file://${__dirname}/imgs/icon.png`
+    })
+    win.loadURL(`file://${__dirname}/index.htm`)
     win.on('closed', () => {
         windows = windows.filter((e) => { return e != win })
     })
