@@ -24,6 +24,8 @@
       </md-card-content>
     </md-card>
 
+    <div stretch *ngIf="isLoggedIn()"></div>
+
     <md-card *ngIf="isLoggedIn()">
       <md-card-title>
         {{ 'Change Password' | translate }}
