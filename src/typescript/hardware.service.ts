@@ -21,9 +21,18 @@ THE SOFTWARE.
 */
 
 import { Injectable } from '@angular/core'
-import { SharedData } from './shared_data.service'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
+import { SharedData } from './shared_data.service'
+import { APIBase } from './api_base'
+
+export enum Types {
+    Digital = 1,
+    Analog = 2,
+    Input = 4,
+    Output = 8,
+    PWM = 16
+}
 
 interface SetupArgument {
     name: string,
@@ -75,33 +84,12 @@ export interface Interlock {
 }
 
 @Injectable()
-export class HardwareService {
+export class HardwareService extends APIBase {
     constructor(
-        private http: Http,
-        private sharedData: SharedData
+        http: Http,
+        sharedData: SharedData
     ) {
-    }
-
-    private doGet(url: string): Observable<any> {
-        const headers = new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${SharedData.accessToken}`
-        })
-        const options = new RequestOptions({ headers: headers })
-        const observable = this.http.get(url, options)
-        return observable.map((res: Response) => res.json())
-    }
-
-    private doPost(url: string, data: any): Observable<Response> {
-        const headers = new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${SharedData.accessToken}`
-        })
-        const options = new RequestOptions({ headers: headers })
-        const observable = this.http.post(url, data, options)
-        return observable.map((res: Response) => res.json())
+        super(http, sharedData)
     }
 
     listDrivers(): Observable<Driver[]> {

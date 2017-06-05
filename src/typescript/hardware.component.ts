@@ -26,15 +26,7 @@ import { Observable } from 'rxjs'
 import { Component, OnInit, Output, Input } from '@angular/core'
 import { MdSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { HardwareService, Driver, PortConfiguration, Calibration, Interlock } from './hardware.service'
-
-enum Types {
-    Digital = 1,
-    Analog = 2,
-    Input = 4,
-    Output = 8,
-    PWM = 16
-}
+import { HardwareService, Driver, PortConfiguration, Calibration, Interlock, Types } from './hardware.service'
 
 @Component({
     selector: 'hardware',

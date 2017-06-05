@@ -1,0 +1,35 @@
+<div flex>
+    <div stretch></div>
+    <div id="system-response">
+        <h1>{{ 'System Response' | translate }}</h1>
+
+        <md-card>
+            <md-card-header>
+                <md-card-title>
+                    {{ 'Tests' | translate }}
+                </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <table class="width-100">
+                    <tbody>
+                        <tr *ngFor="let test of tests" inline-form flex>
+                            <td stretch>
+                                <span>{{ test.name }}</span> -
+                                <span>{{ test.type | translate }}</span>
+                            </td>
+                            <td>
+                                <button md-raised-button color="primary" (click)="runTest(test)">{{ 'Run' | translate }}</button>
+                                <button md-raised-button (click)="editTest(test)">{{ 'Edit' | translate }}</button>
+                                <button md-raised-button color="warn" (click)="removeTest(test)">{{ 'Remove' | translate }}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-card-content>
+            <md-card-actions>
+                <button md-raised-button color="secondary" (click)="addTest()">{{ 'Add' | translate }}</button>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <div stretch></div>
+</div>

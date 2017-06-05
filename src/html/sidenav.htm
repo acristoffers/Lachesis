@@ -5,6 +5,11 @@
   <md-list-item *ngIf="isLoggedIn()">
     <button md-button routerLink="hardware">{{ 'Hardware Setup' | translate }}</button>
   </md-list-item>
-  <md-list-item *ngIf="isLoggedIn()">{{ 'System Identification' | translate }}</md-list-item>
+  <md-list-item *ngIf="isLoggedIn()">
+    <button md-button routerLink="system-response">{{ 'System Response' | translate }}</button>
+  </md-list-item>
+  <md-list-item *ngIf="isLoggedIn()">
+    <button md-button routerLink="system-identification">{{ 'System Identification' | translate }}</button>
+  </md-list-item>
   <md-list-item *ngIf="isLoggedIn()">{{ 'System Control' | translate }}</md-list-item>
 </md-list>

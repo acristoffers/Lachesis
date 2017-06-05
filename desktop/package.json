@@ -1,66 +1,70 @@
 {
-    "name": "Lachesis",
-    "version": "1.0.0",
-    "description": "Moirai supervisor",
-    "license": "MIT",
-    "author": {
-        "name": "Álan Crístoffer",
-        "email": "acristoffers@gmail.com",
-        "url": "https://github.com/acristoffers/Lachesis"
+  "name": "Lachesis",
+  "version": "1.0.0",
+  "description": "Moirai supervisor",
+  "license": "MIT",
+  "author": {
+    "name": "Álan Crístoffer",
+    "email": "acristoffers@gmail.com",
+    "url": "https://github.com/acristoffers/Lachesis"
+  },
+  "devDependencies": {
+    "electron": "1.6.10",
+    "electron-builder": "^18.1.0"
+  },
+  "homepage": "https://github.com/acristoffers/Lachesis",
+  "productName": "lachesis",
+  "build": {
+    "directories": {
+      "app": "www",
+      "buildResources": "build"
     },
-    "devDependencies": {
-        "electron": "1.6.2",
-        "electron-builder": "^16.4.2"
+    "extraResources": [
+      {
+        "from": "www/node_modules",
+        "to": "node_modules"
+      }
+    ],
+    "appId": "me.acristoffers.lachesis",
+    "productName": "Lachesis",
+    "protocols": [
+      {
+        "name": "Moirai supervisor",
+        "role": "Editor",
+        "schemes": [
+          "tcp"
+        ]
+      }
+    ],
+    "linux": {
+      "category": "public.app-category.productivity",
+      "packageCategory": "productivity",
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "freebsd",
+        "pacman",
+        "tar.xz"
+      ]
     },
-    "homepage": "https://github.com/acristoffers/Lachesis",
-    "productName": "lachesis",
-    "build": {
-        "directories": {
-            "app": "www",
-            "buildResources": "build"
-        },
-        "extraResources": [{
-            "from": "www/node_modules",
-            "to": "node_modules"
-        }],
-        "appId": "me.acristoffers.lachesis",
-        "productName": "Lachesis",
-        "protocols": [{
-            "name": "Moirai supervisor",
-            "role": "Editor",
-            "schemes": [
-                "tcp"
-            ]
-        }],
-        "linux": {
-            "category": "public.app-category.productivity",
-            "packageCategory": "productivity",
-            "target": [
-                "AppImage",
-                "deb",
-                "rpm",
-                "freebsd",
-                "pacman",
-                "tar.xz"
-            ]
-        },
-        "mac": {
-            "category": "public.app-category.productivity",
-            "target": [
-                "dmg",
-                "zip"
-            ]
-        },
-        "win": {
-            "target": [
-                "nsis",
-                "zip"
-            ]
-        },
-        "nsis": {}
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
-    "scripts": {
-        "dist:pack": "yarn run build -- --dir",
-        "dist": "yarn run build -- --mac --win --linux"
-    }
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "nsis": {}
+  },
+  "scripts": {
+    "dist:pack": "yarn run build -- --dir",
+    "dist": "yarn run build -- --mac --win --linux"
+  }
 }

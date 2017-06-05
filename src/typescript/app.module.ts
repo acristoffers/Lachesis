@@ -38,9 +38,19 @@ import { ToolbarComponent } from './toolbar.component'
 import { SidenavComponent } from './sidenav.component'
 import { ConnectComponent } from './connect.component'
 import { HardwareComponent } from './hardware.component'
+import { SystemIdentificationComponent } from './system_identification.component'
 
 import { HardwareService } from './hardware.service'
+import { SystemIdentificationService } from './system_identification.service'
 import { SharedData } from './shared_data.service'
+import { SystemResponseComponent } from './system_response.component'
+import { SystemResponseService } from './system_response.service'
+import { SystemResponseDialog } from './system_response.dialog'
+import { SystemResponseStepComponent } from './system_response.step.component'
+import { SystemResponseFreeComponent } from './system_response.free'
+import { SystemResponseStairComponent } from './system_response.stair'
+import { SystemResponseImpulseComponent } from './system_response.impulse'
+import { SystemResponseWidePulseComponent } from './system_response.wide_pulse'
 
 @NgModule({
     imports: [
@@ -60,13 +70,26 @@ import { SharedData } from './shared_data.service'
         ToolbarComponent,
         SidenavComponent,
         ConnectComponent,
-        HardwareComponent
+        HardwareComponent,
+        SystemIdentificationComponent,
+        SystemResponseComponent,
+        SystemResponseDialog,
+        SystemResponseStepComponent,
+        SystemResponseFreeComponent,
+        SystemResponseStairComponent,
+        SystemResponseImpulseComponent,
+        SystemResponseWidePulseComponent
     ],
     providers: [
         TRANSLATION_PROVIDERS,
         SharedData,
         TranslateService,
-        HardwareService
+        HardwareService,
+        SystemIdentificationService,
+        SystemResponseService
+    ],
+    entryComponents: [
+        SystemResponseDialog
     ],
     bootstrap: [AppComponent]
 })

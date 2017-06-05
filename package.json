@@ -1,42 +1,42 @@
 {
-    "name": "Lachesis",
-    "version": "1.0.0",
-    "description": "Builds Lachesis for desktop and mobile devices",
-    "license": "MIT",
-    "author": {
-        "name": "Álan Crístoffer",
-        "email": "acristoffers@gmail.com",
-        "url": "https://github.com/acristoffers/moirai"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/acristoffers/Lachesis.git"
-    },
-    "scripts": {
-        "clean:all": "bash clean.sh",
-        "clean": "rm -rf desktop/www desktop/build desktop/dist",
-        "build": "bash build.sh",
-        "prestart": "yarn build",
-        "start": "cd desktop && yarn run electron www",
-        "predist": "yarn build",
-        "dist": "bash dist.sh",
-        "build:fast": "bash build-fast.sh",
-        "predist:pack": "yarn build",
-        "dist:pack": "cd desktop && yarn dist:pack",
-        "prestart:fast": "yarn build:fast",
-        "start:fast": "cd desktop && yarn run electron www"
-    },
-    "dependencies": {
-        "fs-extra": "^2.1.2",
-        "html-minifier": "^3.4.2",
-        "lodash": "^4.17.4",
-        "ncp": "^2.0.0",
-        "rimraf": "^2.6.1",
-        "rxjs": "^5.3.0",
-        "sass": "^0.5.0",
-        "uglifyjs": "^2.4.10"
-    },
-    "devDependencies": {
-        "node-sass": "^4.5.1"
-    }
+  "name": "Lachesis",
+  "version": "1.0.0",
+  "description": "Builds Lachesis for desktop and mobile devices",
+  "license": "MIT",
+  "author": {
+    "name": "Álan Crístoffer",
+    "email": "acristoffers@gmail.com",
+    "url": "https://github.com/acristoffers/moirai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/acristoffers/Lachesis.git"
+  },
+  "scripts": {
+    "clean:all": "bash clean.sh",
+    "clean": "rm -rf desktop/www desktop/build desktop/dist",
+    "build": "bash build.sh",
+    "prestart": "yarn build",
+    "start": "cd desktop && yarn run electron www",
+    "predist": "yarn build",
+    "dist": "bash dist.sh",
+    "build:fast": "bash build-fast.sh",
+    "predist:pack": "yarn build",
+    "dist:pack": "cd desktop && yarn dist:pack",
+    "prestart:fast": "yarn build:fast",
+    "start:fast": "cd desktop && yarn run electron www"
+  },
+  "dependencies": {
+    "fs-extra": "^3.0.1",
+    "html-minifier": "^3.5.2",
+    "lodash": "^4.17.4",
+    "ncp": "^2.0.0",
+    "rimraf": "^2.6.1",
+    "rxjs": "^5.4.0",
+    "sass": "^0.5.0",
+    "uglify-js": "^3.0.13"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.3"
+  }
 }

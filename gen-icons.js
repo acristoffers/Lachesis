@@ -64,7 +64,7 @@ gen_desktop_icons = function () {
       execute('convert -resize ' + size + 'x' + size + ' ' + input2 + ' ' + output)
     }
     execute('iconutil -c icns desktop/build/icon.iconset')
-    const rm = ['desktop/build/icon.iconset', input2]
+    const rm = ['desktop/build/icon.iconset']
     _.map(rm, fs.removeSync)
   }
   execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)

@@ -1,4 +1,4 @@
-<!--
+/*
  * Copyright (c) 2016 Álan Crístoffer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,27 +18,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
--->
-<!DOCTYPE html>
-<html lang="en">
+ */
 
-<head>
-    <meta charset="utf-8">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Lachesis</title>
-    <link rel="stylesheet" href="fonts/material_icons.css" charset="utf-8">
-    <link rel="stylesheet" href="fonts/roboto.css" charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-    <script src="node_modules/canvasjs/dist/canvasjs.3.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8" defer></script>
-</head>
-
-<body unresolved>
-    <div app></div>
-</body>
-
-</html>
+#system-identification {
+    padding: 1rem;
+    min-width: 66%;
+    md-card {
+        margin-top: 2rem;
+    }
+}

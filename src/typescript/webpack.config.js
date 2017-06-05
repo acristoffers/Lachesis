@@ -36,11 +36,13 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css', '.scss', '.html'],
     alias: {
-      jquery: 'jquery/src/jquery'
+      jquery: 'jquery/src/jquery',
+      canvasjs: 'canvasjs/dist/canvasjs.min'
     }
   },
   externals: {
     "electron-settings": "commonjs electron-settings",
+    canvasjs: "CanvasJS"
   },
   plugins: [
     new webpack.ProgressPlugin(),

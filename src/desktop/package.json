@@ -1,24 +1,25 @@
 {
-    "name": "Lachesis",
-    "version": "1.0.0",
-    "description": "Moirai supervisor",
-    "license": "MIT",
-    "author": {
-        "name": "Álan Crístoffer",
-        "email": "acristoffers@gmail.com",
-        "url": "https://github.com/acristoffers/moirai"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/acristoffers/Lachesis.git"
-    },
-    "devDependencies": {
-        "@types/electron": "^1.4.35",
-        "@types/node": "^7.0.12",
-        "electron": "^1.6.2",
-        "typescript": "^2.3.2"
-    },
-    "dependencies": {
-        "electron-settings": "^3.0.14"
-    }
+  "name": "Lachesis",
+  "version": "1.0.0",
+  "description": "Moirai supervisor",
+  "license": "MIT",
+  "author": {
+    "name": "Álan Crístoffer",
+    "email": "acristoffers@gmail.com",
+    "url": "https://github.com/acristoffers/moirai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/acristoffers/Lachesis.git"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.4.38",
+    "@types/node": "^7.0.22",
+    "electron": "^1.6.10",
+    "typescript": "^2.3.3"
+  },
+  "dependencies": {
+    "canvasjs": "^1.8.1",
+    "electron-settings": "^3.0.14"
+  }
 }

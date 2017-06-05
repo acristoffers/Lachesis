@@ -111,7 +111,7 @@
                 <span>{{ 'Alias' | translate }}</span>
               </th>
               <th>
-                <span mdTooltip="{{ 'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.' | translate }}">{{ 'Formula' | translate }}</span>
+                <span mdTooltip="{{ 'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.' | translate }}">{{ 'Static Calibration' | translate }}</span>
               </th>
               <th></th>
             </tr>
@@ -132,7 +132,7 @@
               </td>
               <td class="calibration-formula">
                 <md-input-container class="width-100">
-                  <input mdInput [placeholder]="'Formula' | translate" [(ngModel)]="calibration.formula">
+                  <input mdInput [placeholder]="'Static Calibration' | translate" [(ngModel)]="calibration.formula">
                 </md-input-container>
               </td>
               <td>

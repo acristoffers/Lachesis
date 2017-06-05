@@ -25,6 +25,8 @@ import { ModuleWithProviders } from '@angular/core'
 
 import { ConnectComponent } from './connect.component'
 import { HardwareComponent } from './hardware.component'
+import { SystemIdentificationComponent } from './system_identification.component'
+import { SystemResponseComponent } from './system_response.component'
 
 export class Router {
     static module(): ModuleWithProviders {
@@ -41,6 +43,14 @@ export class Router {
             {
                 path: 'hardware',
                 component: HardwareComponent
+            },
+            {
+                path: 'system-identification',
+                component: SystemIdentificationComponent
+            },
+            {
+                path: 'system-response',
+                component: SystemResponseComponent
             }
         ])
     }

@@ -1,0 +1,29 @@
+<md-card-header>
+  <md-card-title>{{ 'Add/Edit Test' | translate }}</md-card-title>
+</md-card-header>
+<md-card-content>
+  <md-input-container class="width-100">
+    <input mdInput [placeholder]="'Name' | translate" [(ngModel)]="test.name">
+  </md-input-container>
+  <md-tab-group [(selectedIndex)]="selectedTabIndex">
+    <md-tab label="{{ 'Step' | translate }}">
+      <step-response *ngIf="test.type == 'step'" [(test)]="test"></step-response>
+    </md-tab>
+    <md-tab label="{{ 'Impulse' | translate }}">
+      <impulse-response *ngIf="test.type == 'impulse'" [(test)]="test"></impulse-response>
+    </md-tab>
+    <md-tab label="{{ 'Wide Pulse' | translate }}">
+      <wide-pulse-response *ngIf="test.type == 'wide-pulse'" [(test)]="test"></wide-pulse-response>
+    </md-tab>
+    <md-tab label="{{ 'Stair' | translate }}">
+      <stair-response *ngIf="test.type == 'stair'" [(test)]="test"></stair-response>
+    </md-tab>
+    <md-tab label="{{ 'Free Form' | translate }}">
+      <free-response *ngIf="test.type == 'free'" [(test)]="test"></free-response>
+    </md-tab>
+  </md-tab-group>
+</md-card-content>
+<md-card-actions>
+  <button md-button color="primary" (click)="save()">{{ 'Save' | translate }}</button>
+  <button md-button (click)="cancel()">{{ 'Cancel' | translate }}</button>
+</md-card-actions>
