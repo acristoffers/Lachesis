@@ -78,7 +78,7 @@ export const LANG_PT_TRANS = {
     'Run': 'Executar',
     'Cancel': 'Cancelar',
     'Tests': 'Testes',
-    'Curve Data': 'Dados da curva',
+    'Curve data': 'Dados da curva',
     'Input/Output Configuration': 'Configuração de entrada/saída',
     'Output to control': 'Saída a controlar',
     'Inputs to log': 'Entradas a registrar',
@@ -90,5 +90,7 @@ export const LANG_PT_TRANS = {
     'Impulse': 'Impulso',
     'Wide Pulse': 'Pulso largo',
     'Stair': 'Escada',
-    'Free Form': 'Forma livre'
+    'Free Form': 'Forma livre',
+    'Name': 'Nome',
+
 }
