@@ -20,7 +20,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Injectable } from '@angular/core'
 import 'canvasjs'
 
 export interface DataPoint {
@@ -29,7 +28,6 @@ export interface DataPoint {
     y: number
 }
 
-@Injectable()
 export class Chart {
     private chart: CanvasJS.Chart
 
