@@ -13,7 +13,7 @@
                             <tr *ngFor="let point of test.points" inline-form flex>
                                 <td stretch>
                                     <md-input-container class="width-100">
-                                        <input mdInput [placeholder]="'Value' | translate" [(ngModel)]="point.x" (blur)="plotPoints()" type="number">
+                                        <input mdInput [placeholder]="'Time (seconds)' | translate" [(ngModel)]="point.x" (blur)="plotPoints()" type="number">
                                     </md-input-container>
                                 </td>
                                 <td stretch>
@@ -59,13 +59,15 @@
 
         <h3>{{ 'Inputs to log' | translate }}</h3>
         <div default-padding>
-            <md-checkbox *ngFor="let input of inputs" [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</md-checkbox>
+            <div *ngFor="let input of inputs" class="input">
+                <md-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</md-checkbox>
+            </div>
         </div>
 
         <h3>{{ 'Log Rate' | translate }}</h3>
         <div default-padding>
             <md-input-container class="width-100">
-                <input mdInput [placeholder]="'Log Rate' | translate" [(ngModel)]="test.logRate" type="number">
+                <input mdInput [placeholder]="'Log Rate (seconds)' | translate" [(ngModel)]="test.logRate" type="number">
             </md-input-container>
         </div>
 
@@ -73,7 +75,7 @@
         <div default-padding>
             <table class="width-100">
                 <tbody>
-                    <tr *ngFor="let output of test.fixedOutputs" inline-form flex>
+                    <tr *ngFor="let output of test.fixedOutputs" inline-form>
                         <td stretch>
                             <md-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
                                 <md-option *ngFor="let out of outputs" [value]="out">
@@ -99,7 +101,7 @@
         <div default-padding>
             <table class="width-100">
                 <tbody>
-                    <tr *ngFor="let output of test.afterOutputs" inline-form flex>
+                    <tr *ngFor="let output of test.afterOutputs" inline-form>
                         <td stretch>
                             <md-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
                                 <md-option *ngFor="let out of outputs" [value]="out">

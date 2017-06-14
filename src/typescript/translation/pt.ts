@@ -83,6 +83,7 @@ export const LANG_PT_TRANS = {
     'Output to control': 'Saída a controlar',
     'Inputs to log': 'Entradas a registrar',
     'Log Rate': 'Taxa de registro',
+    'Log Rate (seconds)': 'Taxa de registro (segundos)',
     'Fixed outputs': 'Saídas fixas',
     'After test outputs': 'Saídas após os testes',
     'Add/Edit Test': 'Adicionar/editar teste',
@@ -92,5 +93,9 @@ export const LANG_PT_TRANS = {
     'Stair': 'Escada',
     'Free Form': 'Forma livre',
     'Name': 'Nome',
-
+    'Time (seconds)': 'Tempo (segundos)',
+    'T0 (seconds)': 'T0 (segundos)',
+    'T1 (seconds)': 'T1 (segundos)',
+    'T2 (seconds)': 'T2 (segundos)',
+    't (seconds)': 't (segundos)'
 }

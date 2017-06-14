@@ -83,6 +83,7 @@ export const LANG_FR_TRANS = {
     'Output to control': 'Sortie à contrôler',
     'Inputs to log': 'Entrées pour journaliser',
     'Log Rate': 'Taux de journalisation',
+    'Log Rate (seconds)': 'Taux de journalisation (secondes)',
     'Fixed outputs': 'Sorties fixes',
     'After test outputs': 'Sorties après le test',
     'Add/Edit Test': 'Ajouter/modifier test',
@@ -91,5 +92,10 @@ export const LANG_FR_TRANS = {
     'Wide Pulse': 'Pouls large',
     'Stair': 'Escalier',
     'Free Form': 'Forme libre',
-    'Name': 'Nom'
+    'Name': 'Nom',
+    'Time (seconds)': 'Temps (secondes)',
+    'T0 (seconds)': 'T0 (secondes)',
+    'T1 (seconds)': 'T1 (secondes)',
+    'T2 (seconds)': 'T2 (secondes)',
+    't (seconds)': 't (secondes)'
 }

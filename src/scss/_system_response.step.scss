@@ -26,10 +26,14 @@
     }
     table {
         td {
-            margin-top: 1rem;
+            padding-top: 1.5rem;
         }
     }
     #step-graph {
         height: 256px;
+    }
+    .input {
+        width: 25%;
+        display: inline-block;
     }
 }
