@@ -99,16 +99,17 @@ export class SystemResponseFreeComponent {
     importData(): void {
         const t = this.importText
         try {
-            this.test.points = JSON.parse(t)
+            this.test.points = _.sortBy(JSON.parse(t), ['x']) as DataPoint[]
         } catch (e) {
             const lines = _.filter(t.split("\n"), t => t.length > 0)
             const points = _.map(lines, l => l.split(','))
-            this.test.points = _.map(points, p => {
+            const dicts = _.map(points, p => {
                 return {
                     x: parseFloat(p[0]),
                     y: parseFloat(p[1])
                 } as DataPoint
             })
+            this.test.points = _.sortBy(dicts, ['x'])
             this.plotPoints()
         }
     }
