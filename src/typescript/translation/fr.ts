@@ -97,5 +97,6 @@ export const LANG_FR_TRANS = {
     'T0 (seconds)': 'T0 (secondes)',
     'T1 (seconds)': 'T1 (secondes)',
     'T2 (seconds)': 'T2 (secondes)',
-    't (seconds)': 't (secondes)'
+    't (seconds)': 't (secondes)',
+    'Show': 'Afficher'
 }

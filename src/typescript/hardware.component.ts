@@ -70,11 +70,12 @@ export class HardwareComponent implements OnInit {
             this.availableDrivers = drivers
             return this.hardwareService.getConfiguration()
         }).map(([driver, ports, calibrations, interlocks]) => {
+            driver = driver as Driver
             this.selectedDriver = this.findDriverByName(driver.name)
             this.selectedDriver.setup_arguments = driver.setup_arguments
-            this.ports = ports
-            this.calibrations = calibrations
-            this.interlocks = interlocks
+            this.ports = ports as PortConfiguration[]
+            this.calibrations = calibrations as Calibration[]
+            this.interlocks = interlocks as Interlock[]
         }).subscribe(() => { }, this.httpError())
     }
 

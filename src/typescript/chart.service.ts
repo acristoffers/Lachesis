@@ -76,4 +76,9 @@ export class Chart {
         })
         this.chart.render()
     }
+
+    appendPoints(data: DataPoint[], index: number) {
+        Array.prototype.push.apply(this.chart.options.data[index].dataPoints, data)
+        this.chart.render()
+    }
 }

@@ -51,6 +51,9 @@ import { SystemResponseFreeComponent } from './system_response.free'
 import { SystemResponseStairComponent } from './system_response.stair'
 import { SystemResponseImpulseComponent } from './system_response.impulse'
 import { SystemResponseWidePulseComponent } from './system_response.wide_pulse'
+import { LiveGraphService } from './live_graph.service'
+import { LiveGraphComponent } from './live_graph.component'
+import { ChartComponent } from './chart.component'
 
 @NgModule({
     imports: [
@@ -78,7 +81,9 @@ import { SystemResponseWidePulseComponent } from './system_response.wide_pulse'
         SystemResponseFreeComponent,
         SystemResponseStairComponent,
         SystemResponseImpulseComponent,
-        SystemResponseWidePulseComponent
+        SystemResponseWidePulseComponent,
+        LiveGraphComponent,
+        ChartComponent
     ],
     providers: [
         TRANSLATION_PROVIDERS,
@@ -86,7 +91,8 @@ import { SystemResponseWidePulseComponent } from './system_response.wide_pulse'
         TranslateService,
         HardwareService,
         SystemIdentificationService,
-        SystemResponseService
+        SystemResponseService,
+        LiveGraphService
     ],
     entryComponents: [
         SystemResponseDialog

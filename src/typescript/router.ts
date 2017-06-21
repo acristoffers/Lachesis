@@ -27,6 +27,7 @@ import { ConnectComponent } from './connect.component'
 import { HardwareComponent } from './hardware.component'
 import { SystemIdentificationComponent } from './system_identification.component'
 import { SystemResponseComponent } from './system_response.component'
+import { LiveGraphComponent } from './live_graph.component'
 
 export class Router {
     static module(): ModuleWithProviders {
@@ -51,6 +52,10 @@ export class Router {
             {
                 path: 'system-response',
                 component: SystemResponseComponent
+            },
+            {
+                path: 'live-graph',
+                component: LiveGraphComponent
             }
         ])
     }

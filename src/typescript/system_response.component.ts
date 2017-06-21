@@ -23,6 +23,7 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 import { Component, OnInit } from '@angular/core'
 import { MdSnackBar, MdDialog } from '@angular/material'
+import { Router } from '@angular/router'
 import { TranslateService } from './translation/translation.service'
 import { SystemResponseService, ResponseTest } from './system_response.service'
 import { HardwareService } from './hardware.service'
@@ -40,7 +41,8 @@ export class SystemResponseComponent implements OnInit {
         private i18n: TranslateService,
         private sr: SystemResponseService,
         private hardware: HardwareService,
-        private dialog: MdDialog
+        private dialog: MdDialog,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -58,7 +60,9 @@ export class SystemResponseComponent implements OnInit {
     }
 
     runTest(test: ResponseTest): void {
-        this.sr.runTest(test).subscribe()
+        this.sr.runTest(test).subscribe(() => {
+            this.router.navigate(['live-graph'])
+        })
     }
 
     editTest(test: ResponseTest): void {

@@ -97,5 +97,6 @@ export const LANG_PT_TRANS = {
     'T0 (seconds)': 'T0 (segundos)',
     'T1 (seconds)': 'T1 (segundos)',
     'T2 (seconds)': 'T2 (segundos)',
-    't (seconds)': 't (segundos)'
+    't (seconds)': 't (segundos)',
+    'Show': 'Exibir'
 }

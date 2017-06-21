@@ -97,5 +97,6 @@ export const LANG_DE_TRANS = {
     'T0 (seconds)': 'T0 (Sekunden)',
     'T1 (seconds)': 'T1 (Sekunden)',
     'T2 (seconds)': 'T2 (Sekunden)',
-    't (seconds)': 't (Sekunden)'
+    't (seconds)': 't (Sekunden)',
+    'Show': 'Zeigen'
 }

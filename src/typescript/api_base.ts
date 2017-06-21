@@ -41,7 +41,7 @@ export class APIBase {
         return observable.map((res: Response) => res.json())
     }
 
-    protected doPost(url: string, data: any): Observable<Response> {
+    protected doPost(url: string, data: any): Observable<any> {
         const headers = new Headers({
             'Accept': 'application/json',
             'Content-Type': 'application/json',

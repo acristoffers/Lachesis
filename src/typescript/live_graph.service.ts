@@ -21,32 +21,27 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
+
 import { Injectable } from '@angular/core'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
 import { SharedData } from './shared_data.service'
 import { APIBase } from './api_base'
-import { Chart, DataPoint } from './chart.service'
+import { DataPoint } from './chart.service'
 
-export interface ResponseTest {
-    id: number
+export interface Test {
     name: string
-    type: string
-    inputs: string[]
-    output: string
-    points: DataPoint[]
-    fixedOutputs: PortValue[]
-    afterOutputs: PortValue[]
-    logRate: number
+    date: Date
+    running: boolean
 }
 
-export interface PortValue {
-    alias: string
-    value: number
+export interface TestData {
+    sensor: string
+    points: DataPoint[]
 }
 
 @Injectable()
-export class SystemResponseService extends APIBase {
+export class LiveGraphService extends APIBase {
     constructor(
         http: Http,
         sharedData: SharedData
@@ -54,31 +49,55 @@ export class SystemResponseService extends APIBase {
         super(http, sharedData)
     }
 
-    loadTests(): Observable<ResponseTest[]> {
-        const path = 'system_response/tests'
+    listTests(): Observable<Test[]> {
+        const path = 'live_graph/tests'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         return this.doGet(url)
     }
 
-    saveTests(tests: ResponseTest[]): Observable<any> {
-        const path = 'system_response/tests'
+    fetchTest(name: string, start: Date, skip = 0): Observable<TestData[]> {
+        const path = 'live_graph/test'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
-        return this.doPost(url, tests)
+        const data = {
+            test: name,
+            start_time: start,
+            skip: skip
+        }
+
+        return this.doPost(url, data).map(rs => {
+            const sensors = _.uniq(_.map(rs, 'sensor')) as string[]
+            return _.map(sensors, s => {
+                return {
+                    sensor: s,
+                    points: _.map(_.filter(rs, r => r['sensor'] == s), r => {
+                        return {
+                            x: r['time'],
+                            y: r['value']
+                        }
+                    })
+                }
+            })
+        })
     }
 
-    runTest(test: ResponseTest): Observable<any> {
-        const path = 'system_response/test/run'
+    removeTest(test: Test): Observable<void> {
+        const path = 'live_graph/test/remove'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
-        return this.doPost(url, { test: test.id })
+        const data = {
+            test: test.name,
+            start_time: test.date
+        }
+
+        return this.doPost(url, data).map(() => {
+            if (test.running) {
+                this.stopTest().subscribe()
+            }
+        })
     }
 
-    stopTest(): Observable<null> {
+    stopTest(): Observable<void> {
         const path = 'system_response/test/stop'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         return this.doGet(url)
-    }
-
-    createChart(id: string, labels: string[], colors: string[], ...dataPoints: DataPoint[][]): Chart {
-        return new Chart(id, '', 'line', _.first(dataPoints))
     }
 }

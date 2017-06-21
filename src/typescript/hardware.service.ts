@@ -125,7 +125,7 @@ export class HardwareService extends APIBase {
             const interlocks: Interlock[] = res.interlocks || []
             delete res.interlocks
             const driver: Driver = res || {}
-            return [driver, ports, calibrations, interlocks]
+            return [driver, ports, calibrations, interlocks] as [Driver, PortConfiguration[], Calibration[], Interlock[]]
         })
     }
 }

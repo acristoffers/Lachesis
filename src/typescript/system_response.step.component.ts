@@ -24,7 +24,7 @@ import * as _ from 'lodash'
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { Chart, DataPoint } from './chart.service'
 import { SystemResponseService, ResponseTest, PortValue } from './system_response.service'
-import { HardwareService, PortConfiguration, Types } from './hardware.service'
+import { HardwareService, PortConfiguration, Types, Calibration, Driver, Interlock } from './hardware.service'
 
 @Component({
     selector: 'step-response',

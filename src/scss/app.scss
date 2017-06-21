@@ -37,6 +37,8 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @import 'system_response.wide_pulse';
 @import 'system_response.stair';
 @import 'system_response.free';
+@import 'live_graph';
+@import 'chart';
 @mixin user-select($opt) {
     -webkit-user-select: $opt;
     user-select: $opt;

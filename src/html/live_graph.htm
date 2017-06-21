@@ -1,0 +1,43 @@
+<div flex>
+    <div stretch></div>
+    <div id="live-graph">
+        <h1>{{ 'Live Graph' | translate }}</h1>
+
+        <md-card>
+            <md-card-header>
+                <md-card-title>
+                    {{ 'Tests' | translate }}
+                </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <div id="tests-list">
+                    <table class="width-100">
+                        <tbody>
+                            <tr *ngFor="let test of tests" inline-form flex>
+                                <td stretch>
+                                    <md-icon *ngIf="test.running">timeline</md-icon>
+                                    <span>{{ test.name }}</span> -
+                                    <span>{{ formatDate(test.date) }}</span>
+                                </td>
+                                <td>
+                                    <button md-raised-button color="primary" (click)="loadTest(test)">{{ 'Show' | translate }}</button>
+                                    <button md-raised-button color="warn" (click)="removeTest(test)">{{ 'Remove' | translate }}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </md-card-content>
+        </md-card>
+
+        <md-card id="charts" *ngIf="testData">
+            <md-card-content>
+                <div class="chart" *ngFor="let test of testData">
+                    <h2>{{ test.sensor }}</h2>
+                    <chart [sensor]="test.sensor" [points]="test.points"></chart>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div stretch></div>
+</div>
