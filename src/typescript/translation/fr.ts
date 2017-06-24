@@ -36,6 +36,7 @@ export const LANG_FR_TRANS = {
     'Moirai Address': 'Adresse du Moirai',
     'Password': 'Mot de passe',
     'Connect': 'Connecter',
+    'Change Password': 'Changer le mot de passe',
     'Error when connecting. Check address and try again.': 'Echèc du connexion. Voulez verifier le address et essayer encore.',
     'Wrong password.': 'Mot de passe incorrect.',
     'Connected': 'Connecté',
@@ -98,5 +99,8 @@ export const LANG_FR_TRANS = {
     'T1 (seconds)': 'T1 (secondes)',
     'T2 (seconds)': 'T2 (secondes)',
     't (seconds)': 't (secondes)',
-    'Show': 'Afficher'
+    'Show': 'Afficher',
+    'Points': 'Points',
+    'Exported Name': 'Nom Exporté',
+    'Graphs': 'Graphiques'
 }

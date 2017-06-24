@@ -20,13 +20,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import * as _ from 'lodash'
 import { Injectable, Inject } from '@angular/core'
 import { TRANSLATIONS } from './translation'
 import * as settings from 'electron-settings'
 
 @Injectable()
 export class TranslateService {
-    private _currentLang: string;
+    private _currentLang: string
 
     public get currentLang(): string {
         return this._currentLang
@@ -41,13 +42,13 @@ export class TranslateService {
     }
 
     private translate(key: string): string {
-        let translation = key
-
-        if (this._translations.get(this.currentLang) && this._translations.get(this.currentLang)[key]) {
-            return this._translations.get(this.currentLang)[key]
-        }
-
-        return translation
+        const lang = this._translations.get(this.currentLang) || {}
+        return lang[key] || key
+        // const translation = lang[key] || key
+        // if (translation === key) {
+        //     console.log(`No translation for ${key} in ${this.currentLang}`)
+        // }
+        // return translation
     }
 
     public instant(key: string): string {

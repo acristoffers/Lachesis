@@ -1,14 +1,12 @@
 <div flex>
     <div stretch></div>
     <div id="live-graph">
-        <h1>{{ 'Live Graph' | translate }}</h1>
+        <h1>{{ 'Graphs' | translate }}</h1>
 
         <md-card>
-            <md-card-header>
-                <md-card-title>
-                    {{ 'Tests' | translate }}
-                </md-card-title>
-            </md-card-header>
+            <md-card-title>
+                {{ 'Tests' | translate }}
+            </md-card-title>
             <md-card-content>
                 <div id="tests-list">
                     <table class="width-100">
@@ -26,6 +24,38 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </md-card-content>
+        </md-card>
+
+        <md-card id="test-data" *ngIf="testExportVariables && !test.running">
+            <md-card-title>
+                {{ 'Points' | translate }}
+            </md-card-title>
+            <md-card-content>
+                <div>
+                    <md-radio-group [(ngModel)]="exportType">
+                        <md-radio-button default-padding *ngFor="let type of exportTypes" [value]="type">
+                            {{ type }}
+                        </md-radio-button>
+                    </md-radio-group>
+
+                    <table class="width-100">
+                        <tbody>
+                            <tr *ngFor="let test of testExportVariables" inline-form flex>
+                                <td>
+                                    <md-checkbox [(ngModel)]="test.export">{{ test.variable }}</md-checkbox>
+                                </td>
+                                <td stretch default-padding>
+                                    <md-input-container class="width-100">
+                                        <input mdInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName" (blur)="validateVariable()">
+                                    </md-input-container>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button md-raised-button color="primary" (click)="saveTest()">{{ 'Save' | translate }}</button>
                 </div>
             </md-card-content>
         </md-card>

@@ -39,6 +39,7 @@ export const LANG_PT_TRANS = {
     'Error when connecting. Check address and try again.': 'Erro ao conectar. Verifique a conexão e tente novamente.',
     'Wrong password.': 'Senha incorreta',
     'Connected': 'Conectado',
+    'Change Password': 'Alterar senha',
     'Disconnect': 'Desconectar',
     'Driver': 'Driver',
     'Apply': 'Aplicar',
@@ -98,5 +99,8 @@ export const LANG_PT_TRANS = {
     'T1 (seconds)': 'T1 (segundos)',
     'T2 (seconds)': 'T2 (segundos)',
     't (seconds)': 't (segundos)',
-    'Show': 'Exibir'
+    'Show': 'Exibir',
+    'Points': 'Pontos',
+    'Exported Name': 'Nome Exportado',
+    'Graphs': 'Gráficos'
 }

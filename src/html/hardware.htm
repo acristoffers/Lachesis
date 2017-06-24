@@ -4,6 +4,9 @@
     <h1>{{ 'Hardware Setup' | translate }}</h1>
 
     <md-card id="driver">
+      <md-card-title>
+        {{ 'Driver' | translate }}
+      </md-card-title>
       <md-card-content>
         <md-select class="width-100" placeholder="{{ 'Driver' | translate }}" [(ngModel)]="selectedDriver">
           <md-option *ngFor="let driver of availableDrivers; trackBy:driveTracker" [value]="driver">
@@ -14,11 +17,9 @@
     </md-card>
 
     <md-card id="setup" *ngIf="!!selectedDriver && selectedDriver.has_setup">
-      <md-card-header>
-        <md-card-title mdTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
-          {{ 'Setup' | translate }}
-        </md-card-title>
-      </md-card-header>
+      <md-card-title mdTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
+        {{ 'Setup' | translate }}
+      </md-card-title>
       <md-card-content>
         <md-input-container class="width-100" class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
           <input mdInput [placeholder]="argument.name" [value]=" argument.default_value | removeUndefined " [(ngModel)]="argument.value">
@@ -27,9 +28,7 @@
     </md-card>
 
     <md-card id="ports" *ngIf="!!selectedDriver">
-      <md-card-header>
-        <md-card-title>{{ 'Ports' | translate }}</md-card-title>
-      </md-card-header>
+      <md-card-title>{{ 'Ports' | translate }}</md-card-title>
       <md-card-content>
         <table>
           <thead>
@@ -97,9 +96,7 @@
     </md-card>
 
     <md-card id="calibration" *ngIf="!!selectedDriver && ((inputAliases?.length > 0) || (outputAliases?.length > 0))">
-      <md-card-header>
-        <md-card-title>{{ 'Calibration' | translate }}</md-card-title>
-      </md-card-header>
+      <md-card-title>{{ 'Calibration' | translate }}</md-card-title>
       <md-card-content>
         <table>
           <thead>
@@ -148,9 +145,7 @@
     </md-card>
 
     <md-card id="interlocking" *ngIf="!!selectedDriver && (inputAliases?.length > 0) && (outputAliases?.length > 0)">
-      <md-card-header>
-        <md-card-title mdTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">{{ 'Interlock' | translate }}</md-card-title>
-      </md-card-header>
+      <md-card-title mdTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">{{ 'Interlock' | translate }}</md-card-title>
       <md-card-content>
         <table>
           <thead>

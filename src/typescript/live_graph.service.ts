@@ -23,7 +23,7 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 
 import { Injectable } from '@angular/core'
-import { Http, Response, Headers, RequestOptions } from '@angular/http'
+import { Http, Response, Headers, RequestOptions, ResponseContentType } from '@angular/http'
 import { Observable } from 'rxjs'
 import { SharedData } from './shared_data.service'
 import { APIBase } from './api_base'
@@ -38,6 +38,10 @@ export interface Test {
 export interface TestData {
     sensor: string
     points: DataPoint[]
+}
+
+export interface VariableRename {
+    [key: string]: string
 }
 
 @Injectable()
@@ -78,6 +82,29 @@ export class LiveGraphService extends APIBase {
                 }
             })
         })
+    }
+
+    downloadMAT(test: Test, variables: VariableRename): Observable<Response> {
+        const path = 'live_graph/test/export'
+        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+        const data = {
+            test: test.name,
+            start_time: test.date,
+            variables: variables
+        }
+
+        const headers = new Headers({
+            'Accept': 'application/octet-stream',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SharedData.accessToken}`
+        })
+
+        const options = new RequestOptions({
+            headers: headers,
+            responseType: ResponseContentType.Blob
+        })
+
+        return this.http.post(url, data, options)
     }
 
     removeTest(test: Test): Observable<void> {

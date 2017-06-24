@@ -17,9 +17,10 @@
     </md-card>
 
     <md-card *ngIf="isLoggedIn()">
+      <md-card-title>
+        {{ 'Connected' | translate }}
+      </md-card-title>
       <md-card-content>
-        <span text-center>{{ 'Connected' | translate }}</span>
-        <br><br>
         <button class="connect-button" md-raised-button color="primary" (click)="disconnect()">{{ 'Disconnect' | translate }}</button>
       </md-card-content>
     </md-card>
