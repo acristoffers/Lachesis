@@ -139,10 +139,28 @@ md-sidenav {
 [inline-form] {
     .mat-input-wrapper {
         margin: 0 !important;
-        padding: 0 !important;
+    }
+    .mat-input-underline {
+        margin-bottom: -4px;
     }
 }
 
 md-icon.tooltip {
     vertical-align: middle;
+}
+
+table[fixed] {
+    table-layout: fixed;
+    [width-15] {
+        width: 15%;
+    }
+    [width-33] {
+        width: 33%;
+    }
+    [width-50] {
+        width: 50%;
+    }
+    [width-60] {
+        width: 60%;
+    }
 }

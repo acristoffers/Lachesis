@@ -234,7 +234,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     private makeValidVariable(variable: string): string {
         const r1 = /[^A-Za-z0-9_]/g
-        const r2 = /^[0-9]/g
+        const r2 = /^[0-9]+/g
         return variable.replace(r1, '').replace(r2, '')
     }
 }

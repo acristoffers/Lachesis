@@ -33,15 +33,15 @@
     md-card {
         margin-top: 2rem;
     }
-    table {
-        td {
-            padding-top: 1.5rem;
-        }
-    }
     .chart {
         display: inline-block;
         width: 256px;
         height: 256px;
         margin: 1rem;
+    }
+    #test-data {
+        td {
+            padding-right: 1rem;
+        }
     }
 }

@@ -40,13 +40,13 @@
                         </md-radio-button>
                     </md-radio-group>
 
-                    <table class="width-100">
+                    <table>
                         <tbody>
-                            <tr *ngFor="let test of testExportVariables" inline-form flex>
+                            <tr *ngFor="let test of testExportVariables">
                                 <td>
                                     <md-checkbox [(ngModel)]="test.export">{{ test.variable }}</md-checkbox>
                                 </td>
-                                <td stretch default-padding>
+                                <td>
                                     <md-input-container class="width-100">
                                         <input mdInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName" (blur)="validateVariable()">
                                     </md-input-container>

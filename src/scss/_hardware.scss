@@ -23,6 +23,7 @@
 #hardware {
     padding: 1rem;
     min-width: 66%;
+    max-width: 90%;
     md-card {
         margin-top: 2rem;
     }
@@ -31,11 +32,31 @@
     }
     table {
         width: 100%;
+        table-layout: fixed;
+        th,
         td {
-            padding-top: 1.5rem;
+            text-align: center;
         }
     }
     .calibration-formula {
         width: 40%;
+    }
+    #ports {
+        td,
+        th {
+            width: 15%;
+        }
+    }
+    #calibration {
+        td,
+        th {
+            width: 25%;
+        }
+    }
+    #interlocking {
+        td,
+        th {
+            width: 20%;
+        }
     }
 }
