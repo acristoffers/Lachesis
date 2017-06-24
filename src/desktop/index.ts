@@ -59,7 +59,7 @@ app.on('activate', () => {
     }
 })
 
-let editMenu: Electron.MenuItemOptions = {
+const editMenu: Electron.MenuItemConstructorOptions = {
     label: 'Edit',
     submenu: [
         {
@@ -84,7 +84,7 @@ let editMenu: Electron.MenuItemOptions = {
     ]
 }
 
-let viewMenu: Electron.MenuItemOptions = {
+const viewMenu: Electron.MenuItemConstructorOptions = {
     label: 'View',
     submenu: [
         {
@@ -119,7 +119,7 @@ let viewMenu: Electron.MenuItemOptions = {
     ]
 }
 
-let windowMenu: Electron.MenuItemOptions = {
+const windowMenu: Electron.MenuItemConstructorOptions = {
     role: 'window',
     submenu: [
         {
@@ -130,7 +130,7 @@ let windowMenu: Electron.MenuItemOptions = {
     ]
 }
 
-let helpMenu: Electron.MenuItemOptions = {
+const helpMenu: Electron.MenuItemConstructorOptions = {
     role: 'help',
     submenu: [
         {
@@ -142,7 +142,7 @@ let helpMenu: Electron.MenuItemOptions = {
     ]
 }
 
-let template: Electron.MenuItemOptions[] = [
+const template: Electron.MenuItemConstructorOptions[] = [
     editMenu, viewMenu, windowMenu, helpMenu
 ];
 
