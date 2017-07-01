@@ -110,7 +110,7 @@ export class HardwareComponent implements OnInit {
     }
 
     removeInterlock(interlock: Interlock): void {
-        this.interlocks = this.interlocks.filter(i => i === interlock)
+        this.interlocks = this.interlocks.filter(i => i !== interlock)
     }
 
     portTypes(port: string): Types[] {
