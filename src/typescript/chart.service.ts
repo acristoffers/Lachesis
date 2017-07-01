@@ -45,8 +45,6 @@ export class Chart {
             title: {
                 text: title
             },
-            width: 256,
-            height: 256,
             zoomEnabled: true,
             animationEnabled: true,
             data: [
