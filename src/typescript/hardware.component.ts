@@ -191,6 +191,48 @@ export class HardwareComponent implements OnInit {
         this.selectedDriver = null
     }
 
+    importConfiguration() {
+        const input = document.createElement('input')
+        input.setAttribute('type', 'file')
+        document.body.appendChild(input)
+        input.click()
+        input.addEventListener('change', (e: any) => {
+            const file = e.target.files[0]
+            const reader = new FileReader()
+
+            reader.onload = (e: any) => {
+                const json = e.target.result
+                const values = JSON.parse(json)
+
+                this.selectedDriver = values.selectedDriver
+                this.ports = values.ports
+                this.calibrations = values.calibrations
+                this.interlocks = values.interlocks
+            }
+
+            reader.readAsText(file)
+        }, false)
+        document.body.removeChild(input)
+    }
+
+    exportConfiguration() {
+        const exportData = {
+            'selectedDriver': this.selectedDriver,
+            'ports': this.ports,
+            'calibrations': this.calibrations,
+            'interlocks': this.interlocks
+        }
+        const json = JSON.stringify(exportData)
+
+        const link = document.createElement('a')
+        link.setAttribute('target', '_blank')
+        link.setAttribute('href', `data:text/json,${encodeURIComponent(json)}`)
+        link.setAttribute('download', 'configuration.json')
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+
     private redistributeIds(): void {
         let count = 0
         this.ports.map(port => {
@@ -210,12 +252,12 @@ export class HardwareComponent implements OnInit {
 
     private portAliases(type: Types): string[] {
         const ps = _.chain(this.ports)
-            .filter(p => p.type & type)
+            .filter(p => (p.type & type) != 0)
             .map(p => p.alias)
             .value()
         const cs = _.chain(this.calibrations)
-            .filter(c => this.findPortById(c.port))
-            .filter(c => this.findPortById(c.port).type & type)
+            .filter(c => this.findPortById(c.port) != null)
+            .filter(c => (this.findPortById(c.port).type & type) != 0)
             .map(c => c.alias)
             .value()
         const as = _.concat(ps, cs)

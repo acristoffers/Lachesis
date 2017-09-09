@@ -13,9 +13,9 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "@types/node": "^8.0.9",
-    "electron": "^1.6.11",
-    "typescript": "^2.4.1"
+    "@types/node": "^8.0.28",
+    "electron": "^1.7.6",
+    "typescript": "^2.5.2"
   },
   "dependencies": {
     "canvasjs": "^1.8.1",

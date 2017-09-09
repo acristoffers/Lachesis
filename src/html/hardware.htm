@@ -206,6 +206,8 @@
     <md-card *ngIf="!!selectedDriver">
       <md-card-content>
         <button md-raised-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
+        <button md-raised-button (click)="exportConfiguration()">{{ 'Export' | translate }}</button>
+        <button md-raised-button (click)="importConfiguration()">{{ 'Import' | translate }}</button>
         <button md-raised-button (click)="resetDriver()">{{ 'Reset' | translate }}</button>
       </md-card-content>
     </md-card>

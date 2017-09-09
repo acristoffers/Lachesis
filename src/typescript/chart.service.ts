@@ -21,6 +21,7 @@ THE SOFTWARE.
 */
 
 import 'canvasjs'
+import * as CanvasJS from 'canvasjs';
 
 export interface DataPoint {
     x?: any

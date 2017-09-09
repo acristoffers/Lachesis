@@ -102,5 +102,7 @@ export const LANG_PT_TRANS = {
     'Show': 'Exibir',
     'Points': 'Pontos',
     'Exported Name': 'Nome Exportado',
-    'Graphs': 'Gráficos'
+    'Graphs': 'Gráficos',
+    'Import': 'Importar',
+    'Export': 'Exportar'
 }

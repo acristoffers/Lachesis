@@ -102,5 +102,7 @@ export const LANG_DE_TRANS = {
     'Show': 'Zeigen',
     'Points': 'Punkte',
     'Exported Name': 'Exportierter Name',
-    'Graphs': 'Grafiken'
+    'Graphs': 'Grafiken',
+    'Import': 'Importieren',
+    'Export': 'Exportieren'
 }
