@@ -24,21 +24,14 @@ import 'zone.js'
 import 'hammerjs'
 import 'reflect-metadata'
 import 'jquery'
-import 'rxjs'
-
-import '@angular/platform-browser'
-import '@angular/core'
-import '@angular/common'
-import '@angular/http'
 
 import { platformBrowser } from '@angular/platform-browser'
 import { AppModuleNgFactory } from './build/app.module.ngfactory'
-import { enableProdMode } from '@angular/core'
-
-// enableProdMode()
 
 const basePath = location.href.replace(/[^/]*$/, '')
 const baseElement = $('<base href="' + basePath + '">')
 $('head').append(baseElement)
+
+// enableProdMode()
 
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)

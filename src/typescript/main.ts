@@ -24,19 +24,10 @@ import 'zone.js'
 import 'hammerjs'
 import 'reflect-metadata'
 import 'jquery'
-import 'rxjs'
-
-import '@angular/platform-browser'
-import '@angular/platform-browser-dynamic'
-import '@angular/core'
-import '@angular/common'
-import '@angular/http'
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { AppModule } from './app.module'
 import { enableProdMode } from '@angular/core'
-
-// enableProdMode()
 
 const basePath = location.href.replace(/[^/]*$/, '')
 const baseElement = $('<base href="' + basePath + '">')
