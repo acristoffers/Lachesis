@@ -105,7 +105,7 @@ Observable.zip.apply(null, ds).finally(() => {
     }).flatMap(() => {
       return ospawn('yarn', ['run',
         'node-sass',
-        '--', 'src/scss/app.scss',
+        'src/scss/app.scss',
         'desktop/www/css/app.css',
         '--output-style',
         'compressed'

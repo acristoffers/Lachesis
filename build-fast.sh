@@ -36,7 +36,7 @@ mv src/typescript/dist/index.js desktop/www/js/app.js
 echo ""
 echo "Compiling SASS"
 echo ""
-yarn run node-sass -- src/scss/app.scss desktop/www/css/app.css --output-style compressed
+yarn run node-sass src/scss/app.scss desktop/www/css/app.css --output-style compressed
 
 # Minify HTML
 node html-minifier.js
