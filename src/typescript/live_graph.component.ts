@@ -21,16 +21,18 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
-import { MdSnackBar } from '@angular/material';
-import { timer } from 'rxjs/observable/timer';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
+import { Headers, Http, RequestOptions, Response } from '@angular/http'
+import { MdSnackBar } from '@angular/material'
+import { timer } from 'rxjs/observable/timer'
+import { Subscription } from 'rxjs/Rx'
 import { TranslateService } from './translation/translation.service'
-import { Chart } from './chart.service';
+import { Chart } from './chart.service'
 import { LiveGraphService, Test, TestData, VariableRename } from './live_graph.service'
-import { SharedData } from './shared_data.service';
+import { SharedData } from './shared_data.service'
 import { Observable } from 'rxjs'
+import { ChartComponent } from './chart.component'
+import { ChartEvent } from 'canvasjs'
 
 interface ExportVariable {
     variable: string
@@ -53,6 +55,22 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     private timer: Observable<number>
     private timerSubscription: Subscription
+    private _syncZoom: boolean = false
+
+    set syncZoom(zoom: boolean) {
+        this._syncZoom = zoom
+        this.charts.forEach(chart => {
+            const options = chart.chart.chartReference.options as any
+            options.zoomType = zoom && 'x' || 'xy'
+            chart.chart.chartReference.render()
+        })
+    }
+
+    get syncZoom() {
+        return this._syncZoom
+    }
+
+    @ViewChildren(ChartComponent) charts: QueryList<ChartComponent>
 
     constructor(
         private http: Http,
@@ -230,6 +248,36 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         }
 
         return new Date(date).toLocaleString(this.i18n.currentLang, options)
+    }
+
+    syncZoomFunction = (e: ChartEvent) => {
+        if (this.syncZoom) {
+            this.charts.forEach(chart => {
+
+                const anyE = e as any
+                const canvasjs = chart.chart.chartReference
+                const axisX = canvasjs.options.axisX || {} as any
+                const axisY = canvasjs.options.axisY || {} as any
+
+                if (anyE.trigger == 'reset') {
+                    axisX.viewportMinimum = axisX.viewportMaximum = null
+                    axisY.viewportMinimum = axisY.viewportMaximum = null
+
+                    canvasjs.render()
+                } else {
+                    axisX.viewportMinimum = anyE.axisX.viewportMinimum
+                    axisX.viewportMaximum = anyE.axisX.viewportMaximum
+
+                    axisY.viewportMinimum = anyE.axisY.viewportMinimum
+                    axisY.viewportMaximum = anyE.axisY.viewportMaximum
+
+                    canvasjs.render()
+                }
+
+                canvasjs.options.axisX = axisX
+                canvasjs.options.axisY = axisY
+            })
+        }
     }
 
     private makeValidVariable(variable: string): string {

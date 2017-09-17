@@ -62,9 +62,11 @@
 
         <md-card id="charts" *ngIf="testData">
             <md-card-content>
+                <md-checkbox [(ngModel)]="syncZoom">{{ 'Sync' | translate }}</md-checkbox>
+                <br><br>
                 <div class="chart" *ngFor="let test of testData">
                     <h2>{{ test.sensor }}</h2>
-                    <chart [sensor]="test.sensor" [points]="test.points"></chart>
+                    <chart [sensor]="test.sensor" [points]="test.points" [syncZoomFunction]="syncZoomFunction"></chart>
                 </div>
             </md-card-content>
         </md-card>

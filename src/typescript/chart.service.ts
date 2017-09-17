@@ -20,8 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import 'canvasjs'
-import * as CanvasJS from 'canvasjs';
+import * as CanvasJS from 'canvasjs'
 
 export interface DataPoint {
     x?: any
@@ -47,7 +46,11 @@ export class Chart {
                 text: title
             },
             zoomEnabled: true,
+            zoomType: 'xy',
             animationEnabled: true,
+            axisY: {
+                includeZero: false
+            },
             data: [
                 {
                     type: type,

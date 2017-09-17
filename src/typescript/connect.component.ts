@@ -98,7 +98,7 @@ export class ConnectComponent {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${SharedData.accessToken}`
             })
-            const options = new RequestOptions({ headers: headers });
+            const options = new RequestOptions({ headers: headers })
             const url = `${SharedData.scheme}://${this.connectionAddress}/set-password`
             const postData = { password: this.newPassword }
             const observer = this.http.post(url, postData, options)

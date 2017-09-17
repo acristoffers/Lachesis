@@ -104,5 +104,6 @@ export const LANG_PT_TRANS = {
     'Exported Name': 'Nome Exportado',
     'Graphs': 'Gráficos',
     'Import': 'Importar',
-    'Export': 'Exportar'
+    'Export': 'Exportar',
+    'Sync': 'Sincronizar'
 }
