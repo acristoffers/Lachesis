@@ -25,7 +25,6 @@ import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpModule } from '@angular/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { MaterialModule } from '@angular/material'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translation'
@@ -38,10 +37,8 @@ import { ToolbarComponent } from './toolbar.component'
 import { SidenavComponent } from './sidenav.component'
 import { ConnectComponent } from './connect.component'
 import { HardwareComponent } from './hardware.component'
-import { SystemIdentificationComponent } from './system_identification.component'
-
+import { ControlComponent } from './control.component'
 import { HardwareService } from './hardware.service'
-import { SystemIdentificationService } from './system_identification.service'
 import { SharedData } from './shared_data.service'
 import { SystemResponseComponent } from './system_response.component'
 import { SystemResponseService } from './system_response.service'
@@ -55,6 +52,24 @@ import { LiveGraphService } from './live_graph.service'
 import { LiveGraphComponent } from './live_graph.component'
 import { ChartComponent } from './chart.component'
 
+import {
+    MdDialogModule,
+    MdSidenavModule,
+    MdButtonModule,
+    MdSelectModule,
+    MdInputModule,
+    MdCardModule,
+    MdTooltipModule,
+    MdTabsModule,
+    MdRadioModule,
+    MdMenuModule,
+    MdIconModule,
+    MdSnackBarModule,
+    MdToolbarModule,
+    MdListModule,
+    MdCheckboxModule
+} from '@angular/material'
+
 @NgModule({
     imports: [
         CommonModule,
@@ -63,8 +78,22 @@ import { ChartComponent } from './chart.component'
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule,
-        Router.module()
+        Router.module(),
+        MdDialogModule,
+        MdSidenavModule,
+        MdButtonModule,
+        MdSelectModule,
+        MdInputModule,
+        MdCardModule,
+        MdTooltipModule,
+        MdTabsModule,
+        MdRadioModule,
+        MdMenuModule,
+        MdIconModule,
+        MdSnackBarModule,
+        MdToolbarModule,
+        MdListModule,
+        MdCheckboxModule
     ],
     declarations: [
         TranslatePipe,
@@ -74,7 +103,7 @@ import { ChartComponent } from './chart.component'
         SidenavComponent,
         ConnectComponent,
         HardwareComponent,
-        SystemIdentificationComponent,
+        ControlComponent,
         SystemResponseComponent,
         SystemResponseDialog,
         SystemResponseStepComponent,
@@ -90,7 +119,6 @@ import { ChartComponent } from './chart.component'
         SharedData,
         TranslateService,
         HardwareService,
-        SystemIdentificationService,
         SystemResponseService,
         LiveGraphService
     ],

@@ -11,9 +11,7 @@
   <md-list-item *ngIf="isLoggedIn()">
     <button md-button routerLink="live-graph">{{ 'Graphs' | translate }}</button>
   </md-list-item>
-
   <md-list-item *ngIf="isLoggedIn()">
-    <button md-button routerLink="system-identification">{{ 'System Identification' | translate }}</button>
+    <button md-button routerLink="control">{{ 'System Control' | translate }}</button>
   </md-list-item>
-  <md-list-item *ngIf="isLoggedIn()">{{ 'System Control' | translate }}</md-list-item>
 </md-list>

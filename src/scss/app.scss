@@ -30,7 +30,7 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @import 'sidenav';
 @import 'connect';
 @import 'hardware';
-@import 'system_identification';
+@import 'control';
 @import 'system_response';
 @import 'system_response.step';
 @import 'system_response.impulse';

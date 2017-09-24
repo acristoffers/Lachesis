@@ -20,18 +20,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Injectable } from '@angular/core'
-import { Http, Response, Headers, RequestOptions } from '@angular/http'
-import { Observable } from 'rxjs'
+import { Component } from '@angular/core'
+import { Http, Response, RequestOptions, Headers } from '@angular/http'
+import { MdSnackBar } from '@angular/material'
+import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
-import { APIBase } from './api_base'
 
-@Injectable()
-export class SystemIdentificationService extends APIBase {
+@Component({
+    selector: 'control',
+    templateUrl: '../html/control.htm'
+})
+export class ControlComponent {
     constructor(
-        http: Http,
-        sharedData: SharedData
+        private http: Http,
+        private toast: MdSnackBar,
+        private i18n: TranslateService
     ) {
-        super(http, sharedData)
     }
 }

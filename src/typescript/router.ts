@@ -25,7 +25,7 @@ import { ModuleWithProviders } from '@angular/core'
 
 import { ConnectComponent } from './connect.component'
 import { HardwareComponent } from './hardware.component'
-import { SystemIdentificationComponent } from './system_identification.component'
+import { ControlComponent } from './control.component'
 import { SystemResponseComponent } from './system_response.component'
 import { LiveGraphComponent } from './live_graph.component'
 
@@ -46,8 +46,8 @@ export class Router {
                 component: HardwareComponent
             },
             {
-                path: 'system-identification',
-                component: SystemIdentificationComponent
+                path: 'control',
+                component: ControlComponent
             },
             {
                 path: 'system-response',

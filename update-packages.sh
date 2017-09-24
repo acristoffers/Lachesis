@@ -31,4 +31,3 @@ popd
 pushd desktop
 ncu --upgrade --upgradeAll
 popd
-ncu --upgrade --upgradeAll

@@ -27,14 +27,14 @@
     "start:fast": "cd desktop && yarn run electron www"
   },
   "dependencies": {
-    "fs-extra": "^4.0.1",
-    "html-minifier": "^3.5.3",
+    "fs-extra": "^4.0.2",
+    "html-minifier": "^3.5.5",
     "lodash": "^4.17.4",
     "ncp": "^2.0.0",
-    "rimraf": "^2.6.1",
+    "rimraf": "^2.6.2",
     "rxjs": "^5.4.3",
     "sass": "^1.0.0-beta.2",
-    "uglify-js": "^3.0.28"
+    "uglify-js": "^3.1.2"
   },
   "devDependencies": {
     "node-sass": "^4.5.3"
