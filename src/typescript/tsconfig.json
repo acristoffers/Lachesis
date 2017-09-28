@@ -2,6 +2,7 @@
     "angularCompilerOptions": {
         "genDir": "build",
         "googleClosureOutput": true,
+        "annotateForClosureCompiler": true,
         "entryModule": "app.module#AppModule",
         "skipMetadataEmit": true
     },

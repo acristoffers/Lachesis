@@ -105,5 +105,6 @@ export const LANG_DE_TRANS = {
     'Graphs': 'Grafiken',
     'Import': 'Importieren',
     'Export': 'Exportieren',
-    'Sync': 'Synchronisieren'
+    'Sync': 'Synchronisieren',
+    'Saved Controllers': 'Gespeicherte Reglern'
 }

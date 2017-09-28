@@ -26,6 +26,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { HttpModule } from '@angular/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { AceEditorModule } from 'ng2-ace-editor'
 
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translation'
 import { RemoveUndefinedPipe } from './remove_undefined.pipe'
@@ -51,6 +52,7 @@ import { SystemResponseWidePulseComponent } from './system_response.wide_pulse'
 import { LiveGraphService } from './live_graph.service'
 import { LiveGraphComponent } from './live_graph.component'
 import { ChartComponent } from './chart.component'
+import { ControlDialog } from './control.dialog'
 
 import {
     MdDialogModule,
@@ -69,6 +71,7 @@ import {
     MdListModule,
     MdCheckboxModule
 } from '@angular/material'
+import { ControlService } from './control.service';
 
 @NgModule({
     imports: [
@@ -79,6 +82,7 @@ import {
         FormsModule,
         ReactiveFormsModule,
         Router.module(),
+        AceEditorModule,
         MdDialogModule,
         MdSidenavModule,
         MdButtonModule,
@@ -98,6 +102,8 @@ import {
     declarations: [
         TranslatePipe,
         RemoveUndefinedPipe,
+        SystemResponseDialog,
+        ControlDialog,
         AppComponent,
         ToolbarComponent,
         SidenavComponent,
@@ -105,7 +111,6 @@ import {
         HardwareComponent,
         ControlComponent,
         SystemResponseComponent,
-        SystemResponseDialog,
         SystemResponseStepComponent,
         SystemResponseFreeComponent,
         SystemResponseStairComponent,
@@ -120,10 +125,12 @@ import {
         TranslateService,
         HardwareService,
         SystemResponseService,
-        LiveGraphService
+        LiveGraphService,
+        ControlService
     ],
     entryComponents: [
-        SystemResponseDialog
+        SystemResponseDialog,
+        ControlDialog
     ],
     bootstrap: [AppComponent]
 })

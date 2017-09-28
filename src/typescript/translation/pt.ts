@@ -105,5 +105,6 @@ export const LANG_PT_TRANS = {
     'Graphs': 'Gráficos',
     'Import': 'Importar',
     'Export': 'Exportar',
-    'Sync': 'Sincronizar'
+    'Sync': 'Sincronizar',
+    'Saved Controllers': 'Controladores Salvos'
 }

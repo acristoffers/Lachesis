@@ -23,7 +23,13 @@
 #control {
     padding: 1rem;
     min-width: 66%;
+    max-width: 90%;
     md-card {
         margin-top: 2rem;
+        md-list-item {
+            div[flex] {
+                width: 100%;
+            }
+        }
     }
 }

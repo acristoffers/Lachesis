@@ -1,0 +1,37 @@
+<md-card-title>{{ 'Add/Edit Controller' | translate }}</md-card-title>
+<md-card-content id="control-dialog">
+  <md-input-container class="width-100">
+    <input mdInput [placeholder]="'Name' | translate" [(ngModel)]="controller.name">
+  </md-input-container>
+
+  <md-input-container class="width-100">
+    <input mdInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="controller.tau">
+  </md-input-container>
+
+  <md-input-container class="width-100">
+    <input mdInput [placeholder]="'Total Run Time' | translate" [(ngModel)]="controller.runTime">
+  </md-input-container>
+
+  <h1>{{ 'Inputs' | translate }}</h1>
+  <span>{{ 'For better performance, not all inputs are scanned. Choose the ones you need below.' | translate }}</span>
+  <div default-padding>
+    <div *ngFor="let input of inputs" class="input">
+      <md-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</md-checkbox>
+    </div>
+  </div>
+
+  <h1>{{ 'Before' | translate }}</h1>
+  <span>{{ 'This code will be executed before the controller starts.' | translate }}</span>
+  <ace-editor [(text)]="controller.before" mode="python" theme="xcode"></ace-editor>
+
+  <h1>{{ 'Controller' | translate }}</h1>
+  <ace-editor [(text)]="controller.controller" mode="python" theme="xcode"></ace-editor>
+
+  <h1>{{ 'After' | translate }}</h1>
+  <span>{{ 'This code will be executed after the controller leaves. Even if something goes wrong.' | translate }}</span>
+  <ace-editor [(text)]="controller.after" mode="python" theme="xcode"></ace-editor>
+</md-card-content>
+<md-card-actions>
+  <button md-button color="primary" (click)="save()">{{ 'Save' | translate }}</button>
+  <button md-button (click)="cancel()">{{ 'Cancel' | translate }}</button>
+</md-card-actions>

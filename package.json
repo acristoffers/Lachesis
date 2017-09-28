@@ -37,6 +37,7 @@
     "uglify-js": "^3.1.2"
   },
   "devDependencies": {
-    "node-sass": "^4.5.3"
+    "node-sass": "^4.5.3",
+    "tslint": "^5.7.0"
   }
 }

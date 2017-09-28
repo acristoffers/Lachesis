@@ -31,6 +31,7 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @import 'connect';
 @import 'hardware';
 @import 'control';
+@import 'control_dialog';
 @import 'system_response';
 @import 'system_response.step';
 @import 'system_response.impulse';
