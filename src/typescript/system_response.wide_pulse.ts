@@ -93,7 +93,7 @@ export class SystemResponseWidePulseComponent {
     }
 
     plotPoints(): void {
-        if ($('#step-graph').length === 0) {
+        if ($('#wide-pulse-graph').length === 0) {
             return
         }
 
@@ -127,7 +127,7 @@ export class SystemResponseWidePulseComponent {
                 ]
             }
 
-            this.chart = this.service.createChart('step-graph', [], ['red'], this.test.points)
+            this.chart = this.service.createChart('wide-pulse-graph', [], ['red'], this.test.points)
         }
     }
 

@@ -91,7 +91,7 @@ export class SystemResponseStairComponent {
     }
 
     plotPoints(): void {
-        if ($('#step-graph').length === 0) {
+        if ($('#stair-graph').length === 0) {
             return
         }
 
@@ -131,7 +131,7 @@ export class SystemResponseStairComponent {
                 }
             }
 
-            this.chart = this.service.createChart('step-graph', [], ['red'], this.test.points)
+            this.chart = this.service.createChart('stair-graph', [], ['red'], this.test.points)
         }
     }
 

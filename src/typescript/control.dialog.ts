@@ -34,6 +34,8 @@ export class ControlDialog {
   controller: Controller
   inputs: [string, boolean][]
 
+  multilineTooltip = 'multiline\ntooltip'
+
   constructor(
     public dialogRef: MdDialogRef<ControlComponent>,
     private hardware: HardwareService

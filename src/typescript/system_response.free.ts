@@ -21,16 +21,17 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core'
 import { Chart, DataPoint } from './chart.service'
 import { SystemResponseService, ResponseTest, PortValue } from './system_response.service'
 import { HardwareService, PortConfiguration, Types } from './hardware.service'
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'free-response',
     templateUrl: '../html/system_response.free.htm'
 })
-export class SystemResponseFreeComponent {
+export class SystemResponseFreeComponent implements AfterViewInit {
     private _test: ResponseTest
     private chart: Chart
 
@@ -51,10 +52,16 @@ export class SystemResponseFreeComponent {
 
     @Output() testChange = new EventEmitter<ResponseTest>()
 
+    // Too long to fit in HTML. Was breaking.
+    csvText = 'CSV: x in first column, y in second. Use csvwrite("data.csv", transpose([x; y])) in MATLAB/Octave to generate such file from x and y variables.'
+
     constructor(
         private service: SystemResponseService,
         private hardware: HardwareService
     ) {
+    }
+
+    ngAfterViewInit(): void {
         this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {
             const isInput = (p: PortConfiguration) => (p.type & Types.Input) > 0
             const isOutput = (p: PortConfiguration) => (p.type & (Types.Output | Types.PWM)) > 0
@@ -115,14 +122,14 @@ export class SystemResponseFreeComponent {
     }
 
     plotPoints(): void {
-        if ($('#step-graph').length === 0) {
+        if ($('#free-graph').length === 0) {
             return
         }
 
         if (this.chart != null) {
             this.chart.setPoints(this.test.points)
         } else {
-            this.chart = this.service.createChart('step-graph', [], ['red'], this.test.points)
+            this.chart = this.service.createChart('free-graph', [], ['red'], this.test.points)
         }
     }
 

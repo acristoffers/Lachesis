@@ -61,20 +61,20 @@ export class ControlComponent implements OnInit {
     }
 
     add(): void {
-        const controller: Controller = {
+        const c: Controller = {
             id: null,
             name: '',
             tau: 0.1,
             runTime: 0,
-            before: '',
-            controller: '',
-            after: '',
+            before: this.beforeText,
+            controller: this.controllerText,
+            after: this.afterText,
             inputs: []
         }
 
         const dialogRef = this.dialog.open(ControlDialog)
         dialogRef.updateSize('70%', '90%')
-        dialogRef.componentInstance.controller = controller
+        dialogRef.componentInstance.controller = c
         dialogRef.afterClosed().subscribe(controller => {
             if (controller != null) {
                 controller.id = _.reduce(this.controllers, (a, b) => _.max([a, b.id]), 0) + 1
@@ -90,12 +90,11 @@ export class ControlComponent implements OnInit {
     edit(controller: Controller): void {
         const dialogRef = this.dialog.open(ControlDialog)
         dialogRef.updateSize('70%', '90%')
-        dialogRef.componentInstance.controller = controller
-        dialogRef.afterClosed().subscribe(controller => {
-            if (controller != null) {
-                this.controllers = _.filter(this.controllers, c => c != controller)
-                this.controllers = _.concat(this.controllers, controller)
-                this.controllers = _.sortBy(this.controllers, 'name')
+        dialogRef.componentInstance.controller = $.extend({}, controller)
+        dialogRef.afterClosed().subscribe(result => {
+            if (result != null) {
+                this.controllers = _.filter(this.controllers, c => c.id != result.id)
+                this.controllers.push(result)
                 this.service.save(this.controllers).subscribe(() => {
                     this.service.load().subscribe(cs => this.controllers = cs)
                 })
@@ -113,4 +112,8 @@ export class ControlComponent implements OnInit {
     run(controller: Controller) {
         this.service.run(controller).subscribe()
     }
+
+    private beforeText = `# To set an output:\noutputs['SystemOnOff'] = 1\n# Any output will be automatically set AFTER the code finishes running\n\ndef someLongFunction(x):\n    return x\n\n# States\ns['x0'] = 23\ns['ux'] = 48\ns['Kp'] = 0.4\ns['Ki'] = 0.3\ns['Kd'] = 0.05\ns['someLongFunction'] = someLongFunction\n# Use it to set variables that will be available in the next block/run`
+    private controllerText = `# The state is kept between runs\nsomeLongFunction = s['someLongFunction']\n\n# The selected inputs are always available\nx = inputs['SomeSelectedInput']\n\nu1 = someLongFunction(x)\n\n# np and math are already imported!\nu = math.sin(u1)\n\noutputs['TheOutput'] = u\n\n# Inputs and outputs are automatically logged.\n# If you want to log something else (to generate graphs)\n# use the log dictionary.\nlog['u1'] = u1`
+    private afterText = `# Use it to finish before exiting. Like shutting the power off.\noutput['SystemOnOff'] = 0\n# state and log are not available here`
 }

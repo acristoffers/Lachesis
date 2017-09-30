@@ -4,16 +4,13 @@
         <h1>{{ 'System Response' | translate }}</h1>
 
         <md-card>
-            <md-card-title>
-                {{ 'Tests' | translate }}
-            </md-card-title>
             <md-card-content>
                 <table class="width-100">
                     <tbody>
                         <tr *ngFor="let test of tests" inline-form flex>
                             <td stretch>
                                 <span>{{ test.name }}</span> -
-                                <span>{{ test.type | translate }}</span>
+                                <span>{{ presentType(test.type) | translate }}</span>
                             </td>
                             <td>
                                 <button md-raised-button color="primary" (click)="runTest(test)">{{ 'Run' | translate }}</button>

@@ -91,7 +91,7 @@ export class SystemResponseImpulseComponent {
     }
 
     plotPoints(): void {
-        if ($('#step-graph').length === 0) {
+        if ($('#impulse-graph').length === 0) {
             return
         }
 
@@ -123,7 +123,7 @@ export class SystemResponseImpulseComponent {
                 ]
             }
 
-            this.chart = this.service.createChart('step-graph', [], ['red'], this.test.points)
+            this.chart = this.service.createChart('impulse-graph', [], ['red'], this.test.points)
         }
     }
 

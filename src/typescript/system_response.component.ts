@@ -103,4 +103,8 @@ export class SystemResponseComponent implements OnInit {
             this.toast.open(message, null, { duration: 2000 })
         }
     }
+
+    presentType(type: string): string {
+        return _.join(_.map(_.split(type, '-'), s => s[0].toUpperCase() + s.substring(1)), ' ')
+    }
 }

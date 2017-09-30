@@ -45,7 +45,7 @@ export class TranslateService {
         const lang = this._translations.get(this.currentLang) || {}
         return lang[key] || key
         // const translation = lang[key] || key
-        // if (translation === key) {
+        // if (!_.has(lang, key)) {
         //     console.log(`No translation for ${key} in ${this.currentLang}`)
         // }
         // return translation

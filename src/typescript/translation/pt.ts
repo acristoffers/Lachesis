@@ -106,5 +106,19 @@ export const LANG_PT_TRANS = {
     'Import': 'Importar',
     'Export': 'Exportar',
     'Sync': 'Sincronizar',
-    'Saved Controllers': 'Controladores Salvos'
+    'Saved Controllers': 'Controladores Salvos',
+    'Free': 'Livre',
+    'Data Points': 'Pontos',
+    'Supported formats: CSV and JSON': 'Formatos suportados: CSV e JSON',
+    'CSV: x in first column, y in second. Use csvwrite("data.csv", transpose([x; y])) in MATLAB/Octave to generate such file from x and y variables.': 'CSV: x na primeira coluna, y na segunda. Use csvwrite("data.csv", transpose([x; y])) no MATLAB/Octave para gerar tal arquivo das variáveis x e y.',
+    'Sampling Time': 'Tempo de amostra',
+    'Total Run Time': 'Tempo total de execução',
+    'Add/Edit Controller': 'Adicionar/Editar controlador',
+    'Inputs': 'Entradas',
+    'For better performance, not all inputs are scanned. Choose the ones you need below.': 'Para melhorar a performance, nem todas as entradas são escaneadas. Escolha as entradas que você precisa abaixo.',
+    'Before': 'Antes',
+    'This code will be executed before the controller starts.': 'Este código será executado antes do controlador',
+    'Controller': 'Controlador',
+    'After': 'Depois',
+    'This code will be executed after the controller leaves. Even if something goes wrong.': 'Este código será executado depois do controlador, mesmo se algo der errado.'
 }

@@ -106,5 +106,19 @@ export const LANG_DE_TRANS = {
     'Import': 'Importieren',
     'Export': 'Exportieren',
     'Sync': 'Synchronisieren',
-    'Saved Controllers': 'Gespeicherte Reglern'
+    'Saved Controllers': 'Gespeicherte Reglern',
+    'Free': 'Frei',
+    'Data Points': 'Datenpunkte',
+    'Supported formats: CSV and JSON': 'Unterstützte Formate: CSV und JSON',
+    'CSV: x in first column, y in second. Use csvwrite("data.csv", transpose([x; y])) in MATLAB/Octave to generate such file from x and y variables.': 'CSV: x in erste Splate, y in zweite. Verwenden csvwrite("data.csv", transpose([x; y])) in MATLAB/Octave, um solche Detei aus Variable x und y zu generieren.',
+    'Sampling Time': 'Probenahmzeit',
+    'Total Run Time': 'Gesamtlaufzeit',
+    'Add/Edit Controller': 'Regler hinzufügen/bearbeiten',
+    'Inputs': 'Eingänge',
+    'For better performance, not all inputs are scanned. Choose the ones you need below.': 'Um die Leistung zu verbessern, nich alle Eingänge sind abgesucht. Wählen Sie die benötige Eingänge unten.',
+    'Before': 'Vor',
+    'This code will be executed before the controller starts.': 'Dies Code wird vorm Regler laufen.',
+    'Controller': 'Regler',
+    'After': 'Nach',
+    'This code will be executed after the controller leaves. Even if something goes wrong.': 'Dies Code wird nach dem Regler laufen, auch wenn etwas Schiff geht.'
 }
