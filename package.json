@@ -1,6 +1,6 @@
 {
-  "name": "Lachesis",
-  "version": "1.0.0",
+  "name": "lachesis",
+  "version": "1.0.0-beta",
   "description": "Builds Lachesis for desktop and mobile devices",
   "license": "MIT",
   "author": {

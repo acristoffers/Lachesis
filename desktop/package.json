@@ -1,6 +1,6 @@
 {
-  "name": "Lachesis",
-  "version": "1.0.0",
+  "name": "lachesis",
+  "version": "1.0.0-beta",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -25,15 +25,17 @@
     }],
     "appId": "me.acristoffers.lachesis",
     "productName": "Lachesis",
+    "asar": true,
+    "copyright": "Copyright © 2017 Álan Crístoffer",
     "protocols": [{
       "name": "Moirai supervisor",
       "role": "Editor",
       "schemes": [
-        "tcp"
+        "http"
       ]
     }],
     "linux": {
-      "category": "public.app-category.productivity",
+      "category": "Engineering",
       "packageCategory": "productivity",
       "target": [
         "AppImage",
@@ -41,7 +43,7 @@
         "rpm",
         "freebsd",
         "pacman",
-        "tar.xz"
+        "snap"
       ]
     },
     "mac": {
@@ -49,12 +51,12 @@
       "target": [
         "dmg",
         "zip"
-      ]
+      ],
+      "type":"distribution"
     },
     "win": {
       "target": [
-        "nsis",
-        "zip"
+        "nsis"
       ]
     },
     "nsis": {}
