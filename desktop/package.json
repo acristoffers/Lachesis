@@ -42,8 +42,7 @@
         "deb",
         "rpm",
         "freebsd",
-        "pacman",
-        "snap"
+        "pacman"
       ]
     },
     "mac": {
