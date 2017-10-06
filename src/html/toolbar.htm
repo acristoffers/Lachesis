@@ -1,26 +1,26 @@
-<md-toolbar color="primary">
-  <button md-button (click)="toggleSidebar()">
-    <md-icon svgIcon="app-icon"></md-icon>
+<mat-toolbar color="primary">
+  <button mat-button (click)="toggleSidebar()">
+    <mat-icon svgIcon="app-icon"></mat-icon>
     Lachesis
   </button>
   <span stretch></span>
-  <button md-button [mdMenuTriggerFor]="languagesMenu">{{ 'Language' | translate }}</button>
-  <md-menu #languagesMenu="mdMenu">
-    <button md-menu-item (click)="setLanguage('en')">
-      <img [src]="enFlagUrl"/>
+  <button mat-button [matMenuTriggerFor]="languagesMenu">{{ 'Language' | translate }}</button>
+  <mat-menu #languagesMenu="matMenu">
+    <button mat-menu-item (click)="setLanguage('en')">
+      <img [src]="enFlagUrl" />
       <span i18n>{{ 'English' | translate }}</span>
     </button>
-    <button md-menu-item (click)="setLanguage('fr')">
-      <img [src]="frFlagUrl"/>
+    <button mat-menu-item (click)="setLanguage('fr')">
+      <img [src]="frFlagUrl" />
       <span i18n>{{ 'French' | translate }}</span>
     </button>
-    <button md-menu-item (click)="setLanguage('de')">
-      <img [src]="deFlagUrl"/>
+    <button mat-menu-item (click)="setLanguage('de')">
+      <img [src]="deFlagUrl" />
       <span i18n>{{ 'German' | translate }}</span>
     </button>
-    <button md-menu-item (click)="setLanguage('pt')">
-      <img [src]="ptFlagUrl"/>
+    <button mat-menu-item (click)="setLanguage('pt')">
+      <img [src]="ptFlagUrl" />
       <span i18n>{{ 'Portuguese' | translate }}</span>
     </button>
-  </md-menu>
-</md-toolbar>
+  </mat-menu>
+</mat-toolbar>

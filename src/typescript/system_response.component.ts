@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Component, OnInit } from '@angular/core'
-import { MdSnackBar, MdDialog } from '@angular/material'
+import { MatSnackBar, MatDialog } from '@angular/material'
 import { Router } from '@angular/router'
 import { TranslateService } from './translation/translation.service'
 import { SystemResponseService, ResponseTest } from './system_response.service'
@@ -37,11 +37,11 @@ export class SystemResponseComponent implements OnInit {
     tests: ResponseTest[] = []
 
     constructor(
-        private toast: MdSnackBar,
+        private toast: MatSnackBar,
         private i18n: TranslateService,
         private sr: SystemResponseService,
         private hardware: HardwareService,
-        private dialog: MdDialog,
+        private dialog: MatDialog,
         private router: Router
     ) { }
 

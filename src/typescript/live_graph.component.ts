@@ -23,7 +23,7 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
 import { Headers, Http, RequestOptions, Response } from '@angular/http'
-import { MdSnackBar } from '@angular/material'
+import { MatSnackBar } from '@angular/material'
 import { timer } from 'rxjs/observable/timer'
 import { Subscription } from 'rxjs/Rx'
 import { TranslateService } from './translation/translation.service'
@@ -74,7 +74,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     constructor(
         private http: Http,
-        private toast: MdSnackBar,
+        private toast: MatSnackBar,
         private i18n: TranslateService,
         private lg: LiveGraphService,
     ) {

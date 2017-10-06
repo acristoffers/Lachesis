@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import { Input, Output, EventEmitter, Component } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
-import { MdIconRegistry } from '@angular/material'
+import { MatIconRegistry } from '@angular/material'
 import { TranslateService } from './translation'
 import * as _ from 'lodash'
 
@@ -47,14 +47,14 @@ export class ToolbarComponent {
     }
 
     constructor(
-        private iconRegistry: MdIconRegistry,
+        private iconRegistry: MatIconRegistry,
         private sanitizer: DomSanitizer,
         private translate: TranslateService
     ) {
         this.registerImages(iconRegistry, sanitizer)
     }
 
-    registerImages(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer): void {
+    registerImages(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer): void {
         const images = {
             'app-icon': 'imgs/icon.svg',
             'en-flag': this.enFlagUrl,

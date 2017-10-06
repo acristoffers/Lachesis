@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Component, OnInit } from '@angular/core'
-import { MdDialogRef } from '@angular/material'
+import { MatDialogRef } from '@angular/material'
 import { ControlComponent, Controller } from './control.component'
 import { HardwareService, PortConfiguration, Types } from './hardware.service'
 
@@ -37,7 +37,7 @@ export class ControlDialog {
   multilineTooltip = 'multiline\ntooltip'
 
   constructor(
-    public dialogRef: MdDialogRef<ControlComponent>,
+    public dialogRef: MatDialogRef<ControlComponent>,
     private hardware: HardwareService
   ) {
     this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {

@@ -24,7 +24,7 @@ import * as _ from 'lodash'
 
 import { Observable } from 'rxjs'
 import { Component, OnInit, Output, Input } from '@angular/core'
-import { MdSnackBar } from '@angular/material'
+import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { HardwareService, Driver, PortConfiguration, Calibration, Interlock, Types } from './hardware.service'
 
@@ -60,7 +60,7 @@ export class HardwareComponent implements OnInit {
 
     constructor(
         private i18n: TranslateService,
-        private toast: MdSnackBar,
+        private toast: MatSnackBar,
         private hardwareService: HardwareService
     ) {
     }

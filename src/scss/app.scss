@@ -110,7 +110,7 @@ html {
     flex: 1;
 }
 
-[md-menu-item] img {
+[mat-menu-item] img {
     width: 24px;
 }
 
@@ -126,11 +126,11 @@ html {
     padding: 1rem 1rem
 }
 
-md-sidenav-container {
+mat-sidenav-container {
     flex: 1;
 }
 
-md-sidenav {
+mat-sidenav {
     width: 33%;
     min-width: 200px;
     max-width: 300px;
@@ -146,7 +146,7 @@ md-sidenav {
     }
 }
 
-md-icon.tooltip {
+mat-icon.tooltip {
     vertical-align: middle;
 }
 

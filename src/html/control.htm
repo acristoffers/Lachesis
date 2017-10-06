@@ -3,29 +3,29 @@
     <div id="control">
         <h1>{{ 'System Control' | translate }}</h1>
 
-        <md-card>
-            <md-card-title>
+        <mat-card>
+            <mat-card-title>
                 {{ 'Saved Controllers' | translate }}
-            </md-card-title>
-            <md-card-content>
-                <md-list>
-                    <md-list-item *ngFor="let controller of controllers">
+            </mat-card-title>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item *ngFor="let controller of controllers">
                         <div flex>
                             <div class="controller-title">{{ controller.name }}</div>
                             <div stretch></div>
                             <div>
-                                <button md-raised-button color="primary" (click)="run(controller)">{{ 'Run' | translate }}</button>
-                                <button md-raised-button (click)="edit(controller)">{{ 'Edit' | translate }}</button>
-                                <button md-raised-button color="warn" (click)="remove(controller)">{{ 'Remove' | translate }}</button>
+                                <button mat-raised-button color="primary" (click)="run(controller)">{{ 'Run' | translate }}</button>
+                                <button mat-raised-button (click)="edit(controller)">{{ 'Edit' | translate }}</button>
+                                <button mat-raised-button color="warn" (click)="remove(controller)">{{ 'Remove' | translate }}</button>
                             </div>
                         </div>
-                    </md-list-item>
-                </md-list>
-            </md-card-content>
-            <md-card-actions>
-                <button md-raised-button color="secondary" (click)="add()">{{ 'Add' | translate }}</button>
-            </md-card-actions>
-        </md-card>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="secondary" (click)="add()">{{ 'Add' | translate }}</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
     <div stretch></div>
 </div>

@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import { Component, ApplicationRef } from '@angular/core'
 import { Http, Response, RequestOptions, Headers } from '@angular/http'
-import { MdSnackBar } from '@angular/material'
+import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
 
@@ -38,7 +38,7 @@ export class ConnectComponent {
 
     constructor(
         private http: Http,
-        private toast: MdSnackBar,
+        private toast: MatSnackBar,
         private i18n: TranslateService,
         private applicationRef: ApplicationRef
     ) {

@@ -23,7 +23,7 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 import { Component, OnInit } from '@angular/core'
 import { Http, Response, RequestOptions, Headers } from '@angular/http'
-import { MdSnackBar, MdDialog } from '@angular/material'
+import { MatSnackBar, MatDialog } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
 import { ControlDialog } from './control.dialog'
@@ -49,9 +49,9 @@ export class ControlComponent implements OnInit {
 
     constructor(
         private http: Http,
-        private toast: MdSnackBar,
+        private toast: MatSnackBar,
         private i18n: TranslateService,
-        private dialog: MdDialog,
+        private dialog: MatDialog,
         private service: ControlService
     ) {
     }

@@ -33,6 +33,24 @@ import { RemoveUndefinedPipe } from './remove_undefined.pipe'
 
 import { Router } from './router'
 
+import {
+    MatDialogModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatListModule,
+    MatCheckboxModule
+} from '@angular/material'
+
 import { AppComponent } from './app.component'
 import { ToolbarComponent } from './toolbar.component'
 import { SidenavComponent } from './sidenav.component'
@@ -53,25 +71,7 @@ import { LiveGraphService } from './live_graph.service'
 import { LiveGraphComponent } from './live_graph.component'
 import { ChartComponent } from './chart.component'
 import { ControlDialog } from './control.dialog'
-
-import {
-    MdDialogModule,
-    MdSidenavModule,
-    MdButtonModule,
-    MdSelectModule,
-    MdInputModule,
-    MdCardModule,
-    MdTooltipModule,
-    MdTabsModule,
-    MdRadioModule,
-    MdMenuModule,
-    MdIconModule,
-    MdSnackBarModule,
-    MdToolbarModule,
-    MdListModule,
-    MdCheckboxModule
-} from '@angular/material'
-import { ControlService } from './control.service';
+import { ControlService } from './control.service'
 
 @NgModule({
     imports: [
@@ -83,21 +83,21 @@ import { ControlService } from './control.service';
         ReactiveFormsModule,
         Router.module(),
         AceEditorModule,
-        MdDialogModule,
-        MdSidenavModule,
-        MdButtonModule,
-        MdSelectModule,
-        MdInputModule,
-        MdCardModule,
-        MdTooltipModule,
-        MdTabsModule,
-        MdRadioModule,
-        MdMenuModule,
-        MdIconModule,
-        MdSnackBarModule,
-        MdToolbarModule,
-        MdListModule,
-        MdCheckboxModule
+        MatDialogModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatInputModule,
+        MatCardModule,
+        MatTooltipModule,
+        MatTabsModule,
+        MatRadioModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatListModule,
+        MatCheckboxModule
     ],
     declarations: [
         TranslatePipe,

@@ -1,17 +1,17 @@
-<md-list id="sidenav">
-  <md-list-item>
-    <button md-button routerLink="connect">{{ 'Connection' | translate }}</button>
-  </md-list-item>
-  <md-list-item *ngIf="isLoggedIn()">
-    <button md-button routerLink="hardware">{{ 'Hardware Setup' | translate }}</button>
-  </md-list-item>
-  <md-list-item *ngIf="isLoggedIn()">
-    <button md-button routerLink="system-response">{{ 'System Response' | translate }}</button>
-  </md-list-item>
-  <md-list-item *ngIf="isLoggedIn()">
-    <button md-button routerLink="control">{{ 'System Control' | translate }}</button>
-  </md-list-item>
-  <md-list-item *ngIf="isLoggedIn()">
-    <button md-button routerLink="live-graph">{{ 'Graphs' | translate }}</button>
-  </md-list-item>
-</md-list>
+<mat-list id="sidenav">
+  <mat-list-item>
+    <button mat-button routerLink="connect">{{ 'Connection' | translate }}</button>
+  </mat-list-item>
+  <mat-list-item *ngIf="isLoggedIn()">
+    <button mat-button routerLink="hardware">{{ 'Hardware Setup' | translate }}</button>
+  </mat-list-item>
+  <mat-list-item *ngIf="isLoggedIn()">
+    <button mat-button routerLink="system-response">{{ 'System Response' | translate }}</button>
+  </mat-list-item>
+  <mat-list-item *ngIf="isLoggedIn()">
+    <button mat-button routerLink="control">{{ 'System Control' | translate }}</button>
+  </mat-list-item>
+  <mat-list-item *ngIf="isLoggedIn()">
+    <button mat-button routerLink="live-graph">{{ 'Graphs' | translate }}</button>
+  </mat-list-item>
+</mat-list>

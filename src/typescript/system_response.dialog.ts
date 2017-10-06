@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component, OnInit } from '@angular/core'
-import { MdDialogRef } from '@angular/material'
+import { MatDialogRef } from '@angular/material'
 import { SystemResponseComponent } from './system_response.component'
 import { SystemResponseService, ResponseTest } from './system_response.service'
 
@@ -75,7 +75,7 @@ export class SystemResponseDialog implements OnInit {
   }
 
   constructor(
-    public dialogRef: MdDialogRef<SystemResponseComponent>,
+    public dialogRef: MatDialogRef<SystemResponseComponent>,
     private service: SystemResponseService
   ) {
   }
