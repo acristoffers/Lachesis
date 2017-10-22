@@ -48,6 +48,9 @@ export class Chart {
             zoomEnabled: true,
             zoomType: 'xy',
             animationEnabled: true,
+            axisX: {
+                gridThickness: 1
+            },
             axisY: {
                 includeZero: false
             },
