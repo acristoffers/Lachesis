@@ -21,6 +21,8 @@ THE SOFTWARE.
 */
 
 import { app, shell, BrowserWindow, Menu } from 'electron'
+import { autoUpdater } from "electron-updater"
+import * as log from 'electron-log'
 
 let windows: Electron.BrowserWindow[] = []
 
@@ -42,6 +44,10 @@ function createWindow(): Electron.BrowserWindow {
 }
 
 app.on('ready', () => {
+    log.transports.file.level = "debug"
+    autoUpdater.logger = log
+    autoUpdater.checkForUpdatesAndNotify()
+
     let menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
     createWindow()

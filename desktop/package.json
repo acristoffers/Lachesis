@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -9,8 +9,8 @@
     "url": "https://github.com/acristoffers/Lachesis"
   },
   "devDependencies": {
-    "electron": "1.7.8",
-    "electron-builder": "^19.34.1"
+    "electron": "1.7.9",
+    "electron-builder": "^19.37.2"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
@@ -38,30 +38,39 @@
       "category": "Engineering",
       "packageCategory": "productivity",
       "target": [
-        "AppImage",
-        "deb",
-        "rpm",
-        "freebsd",
-        "pacman"
+        "AppImage"
+      ],
+      "publish": [
+        "github"
       ]
     },
     "mac": {
       "category": "public.app-category.productivity",
-      "target": [
-        "dmg",
-        "zip"
-      ],
-      "type":"distribution"
+      "type": "distribution",
+      "publish": [
+        "github"
+      ]
     },
     "win": {
       "target": [
         "nsis"
+      ],
+      "publish": [
+        "github"
       ]
     },
     "nsis": {}
   },
   "scripts": {
+    "dist": "yarn run build --mac --win --linux",
     "dist:pack": "yarn run build --dir",
-    "dist": "yarn run build --mac --win --linux"
+    "dist:win": "yarn run build --win --x64 --ia32",
+    "dist:linux": "yarn run build --linux --x64 --ia32",
+    "dist:mac": "yarn run build --mac",
+    "dist:all": "yarn run dist:mac && yarn run dist:linux && yarn run dist:win",
+    "release:win": "yarn run build --publish always --win --x64 --ia32",
+    "release:linux": "yarn run build --publish always --linux --x64 --ia32",
+    "release:mac": "yarn run build --publish always --mac",
+    "release": "yarn run build --publish always --mac --linux --win --x64 --ia32"
   }
 }
