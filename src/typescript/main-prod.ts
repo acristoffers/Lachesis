@@ -27,11 +27,12 @@ import 'jquery'
 
 import { platformBrowser } from '@angular/platform-browser'
 import { AppModuleNgFactory } from './build/app.module.ngfactory'
+import { enableProdMode } from '@angular/core'
 
 const basePath = location.href.replace(/[^/]*$/, '')
 const baseElement = $('<base href="' + basePath + '">')
 $('head').append(baseElement)
 
-// enableProdMode()
+enableProdMode()
 
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)
