@@ -188,7 +188,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                 }
             })
             const tds = _.concat([{ variable: 't', points: time }], ds2)
-            this.saveFile('data.json', JSON.stringify(tds))
+            this.saveFile(`${this.test.name}.json`, JSON.stringify(tds))
         } else if (this.exportType === 'CSV') {
             const time = _.map(_.first(ds).points, p => p.x.toString())
             const data = _.map(ds, d => {
@@ -198,13 +198,13 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             console.log(tdata)
             const zd = _.zip.apply(_, tdata)
             const csv = _.join(zd, "\n")
-            this.saveFile('data.csv', csv)
+            this.saveFile(`${this.test.name}.csv`, csv)
         } else if (this.exportType === 'MAT') {
             this.lg.downloadMAT(this.test, dict).subscribe(
                 data => {
                     const link = document.createElement('a')
                     link.href = window.URL.createObjectURL(data.blob())
-                    link.download = 'data.mat'
+                    link.download = `${this.test.name}.mat`
                     link.click()
                 },
                 this.httpError()
