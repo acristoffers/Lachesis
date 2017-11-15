@@ -20,26 +20,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { app, shell, BrowserWindow, Menu } from 'electron'
+import { app, shell, BrowserWindow, Menu, ipcMain } from 'electron'
 import { autoUpdater } from "electron-updater"
 import * as log from 'electron-log'
+import { CancellationToken } from 'builder-util-runtime/out/CancellationToken';
 
-let windows: Electron.BrowserWindow[] = []
+let window: Electron.BrowserWindow = null
+const token = new CancellationToken
 
 function createWindow(): Electron.BrowserWindow {
     const win = new BrowserWindow({
         show: false,
         icon: `file://${__dirname}/imgs/icon.png`
     })
-    win.loadURL(`file://${__dirname}/index.htm`)
+    win.loadURL(`file://${__dirname}/index.html`)
     win.on('closed', () => {
-        windows = windows.filter((e) => { return e != win })
+        window = null
     })
     win.once('ready-to-show', () => {
         win.show()
         win.maximize()
     })
-    windows.push(win)
+    window = win
     return win
 }
 
@@ -51,19 +53,41 @@ app.on('ready', () => {
     let menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
     createWindow()
+
+    autoUpdater.on('update-available', info => {
+        window.webContents.send('update-available', info)
+    })
+
+    autoUpdater.on('update-not-available', info => {
+        window.webContents.send('update-not-available', info)
+    })
+
+    autoUpdater.on('download-progress', progress => {
+        window.webContents.send('update-progress', progress)
+    })
+
+    autoUpdater.on('update-downloaded', info => {
+        window.webContents.send('update-downloaded', info)
+    })
+
+    autoUpdater.on('error', error => {
+        window.webContents.send('update-error', error)
+    })
+
+    ipcMain.on('check-for-updates', () => {
+        autoUpdater.checkForUpdates()
+    })
+
+    ipcMain.on('download-update', () => {
+        autoUpdater.downloadUpdate(token)
+    })
+
+    ipcMain.on('restart', () => {
+        autoUpdater.quitAndInstall()
+    })
 })
 
-app.on('window-all-closed', () => {
-    if (process.platform != 'darwin') {
-        app.quit()
-    }
-})
-
-app.on('activate', () => {
-    if (windows.length == 0) {
-        createWindow()
-    }
-})
+app.on('window-all-closed', app.quit)
 
 const editMenu: Electron.MenuItemConstructorOptions = {
     label: 'Edit',
@@ -143,6 +167,13 @@ const helpMenu: Electron.MenuItemConstructorOptions = {
             label: 'Learn More',
             click: function () {
                 shell.openExternal('http://electron.atom.io');
+            }
+        },
+        {
+            label: 'Check For Update',
+            click: function () {
+                window.webContents.send('check-for-updates', null)
+                autoUpdater.checkForUpdates()
             }
         }
     ]

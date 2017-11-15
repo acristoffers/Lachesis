@@ -42,6 +42,7 @@ module.exports = {
   },
   externals: {
     "electron-settings": "commonjs electron-settings",
+    "electron": "commonjs electron",
     canvasjs: "CanvasJS"
   },
   plugins: [

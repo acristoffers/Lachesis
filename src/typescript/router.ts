@@ -33,7 +33,7 @@ export class Router {
     static module(): ModuleWithProviders {
         return RouterModule.forRoot([
             {
-                path: 'index.htm',
+                path: 'index.html',
                 redirectTo: 'connect',
                 pathMatch: 'full'
             },

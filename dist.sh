@@ -21,5 +21,4 @@
 # THE SOFTWARE.
 
 cd desktop
-export CSC_IDENTITY_AUTO_DISCOVERY=false
 yarn run dist
