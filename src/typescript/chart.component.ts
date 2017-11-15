@@ -27,7 +27,7 @@ import { ChartEvent } from 'canvasjs'
 
 @Component({
     selector: 'chart',
-    templateUrl: '../html/chart.htm'
+    templateUrl: '../html/chart.html'
 })
 export class ChartComponent implements AfterViewChecked {
     chart: Chart

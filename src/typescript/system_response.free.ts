@@ -29,7 +29,7 @@ import { Observable } from 'rxjs';
 
 @Component({
     selector: 'free-response',
-    templateUrl: '../html/system_response.free.htm'
+    templateUrl: '../html/system_response.free.html'
 })
 export class SystemResponseFreeComponent implements AfterViewInit {
     private _test: ResponseTest

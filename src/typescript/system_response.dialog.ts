@@ -27,7 +27,7 @@ import { SystemResponseService, ResponseTest } from './system_response.service'
 
 @Component({
   selector: 'system_response-dialog',
-  templateUrl: '../html/system_response-dialog.htm'
+  templateUrl: '../html/system_response-dialog.html'
 })
 export class SystemResponseDialog implements OnInit {
   _test: ResponseTest = {

@@ -20,8 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-cwd=$(pwd)
-
 # Remove old files
 touch desktop/www desktop/build desktop/dist desktop/node_modules
 rm -r desktop/www desktop/build desktop/dist desktop/node_modules
@@ -33,52 +31,36 @@ echo "Installing build dependencies"
 echo ""
 yarn install
 yarn install -D
-cd src/typescript
+pushd src/typescript
 yarn install
 yarn install -D
-cd $cwd
+popd
 cp -r src/desktop/* desktop/www/
-cd desktop
+pushd desktop
 yarn install
 yarn install -D
-cd www
+pushd www
 yarn install
 yarn install -D
-cd $cwd
+popd
+popd
 
 # Copy files
 echo ""
 echo "Building root and copying dependencies"
 echo ""
-cd desktop/www
+pushd desktop/www
 yarn run tsc
 rm -r node_modules yarn.lock ../yarn.lock
 yarn --prod
-cd $cwd
+popd
 rm -r desktop/www/index.ts desktop/www/tsconfig.json
 cp -r src/imgs desktop/www/
 cp -r src/fonts desktop/www/
 touch src/typescript/dist
 rm -r src/typescript/dist
 
-# Compile TypeScript
-echo ""
-echo "Compiling TypeScript"
-echo ""
-cd src/typescript
-yarn run ngc
-yarn run webpack
-cd $cwd
-mv src/typescript/dist/index.js desktop/www/js/app.js
-
-# Compile SASS
-echo ""
-echo "Compiling SASS"
-echo ""
-yarn run node-sass src/scss/app.scss desktop/www/css/app.css --output-style compressed
-
-# Minify HTML
-node html-minifier.js
+bash build-fast.sh
 
 # Generate icons
 node gen-icons.js

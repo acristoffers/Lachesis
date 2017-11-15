@@ -26,7 +26,7 @@ import { SharedData } from './shared_data.service'
 
 @Component({
     selector: 'sidenav',
-    templateUrl: '../html/sidenav.htm'
+    templateUrl: '../html/sidenav.html'
 })
 export class SidenavComponent {
     constructor(private translate: TranslateService) {

@@ -28,7 +28,7 @@ import { HardwareService, PortConfiguration, Types } from './hardware.service'
 
 @Component({
     selector: 'wide-pulse-response',
-    templateUrl: '../html/system_response.wide_pulse.htm'
+    templateUrl: '../html/system_response.wide_pulse.html'
 })
 export class SystemResponseWidePulseComponent {
     private _test: ResponseTest

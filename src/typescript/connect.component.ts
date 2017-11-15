@@ -28,7 +28,7 @@ import { SharedData } from './shared_data.service'
 
 @Component({
     selector: 'connect',
-    templateUrl: '../html/connect.htm'
+    templateUrl: '../html/connect.html'
 })
 export class ConnectComponent {
     private connectionAddress = 'localhost:5000'

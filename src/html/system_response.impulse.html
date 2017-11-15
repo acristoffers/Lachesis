@@ -1,7 +1,7 @@
-<div flex id="system-response-step">
+<div flex id="system-response-impulse">
     <div>
-        <div id="step-graph"></div>
-        <img width="256" src="imgs/step-variables.png">
+        <div id="impulse-graph"></div>
+        <img width="256" src="../imgs/impulse-variables.png">
     </div>
     <div stretch default-padding>
         <h2>{{ 'Curve data' | translate }}</h2>
@@ -11,13 +11,13 @@
                 <input matInput placeholder="V0" [(ngModel)]="v0" (blur)="plotPoints()" type="number">
             </mat-input-container>
             <mat-input-container class="width-100">
-                <input matInput placeholder="∆V" [(ngModel)]="dv" (blur)="plotPoints()" type="number">
+                <input matInput placeholder="∆T (segundos)" [(ngModel)]="dt" (blur)="plotPoints()" type="number">
             </mat-input-container>
             <mat-input-container class="width-100">
-                <input matInput [placeholder]="'T0 (seconds)' | translate" [(ngModel)]="t0" (blur)="plotPoints()" type="number">
+                <input matInput placeholder="T0 (segundos)" [(ngModel)]="t0" (blur)="plotPoints()" type="number">
             </mat-input-container>
             <mat-input-container class="width-100">
-                <input matInput [placeholder]="'T1 (seconds)' | translate" [(ngModel)]="t1" (blur)="plotPoints()" type="number">
+                <input matInput placeholder="T1 (segundos)" [(ngModel)]="t1" (blur)="plotPoints()" type="number">
             </mat-input-container>
         </div>
 

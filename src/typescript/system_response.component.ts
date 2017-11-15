@@ -31,7 +31,7 @@ import { SystemResponseDialog } from './system_response.dialog'
 
 @Component({
     selector: 'system-response',
-    templateUrl: '../html/system_response.htm'
+    templateUrl: '../html/system_response.html'
 })
 export class SystemResponseComponent implements OnInit {
     tests: ResponseTest[] = []

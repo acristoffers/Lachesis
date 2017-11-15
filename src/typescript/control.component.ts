@@ -42,7 +42,7 @@ export interface Controller {
 
 @Component({
     selector: 'control',
-    templateUrl: '../html/control.htm'
+    templateUrl: '../html/control.html'
 })
 export class ControlComponent implements OnInit {
     controllers: Controller[] = []

@@ -22,19 +22,19 @@ THE SOFTWARE.
 
 const webpack = require('webpack')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ClosureCompilerPlugin = require('webpack-closure-compiler')
+const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin
 
 module.exports = {
   entry: {
-    index: './main-prod.ts'
+    index: './main.ts'
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.css', '.scss', '.html'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.scss', '.html'],
     alias: {
       jquery: 'jquery/src/jquery',
       canvasjs: 'canvasjs/dist/canvasjs.min'
@@ -51,27 +51,26 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
+    new AngularCompilerPlugin({
+      tsConfigPath: 'tsconfig.json',
+      entryModule: 'app.module#AppModule'
+    }),
     new ClosureCompilerPlugin({
       compiler: {
-        language_in: 'ECMASCRIPT5',
+        language_in: 'ECMASCRIPT6',
         language_out: 'ECMASCRIPT5_STRICT',
         compilation_level: 'SIMPLE_OPTIMIZATIONS'
       },
       concurrency: 8
-    }),
-    new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      __dirname, {}
-    )
+    })
   ],
   module: {
-    exprContextCritical: false,
     rules: [{
-      test: /\.tsx?$/,
-      use: ['ts-loader']
+      test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+      use: '@ngtools/webpack'
     }, {
       test: /\.html?$/,
-      use: 'html-loader'
+      use: 'html-loader?minimize=false'
     }, {
       test: /\.css$/,
       include: /node_modules/,

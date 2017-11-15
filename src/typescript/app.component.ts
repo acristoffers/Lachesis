@@ -26,7 +26,7 @@ import { TranslateService } from './translation/translation.service'
 
 @Component({
     selector: '[app]',
-    templateUrl: '../html/app.htm'
+    templateUrl: '../html/app.html'
 })
 export class AppComponent implements OnInit {
     public connectionToken: string

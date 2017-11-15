@@ -42,7 +42,7 @@ interface ExportVariable {
 
 @Component({
     selector: 'live-graph',
-    templateUrl: '../html/live_graph.htm'
+    templateUrl: '../html/live_graph.html'
 })
 export class LiveGraphComponent implements OnInit, OnDestroy {
     tests: Test[]

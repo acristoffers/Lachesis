@@ -72,6 +72,7 @@ import { LiveGraphComponent } from './live_graph.component'
 import { ChartComponent } from './chart.component'
 import { ControlDialog } from './control.dialog'
 import { ControlService } from './control.service'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -79,6 +80,7 @@ import { ControlService } from './control.service'
         BrowserModule,
         BrowserAnimationsModule,
         HttpModule,
+        HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
         Router.module(),

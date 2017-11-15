@@ -28,7 +28,7 @@ import { HardwareService, PortConfiguration, Types } from './hardware.service'
 
 @Component({
     selector: 'impulse-response',
-    templateUrl: '../html/system_response.impulse.htm'
+    templateUrl: '../html/system_response.impulse.html'
 })
 export class SystemResponseImpulseComponent {
     private _test: ResponseTest

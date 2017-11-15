@@ -28,7 +28,7 @@ import { HardwareService, PortConfiguration, Types, Calibration, Driver, Interlo
 
 @Component({
     selector: 'step-response',
-    templateUrl: '../html/system_response.step.htm'
+    templateUrl: '../html/system_response.step.html'
 })
 export class SystemResponseStepComponent {
     private _test: ResponseTest

@@ -24,6 +24,8 @@
         "*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "main-prod.ts",
+        "dist"
     ]
 }

@@ -43,8 +43,8 @@ const html_minifier_options = {
 function minify_html() {
   console.log('Minifying HTML')
 
-  const inputFile = 'src/html/index.htm'
-  const outputFile = 'desktop/www/index.htm'
+  const inputFile = 'src/html/index.html'
+  const outputFile = 'desktop/www/index.html'
 
   const html = fs.readFileSync(inputFile, 'utf8')
   const minifiedHtml = minify(html, html_minifier_options)

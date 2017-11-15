@@ -20,17 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-cwd=$(pwd)
-
 # Compile TypeScript
 echo ""
 echo "Compiling TypeScript"
 echo ""
-cd src/typescript
-yarn run ngc
+pushd src/typescript
 yarn run webpack
-cd $cwd
+popd
 mv src/typescript/dist/index.js desktop/www/js/app.js
+mv src/typescript/dist/assets desktop/www/assets
 
 # Compile SASS
 echo ""

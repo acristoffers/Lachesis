@@ -28,7 +28,7 @@ import * as _ from 'lodash'
 
 @Component({
     selector: 'toolbar',
-    templateUrl: '../html/toolbar.htm'
+    templateUrl: '../html/toolbar.html'
 })
 export class ToolbarComponent {
     enFlagUrl: string = 'imgs/en.svg'

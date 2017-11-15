@@ -30,7 +30,7 @@ import { HardwareService, Driver, PortConfiguration, Calibration, Interlock, Typ
 
 @Component({
     selector: 'hardware',
-    templateUrl: '../html/hardware.htm'
+    templateUrl: '../html/hardware.html'
 })
 export class HardwareComponent implements OnInit {
     public availableDrivers: Driver[] = []

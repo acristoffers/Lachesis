@@ -28,7 +28,7 @@ import { HardwareService, PortConfiguration, Types } from './hardware.service'
 
 @Component({
     selector: 'stair-response',
-    templateUrl: '../html/system_response.stair.htm'
+    templateUrl: '../html/system_response.stair.html'
 })
 export class SystemResponseStairComponent {
     private _test: ResponseTest
