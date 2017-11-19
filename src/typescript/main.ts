@@ -33,4 +33,6 @@ const basePath = location.href.replace(/[^/]*$/, '')
 const baseElement = $('<base href="' + basePath + '">')
 $('head').append(baseElement)
 
+enableProdMode()
+
 platformBrowserDynamic().bootstrapModule(AppModule)
