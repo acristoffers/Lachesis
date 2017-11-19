@@ -34,6 +34,10 @@ export class Router {
         return RouterModule.forRoot([
             {
                 path: 'index.html',
+                redirectTo: 'connect'
+            },
+            {
+                path: '',
                 redirectTo: 'connect',
                 pathMatch: 'full'
             },
