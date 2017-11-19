@@ -16,7 +16,7 @@
                                 </td>
                                 <td>
                                     <button mat-raised-button color="primary" (click)="loadTest(test)">{{ 'Show' | translate }}</button>
-                                    <button mat-raised-button color="warn" (click)="removeTest(test)">{{ 'Remove' | translate }}</button>
+                                    <button mat-raised-button color="warn" (click)="removeTest(test)">{{ (test.running ? 'Stop' : 'Remove') | translate }}</button>
                                 </td>
                             </tr>
                         </tbody>

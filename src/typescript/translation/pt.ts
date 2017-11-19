@@ -120,5 +120,6 @@ export const LANG_PT_TRANS = {
     'This code will be executed before the controller starts.': 'Este código será executado antes do controlador',
     'Controller': 'Controlador',
     'After': 'Depois',
-    'This code will be executed after the controller leaves. Even if something goes wrong.': 'Este código será executado depois do controlador, mesmo se algo der errado.'
+    'This code will be executed after the controller leaves. Even if something goes wrong.': 'Este código será executado depois do controlador, mesmo se algo der errado.',
+    'Stop': 'Parar'
 }

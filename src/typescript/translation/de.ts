@@ -120,5 +120,6 @@ export const LANG_DE_TRANS = {
     'This code will be executed before the controller starts.': 'Dies Code wird vorm Regler laufen.',
     'Controller': 'Regler',
     'After': 'Nach',
-    'This code will be executed after the controller leaves. Even if something goes wrong.': 'Dies Code wird nach dem Regler laufen, auch wenn etwas Schiff geht.'
+    'This code will be executed after the controller leaves. Even if something goes wrong.': 'Dies Code wird nach dem Regler laufen, auch wenn etwas Schiff geht.',
+    'Stop': 'Stopen'
 }
