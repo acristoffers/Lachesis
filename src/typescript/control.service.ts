@@ -55,9 +55,9 @@ export class ControlService extends APIBase {
         return this.doPost(url, { controller: controller.id })
     }
 
-    // stopTest(): Observable<null> {
-    //     const path = 'system_response/test/stop'
-    //     const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
-    //     return this.doGet(url)
-    // }
+    stopTest(): Observable<null> {
+        const path = 'system_response/test/stop'
+        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+        return this.doGet(url)
+    }
 }
