@@ -113,7 +113,11 @@ export class ControlComponent implements OnInit {
         this.service.run(controller).subscribe()
     }
 
+    stop() {
+        this.service.stopTest().subscribe()
+    }
+
     private beforeText = `# To set an output:\noutputs['SystemOnOff'] = 1\n# Any output will be automatically set AFTER the code finishes running\n\ndef someLongFunction(x):\n    return x\n\n# States\ns['x0'] = 23\ns['ux'] = 48\ns['Kp'] = 0.4\ns['Ki'] = 0.3\ns['Kd'] = 0.05\ns['someLongFunction'] = someLongFunction\n# Use it to set variables that will be available in the next block/run`
     private controllerText = `# The state is kept between runs\nsomeLongFunction = s['someLongFunction']\n\n# The selected inputs are always available\nx = inputs['SomeSelectedInput']\n\nu1 = someLongFunction(x)\n\n# np and math are already imported!\nu = math.sin(u1)\n\noutputs['TheOutput'] = u\n\n# Inputs and outputs are automatically logged.\n# If you want to log something else (to generate graphs)\n# use the log dictionary.\nlog['u1'] = u1`
-    private afterText = `# Use it to finish before exiting. Like shutting the power off.\noutput['SystemOnOff'] = 0\n# state and log are not available here`
+    private afterText = `# Use it to finish before exiting. Like shutting the power off.\noutputs['SystemOnOff'] = 0\n# state and log are not available here`
 }
