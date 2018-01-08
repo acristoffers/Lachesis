@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { ipcRenderer } from 'electron'
-import { OnInit, Component } from '@angular/core'
+import { OnInit, Component, NgZone } from '@angular/core'
 import * as settings from 'electron-settings'
 import { TranslateService } from './translation/translation.service'
 import { MatSnackBar } from '@angular/material'
@@ -36,45 +36,58 @@ export class AppComponent implements OnInit {
 
     constructor(
         private translate: TranslateService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private zone: NgZone
     ) {
         ipcRenderer.on('check-for-updates', () => {
-            this.snackBar.open('Checking for updates...', '', {
-                duration: 5000,
+            this.zone.run(() => {
+                this.snackBar.open('Checking for updates...', '', {
+                    duration: 5000,
+                })
             })
         })
 
         ipcRenderer.on('update-not-available', () => {
-            this.snackBar.open('No update available', '', {
-                duration: 5000,
+            this.zone.run(() => {
+                this.snackBar.open('No update available', '', {
+                    duration: 5000,
+                })
             })
         })
 
         ipcRenderer.on('error', () => {
-            this.snackBar.open('Error checking for updates', '', {
-                duration: 5000,
+            this.zone.run(() => {
+                this.snackBar.open('Error checking for updates', '', {
+                    duration: 5000,
+                })
             })
         })
 
         ipcRenderer.on('update-downloaded', () => {
-            this.snackBar.open('Update downloaded. Restart to apply.', 'Restart', {
-                duration: 60000,
-            }).onAction().subscribe(() => {
-                ipcRenderer.send('restart', null)
+            this.zone.run(() => {
+                this.snackBar.open('Update downloaded. Restart to apply.', 'Restart', {
+                    duration: 60000,
+                }).onAction().subscribe(() => {
+                    ipcRenderer.send('restart', null)
+                })
             })
         })
 
         ipcRenderer.on('update-available', () => {
-            this.snackBar.open('Update available.', 'Download', {
-                duration: 60000,
-            }).onAction().subscribe(() => {
-                ipcRenderer.send('download-update', null)
+            this.zone.run(() => {
+                this.snackBar.open('Update available.', 'Download', {
+                    duration: 60000,
+                }).onAction().subscribe(() => {
+                    ipcRenderer.send('download-update', null)
+                })
             })
         })
 
         ipcRenderer.on('download-progress', (download: any) => {
-            this.snackBar.open(`Downloading (${download.transferred}/${download.total})`, '', {
-                duration: 2000,
+            this.zone.run(() => {
+                this.snackBar.open(`Downloading (${download.transferred}/${download.total})`, '', {
+                    duration: 2000,
+                })
             })
         })
     }
