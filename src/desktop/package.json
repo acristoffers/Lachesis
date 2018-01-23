@@ -14,14 +14,14 @@
   },
   "devDependencies": {
     "@types/node": "^9.3.0",
-    "electron": "^1.7.10",
+    "electron": "^1.7.11",
     "typescript": "^2.6.2"
   },
   "dependencies": {
     "ace-builds": "^1.2.9",
     "canvasjs": "^1.8.1",
-    "electron-log": "^2.2.13",
+    "electron-log": "^2.2.14",
     "electron-settings": "^3.1.4",
-    "electron-updater": "^2.18.2"
+    "electron-updater": "^2.20.1"
   }
 }
