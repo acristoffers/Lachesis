@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -9,8 +9,8 @@
     "url": "https://github.com/acristoffers/Lachesis"
   },
   "devDependencies": {
-    "electron": "1.7.11",
-    "electron-builder": "^19.55.2"
+    "electron": "1.8.3",
+    "electron-builder": "^20.3.1"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",

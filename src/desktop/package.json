@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -13,15 +13,15 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "@types/node": "^9.3.0",
-    "electron": "^1.7.11",
-    "typescript": "^2.6.2"
+    "@types/node": "^9.4.6",
+    "electron": "^1.8.3",
+    "typescript": "^2.7.2"
   },
   "dependencies": {
-    "ace-builds": "^1.2.9",
+    "ace-builds": "^1.3.1",
     "canvasjs": "^1.8.1",
     "electron-log": "^2.2.14",
     "electron-settings": "^3.1.4",
-    "electron-updater": "^2.20.1"
+    "electron-updater": "^2.21.0"
   }
 }
