@@ -108,18 +108,17 @@ export class LiveGraphService extends APIBase {
     }
 
     removeTest(test: Test): Observable<void> {
-        const path = 'live_graph/test/remove'
-        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
-        const data = {
-            test: test.name,
-            start_time: test.date
-        }
-
-        return this.doPost(url, data).map(() => {
-            if (test.running) {
-                this.stopTest().subscribe()
+        if (test.running) {
+            return this.stopTest()
+        } else {
+            const path = 'live_graph/test/remove'
+            const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+            const data = {
+                test: test.name,
+                start_time: test.date
             }
-        })
+            return this.doPost(url, data)
+        }
     }
 
     stopTest(): Observable<void> {
