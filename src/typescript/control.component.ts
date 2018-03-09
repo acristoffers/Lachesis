@@ -28,6 +28,7 @@ import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
 import { ControlDialog } from './control.dialog'
 import { ControlService } from './control.service'
+import { Router } from '@angular/router';
 
 export interface Controller {
     id: number
@@ -52,7 +53,8 @@ export class ControlComponent implements OnInit {
         private toast: MatSnackBar,
         private i18n: TranslateService,
         private dialog: MatDialog,
-        private service: ControlService
+        private service: ControlService,
+        private router: Router
     ) {
     }
 
@@ -110,7 +112,9 @@ export class ControlComponent implements OnInit {
     }
 
     run(controller: Controller) {
-        this.service.run(controller).subscribe()
+        this.service.run(controller).subscribe(() => {
+            this.router.navigate(['live-graph'])
+        })
     }
 
     stop() {
