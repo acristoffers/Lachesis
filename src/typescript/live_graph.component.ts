@@ -104,7 +104,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                 this.lg.fetchTest(testName, testDate, testSkip).subscribe(
                     data => {
                         if (data.length > 0) {
-                            const sensors = _.map(this.testData, 'sensor')
+                            const sensors = _.map(data, 'sensor')
                             for (const sensor in sensors) {
                                 const oldPoints = this.testData[sensor].points
                                 const newPoints = data[sensor].points
