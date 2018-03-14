@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-rm -r desktop/www desktop/build desktop/dist &> /dev/null
-rm -r node_modules src/typescript/node_modules desktop/node_modules &> /dev/null
-rm -r src/typescript/dist src/typescript/build &> /dev/null
+rm -fr desktop/www desktop/build desktop/dist &> /dev/null
+rm -fr node_modules src/typescript/node_modules desktop/node_modules &> /dev/null
+rm -fr src/typescript/dist src/typescript/build &> /dev/null
 rm yarn.lock src/typescript/yarn.lock desktop/yarn.lock &> /dev/null
