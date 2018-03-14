@@ -82,7 +82,10 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.lg.listTests().subscribe(
-            (tests) => this.tests = tests,
+            (tests) => {
+                this.tests = _.reverse(_.sortBy(tests, t => new Date(t.date)))
+                console.log(this.tests)
+            },
             this.httpError()
         )
 
@@ -91,7 +94,8 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             this.lg.listTests().subscribe(
                 tests => {
                     if (!_.isEqual(tests, this.tests)) {
-                        this.tests = tests
+                        this.tests = _.reverse(_.sortBy(tests, t => new Date(t.date)))
+                        console.log(this.tests)
                     }
                 },
                 this.httpError()
