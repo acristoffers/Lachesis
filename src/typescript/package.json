@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -13,19 +13,19 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "dependencies": {
-    "@angular/animations": ">=5.2.8",
+    "@angular/animations": ">=5.2.9",
     "@angular/cdk": ">=5.2.4",
-    "@angular/common": ">=5.2.8",
-    "@angular/compiler": ">=5.2.8",
-    "@angular/compiler-cli": ">=5.2.8",
-    "@angular/core": ">=5.2.8",
-    "@angular/forms": ">=5.2.8",
-    "@angular/http": ">=5.2.8",
+    "@angular/common": ">=5.2.9",
+    "@angular/compiler": ">=5.2.9",
+    "@angular/compiler-cli": ">=5.2.9",
+    "@angular/core": ">=5.2.9",
+    "@angular/forms": ">=5.2.9",
+    "@angular/http": ">=5.2.9",
     "@angular/material": ">=5.2.4",
-    "@angular/platform-browser": ">=5.2.8",
-    "@angular/platform-browser-dynamic": ">=5.2.8",
-    "@angular/platform-server": ">=5.2.8",
-    "@angular/router": ">=5.2.8",
+    "@angular/platform-browser": ">=5.2.9",
+    "@angular/platform-browser-dynamic": ">=5.2.9",
+    "@angular/platform-server": ">=5.2.9",
+    "@angular/router": ">=5.2.9",
     "canvasjs": ">=1.8.1",
     "electron": "^1.8.3",
     "electron-settings": ">=3.1.4",
@@ -34,7 +34,7 @@
     "lodash": ">=4.17.5",
     "ng2-ace-editor": ">=0.3.4",
     "reflect-metadata": ">=0.1.12",
-    "rxjs": ">=5.5.6",
+    "rxjs": ">=5.5.7",
     "zone.js": ">=0.8.20"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "ts-loader": ">=4.0.1",
     "typescript": ">=2.7.2",
     "webpack": ">=4.1.1",
-    "webpack-cli": "^2.0.10",
+    "webpack-cli": "^2.0.12",
     "webpack-closure-compiler": ">=2.1.6"
   }
 }
