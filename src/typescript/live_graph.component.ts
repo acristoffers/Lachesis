@@ -82,7 +82,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.lg.listTests().subscribe(
-            (tests) => {
+            tests => {
                 this.tests = _.reverse(_.sortBy(tests, t => new Date(t.date)))
             },
             this.httpError()
@@ -92,9 +92,9 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         this.timerSubscription = this.timer.subscribe(() => {
             this.lg.listTests().subscribe(
                 tests => {
-                    if (!_.isEqual(tests, this.tests)) {
-                        this.tests = _.reverse(_.sortBy(tests, t => new Date(t.date)))
-                        console.log(this.tests)
+                    const ts = _.reverse(_.sortBy(tests, t => new Date(t.date)))
+                    if (!_.isEqual(ts, this.tests)) {
+                        this.tests = ts
                     }
                 },
                 this.httpError()
@@ -198,7 +198,6 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                 return _.concat([`"${d.sensor}"`], _.map(d.points, p => p.y.toString()))
             })
             const tdata = _.concat(data, [_.concat(['"t"'], time)])
-            console.log(tdata)
             const zd = _.zip.apply(_, tdata)
             const csv = _.join(zd, "\n")
             this.saveFile(`${this.test.name}.csv`, csv)
