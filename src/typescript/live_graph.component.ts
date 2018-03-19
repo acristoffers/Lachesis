@@ -93,7 +93,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             this.lg.listTests().subscribe(
                 tests => {
                     const ts = _.reverse(_.sortBy(tests, t => new Date(t.date)))
-                    if (!_.isEqual(ts, this.tests)) {
+                    if (!_.isEmpty(_.differenceWith(ts, this.tests, _.isEqual))) {
                         this.tests = ts
                     }
                 },
