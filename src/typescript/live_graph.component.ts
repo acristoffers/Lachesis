@@ -111,7 +111,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                             for (const sensor in sensors) {
                                 const oldPoints = this.testData[sensor].points
                                 const newPoints = data[sensor].points
-                                const ps = _.concat(oldPoints, newPoints)
+                                const ps = oldPoints.concat(newPoints)
                                 this.testData[sensor].points = ps
                             }
                         }
