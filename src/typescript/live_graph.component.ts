@@ -144,18 +144,23 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     }
 
     removeTest(test: Test): void {
-        if (this.test != null &&
-            this.test.name == test.name &&
-            this.test.date == test.date) {
-            this.test = this.testData = this.testExportVariables = null
-        }
+        const msg = 'Are you sure that you want to delete this item?'
+        const running = this.test != null && this.test.running
+        const r = running || confirm(this.i18n.instant(msg))
+        if (r) {
+            if (this.test != null &&
+                this.test.name == test.name &&
+                this.test.date == test.date) {
+                this.test = this.testData = this.testExportVariables = null
+            }
 
-        this.lg.removeTest(test).subscribe(
-            () => this.tests = _.filter(this.tests, t => {
-                return t.name != test.name || t.date != test.date
-            }),
-            this.httpError()
-        )
+            this.lg.removeTest(test).subscribe(
+                () => this.tests = _.filter(this.tests, t => {
+                    return t.name != test.name || t.date != test.date
+                }),
+                this.httpError()
+            )
+        }
     }
 
     saveTest(): void {

@@ -80,8 +80,12 @@ export class SystemResponseComponent implements OnInit {
     }
 
     removeTest(test: ResponseTest): void {
-        this.tests = this.tests.filter(t => t.id !== test.id)
-        this.saveTests()
+        const msg = 'Are you sure that you want to delete this item?'
+        const r = confirm(this.i18n.instant(msg))
+        if (r) {
+            this.tests = this.tests.filter(t => t.id !== test.id)
+            this.saveTests()
+        }
     }
 
     addTest(): void {

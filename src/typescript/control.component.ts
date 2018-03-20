@@ -105,10 +105,14 @@ export class ControlComponent implements OnInit {
     }
 
     remove(controller: Controller): void {
-        this.controllers = _.filter(this.controllers, c => c != controller)
-        this.service.save(this.controllers).subscribe(() => {
-            this.service.load().subscribe(cs => this.controllers = cs)
-        })
+        const msg = 'Are you sure that you want to delete this item?'
+        const r = confirm(this.i18n.instant(msg))
+        if (r) {
+            this.controllers = _.filter(this.controllers, c => c != controller)
+            this.service.save(this.controllers).subscribe(() => {
+                this.service.load().subscribe(cs => this.controllers = cs)
+            })
+        }
     }
 
     run(controller: Controller) {

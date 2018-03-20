@@ -121,5 +121,6 @@ export const LANG_PT_TRANS = {
     'Controller': 'Controlador',
     'After': 'Depois',
     'This code will be executed after the controller leaves. Even if something goes wrong.': 'Este código será executado depois do controlador, mesmo se algo der errado.',
-    'Stop': 'Parar'
+    'Stop': 'Parar',
+    'Are you sure that you want to delete this item?': 'Tem certeza que deseja excluir este item?'
 }

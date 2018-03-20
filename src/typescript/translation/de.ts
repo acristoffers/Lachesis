@@ -121,5 +121,6 @@ export const LANG_DE_TRANS = {
     'Controller': 'Regler',
     'After': 'Nach',
     'This code will be executed after the controller leaves. Even if something goes wrong.': 'Dies Code wird nach dem Regler laufen, auch wenn etwas Schiff geht.',
-    'Stop': 'Stopen'
+    'Stop': 'Stopen',
+    'Are you sure that you want to delete this item?': 'Sind Sie sicher, dass Sie diesem Eintrag löschen möchten?'
 }
