@@ -9,7 +9,7 @@
     "url": "https://github.com/acristoffers/Lachesis"
   },
   "devDependencies": {
-    "electron": "1.8.3",
+    "electron": "1.8.4",
     "electron-builder": "^20.5.1"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",

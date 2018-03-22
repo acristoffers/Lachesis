@@ -26,8 +26,10 @@
     #tests-list {
         max-height: 20rem;
         overflow-y: auto;
-        td {
-            padding-top: 1rem;
+        mat-list-item {
+            div[flex] {
+                width: 100%;
+            }
         }
     }
     #charts {

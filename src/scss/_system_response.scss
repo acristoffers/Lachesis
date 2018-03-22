@@ -25,9 +25,9 @@
     min-width: 66%;
     mat-card {
         margin-top: 2rem;
-        table {
-            td {
-                padding-top: 1rem;
+        mat-list-item {
+            div[flex] {
+                width: 100%;
             }
         }
     }
