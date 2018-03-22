@@ -41,7 +41,8 @@ export class AppComponent implements OnInit {
     ) {
         ipcRenderer.on('check-for-updates', () => {
             this.zone.run(() => {
-                this.snackBar.open('Checking for updates...', '', {
+                const msg = this.translate.instant('Checking for updates...')
+                this.snackBar.open(msg, '', {
                     duration: 5000,
                 })
             })
@@ -49,7 +50,8 @@ export class AppComponent implements OnInit {
 
         ipcRenderer.on('update-not-available', () => {
             this.zone.run(() => {
-                this.snackBar.open('No update available', '', {
+                const msg = this.translate.instant('No update available')
+                this.snackBar.open(msg, '', {
                     duration: 5000,
                 })
             })
@@ -57,7 +59,8 @@ export class AppComponent implements OnInit {
 
         ipcRenderer.on('error', () => {
             this.zone.run(() => {
-                this.snackBar.open('Error checking for updates', '', {
+                const msg = this.translate.instant('Error checking for updates')
+                this.snackBar.open(msg, '', {
                     duration: 5000,
                 })
             })
@@ -65,7 +68,8 @@ export class AppComponent implements OnInit {
 
         ipcRenderer.on('update-downloaded', () => {
             this.zone.run(() => {
-                this.snackBar.open('Update downloaded. Restart to apply.', 'Restart', {
+                const msg = this.translate.instant('Update downloaded. Restart to apply.')
+                this.snackBar.open(msg, 'Restart', {
                     duration: 60000,
                 }).onAction().subscribe(() => {
                     ipcRenderer.send('restart', null)
@@ -75,7 +79,9 @@ export class AppComponent implements OnInit {
 
         ipcRenderer.on('update-available', () => {
             this.zone.run(() => {
-                this.snackBar.open('Update available.', 'Download', {
+                const msg = this.translate.instant('Update available.')
+                const bmsg = this.translate.instant('Download')
+                this.snackBar.open(msg, bmsg, {
                     duration: 60000,
                 }).onAction().subscribe(() => {
                     ipcRenderer.send('download-update', null)
@@ -85,7 +91,11 @@ export class AppComponent implements OnInit {
 
         ipcRenderer.on('download-progress', (download: any) => {
             this.zone.run(() => {
-                this.snackBar.open(`Downloading (${download.transferred}/${download.total})`, '', {
+                const tmp = this.translate.instant('Downloading ($1/$2)')
+                const msg = tmp
+                    .replace('$1', download.transferred)
+                    .replace('$2', download.total)
+                this.snackBar.open(msg, '', {
                     duration: 2000,
                 })
             })

@@ -122,5 +122,12 @@ export const LANG_PT_TRANS = {
     'After': 'Depois',
     'This code will be executed after the controller leaves. Even if something goes wrong.': 'Este código será executado depois do controlador, mesmo se algo der errado.',
     'Stop': 'Parar',
-    'Are you sure that you want to delete this item?': 'Tem certeza que deseja excluir este item?'
+    'Are you sure that you want to delete this item?': 'Tem certeza que deseja excluir este item?',
+    'Checking for updates...': 'Buscando atualizações...',
+    'No update available': 'Nenhuma atualização disponível',
+    'Error checking for updates': 'Erro ao buscar atualizações',
+    'Update downloaded. Restart to apply.': 'Atualização baixada. Reinicie para aplicar.',
+    'Update available.': 'Atualização disponível',
+    'Download': 'Baixar',
+    'Downloading ($1/$2)': 'Baixando ($1/$2)'
 }

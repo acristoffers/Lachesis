@@ -122,5 +122,12 @@ export const LANG_FR_TRANS = {
     'After': 'Après',
     'This code will be executed after the controller leaves. Even if something goes wrong.': 'Ce code sera exécuté après la sortie du contrôleur. Même si quelque chose ne va pas.',
     'Stop': 'Arrêter',
-    'Are you sure that you want to delete this item?': 'Êtes-vous sûr de vouloir supprimer cet élément?'
+    'Are you sure that you want to delete this item?': 'Êtes-vous sûr de vouloir supprimer cet élément?',
+    'Checking for updates...': 'Verfication des mises à jour...',
+    'No update available': 'Aucune mise à jour disponible',
+    'Error checking for updates': 'Erreur de vérification des mises à jour',
+    'Update downloaded. Restart to apply.': 'Mise à jour téléchargée Redémarrez pour appliquer.',
+    'Update available.': 'Mise à jour disponible.',
+    'Download': 'Télécharger',
+    'Downloading ($1/$2)': 'Téléchargement en cours ($1/$2)'
 }

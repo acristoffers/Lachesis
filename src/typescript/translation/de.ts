@@ -122,5 +122,12 @@ export const LANG_DE_TRANS = {
     'After': 'Nach',
     'This code will be executed after the controller leaves. Even if something goes wrong.': 'Dies Code wird nach dem Regler laufen, auch wenn etwas Schiff geht.',
     'Stop': 'Stopen',
-    'Are you sure that you want to delete this item?': 'Sind Sie sicher, dass Sie diesem Eintrag löschen möchten?'
+    'Are you sure that you want to delete this item?': 'Sind Sie sicher, dass Sie diesem Eintrag löschen möchten?',
+    'Checking for updates...': 'Sucht nach Aktualisierungen...',
+    'No update available': 'Keine Aktualisierung verfügbar',
+    'Error checking for updates': 'Fehler beim Suche nach Aktualisierung',
+    'Update downloaded. Restart to apply.': 'Aktualisierung heruntergeladen. Wiederstarten um zu installieren.',
+    'Update available.': 'Aktualisierung verfügbar.',
+    'Download': 'Herunterladen',
+    'Downloading ($1/$2)': 'Wird heruntergeladen ($1/$2)'
 }
