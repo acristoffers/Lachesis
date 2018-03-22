@@ -4,6 +4,7 @@
     Lachesis
   </button>
   <span stretch></span>
+  <button mat-button>{{ version }}</button>
   <button mat-button [matMenuTriggerFor]="languagesMenu">{{ 'Language' | translate }}</button>
   <mat-menu #languagesMenu="matMenu">
     <button mat-menu-item (click)="setLanguage('en')">

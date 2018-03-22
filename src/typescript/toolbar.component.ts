@@ -35,6 +35,7 @@ export class ToolbarComponent {
     deFlagUrl: string = 'imgs/de.svg'
     frFlagUrl: string = 'imgs/fr.svg'
     ptFlagUrl: string = 'imgs/pt.svg'
+    version: string = ''
 
     private sidebarOpenFlag: boolean = false
     @Output() sidebarOpenChange = new EventEmitter<boolean>()
@@ -52,6 +53,7 @@ export class ToolbarComponent {
         private translate: TranslateService
     ) {
         this.registerImages(iconRegistry, sanitizer)
+        this.version = require('electron').remote.app.getVersion()
     }
 
     registerImages(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer): void {
