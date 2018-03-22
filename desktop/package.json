@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "electron": "1.8.4",
-    "electron-builder": "^20.5.1"
+    "electron-builder": "20.7.1"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
@@ -38,7 +38,8 @@
       "category": "Engineering",
       "packageCategory": "productivity",
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ],
       "publish": [
         "github"
