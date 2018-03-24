@@ -130,5 +130,10 @@ export const LANG_PT_TRANS = {
     'Update available.': 'Atualização disponível',
     'Download': 'Baixar',
     'Downloading ($1/$2)': 'Baixando ($1/$2)',
-    'Remove all': 'Remover todos'
+    'Remove all': 'Remover todos',
+    'Backup/Restore': 'Salvar/Restaurar',
+    'Backup': 'Salvar',
+    'Restore': 'Restaurar',
+    'Backup or restore the whole database.': 'Salvar ou restaurar o banco de dados.',
+    'This can take some time.': 'Isto pode levar muito tempo.'
 }

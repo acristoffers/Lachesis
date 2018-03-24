@@ -20,61 +20,54 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, ApplicationRef } from '@angular/core'
-import { Http, Response, RequestOptions, Headers } from '@angular/http'
+import { Component, ApplicationRef, NgZone } from '@angular/core'
+import { Response, RequestOptions, Headers, ResponseContentType } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+
+interface Token {
+    token: string
+}
 
 @Component({
     selector: 'connect',
     templateUrl: '../html/connect.html'
 })
 export class ConnectComponent {
+    working: boolean = false
+
     private connectionAddress = 'localhost:5000'
     private connectionPassword = ''
     private newPassword: string
     private newPasswordConfirmation: string
 
     constructor(
-        private http: Http,
+        private http: HttpClient,
         private toast: MatSnackBar,
         private i18n: TranslateService,
-        private applicationRef: ApplicationRef
+        private applicationRef: ApplicationRef,
+        private zone: NgZone
     ) {
     }
 
     connect(): void {
         const url = `${SharedData.scheme}://${this.connectionAddress}/login`
         const postData = { password: this.connectionPassword }
-        const observer = this.http.post(url, postData)
+        const observer = this.http.post<Token>(url, postData)
         observer.subscribe(this.loginSuccessiful(), this.httpError())
+        this.working = true
     }
 
-    loginSuccessiful(): (res: Response) => void {
+    loginSuccessiful(): (data: Token) => void {
         const self: ConnectComponent = this
-        return (res: Response) => {
-            const data = res.json()
-            SharedData.accessToken = data['token']
+        return (data: Token) => {
+            this.working = false
+            SharedData.accessToken = data.token
             SharedData.moiraiAddress = this.connectionAddress
             this.connectionPassword = ''
             self.applicationRef.tick()
-        }
-    }
-
-    httpError(): (res: Response) => void {
-        const self: ConnectComponent = this
-        return (error: any) => {
-            if (!error.ok) {
-                let str: string
-                if (error.status == 403) {
-                    str = 'Wrong password.'
-                } else {
-                    str = 'Error when connecting. Check address and try again.'
-                }
-                const message = self.i18n.instant(str)
-                self.toast.open(message, null, { duration: 2000 })
-            }
         }
     }
 
@@ -93,21 +86,94 @@ export class ConnectComponent {
             const message = this.i18n.instant(str)
             this.toast.open(message, null, { duration: 2000 })
         } else {
-            const headers = new Headers({
+            const headers = new HttpHeaders({
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${SharedData.accessToken}`
             })
-            const options = new RequestOptions({ headers: headers })
+            const options = { headers: headers }
             const url = `${SharedData.scheme}://${this.connectionAddress}/set-password`
             const postData = { password: this.newPassword }
             const observer = this.http.post(url, postData, options)
             this.newPassword = this.newPasswordConfirmation = ''
             observer.subscribe(() => {
+                this.working = false
                 let str = 'Success!'
                 const message = this.i18n.instant(str)
                 this.toast.open(message, null, { duration: 2000 })
             }, this.httpError())
+            this.working = true
+        }
+    }
+
+    backup(): void {
+        const headers = new HttpHeaders({
+            'Accept': 'application/octet-stream',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SharedData.accessToken}`
+        })
+        const options = {
+            headers: headers,
+            responseType: 'blob' as 'blob'
+        }
+        const url = `${SharedData.scheme}://${this.connectionAddress}/db/dump`
+        this.http.get(url, options).subscribe(
+            data => {
+                this.working = false
+                const link = document.createElement('a')
+                link.href = window.URL.createObjectURL(data)
+                link.download = 'dump.zip'
+                link.click()
+            },
+            this.httpError()
+        )
+        this.working = true
+    }
+
+    restore(): void {
+        const url = `${SharedData.scheme}://${this.connectionAddress}/db/restore`
+
+        const input = document.createElement('input')
+        input.type = 'file'
+        input.onchange = () => {
+            this.zone.run(() => {
+                const file = input.files[0]
+                const formData = new FormData()
+                formData.append('file', file)
+
+                const headers = new HttpHeaders({
+                    'Authorization': `Bearer ${SharedData.accessToken}`
+                })
+
+                const options = { headers: headers }
+                this.http.post(url, formData, options).subscribe(
+                    () => {
+                        this.working = false
+                        this.disconnect()
+                    },
+                    this.httpError()
+                )
+
+                this.working = true
+            })
+        }
+        input.click()
+    }
+
+    httpError(): (res: Response) => void {
+        const self: ConnectComponent = this
+        return (error: any) => {
+            this.working = false
+            if (!error.ok) {
+                let str: string
+                if (error.status == 403) {
+                    str = 'Wrong password.'
+                } else {
+                    str = 'Error when connecting. Check address and try again.'
+                }
+                const message = self.i18n.instant(str)
+                self.toast.open(message, null, { duration: 2000 })
+            }
         }
     }
 }

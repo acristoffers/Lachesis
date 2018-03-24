@@ -12,7 +12,7 @@
           <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="connectionPassword" (keydown.enter)="connect()"
             autofocus>
         </mat-input-container>
-        <button class="connect-button" mat-raised-button color="primary" (click)="connect()">{{ 'Connect' | translate }}</button>
+        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="connect()">{{ 'Connect' | translate }}</button>
       </mat-card-content>
     </mat-card>
 
@@ -21,7 +21,7 @@
         {{ 'Connected' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <button class="connect-button" mat-raised-button color="primary" (click)="disconnect()">{{ 'Disconnect' | translate }}</button>
+        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="disconnect()">{{ 'Disconnect' | translate }}</button>
       </mat-card-content>
     </mat-card>
 
@@ -40,7 +40,23 @@
         </mat-input-container>
       </mat-card-content>
       <mat-card-actions>
-        <button class="connect-button" mat-raised-button color="primary" (click)="setPassword()">{{ 'Apply' | translate }}</button>
+        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="setPassword()">{{ 'Apply' | translate }}</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div stretch *ngIf="isLoggedIn()"></div>
+
+    <mat-card *ngIf="isLoggedIn()">
+      <mat-card-title>
+        {{ 'Backup/Restore' | translate }}
+      </mat-card-title>
+      <mat-card-content>
+        <div>{{ 'Backup or restore the whole database.' | translate }}</div>
+        <div>{{ 'This can take some time.' | translate }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [disabled]='working' color="primary" (click)="backup()">{{ 'Backup' | translate }}</button>
+        <button mat-raised-button [disabled]='working' color="primary" (click)="restore()">{{ 'Restore' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 
