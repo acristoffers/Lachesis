@@ -115,6 +115,15 @@ export class ControlComponent implements OnInit {
         }
     }
 
+    removeAll(): void {
+        const msg = 'Are you sure that you want to delete this item?'
+        if (confirm(this.i18n.instant(msg))) {
+            this.service.save([]).subscribe(() => {
+                this.service.load().subscribe(cs => this.controllers = cs)
+            })
+        }
+    }
+
     run(controller: Controller) {
         this.service.run(controller).subscribe(() => {
             this.router.navigate(['live-graph'])

@@ -5,6 +5,10 @@
 
         <mat-card>
             <mat-card-content>
+                <div flex id="top-bar" *ngIf="controllers.length != 0">
+                    <div stretch></div>
+                    <button mat-raised-button color="warn" (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+                </div>
                 <mat-list>
                     <mat-list-item *ngFor="let controller of controllers">
                         <div flex>

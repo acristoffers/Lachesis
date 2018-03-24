@@ -45,7 +45,7 @@ interface ExportVariable {
     templateUrl: '../html/live_graph.html'
 })
 export class LiveGraphComponent implements OnInit, OnDestroy {
-    tests: Test[]
+    tests: Test[] = []
 
     test: Test
     testData: TestData[]
@@ -160,6 +160,18 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                 }),
                 this.httpError()
             )
+        }
+    }
+
+    removeAllTests(): void {
+        const msg = 'Are you sure that you want to delete this item?'
+        if (confirm(this.i18n.instant(msg))) {
+            this.test = this.testData = this.testExportVariables = null
+            this.lg.removeAll(this.tests)
+                .subscribe(
+                    () => { },
+                    this.httpError()
+                )
         }
     }
 

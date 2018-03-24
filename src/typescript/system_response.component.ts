@@ -88,6 +88,14 @@ export class SystemResponseComponent implements OnInit {
         }
     }
 
+    removeAll(): void {
+        const msg = 'Are you sure that you want to delete this item?'
+        if (confirm(this.i18n.instant(msg))) {
+            this.tests = []
+            this.saveTests()
+        }
+    }
+
     addTest(): void {
         const dialogRef = this.dialog.open(SystemResponseDialog)
         dialogRef.updateSize('70%', '90%')

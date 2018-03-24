@@ -129,5 +129,6 @@ export const LANG_FR_TRANS = {
     'Update downloaded. Restart to apply.': 'Mise à jour téléchargée Redémarrez pour appliquer.',
     'Update available.': 'Mise à jour disponible.',
     'Download': 'Télécharger',
-    'Downloading ($1/$2)': 'Téléchargement en cours ($1/$2)'
+    'Downloading ($1/$2)': 'Téléchargement en cours ($1/$2)',
+    'Remove all': 'Supprimer tout'
 }
