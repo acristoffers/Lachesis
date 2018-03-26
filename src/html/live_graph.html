@@ -64,10 +64,17 @@
 
         <mat-card id="charts" *ngIf="testData">
             <mat-card-content>
-                <mat-checkbox [(ngModel)]="syncZoom">{{ 'Sync' | translate }}</mat-checkbox>
-                <br>
-                <br>
-                <div class="chart" *ngFor="let test of testData">
+                <div class="toolbar" flex>
+                    <mat-select placeholder="{{ 'Variable' | translate }}" [(ngModel)]="selectedVars" multiple>
+                        <mat-option *ngFor="let v of testExportVariables" [value]="v.variable">
+                            {{ v.variable }}
+                        </mat-option>
+                    </mat-select>
+                    <div stretch></div>
+                    <mat-checkbox [(ngModel)]="syncZoom">{{ 'Sync' | translate }}</mat-checkbox>
+                </div>
+
+                <div class="chart" *ngFor="let test of filteredTestData()">
                     <h2>{{ test.sensor }}</h2>
                     <chart [sensor]="test.sensor" [points]="test.points" [syncZoomFunction]="syncZoomFunction"></chart>
                 </div>

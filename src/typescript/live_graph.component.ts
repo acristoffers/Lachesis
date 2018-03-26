@@ -46,6 +46,7 @@ interface ExportVariable {
 })
 export class LiveGraphComponent implements OnInit, OnDestroy {
     tests: Test[] = []
+    selectedVars: string[] = []
 
     test: Test
     testData: TestData[]
@@ -137,7 +138,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                         variable: d.sensor,
                         exportName: d.sensor,
                         export: true,
-                    }
+                    } as ExportVariable
                 })
             },
             this.httpError()
@@ -246,6 +247,10 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         for (const ev of this.testExportVariables) {
             ev.exportName = this.makeValidVariable(ev.exportName)
         }
+    }
+
+    filteredTestData(): TestData[] {
+        return _.filter(this.testData, t => _.includes(this.selectedVars, t.sensor))
     }
 
     httpError(): () => void {
