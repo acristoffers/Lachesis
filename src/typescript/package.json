@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -43,7 +43,7 @@
     "@types/electron-settings": ">=3.1.1",
     "@types/jquery": ">=3.3.1",
     "@types/lodash": ">=4.14.106",
-    "@types/node": ">=9.4.7",
+    "@types/node": ">=9.6.0",
     "css-loader": ">=0.28.11",
     "file-loader": ">=1.1.11",
     "html-loader": ">=0.5.5",
