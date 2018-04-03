@@ -249,8 +249,8 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         }
     }
 
-    filteredTestData(): TestData[] {
-        return _.filter(this.testData, t => _.includes(this.selectedVars, t.sensor))
+    filteredTestData(sensor: string): TestData[] {
+        return _.filter(this.testData, t => t.sensor == sensor)
     }
 
     httpError(): () => void {

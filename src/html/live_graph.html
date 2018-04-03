@@ -74,9 +74,9 @@
                     <mat-checkbox [(ngModel)]="syncZoom">{{ 'Sync' | translate }}</mat-checkbox>
                 </div>
 
-                <div class="chart" *ngFor="let test of filteredTestData()">
-                    <h2>{{ test.sensor }}</h2>
-                    <chart [sensor]="test.sensor" [points]="test.points" [syncZoomFunction]="syncZoomFunction"></chart>
+                <div class="chart" *ngFor="let v of this.selectedVars">
+                    <h2>{{ v }}</h2>
+                    <chart [sensor]="v" [points]="filteredTestData(v)[0].points" [syncZoomFunction]="syncZoomFunction"></chart>
                 </div>
             </mat-card-content>
         </mat-card>
