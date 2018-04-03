@@ -40,6 +40,7 @@ export class ControlDialog {
     public dialogRef: MatDialogRef<ControlComponent>,
     private hardware: HardwareService
   ) {
+    dialogRef.disableClose = true
     this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {
       const isInput = (p: PortConfiguration) => (p.type & Types.Input) > 0
 

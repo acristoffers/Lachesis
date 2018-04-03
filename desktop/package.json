@@ -38,8 +38,7 @@
       "category": "Engineering",
       "packageCategory": "productivity",
       "target": [
-        "AppImage",
-        "snap"
+        "AppImage"
       ],
       "publish": [
         "github"

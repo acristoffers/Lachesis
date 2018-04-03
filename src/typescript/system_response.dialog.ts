@@ -78,6 +78,7 @@ export class SystemResponseDialog implements OnInit {
     public dialogRef: MatDialogRef<SystemResponseComponent>,
     private service: SystemResponseService
   ) {
+    dialogRef.disableClose = true
   }
 
   ngOnInit(): void {
