@@ -63,7 +63,7 @@ app.on('ready', () => {
     })
 
     autoUpdater.on('download-progress', progress => {
-        window.webContents.send('update-progress', progress)
+        window.webContents.send('download-progress', progress)
     })
 
     autoUpdater.on('update-downloaded', info => {
