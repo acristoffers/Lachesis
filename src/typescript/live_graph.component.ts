@@ -133,6 +133,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             data => {
                 this.test = test
                 this.testData = data
+                this.selectedVars = []
                 this.testExportVariables = _.map(this.testData, d => {
                     return {
                         variable: d.sensor,
