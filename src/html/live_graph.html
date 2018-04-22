@@ -70,6 +70,8 @@
                             {{ v.variable }}
                         </mat-option>
                     </mat-select>
+                    <button mat-raised-button (click)="selectAll()">{{ 'Select All' | translate }}</button>
+                    <button mat-raised-button (click)="selectNone()">{{ 'Select None' | translate }}</button>
                     <div stretch></div>
                     <mat-checkbox [(ngModel)]="syncZoom">{{ 'Sync' | translate }}</mat-checkbox>
                 </div>

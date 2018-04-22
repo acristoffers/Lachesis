@@ -276,6 +276,14 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         return new Date(date).toLocaleString(this.i18n.currentLang, options)
     }
 
+    selectAll(): void {
+        this.selectedVars = _.map(this.testExportVariables, t => t.variable)
+    }
+
+    selectNone(): void {
+        this.selectedVars = []
+    }
+
     syncZoomFunction = (e: ChartEvent) => {
         if (this.syncZoom) {
             this.charts.forEach(chart => {
