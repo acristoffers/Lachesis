@@ -57,6 +57,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     private timer: Observable<number>
     private timerSubscription: Subscription
     private _syncZoom: boolean = false
+    private processData: boolean = true
 
     set syncZoom(zoom: boolean) {
         this._syncZoom = zoom
@@ -102,24 +103,28 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                 this.httpError()
             )
 
-            if (this.test != null && this.testData != null) {
-                const testName = this.test.name
-                const testDate = this.test.date
-                const testSkip = this.testData[0].points.length * this.testData.length
-                this.lg.fetchTest(testName, testDate, testSkip).subscribe(
-                    data => {
-                        if (data.length > 0) {
-                            const sensors = _.map(data, 'sensor')
-                            for (const sensor in sensors) {
-                                const oldPoints = this.testData[sensor].points
-                                const newPoints = data[sensor].points
-                                const ps = oldPoints.concat(newPoints)
-                                this.testData[sensor].points = ps
+            if (this.processData) {
+                if (this.test != null && this.testData != null) {
+                    this.processData = false
+                    const testName = this.test.name
+                    const testDate = this.test.date
+                    const testSkip = this.testData[0].points.length * this.testData.length
+                    this.lg.fetchTest(testName, testDate, testSkip).subscribe(
+                        data => {
+                            this.processData = true
+                            if (data.length > 0) {
+                                const sensors = _.map(data, 'sensor')
+                                for (const sensor in sensors) {
+                                    const oldPoints = this.testData[sensor].points
+                                    const newPoints = data[sensor].points
+                                    const ps = oldPoints.concat(newPoints)
+                                    this.testData[sensor].points = ps
+                                }
                             }
-                        }
-                    },
-                    this.httpError()
-                )
+                        },
+                        this.httpError()
+                    )
+                }
             }
         })
     }
@@ -256,6 +261,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     httpError(): () => void {
         return () => {
+            this.processData = true
             const str = 'Error when connecting. Check address and try again.'
             const message = this.i18n.instant(str)
             this.toast.open(message, null, { duration: 2000 })
