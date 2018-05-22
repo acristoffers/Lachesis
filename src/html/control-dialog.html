@@ -1,16 +1,16 @@
 <mat-card-title>{{ 'Add/Edit Controller' | translate }}</mat-card-title>
 <mat-card-content id="control-dialog">
-  <mat-input-container class="width-100">
+  <mat-form-field class="width-100">
     <input matInput [placeholder]="'Name' | translate" [(ngModel)]="controller.name">
-  </mat-input-container>
+  </mat-form-field>
 
-  <mat-input-container class="width-100">
+  <mat-form-field class="width-100">
     <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="controller.tau">
-  </mat-input-container>
+  </mat-form-field>
 
-  <mat-input-container class="width-100">
+  <mat-form-field class="width-100">
     <input matInput [placeholder]="'Total Run Time' | translate" [(ngModel)]="controller.runTime">
-  </mat-input-container>
+  </mat-form-field>
 
   <h1>{{ 'Inputs' | translate }}</h1>
   <span>{{ 'For better performance, not all inputs are scanned. Choose the ones you need below.' | translate }}</span>

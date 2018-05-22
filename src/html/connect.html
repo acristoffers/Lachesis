@@ -5,13 +5,13 @@
 
     <mat-card *ngIf="!isLoggedIn()">
       <mat-card-content>
-        <mat-input-container class="width-100">
+        <mat-form-field class="width-100">
           <input matInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress" (keydown.enter)="connect()">
-        </mat-input-container>
-        <mat-input-container class="width-100">
+        </mat-form-field>
+        <mat-form-field class="width-100">
           <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="connectionPassword" (keydown.enter)="connect()"
             autofocus>
-        </mat-input-container>
+        </mat-form-field>
         <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="connect()">{{ 'Connect' | translate }}</button>
       </mat-card-content>
     </mat-card>
@@ -32,12 +32,12 @@
         {{ 'Change Password' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <mat-input-container class="width-100">
+        <mat-form-field class="width-100">
           <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="newPassword">
-        </mat-input-container>
-        <mat-input-container class="width-100">
+        </mat-form-field>
+        <mat-form-field class="width-100">
           <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="newPasswordConfirmation">
-        </mat-input-container>
+        </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
         <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="setPassword()">{{ 'Apply' | translate }}</button>

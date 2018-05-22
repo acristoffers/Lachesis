@@ -25,6 +25,7 @@ import * as _ from 'lodash'
 import { Injectable } from '@angular/core'
 import { Http, Response, Headers, RequestOptions, ResponseContentType } from '@angular/http'
 import { Observable } from 'rxjs'
+import { map } from "rxjs/operators"
 import { SharedData } from './shared_data.service'
 import { APIBase } from './api_base'
 import { DataPoint } from './chart.service'
@@ -68,7 +69,7 @@ export class LiveGraphService extends APIBase {
             skip: skip
         }
 
-        return this.doPost(url, data).map(rs => {
+        return this.doPost(url, data).pipe(map(rs => {
             const sensors = _.uniq(_.map(rs, 'sensor')) as string[]
             return _.map(sensors, s => {
                 return {
@@ -81,7 +82,7 @@ export class LiveGraphService extends APIBase {
                     })
                 }
             })
-        })
+        }))
     }
 
     downloadMAT(test: Test, variables: VariableRename): Observable<Response> {

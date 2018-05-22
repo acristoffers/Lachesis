@@ -7,24 +7,24 @@
         <h2>{{ 'Curve data' | translate }}</h2>
 
         <div default-padding>
-            <mat-input-container class="width-100">
+            <mat-form-field class="width-100">
                 <input matInput placeholder="V0" [(ngModel)]="v0" (blur)="plotPoints()" type="number">
-            </mat-input-container>
-            <mat-input-container class="width-100">
+            </mat-form-field>
+            <mat-form-field class="width-100">
                 <input matInput placeholder="∆V1" [(ngModel)]="dv1" (blur)="plotPoints()" type="number">
-            </mat-input-container>
-            <mat-input-container class="width-100">
+            </mat-form-field>
+            <mat-form-field class="width-100">
                 <input matInput placeholder="∆V2" [(ngModel)]="dv2" (blur)="plotPoints()" type="number">
-            </mat-input-container>
-            <mat-input-container class="width-100">
+            </mat-form-field>
+            <mat-form-field class="width-100">
                 <input matInput [placeholder]="'T0 (seconds)' | translate" [(ngModel)]="t0" (blur)="plotPoints()" type="number">
-            </mat-input-container>
-            <mat-input-container class="width-100">
+            </mat-form-field>
+            <mat-form-field class="width-100">
                 <input matInput [placeholder]="'T1 (seconds)' | translate" [(ngModel)]="t1" (blur)="plotPoints()" type="number">
-            </mat-input-container>
-            <mat-input-container class="width-100">
+            </mat-form-field>
+            <mat-form-field class="width-100">
                 <input matInput [placeholder]="'T2 (seconds)' | translate" [(ngModel)]="t2" (blur)="plotPoints()" type="number">
-            </mat-input-container>
+            </mat-form-field>
         </div>
 
         <h2>{{ 'Input/Output Configuration' | translate }}</h2>
@@ -47,9 +47,9 @@
 
         <h3>{{ 'Log Rate' | translate }}</h3>
         <div default-padding>
-            <mat-input-container class="width-100">
+            <mat-form-field class="width-100">
                 <input matInput [placeholder]="'Log Rate (seconds)' | translate" [(ngModel)]="test.logRate" type="number">
-            </mat-input-container>
+            </mat-form-field>
         </div>
 
         <h3>{{ 'Fixed outputs' | translate }}</h3>
@@ -65,9 +65,9 @@
                             </mat-select>
                         </td>
                         <td width-15>
-                            <mat-input-container class="width-100">
+                            <mat-form-field class="width-100">
                                 <input matInput [placeholder]="'Value' | translate" [(ngModel)]="output.value" type="number">
-                            </mat-input-container>
+                            </mat-form-field>
                         </td>
                         <td width-15>
                             <button mat-raised-button color="warn" (click)="removeFixedOutput(output)">{{ 'Remove' | translate }}</button>
@@ -91,9 +91,9 @@
                             </mat-select>
                         </td>
                         <td width-15>
-                            <mat-input-container class="width-100">
+                            <mat-form-field class="width-100">
                                 <input matInput [placeholder]="'Value' | translate" [(ngModel)]="output.value" type="number">
-                            </mat-input-container>
+                            </mat-form-field>
                         </td>
                         <td width-15>
                             <button mat-raised-button color="warn" (click)="removeAfterOutput(output)">{{ 'Remove' | translate }}</button>

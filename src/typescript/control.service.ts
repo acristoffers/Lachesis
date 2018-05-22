@@ -24,6 +24,7 @@ import * as _ from 'lodash'
 import { Injectable } from '@angular/core'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { SharedData } from './shared_data.service'
 import { APIBase } from './api_base'
 import { Controller } from './control.component'
@@ -40,7 +41,7 @@ export class ControlService extends APIBase {
     load(): Observable<Controller[]> {
         const path = 'controllers'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
-        return this.doGet(url).map((cs: Controller[]) => _.sortBy(cs, 'name'))
+        return this.doGet(url).pipe(map((cs: Controller[]) => _.sortBy(cs, 'name')))
     }
 
     save(cs: Controller[]): Observable<any> {

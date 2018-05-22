@@ -24,13 +24,12 @@ import * as _ from 'lodash'
 import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
 import { Headers, Http, RequestOptions, Response } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
-import { timer } from 'rxjs/observable/timer'
-import { Subscription } from 'rxjs/Rx'
 import { TranslateService } from './translation/translation.service'
 import { Chart } from './chart.service'
 import { LiveGraphService, Test, TestData, VariableRename } from './live_graph.service'
 import { SharedData } from './shared_data.service'
-import { Observable } from 'rxjs'
+import { Observable, Subscription, timer } from 'rxjs'
+import { map } from "rxjs/operators"
 import { ChartComponent } from './chart.component'
 import { ChartEvent } from 'canvasjs'
 
@@ -90,7 +89,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             this.httpError()
         )
 
-        this.timer = Observable.timer(1000, 1000)
+        this.timer = timer(1000, 1000)
         this.timerSubscription = this.timer.subscribe(() => {
             this.lg.listTests().subscribe(
                 tests => {

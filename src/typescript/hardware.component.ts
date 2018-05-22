@@ -23,6 +23,7 @@ THE SOFTWARE.
 import * as _ from 'lodash'
 
 import { Observable } from 'rxjs'
+import { map, flatMap } from "rxjs/operators"
 import { Component, OnInit, Output, Input } from '@angular/core'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
@@ -66,17 +67,17 @@ export class HardwareComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.hardwareService.listDrivers().flatMap((drivers: Driver[]) => {
+        this.hardwareService.listDrivers().pipe(flatMap((drivers: Driver[]) => {
             this.availableDrivers = drivers
             return this.hardwareService.getConfiguration()
-        }).map(([driver, ports, calibrations, interlocks]) => {
+        })).pipe(map(([driver, ports, calibrations, interlocks]) => {
             driver = driver as Driver
             this.selectedDriver = this.findDriverByName(driver.name)
             this.selectedDriver.setup_arguments = driver.setup_arguments
             this.ports = ports as PortConfiguration[]
             this.calibrations = calibrations as Calibration[]
             this.interlocks = interlocks as Interlock[]
-        }).subscribe(() => { }, this.httpError())
+        })).subscribe(() => { }, this.httpError())
     }
 
     httpError(): () => void {

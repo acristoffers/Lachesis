@@ -1,8 +1,8 @@
 <mat-card-title>{{ 'Add/Edit Test' | translate }}</mat-card-title>
 <mat-card-content>
-  <mat-input-container class="width-100">
+  <mat-form-field class="width-100">
     <input matInput [placeholder]="'Name' | translate" [(ngModel)]="test.name">
-  </mat-input-container>
+  </mat-form-field>
   <mat-tab-group [(selectedIndex)]="selectedTabIndex" [@.disabled]="true">
     <mat-tab label="{{ 'Step' | translate }}">
       <step-response *ngIf="test.type == 'step'" [(test)]="test"></step-response>

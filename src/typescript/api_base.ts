@@ -23,8 +23,7 @@ THE SOFTWARE.
 import { SharedData } from './shared_data.service'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/mergeMap'
+import { map, mergeMap } from "rxjs/operators"
 
 export class APIBase {
     protected constructor(
@@ -40,7 +39,7 @@ export class APIBase {
         })
         const options = new RequestOptions({ headers: headers })
         const observable = this.http.get(url, options)
-        return observable.map((res: Response) => res.json())
+        return observable.pipe(map((res: Response) => res.json()))
     }
 
     protected doPost(url: string, data: any, type: string = 'application/json'): Observable<any> {
@@ -51,6 +50,6 @@ export class APIBase {
         })
         const options = new RequestOptions({ headers: headers })
         const observable = this.http.post(url, data, options)
-        return observable.map((res: Response) => res.json())
+        return observable.pipe(map((res: Response) => res.json()))
     }
 }

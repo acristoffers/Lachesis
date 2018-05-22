@@ -49,9 +49,9 @@
                                     <mat-checkbox [(ngModel)]="test.export">{{ test.variable }}</mat-checkbox>
                                 </td>
                                 <td>
-                                    <mat-input-container class="width-100">
+                                    <mat-form-field class="width-100">
                                         <input matInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName" (blur)="validateVariable()">
-                                    </mat-input-container>
+                                    </mat-form-field>
                                 </td>
                             </tr>
                         </tbody>

@@ -23,6 +23,7 @@ THE SOFTWARE.
 import { Injectable } from '@angular/core'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
+import { map } from "rxjs/operators"
 import { SharedData } from './shared_data.service'
 import { APIBase } from './api_base'
 
@@ -110,13 +111,13 @@ export class HardwareService extends APIBase {
         data.ports = ports
         data.calibrations = calibrations
         data.interlocks = interlocks
-        return this.doPost(url, data).map(response => null)
+        return this.doPost(url, data).pipe(map(response => null))
     }
 
     getConfiguration(): Observable<[Driver, PortConfiguration[], Calibration[], Interlock[]]> {
         const path = 'hardware/configuration'
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
-        return this.doGet(url).map(res => {
+        return this.doGet(url).pipe(map(res => {
             res = res || { ports: [] }
             const calibrations: Calibration[] = res.calibrations || []
             delete res.calibrations
@@ -126,6 +127,6 @@ export class HardwareService extends APIBase {
             delete res.interlocks
             const driver: Driver = res || {}
             return [driver, ports, calibrations, interlocks] as [Driver, PortConfiguration[], Calibration[], Interlock[]]
-        })
+        }))
     }
 }

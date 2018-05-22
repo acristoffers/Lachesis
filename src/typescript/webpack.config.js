@@ -26,6 +26,7 @@ const ClosureCompilerPlugin = require('webpack-closure-compiler')
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin
 
 module.exports = {
+  mode: 'production',
   entry: {
     index: './main.ts'
   },

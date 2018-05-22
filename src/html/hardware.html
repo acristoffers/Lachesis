@@ -21,9 +21,9 @@
         {{ 'Setup' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <mat-input-container class="width-100" class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
+        <mat-form-field class="width-100" class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
           <input matInput [placeholder]="argument.name" [value]=" argument.default_value | removeUndefined " [(ngModel)]="argument.value">
-        </mat-input-container>
+        </mat-form-field>
       </mat-card-content>
     </mat-card>
 
@@ -54,9 +54,9 @@
           <tbody>
             <tr *ngFor="let port of ports" inline-form>
               <td class="port-name">
-                <mat-input-container class="width-100" *ngIf="!selectedDriver.ports.length">
+                <mat-form-field class="width-100" *ngIf="!selectedDriver.ports.length">
                   <input matInput [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
-                </mat-input-container>
+                </mat-form-field>
                 <mat-select class="width-100" *ngIf="!!selectedDriver.ports.length" [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
                   <mat-option *ngFor="let driverPort of selectedDriver.ports" [value]="driverPort.id">
                     {{ driverPort.name }}
@@ -64,9 +64,9 @@
                 </mat-select>
               </td>
               <td class="port-alias">
-                <mat-input-container class="width-100">
+                <mat-form-field class="width-100">
                   <input matInput [placeholder]="'Port Alias' | translate" [(ngModel)]="port.alias">
-                </mat-input-container>
+                </mat-form-field>
               </td>
               <td class="port-type">
                 <mat-select class="width-100" [placeholder]="'Port Type' | translate" [(ngModel)]="port.type">
@@ -76,9 +76,9 @@
                 </mat-select>
               </td>
               <td class="port-value">
-                <mat-input-container class="width-100">
+                <mat-form-field class="width-100">
                   <input matInput [placeholder]="'Initial Value' | translate" [(ngModel)]="port.defaultValue">
-                </mat-input-container>
+                </mat-form-field>
               </td>
               <td class="port-id">
                 <span>{{ port.id }}</span>
@@ -123,14 +123,14 @@
                 </mat-select>
               </td>
               <td>
-                <mat-input-container class="width-100">
+                <mat-form-field class="width-100">
                   <input matInput [placeholder]="'Alias' | translate" [(ngModel)]="calibration.alias">
-                </mat-input-container>
+                </mat-form-field>
               </td>
               <td class="calibration-formula">
-                <mat-input-container class="width-100">
+                <mat-form-field class="width-100">
                   <input matInput [placeholder]="'Static Calibration' | translate" [(ngModel)]="calibration.formula">
-                </mat-input-container>
+                </mat-form-field>
               </td>
               <td>
                 <button mat-raised-button color="warn" (click)="removeCalibration(calibration)">{{ 'Remove' | translate }}</button>
@@ -175,9 +175,9 @@
                 </mat-select>
               </td>
               <td>
-                <mat-input-container stretch>
+                <mat-form-field stretch>
                   <input matInput [placeholder]="'Expression' | translate" [(ngModel)]="interlock.expression">
-                </mat-input-container>
+                </mat-form-field>
               </td>
               <td>
                 <mat-select class="width-100" [placeholder]="'Output' | translate" [(ngModel)]="interlock.actuator">
@@ -187,9 +187,9 @@
                 </mat-select>
               </td>
               <td>
-                <mat-input-container class="width-100">
+                <mat-form-field class="width-100">
                   <input matInput [placeholder]="'Value' | translate" [(ngModel)]="interlock.actuatorValue">
-                </mat-input-container>
+                </mat-form-field>
               </td>
               <td>
                 <button mat-raised-button color="warn" (click)="removeInterlock(interlock)">{{ 'Remove' | translate }}</button>
