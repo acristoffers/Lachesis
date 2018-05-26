@@ -12,11 +12,12 @@
                 <mat-list>
                     <mat-list-item *ngFor="let test of tests">
                         <div flex>
-                            <div>{{ test.name }} - {{ presentType(test.type) | translate }}</div>
+                            <div class="test-title">{{ test.name }} - {{ presentType(test.type) | translate }}</div>
                             <div stretch></div>
                             <div>
                                 <button mat-raised-button color="primary" (click)="runTest(test)">{{ 'Run' | translate }}</button>
                                 <button mat-raised-button (click)="editTest(test)">{{ 'Edit' | translate }}</button>
+                                <button mat-raised-button (click)="clone(test)">{{ 'Clone' | translate }}</button>
                                 <button mat-raised-button color="warn" (click)="removeTest(test)">{{ 'Remove' | translate }}</button>
                             </div>
                         </div>

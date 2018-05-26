@@ -13,7 +13,7 @@
                     <mat-list>
                         <mat-list-item *ngFor="let test of tests">
                             <div flex>
-                                <div>
+                                <div class="test-name">
                                     <mat-icon *ngIf="test.running">timeline</mat-icon>
                                     <span>{{ test.name }}</span> -
                                     <span>{{ formatDate(test.date) }}</span>

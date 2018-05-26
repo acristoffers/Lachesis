@@ -108,6 +108,15 @@ export class SystemResponseComponent implements OnInit {
         })
     }
 
+    clone(test: ResponseTest): void {
+        const newTest = _.assign({}, test, {
+            id: _.reduce(this.tests, (a, b) => _.max([a, b.id]), 0) + 1,
+            name: `${test.name} (Copy)`
+        })
+        this.tests.push(newTest)
+        this.saveTests()
+    }
+
     httpError(): () => void {
         return () => {
             const str = 'Error when connecting. Check address and try again.'

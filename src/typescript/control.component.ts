@@ -104,6 +104,17 @@ export class ControlComponent implements OnInit {
         })
     }
 
+    clone(controller: Controller): void {
+        const newController = _.assign({}, controller, {
+            id: _.reduce(this.controllers, (a, b) => _.max([a, b.id]), 0) + 1,
+            name: `${controller.name} (Copy)`
+        })
+        this.controllers.push(newController)
+        this.service.save(this.controllers).subscribe(() => {
+            this.service.load().subscribe(cs => this.controllers = cs)
+        })
+    }
+
     remove(controller: Controller): void {
         const msg = 'Are you sure that you want to delete this item?'
         const r = confirm(this.i18n.instant(msg))
@@ -124,13 +135,13 @@ export class ControlComponent implements OnInit {
         }
     }
 
-    run(controller: Controller) {
+    run(controller: Controller): void {
         this.service.run(controller).subscribe(() => {
             this.router.navigate(['live-graph'])
         })
     }
 
-    stop() {
+    stop(): void {
         this.service.stopTest().subscribe()
     }
 

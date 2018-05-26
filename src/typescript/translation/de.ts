@@ -137,5 +137,6 @@ export const LANG_DE_TRANS = {
     'Backup or restore the whole database.': 'Sichern oder wiederherstellen die ganze Datenbank',
     'This can take some time.': 'Dies kann lang dauern.',
     'Select All': 'Alle auswählen',
-    'Select None': 'Nichts auswählen'
+    'Select None': 'Nichts auswählen',
+    'Clone': 'Klonen'
 }
