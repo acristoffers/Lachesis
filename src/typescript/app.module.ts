@@ -72,7 +72,7 @@ import { LiveGraphComponent } from './live_graph.component'
 import { ChartComponent } from './chart.component'
 import { ControlDialog } from './control.dialog'
 import { ControlService } from './control.service'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
     imports: [
