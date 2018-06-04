@@ -129,7 +129,7 @@ export const LANG_DE_TRANS = {
     'Update downloaded. Restart to apply.': 'Aktualisierung heruntergeladen. Wiederstarten um zu installieren.',
     'Update available.': 'Aktualisierung verfügbar.',
     'Download': 'Herunterladen',
-    'Downloading ($1/$2)': 'Wird heruntergeladen ($1/$2)',
+    'Downloading ($1)': 'Wird heruntergeladen ($1)',
     'Remove all': 'Alle löschen',
     'Backup/Restore': 'Sichern/Wiederherstellen',
     'Backup': 'Wiederherstellen',

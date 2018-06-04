@@ -129,7 +129,7 @@ export const LANG_PT_TRANS = {
     'Update downloaded. Restart to apply.': 'Atualização baixada. Reinicie para aplicar.',
     'Update available.': 'Atualização disponível',
     'Download': 'Baixar',
-    'Downloading ($1/$2)': 'Baixando ($1/$2)',
+    'Downloading ($1)': 'Baixando ($1)',
     'Remove all': 'Remover todos',
     'Backup/Restore': 'Salvar/Restaurar',
     'Backup': 'Salvar',

@@ -70,7 +70,6 @@ export class AppComponent implements OnInit {
             this.zone.run(() => {
                 const msg = this.translate.instant('Update downloaded. Restart to apply.')
                 this.snackBar.open(msg, 'Restart', {
-                    duration: 60000,
                 }).onAction().subscribe(() => {
                     ipcRenderer.send('restart', null)
                 })
@@ -89,12 +88,10 @@ export class AppComponent implements OnInit {
             })
         })
 
-        ipcRenderer.on('download-progress', (download: any) => {
+        ipcRenderer.on('download-progress', (_: any, download: any) => {
             this.zone.run(() => {
-                const tmp = this.translate.instant('Downloading ($1/$2)')
-                const msg = tmp
-                    .replace('$1', download.transferred)
-                    .replace('$2', download.total)
+                const tmp = this.translate.instant('Downloading ($1)')
+                const msg = tmp.replace('$1', download.percent.toFixed(0))
                 this.snackBar.open(msg, '', {
                     duration: 2000,
                 })
