@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { app, shell, BrowserWindow, Menu, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, Menu, ipcMain, nativeImage } from 'electron'
 import { autoUpdater } from "electron-updater"
 import * as log from 'electron-log'
 import { CancellationToken } from 'builder-util-runtime/out/CancellationToken';
@@ -31,7 +31,7 @@ const token = new CancellationToken
 function createWindow(): Electron.BrowserWindow {
     const win = new BrowserWindow({
         show: false,
-        icon: `file://${__dirname}/imgs/icon.png`
+        icon: nativeImage.createFromPath(`file://${__dirname}/imgs/icon.png`)
     })
     win.loadURL(`file://${__dirname}/index.html`)
     win.on('closed', () => {
