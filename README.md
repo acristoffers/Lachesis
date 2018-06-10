@@ -4,7 +4,7 @@ Lachesis is a frontend for [moirai](https://github.com/acristoffers/moirai). It
 is developed as part of my scientific initiation project, named
 _Plataformas de baixo custo para controle de processos_ (low-cost platform for
 process control), developed at CEFET-MG (Brazil) under the supervision of Prof.
-Dr. Valter Leite. The project was developed through a FAPEMIG scholaship.
+Dr. Valter Leite. The project was developed through a FAPEMIG scholarship.
 
 This application allows you to configure the hardware, execute system response
 tests and run controllers with an easy to use interface. The used input and
