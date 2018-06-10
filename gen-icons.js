@@ -34,42 +34,39 @@ gen_desktop_icons = function () {
   var cmd, i, input, input2, j, len, len1, name, opts, out1x, out2x, output, outputs, ref, ref1, size, sizes, x
   console.log('Generating desktop icons')
   input = 'desktop/www/imgs/icon.svg'
-  if (process.platform === 'darwin') {
-    fs.mkdirsSync('desktop/build/icon.iconset')
-    sizes = [16, 32, 128, 256, 512]
-    out1x = (function () {
-      var i, len, results
-      results = []
-      for (i = 0, len = sizes.length; i < len; i++) {
-        size = sizes[i]
-        results.push([size, 'icon_' + size + 'x' + size + '.png'])
-      }
-      return results
-    })()
-    out2x = (function () {
-      var i, len, results
-      results = []
-      for (i = 0, len = sizes.length; i < len; i++) {
-        size = sizes[i]
-        results.push([size * 2, 'icon_' + size + 'x' + size + '@2x.png'])
-      }
-      return results
-    })()
-    outputs = out1x.concat(out2x)
-    input2 = 'desktop/www/imgs/icon.png'
-    execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)
-    for (i = 0, len = outputs.length; i < len; i++) {
-      ref = outputs[i], size = ref[0], name = ref[1]
-      output = 'desktop/build/icon.iconset/' + name
-      execute('convert -resize ' + size + 'x' + size + ' ' + input2 + ' ' + output)
+  fs.mkdirsSync('desktop/build/icon.iconset')
+  sizes = [16, 32, 128, 256, 512, 1024]
+  out1x = (function () {
+    var i, len, results
+    results = []
+    for (i = 0, len = sizes.length; i < len; i++) {
+      size = sizes[i]
+      results.push([size, 'icon_' + size + 'x' + size + '.png'])
     }
-    execute('iconutil -c icns desktop/build/icon.iconset')
-    const rm = ['desktop/build/icon.iconset']
-    _.map(rm, fs.removeSync)
-  }
+    return results
+  })()
+  out2x = (function () {
+    var i, len, results
+    results = []
+    for (i = 0, len = sizes.length; i < len; i++) {
+      size = sizes[i]
+      results.push([size * 2, 'icon_' + size + 'x' + size + '@2x.png'])
+    }
+    return results
+  })()
+  outputs = out1x.concat(out2x)
+  input2 = 'desktop/www/imgs/icon.png'
   execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)
-  output = 'desktop/build/icon.png'
-  execute('convert -background none -resize 1024x1024 ' + input + ' ' + output)
+  for (i = 0, len = outputs.length; i < len; i++) {
+    ref = outputs[i], size = ref[0], name = ref[1]
+    output = 'desktop/build/icon.iconset/' + name
+    execute('convert -resize ' + size + 'x' + size + ' ' + input2 + ' ' + output)
+  }
+  const pngs = _.join(_.map(out1x, x => 'desktop/build/icon.iconset/' + x[1]), ' ')
+  execute('png2icns desktop/build/icon.icns ' + pngs)
+  execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)
+  // output = 'desktop/build/icon.png'
+  // execute('convert -background none -resize 1024x1024 ' + input + ' ' + output)
   sizes = [16, 24, 32, 48, 64, 128, 256].join(',')
   output = 'desktop/build/icon.ico'
   opts = '-define icon:auto-resize=' + sizes + ' -compress zip'
