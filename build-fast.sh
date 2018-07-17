@@ -43,8 +43,8 @@ node html-minifier.js
 echo ""
 echo "Building root and copying dependencies"
 echo ""
-cp -r src/imgs desktop/www/imgs
-cp -r src/fonts desktop/www/fonts
-cp -r src/typescript/dist desktop/www/css
+cp -r src/imgs desktop/www/
+cp -r src/fonts desktop/www/
+cp -r src/typescript/dist/. desktop/www/css
 touch src/typescript/dist
 rm -r src/typescript/dist

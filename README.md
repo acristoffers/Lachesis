@@ -36,6 +36,13 @@ electron and node runs. The best way to build this project is to install node
 and yarn and execute `yarn dist` in the project root. This will install all
 dependencies and build the project into desktop/dist.
 
+## Screenshots
+
+![Hardware configuration form](/screenshots/Figure1.png)
+![Open-loop (System Response) form](/screenshots/Figure2.png)
+![Closed-loop (System Control) form](/screenshots/Figure3.png)
+![Live graphics and data export](/screenshots/Figure4.png)
+
 ## License
 
 Copyright (c) 2016 Álan Crístoffer
