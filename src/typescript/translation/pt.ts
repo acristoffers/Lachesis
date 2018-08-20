@@ -111,7 +111,7 @@ export const LANG_PT_TRANS = {
     'Data Points': 'Pontos',
     'Supported formats: CSV and JSON': 'Formatos suportados: CSV e JSON',
     'CSV: x in first column, y in second. Use csvwrite("data.csv", transpose([x; y])) in MATLAB/Octave to generate such file from x and y variables.': 'CSV: x na primeira coluna, y na segunda. Use csvwrite("data.csv", transpose([x; y])) no MATLAB/Octave para gerar tal arquivo das variáveis x e y.',
-    'Sampling Time': 'Tempo de amostra',
+    'Sampling Time': 'Tempo de amostragem',
     'Total Run Time': 'Tempo total de execução',
     'Add/Edit Controller': 'Adicionar/Editar controlador',
     'Inputs': 'Entradas',
@@ -138,5 +138,6 @@ export const LANG_PT_TRANS = {
     'This can take some time.': 'Isto pode levar muito tempo.',
     'Select All': 'Marcar todas',
     'Select None': 'Desmarcar todas',
-    'Clone': 'Clonar'
+    'Clone': 'Clonar',
+    'Last error: ': 'Último erro: '
 }

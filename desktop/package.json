@@ -8,9 +8,13 @@
     "email": "acristoffers@gmail.com",
     "url": "https://github.com/acristoffers/Lachesis"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/acristoffers/Lachesis.git"
+  },
   "devDependencies": {
-    "electron": ">=2.0.6",
-    "electron-builder": ">=20.26.1"
+    "electron": ">=2.0.7",
+    "electron-builder": ">=20.28.1"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",

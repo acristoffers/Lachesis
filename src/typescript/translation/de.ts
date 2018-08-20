@@ -138,5 +138,6 @@ export const LANG_DE_TRANS = {
     'This can take some time.': 'Dies kann lang dauern.',
     'Select All': 'Alle auswählen',
     'Select None': 'Keine auswählen',
-    'Clone': 'Klonen'
+    'Clone': 'Klonen',
+    'Last error: ': 'Letzte Fehler: '
 }

@@ -22,16 +22,14 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
-import { Headers, Http, RequestOptions, Response } from '@angular/http'
+import { Http } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { Chart } from './chart.service'
 import { LiveGraphService, Test, TestData, VariableRename } from './live_graph.service'
-import { SharedData } from './shared_data.service'
 import { Observable, Subscription, timer } from 'rxjs'
-import { map } from "rxjs/operators"
 import { ChartComponent } from './chart.component'
 import { ChartEvent } from 'canvasjs'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 interface ExportVariable {
     variable: string
@@ -46,7 +44,7 @@ interface ExportVariable {
 export class LiveGraphComponent implements OnInit, OnDestroy {
     tests: Test[] = []
     selectedVars: string[] = []
-
+    lastError?: SafeHtml = null
     test: Test
     testData: TestData[]
     testExportVariables: ExportVariable[]
@@ -78,6 +76,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         private toast: MatSnackBar,
         private i18n: TranslateService,
         private lg: LiveGraphService,
+        private sanitizer: DomSanitizer,
     ) {
     }
 
@@ -91,6 +90,11 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
         this.timer = timer(1000, 1000)
         this.timerSubscription = this.timer.subscribe(() => {
+            this.lg.lastError().subscribe(
+                error => this.lastError = this.sanitizer.bypassSecurityTrustHtml(error.replace("\n", "<br>")),
+                () => this.lastError = null
+            )
+
             this.lg.listTests().subscribe(
                 tests => {
                     const ts = _.reverse(_.sortBy(tests, t => new Date(t.date)))

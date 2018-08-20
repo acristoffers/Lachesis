@@ -144,4 +144,10 @@ export class LiveGraphService extends APIBase {
         const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
         return this.doGet(url)
     }
+
+    lastError(): Observable<string> {
+        const path = 'last_error'
+        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+        return this.doGet(url).pipe(map((error: any) => error.message))
+    }
 }

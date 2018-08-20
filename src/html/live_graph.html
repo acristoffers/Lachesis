@@ -30,6 +30,13 @@
             </mat-card-content>
         </mat-card>
 
+        <mat-card *ngIf="lastError">
+            <mat-card-content>
+                <b>{{ 'Last error: ' | translate }}</b>
+                <span [innerHtml]="lastError"></span>
+            </mat-card-content>
+        </mat-card>
+
         <mat-card id="test-data" *ngIf="testExportVariables && !test.running">
             <mat-card-title>
                 {{ 'Points' | translate }}
