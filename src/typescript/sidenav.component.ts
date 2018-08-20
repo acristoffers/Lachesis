@@ -21,7 +21,6 @@ THE SOFTWARE.
 */
 
 import { Component } from '@angular/core'
-import { TranslateService } from './translation'
 import { SharedData } from './shared_data.service'
 
 @Component({
@@ -29,7 +28,7 @@ import { SharedData } from './shared_data.service'
     templateUrl: '../html/sidenav.html'
 })
 export class SidenavComponent {
-    constructor(private translate: TranslateService) {
+    constructor() {
     }
 
     isLoggedIn(): boolean {

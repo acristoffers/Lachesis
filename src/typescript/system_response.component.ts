@@ -26,7 +26,6 @@ import { MatSnackBar, MatDialog } from '@angular/material'
 import { Router } from '@angular/router'
 import { TranslateService } from './translation/translation.service'
 import { SystemResponseService, ResponseTest } from './system_response.service'
-import { HardwareService } from './hardware.service'
 import { SystemResponseDialog } from './system_response.dialog'
 
 @Component({
@@ -40,7 +39,6 @@ export class SystemResponseComponent implements OnInit {
         private toast: MatSnackBar,
         private i18n: TranslateService,
         private sr: SystemResponseService,
-        private hardware: HardwareService,
         private dialog: MatDialog,
         private router: Router
     ) { }

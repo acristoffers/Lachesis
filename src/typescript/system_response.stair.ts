@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Component, Input, Output, EventEmitter } from '@angular/core'
-import { Chart, DataPoint } from './chart.service'
+import { Chart } from './chart.service'
 import { SystemResponseService, ResponseTest, PortValue } from './system_response.service'
 import { HardwareService, PortConfiguration, Types } from './hardware.service'
 

@@ -22,10 +22,9 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Component, OnInit } from '@angular/core'
-import { Http, Response, RequestOptions, Headers } from '@angular/http'
+import { Http } from '@angular/http'
 import { MatSnackBar, MatDialog } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { SharedData } from './shared_data.service'
 import { ControlDialog } from './control.dialog'
 import { ControlService } from './control.service'
 import { Router } from '@angular/router'

@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { MatDialogRef } from '@angular/material'
 import { ControlComponent, Controller } from './control.component'
 import { HardwareService, PortConfiguration, Types } from './hardware.service'

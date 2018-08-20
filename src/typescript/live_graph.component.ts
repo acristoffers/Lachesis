@@ -22,7 +22,6 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
-import { Http } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { LiveGraphService, Test, TestData, VariableRename } from './live_graph.service'
@@ -72,7 +71,6 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     @ViewChildren(ChartComponent) charts: QueryList<ChartComponent>
 
     constructor(
-        private http: Http,
         private toast: MatSnackBar,
         private i18n: TranslateService,
         private lg: LiveGraphService,

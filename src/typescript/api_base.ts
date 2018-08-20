@@ -23,7 +23,7 @@ THE SOFTWARE.
 import { SharedData } from './shared_data.service'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
-import { map, mergeMap } from "rxjs/operators"
+import { map } from "rxjs/operators"
 
 export class APIBase {
     protected constructor(

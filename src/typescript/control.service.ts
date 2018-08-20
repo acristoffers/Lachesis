@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 import { Injectable } from '@angular/core'
-import { Http, Response, Headers, RequestOptions } from '@angular/http'
+import { Http } from '@angular/http'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { SharedData } from './shared_data.service'

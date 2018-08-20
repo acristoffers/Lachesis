@@ -23,7 +23,7 @@ THE SOFTWARE.
 import { Component, OnInit } from '@angular/core'
 import { MatDialogRef } from '@angular/material'
 import { SystemResponseComponent } from './system_response.component'
-import { SystemResponseService, ResponseTest } from './system_response.service'
+import { ResponseTest } from './system_response.service'
 
 @Component({
   selector: 'system_response-dialog',
@@ -75,8 +75,7 @@ export class SystemResponseDialog implements OnInit {
   }
 
   constructor(
-    public dialogRef: MatDialogRef<SystemResponseComponent>,
-    private service: SystemResponseService
+    public dialogRef: MatDialogRef<SystemResponseComponent>
   ) {
     dialogRef.disableClose = true
   }

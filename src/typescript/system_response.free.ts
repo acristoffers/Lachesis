@@ -25,7 +25,6 @@ import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/
 import { Chart, DataPoint } from './chart.service'
 import { SystemResponseService, ResponseTest, PortValue } from './system_response.service'
 import { HardwareService, PortConfiguration, Types } from './hardware.service'
-import { Observable } from 'rxjs'
 
 @Component({
     selector: 'free-response',

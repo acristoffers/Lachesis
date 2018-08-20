@@ -22,9 +22,8 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 
-import { Observable } from 'rxjs'
 import { map, flatMap } from "rxjs/operators"
-import { Component, OnInit, Output, Input } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { HardwareService, Driver, PortConfiguration, Calibration, Interlock, Types } from './hardware.service'

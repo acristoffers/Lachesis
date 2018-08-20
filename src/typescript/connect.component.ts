@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component, ApplicationRef, NgZone } from '@angular/core'
-import { Response, RequestOptions, Headers, ResponseContentType } from '@angular/http'
+import { Response } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { SharedData } from './shared_data.service'
