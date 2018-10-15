@@ -20,26 +20,25 @@
  * THE SOFTWARE.
  */
 
-#system-response {
-    padding: 1rem;
-    min-width: 66%;
+system_response-dialog {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
-    mat-card {
-        margin-top: 2rem;
+    .mat-card-title {
+        display: flex !important;
+        flex-direction: row;
+        flex-shrink: 0;
+    }
 
-        mat-list-item {
-            div[flex] {
-                width: 100%;
-            }
-        }
+    .mat-card-content {
+        flex-grow: 1;
+        overflow: auto;
+    }
 
-        #top-bar {
-            margin-bottom: 1rem;
-        }
-
-        .test-title {
-            vertical-align: middle;
-            line-height: 36px;
-        }
+    .mat-card-actions {
+        display: flex !important;
+        flex-direction: row;
+        flex-shrink: 0;
     }
 }
