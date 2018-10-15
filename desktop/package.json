@@ -13,7 +13,7 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "electron": ">=3.0.2",
+    "electron": ">=3.0.4",
     "electron-builder": ">=20.28.4"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
@@ -42,7 +42,8 @@
       "category": "Engineering",
       "packageCategory": "productivity",
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ],
       "publish": [
         "github"
@@ -63,18 +64,23 @@
         "github"
       ]
     },
-    "nsis": {}
+    "nsis": {},
+    "snap": {
+      "environment": {
+        "DISABLE_WAYLAND": 1
+      }
+    }
   },
   "scripts": {
     "dist": "yarn run build --mac --win --linux",
     "dist:pack": "yarn run build --dir",
-    "dist:win": "yarn run build --win --x64 --ia32",
-    "dist:linux": "yarn run build --linux --x64 --ia32",
+    "dist:win": "yarn run build --win --x64",
+    "dist:linux": "yarn run build --linux --x64",
     "dist:mac": "yarn run build --mac",
     "dist:all": "yarn run dist:mac && yarn run dist:linux && yarn run dist:win",
-    "release:win": "yarn run build --publish always --win --x64 --ia32",
-    "release:linux": "yarn run build --publish always --linux --x64 --ia32",
+    "release:win": "yarn run build --publish always --win --x64",
+    "release:linux": "yarn run build --publish always --linux --x64",
     "release:mac": "yarn run build --publish always --mac",
-    "release": "yarn run build --publish always --mac --linux --win --x64 --ia32"
+    "release": "yarn run build --publish always --mac --linux --win --x64"
   }
 }
