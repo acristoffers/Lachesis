@@ -1,10 +1,12 @@
 # Lachesis
 
 Lachesis is a frontend for [moirai](https://github.com/acristoffers/moirai). It
-is developed as part of my scientific initiation project, named
-_Plataformas de baixo custo para controle de processos_ (low-cost platform for
-process control), developed at CEFET-MG (Brazil) under the supervision of Prof.
-Dr. Valter Leite. The project was developed through a FAPEMIG scholarship.
+is developed as part of my scientific initiation project, named _Plataformas de
+baixo custo para controle de processos_ (low-cost platform for process control),
+developed at CEFET-MG (Brazil) under the supervision of Prof. Dr. Valter Leite.
+The project was developed through a FAPEMIG scholarship and an article about an
+application has been [published at the Studies in Informatics and Control
+magazine.](https://sic.ici.ro/affordable-control-platform-with-mpc-applications).
 
 This application allows you to configure the hardware, execute system response
 tests and run controllers with an easy to use interface. The used input and
@@ -28,7 +30,8 @@ configuration.
 Under [releases](https://github.com/acristoffers/Lachesis/releases), download
 the latest version for your system. The Windows installer works with both 32 and
 64 bits systems. The Linux version is an AppImage, which is
-distribution-agnostic, just download and execute.
+distribution-agnostic, just download and execute. It's also available as a snap:
+`snap install lachesis`.
 
 If you work with another system, like Linux ARM, BSD or Solaris, you can
 checkout this repository and build the project yourself. It should run anywhere
