@@ -21,6 +21,7 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
+
 import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
@@ -89,7 +90,13 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         this.timer = timer(1000, 1000)
         this.timerSubscription = this.timer.subscribe(() => {
             this.lg.lastError().subscribe(
-                error => this.lastError = this.sanitizer.bypassSecurityTrustHtml(error.replace("\n", "<br>")),
+                error => {
+                    if (error != null && error.length > 0) {
+                        this.lastError = this.sanitizer.bypassSecurityTrustHtml(error.replace("\n", "<br>"))
+                    } else {
+                        this.lastError = null
+                    }
+                },
                 () => this.lastError = null
             )
 
