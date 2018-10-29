@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Builds Lachesis for desktop and mobile devices",
   "license": "MIT",
   "author": {
@@ -28,12 +28,12 @@
   },
   "dependencies": {
     "fs-extra": ">=7.0.0",
-    "html-minifier": ">=3.5.20",
+    "html-minifier": ">=3.5.21",
     "lodash": ">=4.17.11",
     "ncp": ">=2.0.0",
     "rimraf": ">=2.6.2",
     "rxjs": ">=6.3.3",
-    "sass": ">=1.14.2",
+    "sass": ">=1.14.3",
     "uglify-js": ">=3.4.9"
   },
   "devDependencies": {
