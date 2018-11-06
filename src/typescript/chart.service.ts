@@ -47,7 +47,7 @@ export class Chart {
             },
             zoomEnabled: true,
             zoomType: 'xy',
-            animationEnabled: true,
+            animationEnabled: false,
             axisX: {
                 gridThickness: 1
             },

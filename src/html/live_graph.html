@@ -13,15 +13,19 @@
                     <mat-list>
                         <mat-list-item *ngFor="let test of tests">
                             <div flex>
-                                <div class="test-name">
-                                    <mat-icon *ngIf="test.running">timeline</mat-icon>
-                                    <span>{{ test.name }}</span> -
-                                    <span>{{ formatDate(test.date) }}</span>
+                                <div class="test-name" stretch>
+                                    <div flex>
+                                        <mat-icon *ngIf="test.running">timeline</mat-icon>
+                                        <span>{{ test.name }}</span>
+                                        <span stretch></span>
+                                        <span>{{ formatDate(test.date) }}</span>
+                                    </div>
                                 </div>
-                                <div stretch></div>
                                 <div>
-                                    <button mat-raised-button color="primary" (click)="loadTest(test)">{{ 'Show' | translate }}</button>
-                                    <button mat-raised-button color="warn" (click)="removeTest(test)">{{ (test.running ? 'Stop' : 'Remove') | translate }}</button>
+                                    <button mat-raised-button color="primary" (click)="loadTest(test)">{{ 'Show' |
+                                        translate }}</button>
+                                    <button mat-raised-button color="warn" (click)="removeTest(test)">{{ (test.running
+                                        ? 'Stop' : 'Remove') | translate }}</button>
                                 </div>
                             </div>
                         </mat-list-item>
@@ -57,7 +61,8 @@
                                 </td>
                                 <td>
                                     <mat-form-field class="width-100">
-                                        <input matInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName" (blur)="validateVariable()">
+                                        <input matInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName"
+                                            (blur)="validateVariable()">
                                     </mat-form-field>
                                 </td>
                             </tr>
