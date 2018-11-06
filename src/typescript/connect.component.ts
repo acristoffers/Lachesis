@@ -21,6 +21,7 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
+import * as semver from 'semver'
 import { Component, ApplicationRef, NgZone } from '@angular/core'
 import { Response } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
@@ -37,9 +38,10 @@ interface Token {
     templateUrl: '../html/connect.html'
 })
 export class ConnectComponent {
-    private working: boolean = false
-    private connections: string[] = []
+    private expectedMoiraiVersion = '1.1.13'
 
+    working: boolean = false
+    private connections: string[] = []
     private connectionAddress = 'localhost:5000'
     private connectionPassword = ''
     private newPassword: string
@@ -57,11 +59,21 @@ export class ConnectComponent {
     }
 
     connect(): void {
-        const url = `${SharedData.scheme}://${this.connectionAddress}/login`
-        const postData = { password: this.connectionPassword }
-        const observer = this.http.post<Token>(url, postData)
-        observer.subscribe(this.loginSuccessiful(), this.httpError())
         this.working = true
+        const version = `${SharedData.scheme}://${this.connectionAddress}/version`
+        this.http.get(version).subscribe((version: any) => {
+            if (semver.lt(version.version, this.expectedMoiraiVersion)) {
+                const str = 'Moirai is outdated. Cannot connect.'
+                const message = this.i18n.instant(str)
+                this.toast.open(message, null, { duration: 2000 })
+                return
+            }
+
+            const url = `${SharedData.scheme}://${this.connectionAddress}/login`
+            const postData = { password: this.connectionPassword }
+            const observer = this.http.post<Token>(url, postData)
+            observer.subscribe(this.loginSuccessiful(), this.httpError())
+        }, this.httpError())
     }
 
     loginSuccessiful(): (data: Token) => void {

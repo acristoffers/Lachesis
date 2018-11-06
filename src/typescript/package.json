@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": ">=7.0.1",
     "@angular/platform-server": ">=7.0.1",
     "@angular/router": ">=7.0.1",
+    "@types/semver": "^5.5.0",
     "canvasjs": ">=1.8.1",
     "electron": ">=3.0.6",
     "electron-settings": ">=3.2.0",
@@ -33,12 +34,13 @@
     "ng2-ace-editor": ">=0.3.8",
     "reflect-metadata": ">=0.1.12",
     "rxjs": ">=6.3.3",
+    "semver": "^5.6.0",
     "zone.js": ">=0.8.26"
   },
   "devDependencies": {
+    "@angular-devkit/core": ">=7.0.3",
     "@angular/compiler": ">=7.0.1",
     "@angular/compiler-cli": ">=7.0.1",
-    "@angular-devkit/core": ">=7.0.3",
     "@ngtools/webpack": ">=7.0.3",
     "@types/canvasjs": ">=1.9.4",
     "@types/electron-settings": ">=3.1.1",
