@@ -33,7 +33,7 @@ export interface ResponseTest {
     name: string
     type: string
     inputs: string[]
-    output: string
+    output: string | string[]
     points: DataPoint[]
     fixedOutputs: PortValue[]
     afterOutputs: PortValue[]

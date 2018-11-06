@@ -42,7 +42,7 @@ export class SystemResponseWidePulseComponent {
     t2: number = 1
 
     inputs: [string, boolean][]
-    outputs: string[]
+    outputs: [string, boolean][]
 
     @Input()
     get test() {
@@ -50,6 +50,10 @@ export class SystemResponseWidePulseComponent {
     }
 
     set test(test: ResponseTest) {
+        if (typeof (test.output) == 'string') {
+            test.output = [test.output]
+        }
+
         this._test = test
         this.plotPoints()
         this.testChange.emit(test)
@@ -66,12 +70,13 @@ export class SystemResponseWidePulseComponent {
             const isOutput = (p: PortConfiguration) => (p.type & (Types.Output | Types.PWM)) > 0
 
             this.inputs = _.map(_.filter(ports, isInput), p => [p.alias, false] as [string, boolean])
-            this.outputs = _.map(_.filter(ports, isOutput), p => p.alias)
+            this.outputs = _.map(_.filter(ports, isOutput), p => [p.alias, false] as [string, boolean])
             const cs = _.map(calibration, c => [c.alias, _.filter(ports, p => p.id === c.port)[0]] as [string, PortConfiguration])
             this.inputs = _.concat(this.inputs, _.map(_.filter(cs, c => isInput(c[1])), c => [c[0], false] as [string, boolean]))
-            this.outputs = _.concat(this.outputs, _.map(_.filter(cs, c => isOutput(c[1])), c => c[0]))
+            this.outputs = _.concat(this.outputs, _.map(_.filter(cs, c => isOutput(c[1])), c => [c[0], false] as [string, boolean]))
 
             this.inputs = _.map(this.inputs, i => [i[0], _.includes(this.test.inputs, i[0])] as [string, boolean])
+            this.outputs = _.map(this.outputs, i => [i[0], _.includes(this.test.output, i[0])] as [string, boolean])
             this.plotPoints()
         })
     }
@@ -133,5 +138,9 @@ export class SystemResponseWidePulseComponent {
 
     updateInputs(): void {
         this.test.inputs = _.map(_.filter(this.inputs, i => i[1]), i => i[0])
+    }
+
+    updateOutputs(): void {
+        this.test.output = _.map(_.filter(this.outputs, i => i[1]), i => i[0])
     }
 }
