@@ -53,7 +53,7 @@ export const LANG_DE_TRANS = {
     'Input': 'Eingang',
     'Output': 'Ausgang',
     'PWM': 'PWM',
-    'Initial Value': 'Anfangswert',
+    'Off Value': 'Auschaltenwert',
     'Internal ID': 'Interne ID',
     'Success!': 'Erfolg!',
     'Add': 'Einfügen',
