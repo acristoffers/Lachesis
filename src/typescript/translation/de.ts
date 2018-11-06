@@ -139,5 +139,6 @@ export const LANG_DE_TRANS = {
     'Select All': 'Alle auswählen',
     'Select None': 'Keine auswählen',
     'Clone': 'Klonen',
-    'Last error: ': 'Letzte Fehler: '
+    'Last error: ': 'Letzte Fehler: ',
+    'Past connections': 'Vergangene Verbindungen'
 }
