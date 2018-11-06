@@ -77,20 +77,23 @@
         <mat-card id="charts" *ngIf="testData">
             <mat-card-content>
                 <div class="toolbar" flex>
-                    <mat-select placeholder="{{ 'Variable' | translate }}" [(ngModel)]="selectedVars" multiple>
-                        <mat-option *ngFor="let v of testExportVariables" [value]="v.variable">
-                            {{ v.variable }}
-                        </mat-option>
-                    </mat-select>
-                    <button mat-raised-button (click)="selectAll()">{{ 'Select All' | translate }}</button>
-                    <button mat-raised-button (click)="selectNone()">{{ 'Select None' | translate }}</button>
-                    <div stretch></div>
-                    <mat-checkbox [(ngModel)]="syncZoom">{{ 'Sync' | translate }}</mat-checkbox>
+                    <button mat-raised-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
+                    <button mat-raised-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
+                    <button mat-raised-button (click)="removeAll()">{{ 'Remove all' | translate }}</button>
                 </div>
 
-                <div class="chart" *ngFor="let v of this.selectedVars">
-                    <h2>{{ v }}</h2>
-                    <chart [sensor]="v" [points]="filteredTestData(v)[0].points" [syncZoomFunction]="syncZoomFunction"></chart>
+                <div class="chart" *ngFor="let graph of this.graphs">
+                    <div class="toolbar" flex>
+                        <mat-select placeholder="{{ 'Variable' | translate }}" [(ngModel)]="graph.variables" multiple>
+                            <mat-option *ngFor="let v of testExportVariables" [value]="v.variable">
+                                {{ v.variable }}
+                            </mat-option>
+                        </mat-select>
+                        <button mat-raised-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
+                        <button mat-raised-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
+                        <button mat-raised-button (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+                    </div>
+                    <chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></chart>
                 </div>
             </mat-card-content>
         </mat-card>

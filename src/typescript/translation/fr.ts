@@ -141,5 +141,8 @@ export const LANG_FR_TRANS = {
     'Clone': 'Cloner',
     'Last error: ': 'Dernière Erreur: ',
     'Past connections': 'Connexions passées',
-    'Moirai is outdated. Cannot connect.': 'Moirai est obsolète. Ce n\'est pas possible de se connecter.'
+    'Moirai is outdated. Cannot connect.': 'Moirai est obsolète. Ce n\'est pas possible de se connecter.',
+    'Add graph': 'Ajouter graphique',
+    'Add graph for each variable': 'Ajouter graphique pour chaque variable',
+    'Remove Graph': 'Effacer grafique'
 }

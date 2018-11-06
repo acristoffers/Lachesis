@@ -79,6 +79,6 @@ export class SystemResponseService extends APIBase {
     }
 
     createChart(id: string, labels: string[], colors: string[], ...dataPoints: DataPoint[][]): Chart {
-        return new Chart(id, '', 'line', _.first(dataPoints))
+        return new Chart(id, '', 'line', [{ sensor: '', points: _.first(dataPoints) }])
     }
 }

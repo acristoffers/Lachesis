@@ -37,19 +37,25 @@ interface ExportVariable {
     export: boolean
 }
 
+interface Graph {
+    id: string
+    variables: string[]
+}
+
 @Component({
     selector: 'live-graph',
     templateUrl: '../html/live_graph.html'
 })
 export class LiveGraphComponent implements OnInit, OnDestroy {
     tests: Test[] = []
-    selectedVars: string[] = []
     lastError?: SafeHtml = null
     test: Test
     testData: TestData[]
     testExportVariables: ExportVariable[]
     exportType: string = 'MAT'
     exportTypes: string[] = ['CSV', 'JSON', 'MAT']
+    graphs: Graph[] = []
+    counter: number = 0
 
     private timer: Observable<number>
     private timerSubscription: Subscription
@@ -122,12 +128,12 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
                             this.processData = true
                             if (data.length > 0) {
                                 const sensors = _.map(data, 'sensor')
-                                for (const sensor in sensors) {
-                                    const oldPoints = this.testData[sensor].points
-                                    const newPoints = data[sensor].points
+                                sensors.forEach(sensor => {
+                                    const oldPoints = _.find(this.testData, d => d.sensor == sensor).points
+                                    const newPoints = _.find(data, d => d.sensor == sensor).points
                                     const ps = oldPoints.concat(newPoints)
-                                    this.testData[sensor].points = ps
-                                }
+                                    _.find(this.testData, d => d.sensor == sensor).points = ps
+                                })
                             }
                         },
                         this.httpError()
@@ -146,7 +152,6 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             data => {
                 this.test = test
                 this.testData = data
-                this.selectedVars = []
                 this.testExportVariables = _.map(this.testData, d => {
                     return {
                         variable: d.sensor,
@@ -263,10 +268,6 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         }
     }
 
-    filteredTestData(sensor: string): TestData[] {
-        return _.filter(this.testData, t => t.sensor == sensor)
-    }
-
     httpError(): () => void {
         return () => {
             this.processData = true
@@ -290,47 +291,49 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         return new Date(date).toLocaleString(this.i18n.currentLang, options)
     }
 
-    selectAll(): void {
-        this.selectedVars = _.map(this.testExportVariables, t => t.variable)
-    }
-
-    selectNone(): void {
-        this.selectedVars = []
-    }
-
-    syncZoomFunction = (e: ChartEvent) => {
-        if (this.syncZoom) {
-            this.charts.forEach(chart => {
-
-                const anyE = e as any
-                const canvasjs = chart.chart.chartReference
-                const axisX = canvasjs.options.axisX || {} as any
-                const axisY = canvasjs.options.axisY || {} as any
-
-                if (anyE.trigger == 'reset') {
-                    axisX.viewportMinimum = axisX.viewportMaximum = null
-                    axisY.viewportMinimum = axisY.viewportMaximum = null
-
-                    canvasjs.render()
-                } else {
-                    axisX.viewportMinimum = anyE.axisX.viewportMinimum
-                    axisX.viewportMaximum = anyE.axisX.viewportMaximum
-
-                    axisY.viewportMinimum = anyE.axisY.viewportMinimum
-                    axisY.viewportMaximum = anyE.axisY.viewportMaximum
-
-                    canvasjs.render()
-                }
-
-                canvasjs.options.axisX = axisX
-                canvasjs.options.axisY = axisY
-            })
-        }
-    }
-
     private makeValidVariable(variable: string): string {
         const r1 = /[^A-Za-z0-9_]/g
         const r2 = /^[0-9]+/g
         return variable.replace(r1, '').replace(r2, '')
+    }
+
+    variables(): string[] {
+        return _.map(this.testExportVariables, 'variable')
+    }
+
+    addGraph() {
+        this.graphs = _.concat(this.graphs, [{
+            id: `g${this.counter++}`,
+            variables: []
+        }])
+    }
+
+    addAllGraph() {
+        this.graphs = _.map(this.variables(), v => {
+            return {
+                id: `g${this.counter++}`,
+                variables: [v]
+            }
+        })
+    }
+
+    removeAll() {
+        this.graphs = []
+    }
+
+    removeGraph(id: string) {
+        this.graphs = _.filter(this.graphs, i => i.id != id)
+    }
+
+    selectAll(graph: Graph) {
+        graph.variables = this.variables()
+    }
+
+    deselectAll(graph: Graph) {
+        graph.variables = []
+    }
+
+    filterTestData(variables: string[]) {
+        return _.filter(this.testData, d => _.includes(variables, d.sensor))
     }
 }

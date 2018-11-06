@@ -20,7 +20,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import * as _ from 'lodash'
 import * as CanvasJS from 'canvasjs'
+import { TestData } from './live_graph.service'
 
 export interface DataPoint {
     x?: any
@@ -39,7 +41,7 @@ export class Chart {
         id: string,
         title: string,
         type: string,
-        data: DataPoint[]
+        data: TestData[]
     ) {
         const options = {
             title: {
@@ -54,15 +56,36 @@ export class Chart {
             axisY: {
                 includeZero: false
             },
-            data: [
-                {
+            legend: {
+                verticalAlign: "bottom",
+                horizontalAlign: "right",
+                dockInsidePlotArea: true
+            },
+            data: _.map(data, d => {
+                return {
                     type: type,
-                    dataPoints: data
+                    showInLegend: true,
+                    name: d.sensor,
+                    legendText: d.sensor,
+                    dataPoints: d.points
                 }
-            ]
+            })
         }
 
         this.chart = new CanvasJS.Chart(id, options)
+        this.chart.render()
+    }
+
+    setTestData(data: TestData[]) {
+        this.chart.options.data = _.map(data, d => {
+            return {
+                type: 'line',
+                showInLegend: true,
+                name: d.sensor,
+                dataPoints: d.points
+            }
+        })
+
         this.chart.render()
     }
 
@@ -71,19 +94,6 @@ export class Chart {
             type: type,
             dataPoints: data
         }]
-        this.chart.render()
-    }
-
-    addPoints(data: DataPoint[], type: string = 'line') {
-        this.chart.options.data.push({
-            type: type,
-            dataPoints: data
-        })
-        this.chart.render()
-    }
-
-    appendPoints(data: DataPoint[], index: number) {
-        Array.prototype.push.apply(this.chart.options.data[index].dataPoints, data)
         this.chart.render()
     }
 }

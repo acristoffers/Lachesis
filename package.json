@@ -37,7 +37,7 @@
     "uglify-js": ">=3.4.9"
   },
   "devDependencies": {
-    "node-sass": ">=4.9.4",
+    "node-sass": ">=4.10.0",
     "tslint": ">=5.11.0"
   }
 }
