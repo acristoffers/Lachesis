@@ -140,5 +140,6 @@ export const LANG_FR_TRANS = {
     'Select None': 'Tout déselectionner',
     'Clone': 'Cloner',
     'Last error: ': 'Dernière Erreur: ',
-    'Past connections': 'Connexions passées'
+    'Past connections': 'Connexions passées',
+    'Moirai is outdated. Cannot connect.': 'Moirai est obsolète. Ce n\'est pas possible de se connecter.'
 }
