@@ -31,4 +31,20 @@
 mat-card {
     margin-top: 1rem;
     margin-bottom: 1rem;
+
+    #past-connections {
+        margin-bottom: 1rem;
+
+        span {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            display: block;
+            cursor: pointer;
+            margin-bottom: 0.2rem;
+        }
+    }
 }

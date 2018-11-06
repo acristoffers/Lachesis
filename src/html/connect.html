@@ -5,14 +5,19 @@
 
     <mat-card *ngIf="!isLoggedIn()">
       <mat-card-content>
+        <div id='past-connections'>
+          <span>{{ 'Past connections' | translate }}</span>
+          <a (click)='fillLogin(connection)' *ngFor='let connection of connections'>{{connection}}</a>
+        </div>
         <mat-form-field class="width-100">
           <input matInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress" (keydown.enter)="connect()">
         </mat-form-field>
         <mat-form-field class="width-100">
-          <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="connectionPassword" (keydown.enter)="connect()"
-            autofocus>
+          <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="connectionPassword"
+            (keydown.enter)="connect()" autofocus>
         </mat-form-field>
-        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="connect()">{{ 'Connect' | translate }}</button>
+        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="connect()">{{
+          'Connect' | translate }}</button>
       </mat-card-content>
     </mat-card>
 
@@ -21,7 +26,8 @@
         {{ 'Connected' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="disconnect()">{{ 'Disconnect' | translate }}</button>
+        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="disconnect()">{{
+          'Disconnect' | translate }}</button>
       </mat-card-content>
     </mat-card>
 
@@ -40,7 +46,8 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="setPassword()">{{ 'Apply' | translate }}</button>
+        <button class="connect-button" [disabled]='working' mat-raised-button color="primary" (click)="setPassword()">{{
+          'Apply' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 

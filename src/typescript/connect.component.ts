@@ -20,6 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import * as _ from 'lodash'
 import { Component, ApplicationRef, NgZone } from '@angular/core'
 import { Response } from '@angular/http'
 import { MatSnackBar } from '@angular/material'
@@ -36,7 +37,8 @@ interface Token {
     templateUrl: '../html/connect.html'
 })
 export class ConnectComponent {
-    working: boolean = false
+    private working: boolean = false
+    private connections: string[] = []
 
     private connectionAddress = 'localhost:5000'
     private connectionPassword = ''
@@ -50,6 +52,8 @@ export class ConnectComponent {
         private applicationRef: ApplicationRef,
         private zone: NgZone
     ) {
+        const connectionsJson = localStorage.getItem('connections') || '[]'
+        this.connections = JSON.parse(connectionsJson)
     }
 
     connect(): void {
@@ -64,6 +68,9 @@ export class ConnectComponent {
         const self: ConnectComponent = this
         return (data: Token) => {
             this.working = false
+            this.connections.push(this.connectionAddress)
+            this.connections = _.uniq(this.connections).slice(-5)
+            localStorage.setItem('connections', JSON.stringify(this.connections))
             SharedData.accessToken = data.token
             SharedData.moiraiAddress = this.connectionAddress
             this.connectionPassword = ''
@@ -175,5 +182,9 @@ export class ConnectComponent {
                 self.toast.open(message, null, { duration: 2000 })
             }
         }
+    }
+
+    fillLogin(address: string) {
+        this.connectionAddress = address
     }
 }
