@@ -27,7 +27,7 @@
     "start:fast": "cd desktop && yarn run electron www"
   },
   "dependencies": {
-    "fs-extra": ">=7.0.0",
+    "fs-extra": ">=7.0.1",
     "html-minifier": ">=3.5.21",
     "lodash": ">=4.17.11",
     "ncp": ">=2.0.0",

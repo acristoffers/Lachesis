@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpModule } from '@angular/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { AceEditorModule } from 'ng2-ace-editor'
 
 import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translation'
@@ -78,7 +78,7 @@ import { HttpClientModule } from '@angular/common/http'
     imports: [
         CommonModule,
         BrowserModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         HttpModule,
         HttpClientModule,
         FormsModule,

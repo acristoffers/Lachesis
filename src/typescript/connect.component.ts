@@ -38,7 +38,7 @@ interface Token {
     templateUrl: '../html/connect.html'
 })
 export class ConnectComponent {
-    private expectedMoiraiVersion = '1.1.13'
+    private expectedMoiraiVersion = '1.2.0'
 
     working: boolean = false
     private connections: string[] = []
