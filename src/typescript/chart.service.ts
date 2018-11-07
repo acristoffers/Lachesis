@@ -84,14 +84,18 @@ export class Chart {
         }
 
         const options = {
-            showLabelsOnHighlight: false,
             file: dseries,
             drawPoints: true,
             valueRange: [
                 0.9 * _.min(_.map(data, 'y')),
                 1.1 * _.max(_.map(data, 'y'))
             ],
-            labels: ['Time', 'Point']
+            axes: {
+                y: {
+                    axisLabelWidth: 25
+                }
+            },
+            labels: ['Time', 'P']
         }
 
         this.chart.updateOptions(options)
