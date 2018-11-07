@@ -63,12 +63,15 @@ export class Chart {
             data = [{ sensor: 'Point', points: [] }]
         }
 
+        const min = _.min(_.map(dseries, d => _.min(d.slice(1))))
+        const max = _.max(_.map(dseries, d => _.max(d.slice(1))))
+
         const options = {
             file: dseries,
             drawPoints: true,
             valueRange: [
-                0.9 * _.min(_.map(dseries, d => _.min(d.slice(1)))),
-                1.1 * _.max(_.map(dseries, d => _.max(d.slice(1))))
+                min - 0.1 * Math.abs(max - min),
+                max + 0.1 * Math.abs(max - min)
             ],
             labels: _.concat(['Time'], _.map(data, 'sensor'))
         }
@@ -83,12 +86,15 @@ export class Chart {
             dseries = [[0, 0]]
         }
 
+        const min = _.min(_.map(data, 'y'))
+        const max = _.max(_.map(data, 'y'))
+
         const options = {
             file: dseries,
             drawPoints: true,
             valueRange: [
-                0.9 * _.min(_.map(data, 'y')),
-                1.1 * _.max(_.map(data, 'y'))
+                min - 0.1 * Math.abs(max - min),
+                max + 0.1 * Math.abs(max - min)
             ],
             axes: {
                 y: {
