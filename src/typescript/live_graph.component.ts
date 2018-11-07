@@ -28,7 +28,6 @@ import { TranslateService } from './translation/translation.service'
 import { LiveGraphService, Test, TestData, VariableRename } from './live_graph.service'
 import { Observable, Subscription, timer } from 'rxjs'
 import { ChartComponent } from './chart.component'
-import { ChartEvent } from 'canvasjs'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 interface ExportVariable {
@@ -59,21 +58,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     private timer: Observable<number>
     private timerSubscription: Subscription
-    private _syncZoom: boolean = false
     private processData: boolean = true
-
-    set syncZoom(zoom: boolean) {
-        this._syncZoom = zoom
-        this.charts.forEach(chart => {
-            const options = chart.chart.chartReference.options as any
-            options.zoomType = zoom && 'x' || 'xy'
-            chart.chart.chartReference.render()
-        })
-    }
-
-    get syncZoom() {
-        return this._syncZoom
-    }
 
     @ViewChildren(ChartComponent) charts: QueryList<ChartComponent>
 
@@ -150,6 +135,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     loadTest(test: Test): void {
         this.lg.fetchTest(test.name, test.date).subscribe(
             data => {
+                this.graphs = []
                 this.test = test
                 this.testData = data
                 this.testExportVariables = _.map(this.testData, d => {

@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
-import * as CanvasJS from 'canvasjs'
+import Dygraph from 'dygraphs'
 import { TestData } from './live_graph.service'
 
 export interface DataPoint {
@@ -31,7 +31,7 @@ export interface DataPoint {
 }
 
 export class Chart {
-    private chart: CanvasJS.Chart
+    private chart: Dygraph
 
     get chartReference() {
         return this.chart
@@ -39,61 +39,61 @@ export class Chart {
 
     constructor(
         id: string,
-        title: string,
-        type: string,
         data: TestData[]
     ) {
         const options = {
-            title: {
-                text: title
-            },
-            zoomEnabled: true,
-            zoomType: 'xy',
-            animationEnabled: false,
-            axisX: {
-                gridThickness: 1
-            },
-            axisY: {
-                includeZero: false
-            },
-            legend: {
-                verticalAlign: "bottom",
-                horizontalAlign: "right",
-                dockInsidePlotArea: true
-            },
-            data: _.map(data, d => {
-                return {
-                    type: type,
-                    showInLegend: true,
-                    name: d.sensor,
-                    legendText: d.sensor,
-                    dataPoints: d.points
-                }
-            })
+            drawPoints: true,
+            valueRange: [0, 1],
+            labels: ['Time', 'Point']
         }
 
-        this.chart = new CanvasJS.Chart(id, options)
-        this.chart.render()
+        const dseries = [[0, 0]]
+
+        this.chart = new Dygraph(document.getElementById(id), dseries, options)
+        this.setTestData(data)
     }
 
     setTestData(data: TestData[]) {
-        this.chart.options.data = _.map(data, d => {
-            return {
-                type: 'line',
-                showInLegend: true,
-                name: d.sensor,
-                dataPoints: d.points
-            }
+        let dseries = _.map(_.zip.apply(_, _.map(data, 'points')), d => {
+            return _.concat([d[0].x], _.map(d, 'y'))
         })
 
-        this.chart.render()
+        if (dseries.length == 0) {
+            dseries = [[0, 0]]
+            data = [{ sensor: 'Point', points: [] }]
+        }
+
+        const options = {
+            file: dseries,
+            drawPoints: true,
+            valueRange: [
+                0.9 * _.min(_.map(dseries, d => _.min(d.slice(1)))),
+                1.1 * _.max(_.map(dseries, d => _.max(d.slice(1))))
+            ],
+            labels: _.concat(['Time'], _.map(data, 'sensor'))
+        }
+
+        this.chart.updateOptions(options)
     }
 
-    setPoints(data: DataPoint[], type: string = 'line') {
-        this.chart.options.data = [{
-            type: type,
-            dataPoints: data
-        }]
-        this.chart.render()
+    setPoints(data: DataPoint[]) {
+        let dseries = _.map(data, d => [d.x, d.y])
+
+        if (dseries.length == 0) {
+            dseries = [[0, 0]]
+        }
+
+        const options = {
+            showLabelsOnHighlight: false,
+            file: dseries,
+            drawPoints: true,
+            valueRange: [
+                0.9 * _.min(_.map(data, 'y')),
+                1.1 * _.max(_.map(data, 'y'))
+            ],
+            labels: ['Time', 'Point']
+        }
+
+        this.chart.updateOptions(options)
     }
 }

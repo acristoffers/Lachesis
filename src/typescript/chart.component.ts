@@ -21,15 +21,18 @@ THE SOFTWARE.
 */
 
 import * as _ from 'lodash'
-import { Component, Input, AfterViewChecked } from '@angular/core'
+import { Component, Input, AfterViewChecked, OnChanges, SimpleChanges } from '@angular/core'
 import { Chart } from './chart.service'
 import { TestData } from './live_graph.service'
 
 @Component({
     selector: 'chart',
-    templateUrl: '../html/chart.html'
+    templateUrl: '../html/chart.html',
+    styleUrls: ['./node_modules/dygraphs/dist/dygraph.min.css']
 })
-export class ChartComponent implements AfterViewChecked {
+export class ChartComponent implements AfterViewChecked, OnChanges {
+    private lastVarLength = 0
+    private lastPointsLength = 0
     chart: Chart
 
     @Input()
@@ -38,11 +41,26 @@ export class ChartComponent implements AfterViewChecked {
     @Input()
     lines: TestData[]
 
+    ngOnChanges(changes: SimpleChanges): void {
+        const td: TestData[] = [{ points: [], sensor: '' }]
+
+        const varLength = (changes.lines.currentValue || []).length
+        const pointsLength = (_.first(changes.lines.currentValue as TestData[] || td) || td[0]).points.length
+
+        const hasNewVars = varLength != this.lastVarLength
+        const hasNewPoints = pointsLength != this.lastPointsLength
+
+        this.lastVarLength = varLength
+        this.lastPointsLength = pointsLength
+
+        if (this.chart != null && (hasNewVars || hasNewPoints)) {
+            this.chart.setTestData(this.lines)
+        }
+    }
+
     ngAfterViewChecked() {
         if (this.chart == null) {
-            this.chart = new Chart(this.id, '', 'line', this.lines)
-        } else {
-            this.chart.setTestData(this.lines)
+            this.chart = new Chart(this.id, this.lines)
         }
     }
 }

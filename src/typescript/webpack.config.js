@@ -37,14 +37,12 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.scss', '.html'],
     alias: {
-      jquery: 'jquery/src/jquery',
-      canvasjs: 'canvasjs/dist/canvasjs.min'
+      jquery: 'jquery/src/jquery'
     }
   },
   externals: {
     "electron-settings": "commonjs electron-settings",
-    "electron": "commonjs electron",
-    canvasjs: "CanvasJS"
+    "electron": "commonjs electron"
   },
   plugins: [
     new webpack.ProgressPlugin(),
@@ -74,11 +72,7 @@ module.exports = {
       test: /\.html?$/,
       use: 'html-loader?minimize=false'
     }, {
-      test: /\.css$/,
-      include: /node_modules/,
-      use: ['css-loader']
-    }, {
-      test: /\.component\.(css|scss)$/,
+      test: /\.(css|scss)$/,
       use: ['to-string-loader', 'css-loader', 'postcss-loader']
     }, {
       test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
