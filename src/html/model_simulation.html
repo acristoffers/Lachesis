@@ -6,7 +6,7 @@
         <mat-card>
             <mat-card-content>
                 <h2>{{ 'Supported Models' | translate }}</h2>
-                <table class="mat-elevation-z8 mat-table">
+                <table class="mat-table">
                     <thead>
                         <tr class="mat-header-row">
                             <th class="mat-header-cell"></th>
@@ -54,7 +54,8 @@
                     <input matInput [placeholder]="'Duration' | translate" [(ngModel)]="ts">
                 </mat-form-field>
 
-                <button mat-raised-button color="primary" (click)="simulate()">{{ 'Simulate' | translate }}</button>
+                <button [disabled]='!buttonEnabled' mat-raised-button color="primary" (click)="simulate()">{{
+                    'Simulate' | translate }}</button>
             </mat-card-content>
         </mat-card>
     </div>
