@@ -28,6 +28,9 @@ import { HardwareComponent } from './hardware.component'
 import { ControlComponent } from './control.component'
 import { SystemResponseComponent } from './system_response.component'
 import { LiveGraphComponent } from './live_graph.component'
+import { ModelSimulationComponent } from './model_simulation.component'
+import { FreeControlComponent } from './free_control.component';
+import { PIDComponent } from './pid.component';
 
 export class Router {
     static module(): ModuleWithProviders {
@@ -60,6 +63,18 @@ export class Router {
             {
                 path: 'live-graph',
                 component: LiveGraphComponent
+            },
+            {
+                path: 'pid',
+                component: PIDComponent
+            },
+            {
+                path: 'free-control',
+                component: FreeControlComponent
+            },
+            {
+                path: 'model-simulation',
+                component: ModelSimulationComponent
             }
         ])
     }

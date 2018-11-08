@@ -41,6 +41,9 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @import 'system_response.free';
 @import 'live_graph';
 @import 'chart';
+@import 'pid';
+@import 'free_control';
+@import 'model_simulation';
 
 @mixin user-select($opt) {
     -webkit-user-select: $opt;

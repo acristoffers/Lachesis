@@ -1,5 +1,6 @@
 <div flex id="system-response-step">
     <div>
+        <div id='step-graph-legend'></div>
         <div id="step-graph"></div>
         <img width="256" src="../imgs/step-variables.png">
     </div>
@@ -51,8 +52,8 @@
                     <tr *ngFor="let output of test.fixedOutputs" inline-form>
                         <td width-60>
                             <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
-                                <mat-option *ngFor="let out of outputs" [value]="out">
-                                    {{ out }}
+                                <mat-option *ngFor="let out of outputs" [value]="out[0]">
+                                    {{ out[0] }}
                                 </mat-option>
                             </mat-select>
                         </td>

@@ -20,69 +20,12 @@
  * THE SOFTWARE.
  */
 
-#live-graph {
+#free-control {
     padding: 1rem;
     min-width: 66%;
-
-    #tests-list {
-        max-height: 20rem;
-        overflow-y: auto;
-
-        mat-list-item {
-            div[flex] {
-                width: 100%;
-            }
-        }
-    }
-
-    #charts {
-        text-align: center;
-
-        .mat-select {
-            width: 300px !important;
-        }
-    }
+    max-width: 90%;
 
     mat-card {
         margin-top: 2rem;
-    }
-
-    .chart {
-        width: 100%;
-        padding: 1rem 0;
-        border-top: 1px solid gray;
-
-        chart,
-        chart .graph {
-            height: 256px;
-        }
-    }
-
-    #test-data {
-        td {
-            padding-right: 1rem;
-        }
-    }
-
-    .canvasjs-chart-container {
-        height: 0 !important;
-    }
-
-    #top-bar {
-        margin-bottom: 1rem;
-    }
-
-    .toolbar {
-        margin-bottom: 1rem;
-
-        .mat-select {
-            margin-right: 1rem;
-        }
-    }
-
-    .test-name {
-        vertical-align: middle;
-        line-height: 36px;
-        padding-right: 1rem;
     }
 }

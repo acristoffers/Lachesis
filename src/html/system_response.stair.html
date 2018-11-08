@@ -1,5 +1,6 @@
 <div flex id="system-response-stair">
     <div>
+        <div id='stair-graph-legend'></div>
         <div id="stair-graph"></div>
     </div>
     <div stretch default-padding>
@@ -50,8 +51,8 @@
                     <tr *ngFor="let output of test.fixedOutputs" inline-form>
                         <td width-60>
                             <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
-                                <mat-option *ngFor="let out of outputs" [value]="out">
-                                    {{ out }}
+                                <mat-option *ngFor="let out of outputs" [value]="out[0]">
+                                    {{ out[0] }}
                                 </mat-option>
                             </mat-select>
                         </td>

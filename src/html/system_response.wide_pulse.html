@@ -1,5 +1,6 @@
 <div flex id="system-response-wide-pulse">
     <div>
+        <div id='wide-pulse-graph-legend'></div>
         <div id="wide-pulse-graph"></div>
         <img width="256" src="../imgs/wide-pulse-variables.png">
     </div>
@@ -57,8 +58,8 @@
                     <tr *ngFor="let output of test.fixedOutputs" inline-form>
                         <td width-60>
                             <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
-                                <mat-option *ngFor="let out of outputs" [value]="out">
-                                    {{ out }}
+                                <mat-option *ngFor="let out of outputs" [value]="out[0]">
+                                    {{ out[0] }}
                                 </mat-option>
                             </mat-select>
                         </td>

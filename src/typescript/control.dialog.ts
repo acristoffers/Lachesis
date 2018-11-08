@@ -28,7 +28,7 @@ import { HardwareService, PortConfiguration, Types } from './hardware.service'
 
 @Component({
   selector: 'control-dialog',
-  templateUrl: '../html/control-dialog.html'
+  templateUrl: '../html/control_dialog.html'
 })
 export class ControlDialog {
   controller: Controller

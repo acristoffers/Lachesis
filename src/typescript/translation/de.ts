@@ -144,5 +144,7 @@ export const LANG_DE_TRANS = {
     'Moirai is outdated. Cannot connect.': 'Moirai ist nicht aktuel. Verbindung unmöglich.',
     'Add graph': 'Grafik hinzufügen',
     'Add graph for each variable': 'Grafik für jeder Variable hinzufügen',
-    'Remove Graph': 'Grafik entfernen'
+    'Remove Graph': 'Grafik entfernen',
+    'Model Simulation': 'Modellsimulation',
+    'Free Control': 'Freie Kontrole'
 }

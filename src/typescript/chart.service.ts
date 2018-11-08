@@ -38,12 +38,13 @@ export class Chart {
     }
 
     constructor(
-        id: string,
+        private id: string,
         data: TestData[]
     ) {
         const options = {
             drawPoints: true,
             valueRange: [0, 1],
+            labelsDiv: `${this.id}-legend`,
             labels: ['Time', 'Point']
         }
 
@@ -76,6 +77,8 @@ export class Chart {
             labels: _.concat(['Time'], _.map(data, 'sensor'))
         }
 
+        console.log(options)
+
         this.chart.updateOptions(options)
     }
 
@@ -101,7 +104,7 @@ export class Chart {
                     axisLabelWidth: 25
                 }
             },
-            labels: ['Time', 'P']
+            labels: ['Time', 'Output']
         }
 
         this.chart.updateOptions(options)
