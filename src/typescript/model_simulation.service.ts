@@ -24,6 +24,14 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { SharedData } from './shared_data.service'
 import { APIBase } from './api_base'
+import { Observable } from 'rxjs';
+
+interface SimulationPostData {
+    model: string
+    x0: string
+    u: string
+    duration: string
+}
 
 @Injectable()
 export class ModelSimulationService extends APIBase {
@@ -32,5 +40,11 @@ export class ModelSimulationService extends APIBase {
         sharedData: SharedData
     ) {
         super(http, sharedData)
+    }
+
+    runSimulation(data: SimulationPostData): Observable<any> {
+        const path = 'simulation/run'
+        const url = `${SharedData.scheme}://${SharedData.moiraiAddress}/${path}`
+        return this.doPost(url, data)
     }
 }

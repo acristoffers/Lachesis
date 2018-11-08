@@ -42,4 +42,31 @@
             }
         }
     }
+
+    #charts {
+        text-align: center;
+
+        .mat-select {
+            width: 300px !important;
+        }
+    }
+
+    .chart {
+        width: 100%;
+        padding: 1rem 0;
+        border-top: 1px solid gray;
+
+        chart,
+        chart .graph {
+            height: 256px;
+        }
+    }
+
+    .toolbar {
+        margin-bottom: 1rem;
+
+        .mat-select {
+            margin-right: 1rem;
+        }
+    }
 }

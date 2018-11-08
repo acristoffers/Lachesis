@@ -25,25 +25,118 @@ import * as _ from 'lodash'
 import { Component } from '@angular/core'
 import { MatSnackBar } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
-import { HardwareService, Driver, PortConfiguration, Calibration, Interlock, Types } from './hardware.service'
+import { ModelSimulationService } from './model_simulation.service'
+import { TestData } from './live_graph.service'
+
+interface Graph {
+    id: string
+    variables: string[]
+}
 
 @Component({
     selector: 'model_simulation',
     templateUrl: '../html/model_simulation.html'
 })
 export class ModelSimulationComponent {
-    model: string = '([[-0.02,0.02],[ 0.02,-0.04]],[[331e-6],[0]],[[0,1]],[[0]])'
+    model: string = '([[-0.02,0.02],[0.02,-0.04]],[[331e-6],[0]],[[0,1]],[[0]])'
     x0: string = '[[0],[0]]'
     u: string = '80'
     ts: string = '100'
+    buttonEnabled: boolean = true
+
+    variables: string[]
+    graphs: Graph[] = []
+    counter: number = 0
+    testData: TestData[]
+    error: string = ''
 
     constructor(
         private i18n: TranslateService,
         private toast: MatSnackBar,
-        private hardwareService: HardwareService
+        private service: ModelSimulationService
     ) {
     }
 
     simulate() {
+        this.buttonEnabled = false
+
+        const data = {
+            model: this.model,
+            x0: this.x0,
+            u: this.u,
+            duration: this.ts
+        }
+
+        this.service.runSimulation(data).subscribe(data => {
+            this.buttonEnabled = true
+
+            if ('error' in data) {
+                this.testData = []
+                this.variables = []
+                this.error = data.error
+                this.graphs = []
+                return
+            }
+
+            this.error = null
+
+            this.variables = _.filter(_.keys(data), k => k != 't')
+            this.testData = _.map(this.variables, k => {
+                return {
+                    sensor: k,
+                    points: _.map(_.zip(data['t'], data[k]) as [number, number][], o => {
+                        return {
+                            x: o[0],
+                            y: o[1]
+                        }
+                    })
+                }
+            })
+        }, this.httpError())
+    }
+
+    httpError(): () => void {
+        return () => {
+            this.buttonEnabled = true
+            const str = 'Error when connecting. Check address and try again.'
+            const message = this.i18n.instant(str)
+            this.toast.open(message, null, { duration: 2000 })
+        }
+    }
+
+    addGraph() {
+        this.graphs = _.concat(this.graphs, [{
+            id: `g${this.counter++}`,
+            variables: []
+        }])
+    }
+
+    addAllGraph() {
+        this.graphs = _.map(this.variables, v => {
+            return {
+                id: `g${this.counter++}`,
+                variables: [v]
+            }
+        })
+    }
+
+    removeAll() {
+        this.graphs = []
+    }
+
+    removeGraph(id: string) {
+        this.graphs = _.filter(this.graphs, i => i.id != id)
+    }
+
+    selectAll(graph: Graph) {
+        graph.variables = this.variables
+    }
+
+    deselectAll(graph: Graph) {
+        graph.variables = []
+    }
+
+    filterTestData(variables: string[]) {
+        return _.filter(this.testData, d => _.includes(variables, d.sensor))
     }
 }

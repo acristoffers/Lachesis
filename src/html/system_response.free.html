@@ -109,7 +109,7 @@
                     <tr *ngFor="let output of test.afterOutputs" inline-form>
                         <td width-60>
                             <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
-                                <mat-option *ngFor="let out of outputs" [value]="out[0">
+                                <mat-option *ngFor="let out of outputs" [value]="out[0]">
                                     {{ out[0] }}
                                 </mat-option>
                             </mat-select>

@@ -76,6 +76,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { PIDComponent } from './pid.component';
 import { FreeControlComponent } from './free_control.component';
 import { ModelSimulationComponent } from './model_simulation.component';
+import { ModelSimulationService } from './model_simulation.service'
+import { PIDService } from './pid.service';
+import { FreeControlService } from './free_control.service'
 
 @NgModule({
     imports: [
@@ -134,7 +137,10 @@ import { ModelSimulationComponent } from './model_simulation.component';
         HardwareService,
         SystemResponseService,
         LiveGraphService,
-        ControlService
+        ControlService,
+        ModelSimulationService,
+        PIDService,
+        FreeControlService
     ],
     entryComponents: [
         SystemResponseDialog,

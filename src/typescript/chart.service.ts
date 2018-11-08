@@ -77,8 +77,6 @@ export class Chart {
             labels: _.concat(['Time'], _.map(data, 'sensor'))
         }
 
-        console.log(options)
-
         this.chart.updateOptions(options)
     }
 
