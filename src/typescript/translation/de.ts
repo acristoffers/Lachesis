@@ -146,5 +146,17 @@ export const LANG_DE_TRANS = {
     'Add graph for each variable': 'Grafik für jeder Variable hinzufügen',
     'Remove Graph': 'Grafik entfernen',
     'Model Simulation': 'Modellsimulation',
-    'Free Control': 'Freie Kontrole'
+    'Free Control': 'Freie Kontrole',
+    'Continuous Time': 'Kontinuierliche Zeit',
+    'Discrete Time': 'Diskrete Zeit',
+    'Transfer Function': 'Übertragungsfunktion',
+    'State Space': 'Zustandsraumdarstellung',
+    'All arguments must be compatible with np.array.': 'Alle Argumente müssen mit np.array kompatibel sein.',
+    'You can set u to a vector of outputs.': 'Sie können u auf einen Vektor von Ausgaben setzen.',
+    'Simulation Configuration': 'Simulationskonfiguration',
+    'Model': 'Modell',
+    'Duration': 'Dauer',
+    'Simulate': 'Simulieren',
+    'Error: ': 'Fehler: ',
+    'Supported Models': 'Unterstützte Modelle'
 }
