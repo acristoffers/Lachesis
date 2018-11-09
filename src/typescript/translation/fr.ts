@@ -158,5 +158,6 @@ export const LANG_FR_TRANS = {
     'Duration': 'Durée',
     'Simulate': 'Simuler',
     'Error: ': 'Erreur: ',
-    'Supported Models': 'Modèles pris en charge'
+    'Supported Models': 'Modèles pris en charge',
+    'Variables': 'Variables'
 }

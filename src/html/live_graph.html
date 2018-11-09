@@ -84,7 +84,7 @@
 
                 <div class="chart" *ngFor="let graph of this.graphs">
                     <div class="toolbar" flex>
-                        <mat-select placeholder="{{ 'Variable' | translate }}" [(ngModel)]="graph.variables" multiple>
+                        <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
                             <mat-option *ngFor="let v of testExportVariables" [value]="v.variable">
                                 {{ v.variable }}
                             </mat-option>
