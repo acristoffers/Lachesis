@@ -59,6 +59,8 @@ export class ModelSimulationComponent {
 
     simulate() {
         this.buttonEnabled = false
+        const graphs = this.graphs
+        this.graphs = []
 
         const data = {
             model: this.model,
@@ -71,15 +73,14 @@ export class ModelSimulationComponent {
             this.buttonEnabled = true
 
             if ('error' in data) {
-                this.testData = []
-                this.variables = []
+                this.graphs = graphs
                 this.error = data.error
-                this.graphs = []
                 return
             }
 
             this.error = null
 
+            this.graphs = graphs
             this.variables = _.filter(_.keys(data), k => k != 't')
             this.testData = _.map(this.variables, k => {
                 return {
@@ -92,7 +93,11 @@ export class ModelSimulationComponent {
                     })
                 }
             })
-        }, this.httpError())
+        }, () => {
+            this.graphs = graphs
+            const stdError = this.httpError()
+            stdError()
+        })
     }
 
     httpError(): () => void {
