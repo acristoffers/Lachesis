@@ -102,7 +102,7 @@ export class HardwareComponent implements OnInit {
     }
 
     removeCalibration(calibration: Calibration): void {
-        this.calibrations = this.calibrations.filter(p => p.port !== calibration.port)
+        this.calibrations = this.calibrations.filter(p => p !== calibration)
     }
 
     addInterlock(): void {
