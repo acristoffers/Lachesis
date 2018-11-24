@@ -22,8 +22,8 @@ THE SOFTWARE.
 
 import * as _ from 'lodash'
 
-import { Component, OnDestroy, OnInit, ViewChildren, QueryList } from '@angular/core'
-import { MatSnackBar } from '@angular/material'
+import { Component, OnDestroy, OnInit, ViewChildren, QueryList, ViewChild } from '@angular/core'
+import { MatSnackBar, MatSelectionList } from '@angular/material'
 import { TranslateService } from './translation/translation.service'
 import { LiveGraphService, Test, TestData, VariableRename } from './live_graph.service'
 import { Observable, Subscription, timer } from 'rxjs'
@@ -61,6 +61,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     private processData: boolean = true
 
     @ViewChildren(ChartComponent) charts: QueryList<ChartComponent>
+    @ViewChild('testsList') testsList: MatSelectionList
 
     constructor(
         private toast: MatSnackBar,
@@ -158,6 +159,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
             if (this.test != null &&
                 this.test.name == test.name &&
                 this.test.date == test.date) {
+                this.test.running = false
                 this.test = this.testData = this.testExportVariables = null
             }
 
@@ -321,5 +323,35 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
     filterTestData(variables: string[]) {
         return _.filter(this.testData, d => _.includes(variables, d.sensor))
+    }
+
+    removeSelectedTests() {
+        const msg = 'Are you sure that you want to delete this item?'
+        if (!confirm(this.i18n.instant(msg))) { return }
+
+        const selected = _.map(this.testsList.selectedOptions.selected, 'value')
+        selected.forEach(test => {
+            if (this.test != null &&
+                this.test.name == test.name &&
+                this.test.date == test.date) {
+                this.test.running = false
+                this.test = this.testData = this.testExportVariables = null
+            }
+
+            this.lg.removeTest(test).subscribe(
+                () => this.tests = _.filter(this.tests, t => {
+                    return t.name != test.name || t.date != test.date
+                }),
+                this.httpError()
+            )
+        })
+    }
+
+    selectAllTests() {
+        this.testsList.selectAll()
+    }
+
+    selectNoneTests() {
+        this.testsList.deselectAll()
     }
 }

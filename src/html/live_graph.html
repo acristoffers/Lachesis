@@ -7,29 +7,33 @@
             <mat-card-content>
                 <div flex id="top-bar" *ngIf="tests.length != 0">
                     <div stretch></div>
+                    <button mat-raised-button (click)="removeSelectedTests()">{{ 'Remove Selected' | translate }}</button>
+                    <button mat-raised-button (click)="selectNoneTests()">{{ 'Select None' | translate }}</button>
+                    <button mat-raised-button (click)="selectAllTests()">{{ 'Select All' | translate }}</button>
                     <button mat-raised-button color="warn" (click)="removeAllTests()">{{ 'Remove all' | translate }}</button>
                 </div>
                 <div id="tests-list">
-                    <mat-list>
-                        <mat-list-item *ngFor="let test of tests">
+                    <mat-selection-list #testsList>
+                        <mat-list-option checkboxPosition="before" [value]="test1" *ngFor="let test1 of tests"
+                            [ngClass]="{'mat-elevation-z3': test1 == test}">
                             <div flex>
                                 <div class="test-name" stretch>
                                     <div flex>
-                                        <mat-icon *ngIf="test.running">timeline</mat-icon>
-                                        <span>{{ test.name }}</span>
+                                        <mat-icon *ngIf="test1.running">timeline</mat-icon>
+                                        <span>{{ test1.name }}</span>
                                         <span stretch></span>
-                                        <span>{{ formatDate(test.date) }}</span>
+                                        <span>{{ formatDate(test1.date) }}</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <button mat-raised-button color="primary" (click)="loadTest(test)">{{ 'Show' |
+                                    <button mat-raised-button color="primary" (click)="loadTest(test1)">{{ 'Show' |
                                         translate }}</button>
-                                    <button mat-raised-button color="warn" (click)="removeTest(test)">{{ (test.running
+                                    <button mat-raised-button color="warn" (click)="removeTest(test1)">{{(test1.running
                                         ? 'Stop' : 'Remove') | translate }}</button>
                                 </div>
                             </div>
-                        </mat-list-item>
-                    </mat-list>
+                        </mat-list-option>
+                    </mat-selection-list>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -75,6 +79,9 @@
         </mat-card>
 
         <mat-card id="charts" *ngIf="testData">
+            <mat-card-title>
+                {{ test.name }} - {{ formatDate(test.date) }}
+            </mat-card-title>
             <mat-card-content>
                 <div class="toolbar" flex>
                     <button mat-raised-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
