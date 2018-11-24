@@ -54,6 +54,10 @@ export class ConnectComponent {
         private applicationRef: ApplicationRef,
         private zone: NgZone
     ) {
+        if (SharedData.moiraiAddress != null) {
+            this.connectionAddress = SharedData.moiraiAddress
+        }
+
         const connectionsJson = localStorage.getItem('connections') || '[]'
         this.connections = JSON.parse(connectionsJson)
     }
