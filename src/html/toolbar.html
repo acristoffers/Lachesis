@@ -8,20 +8,20 @@
   <button mat-button [matMenuTriggerFor]="languagesMenu">{{ 'Language' | translate }}</button>
   <mat-menu #languagesMenu="matMenu">
     <button mat-menu-item (click)="setLanguage('en')">
-      <img [src]="enFlagUrl" />
-      <span i18n>{{ 'English' | translate }}</span>
+      <mat-icon svgIcon="en-flag"></mat-icon>
+      {{ 'English' | translate }}
     </button>
     <button mat-menu-item (click)="setLanguage('fr')">
-      <img [src]="frFlagUrl" />
-      <span i18n>{{ 'French' | translate }}</span>
+      <mat-icon svgIcon="fr-flag"></mat-icon>
+      {{ 'French' | translate }}
     </button>
     <button mat-menu-item (click)="setLanguage('de')">
-      <img [src]="deFlagUrl" />
-      <span i18n>{{ 'German' | translate }}</span>
+      <mat-icon svgIcon="de-flag"></mat-icon>
+      {{ 'German' | translate }}
     </button>
     <button mat-menu-item (click)="setLanguage('pt')">
-      <img [src]="ptFlagUrl" />
-      <span i18n>{{ 'Portuguese' | translate }}</span>
+      <mat-icon svgIcon="pt-flag"></mat-icon>
+      {{ 'Portuguese' | translate }}
     </button>
   </mat-menu>
 </mat-toolbar>
