@@ -33,7 +33,7 @@ function execute(cmd) {
 gen_desktop_icons = function () {
   var cmd, i, input, input2, j, len, len1, name, opts, out1x, out2x, output, outputs, ref, ref1, size, sizes, x
   console.log('Generating desktop icons')
-  input = 'desktop/www/imgs/icon.svg'
+  input = 'desktop/www/Lachesis/assets/imgs/icon.svg'
   fs.mkdirsSync('desktop/build/icon.iconset')
   sizes = [16, 32, 128, 256, 512, 1024]
   out1x = (function () {
@@ -55,7 +55,7 @@ gen_desktop_icons = function () {
     return results
   })()
   outputs = out1x.concat(out2x)
-  input2 = 'desktop/www/imgs/icon.png'
+  input2 = 'desktop/www/Lachesis/assets/imgs/icon.png'
   execute('convert -background none -resize 1024x1024 ' + input + ' ' + input2)
   for (i = 0, len = outputs.length; i < len; i++) {
     ref = outputs[i], size = ref[0], name = ref[1]

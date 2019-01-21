@@ -1,0 +1,33 @@
+<div flex>
+  <div stretch></div>
+  <div id="system-response">
+    <h1>{{ 'System Response' | translate }}</h1>
+
+    <mat-card>
+      <mat-card-content>
+        <div flex id="top-bar" *ngIf="tests.length != 0">
+          <div stretch></div>
+          <button mat-raised-button color="warn" (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+        </div>
+        <mat-list>
+          <mat-list-item *ngFor="let test of tests">
+            <div flex>
+              <div class="test-title">{{ test.name }} - {{ presentType(test.type) | translate }}</div>
+              <div stretch></div>
+              <div>
+                <button mat-raised-button color="primary" (click)="runTest(test)">{{ 'Run' | translate }}</button>
+                <button mat-raised-button (click)="editTest(test)">{{ 'Edit' | translate }}</button>
+                <button mat-raised-button (click)="clone(test)">{{ 'Clone' | translate }}</button>
+                <button mat-raised-button color="warn" (click)="removeTest(test)">{{ 'Remove' | translate }}</button>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="secondary" (click)="addTest()">{{ 'Add' | translate }}</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div stretch></div>
+</div>

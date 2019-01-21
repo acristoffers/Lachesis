@@ -22,8 +22,8 @@
 
 # yarn global add npm-check-updates
 ncu --upgrade --upgradeAll
-pushd src/typescript
-ncu --upgrade --upgradeAll
+pushd Lachesis
+yarn ng update --all
 popd
 pushd src/desktop
 ncu --upgrade --upgradeAll

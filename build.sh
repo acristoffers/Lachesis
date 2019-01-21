@@ -23,7 +23,7 @@
 # Remove old files
 touch desktop/www desktop/build desktop/dist desktop/node_modules
 rm -r desktop/www desktop/build desktop/dist desktop/node_modules
-mkdir -p desktop/www/js desktop/www/css desktop/build
+mkdir -p desktop/www desktop/build
 
 # Install build deps
 echo ""
@@ -31,7 +31,7 @@ echo "Installing build dependencies"
 echo ""
 yarn install
 yarn install -D
-pushd src/typescript
+pushd Lachesis
 yarn install
 yarn install -D
 popd
@@ -51,16 +51,11 @@ echo "Building root and copying dependencies"
 echo ""
 pushd desktop/www
 yarn run tsc
-rm -r node_modules yarn.lock ../yarn.lock
+rm -r node_modules yarn.lock ../yarn.lock index.ts tsconfig.json
 yarn --prod
 popd
-rm -r desktop/www/index.ts desktop/www/tsconfig.json
-cp -r src/imgs desktop/www/
-cp -r src/fonts desktop/www/
-touch src/typescript/dist
-rm -r src/typescript/dist
 
-bash build-fast.sh
+bash build-fast.sh $1
 
 # Generate icons
 node gen-icons.js

@@ -24,27 +24,8 @@
 echo ""
 echo "Compiling TypeScript"
 echo ""
-pushd src/typescript
-yarn run webpack
+pushd Lachesis
+yarn run ng build $1
 popd
-mv src/typescript/dist/index.js desktop/www/js/app.js
-mv src/typescript/dist/assets desktop/www/assets
-
-# Compile SASS
-echo ""
-echo "Compiling SASS"
-echo ""
-yarn run node-sass src/scss/app.scss desktop/www/css/app.css --output-style compressed
-
-# Minify HTML
-node html-minifier.js
-
-# Copy files
-echo ""
-echo "Building root and copying dependencies"
-echo ""
-cp -r src/imgs desktop/www/
-cp -r src/fonts desktop/www/
-cp -r src/typescript/dist/. desktop/www/css
-touch src/typescript/dist
-rm -r src/typescript/dist
+rm -r desktop/www/Lachesis
+mv Lachesis/dist/Lachesis desktop/www/Lachesis

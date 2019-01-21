@@ -21,6 +21,6 @@
 # THE SOFTWARE.
 
 rm -fr desktop/www desktop/build desktop/dist &> /dev/null
-rm -fr node_modules src/typescript/node_modules desktop/node_modules &> /dev/null
-rm -fr src/typescript/dist src/typescript/build &> /dev/null
-rm yarn.lock src/typescript/yarn.lock desktop/yarn.lock &> /dev/null
+rm -fr node_modules Lachesis/node_modules desktop/node_modules &> /dev/null
+rm -fr Lachesis/dist &> /dev/null
+rm yarn.lock Lachesis/yarn.lock desktop/yarn.lock &> /dev/null

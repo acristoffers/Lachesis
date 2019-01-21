@@ -1,0 +1,7 @@
+<lachesis-toolbar [(sidebarOpen)]="sidebarOpen"></lachesis-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [opened]="sidebarOpen">
+    <lachesis-sidenav></lachesis-sidenav>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

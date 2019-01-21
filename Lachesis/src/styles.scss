@@ -1,0 +1,170 @@
+/*
+ * Copyright (c) 2016 Álan Crístoffer
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+@import '~@angular/material/theming';
+@include mat-core();
+$app-primary: mat-palette($mat-brown);
+$app-accent: mat-palette($mat-deep-orange, A200, A100, A400);
+$app-warn: mat-palette($mat-red);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include angular-material-theme($app-theme);
+
+@mixin user-select($opt) {
+  -webkit-user-select: $opt;
+  user-select: $opt;
+}
+
+* {
+  @include user-select(none);
+  padding: 0;
+  margin: 0;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-size: 14pt;
+  font-family: "Roboto";
+
+  a,
+  a:active,
+  a:hover,
+  a:link,
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+[unresolved] {
+  background-color: #009688;
+
+  [app] {
+    display: none;
+  }
+}
+
+lachesis-root {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+[flex] {
+  display: flex;
+  flex-direction: row;
+}
+
+[inline-flex] {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+[flex-col] {
+  display: flex;
+  flex-direction: column;
+}
+
+[inline-flex-col] {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+[stretch] {
+  flex: 1;
+}
+
+[mat-menu-item] img {
+  width: 24px;
+}
+
+[text-center] {
+  text-align: center;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+[default-padding] {
+  padding: 1rem 1rem
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav {
+  width: 33%;
+  min-width: 200px;
+  max-width: 300px;
+  height: 100%;
+}
+
+[inline-form] {
+  .mat-input-wrapper {
+    margin: 0 !important;
+  }
+
+  .mat-input-underline {
+    margin-bottom: -4px;
+  }
+}
+
+mat-icon.tooltip {
+  vertical-align: middle;
+}
+
+table[fixed] {
+  table-layout: fixed;
+
+  [width-15] {
+    width: 15%;
+  }
+
+  [width-33] {
+    width: 33%;
+  }
+
+  [width-50] {
+    width: 50%;
+  }
+
+  [width-60] {
+    width: 60%;
+  }
+}
+
+.mat-select {
+  display: initial !important;
+}
+
+button {
+  margin-right: 5px !important;
+}

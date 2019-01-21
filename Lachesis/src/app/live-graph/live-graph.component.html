@@ -1,0 +1,107 @@
+<div flex>
+  <div stretch></div>
+  <div id="live-graph">
+    <h1>{{ 'Graphs' | translate }}</h1>
+
+    <mat-card>
+      <mat-card-content>
+        <div flex id="top-bar" *ngIf="tests.length != 0">
+          <div stretch></div>
+          <button mat-raised-button (click)="removeSelectedTests()">{{ 'Remove Selected' | translate }}</button>
+          <button mat-raised-button (click)="selectNoneTests()">{{ 'Select None' | translate }}</button>
+          <button mat-raised-button (click)="selectAllTests()">{{ 'Select All' | translate }}</button>
+          <button mat-raised-button color="warn" (click)="removeAllTests()">{{ 'Remove all' | translate }}</button>
+        </div>
+        <div id="tests-list">
+          <mat-selection-list #testsList>
+            <mat-list-option checkboxPosition="before" [value]="test1" *ngFor="let test1 of tests" [ngClass]="{'mat-elevation-z3': test1 == test}">
+              <div flex>
+                <div class="test-name" stretch>
+                  <div flex>
+                    <mat-icon *ngIf="test1.running">timeline</mat-icon>
+                    <span>{{ test1.name }}</span>
+                    <span stretch></span>
+                    <span>{{ formatDate(test1.date) }}</span>
+                  </div>
+                </div>
+                <div>
+                  <button mat-raised-button color="primary" (click)="loadTest(test1)">{{ 'Show' |
+                    translate }}</button>
+                  <button mat-raised-button color="warn" (click)="removeTest(test1)">{{(test1.running
+                    ? 'Stop' : 'Remove') | translate }}</button>
+                </div>
+              </div>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="lastError">
+      <mat-card-content>
+        <b>{{ 'Last error: ' | translate }}</b>
+        <span [innerHtml]="lastError"></span>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="test-data" *ngIf="testExportVariables && !test.running">
+      <mat-card-title>
+        {{ 'Points' | translate }}
+      </mat-card-title>
+      <mat-card-content>
+        <div>
+          <mat-radio-group [(ngModel)]="exportType">
+            <mat-radio-button default-padding *ngFor="let type of exportTypes" [value]="type">
+              {{ type }}
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <table>
+            <tbody>
+              <tr *ngFor="let test of testExportVariables">
+                <td>
+                  <mat-checkbox [(ngModel)]="test.export">{{ test.variable }}</mat-checkbox>
+                </td>
+                <td>
+                  <mat-form-field class="width-100">
+                    <input matInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName" (blur)="validateVariable()">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button mat-raised-button color="primary" (click)="saveTest()">{{ 'Save' | translate }}</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="charts" *ngIf="testData">
+      <mat-card-title>
+        {{ test.name }} - {{ formatDate(test.date) }}
+      </mat-card-title>
+      <mat-card-content>
+        <div class="toolbar" flex>
+          <button mat-raised-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
+          <button mat-raised-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
+          <button mat-raised-button (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+        </div>
+
+        <div class="chart" *ngFor="let graph of this.graphs">
+          <div class="toolbar" flex>
+            <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
+              <mat-option *ngFor="let v of testExportVariables" [value]="v.variable">
+                {{ v.variable }}
+              </mat-option>
+            </mat-select>
+            <button mat-raised-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
+            <button mat-raised-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
+            <button mat-raised-button (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+          </div>
+          <lachesis-chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></lachesis-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div stretch></div>
+</div>

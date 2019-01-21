@@ -31,9 +31,12 @@ const token = new CancellationToken
 function createWindow(): Electron.BrowserWindow {
     const win = new BrowserWindow({
         show: false,
-        icon: nativeImage.createFromPath(`file://${__dirname}/imgs/icon.png`)
+        icon: nativeImage.createFromPath(`file://${__dirname}/Lachesis/assets/imgs/icon.png`),
+        webPreferences: {
+            nodeIntegration: true
+        }
     })
-    win.loadURL(`file://${__dirname}/index.html`)
+    win.loadURL(`file://${__dirname}/Lachesis/index.html`)
     win.on('closed', () => {
         window = null
     })

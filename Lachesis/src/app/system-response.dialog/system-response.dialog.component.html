@@ -1,0 +1,27 @@
+<mat-card-title>{{ 'Add/Edit Test' | translate }}</mat-card-title>
+<mat-card-content>
+  <mat-form-field class="width-100">
+    <input matInput [placeholder]="'Name' | translate" [(ngModel)]="test.name">
+  </mat-form-field>
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex" [@.disabled]="true">
+    <mat-tab label="{{ 'Step' | translate }}">
+      <lachesis-system-response-step *ngIf="test.type == 'step'" [(test)]="test"></lachesis-system-response-step>
+    </mat-tab>
+    <mat-tab label="{{ 'Impulse' | translate }}">
+      <lachesis-system-response-impulse *ngIf="test.type == 'impulse'" [(test)]="test"></lachesis-system-response-impulse>
+    </mat-tab>
+    <mat-tab label="{{ 'Wide Pulse' | translate }}">
+      <lachesis-system-response-wide-pulse *ngIf="test.type == 'wide-pulse'" [(test)]="test"></lachesis-system-response-wide-pulse>
+    </mat-tab>
+    <mat-tab label="{{ 'Stair' | translate }}">
+      <lachesis-system-response-stair *ngIf="test.type == 'stair'" [(test)]="test"></lachesis-system-response-stair>
+    </mat-tab>
+    <mat-tab label="{{ 'Free Form' | translate }}">
+      <lachesis-system-response-free *ngIf="test.type == 'free'" [(test)]="test"></lachesis-system-response-free>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card-content>
+<mat-card-actions>
+  <button mat-button color="primary" (click)="save()">{{ 'Save' | translate }}</button>
+  <button mat-button (click)="cancel()">{{ 'Cancel' | translate }}</button>
+</mat-card-actions>
