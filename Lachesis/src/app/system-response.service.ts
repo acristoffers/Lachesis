@@ -57,26 +57,26 @@ export class SystemResponseService extends APIBase {
   }
 
   loadTests(): Observable<ResponseTest[]> {
-    const path = 'system_response/tests';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/system_response/tests';
+    const url = this.urlFor(path);
     return this.doGet(url);
   }
 
   saveTests(tests: ResponseTest[]): Observable<any> {
-    const path = 'system_response/tests';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/system_response/tests';
+    const url = this.urlFor(path);
     return this.doPost(url, tests);
   }
 
   runTest(test: ResponseTest): Observable<any> {
-    const path = 'system_response/test/run';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/system_response/test/run';
+    const url = this.urlFor(path);
     return this.doPost(url, { test: test.id });
   }
 
   stopTest(): Observable<null> {
-    const path = 'system_response/test/stop';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/system_response/test/stop';
+    const url = this.urlFor(path);
     return this.doGet(url);
   }
 

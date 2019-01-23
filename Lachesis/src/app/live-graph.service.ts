@@ -57,14 +57,14 @@ export class LiveGraphService extends APIBase {
   }
 
   listTests(): Observable<Test[]> {
-    const path = 'live_graph/tests';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/live_graph/tests';
+    const url = this.urlFor(path);
     return this.doGet(url);
   }
 
   fetchTest(name: string, start: Date, skip = 0): Observable<TestData[]> {
-    const path = 'live_graph/test';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/live_graph/test';
+    const url = this.urlFor(path);
     const data = {
       test: name,
       start_time: start,
@@ -88,8 +88,8 @@ export class LiveGraphService extends APIBase {
   }
 
   downloadMAT(test: Test, variables: VariableRename): Observable<Response> {
-    const path = 'live_graph/test/export';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/live_graph/test/export';
+    const url = this.urlFor(path);
     const data = {
       test: test.name,
       start_time: test.date,
@@ -114,8 +114,8 @@ export class LiveGraphService extends APIBase {
     if (test.running) {
       return this.stopTest();
     } else {
-      const path = 'live_graph/test/remove';
-      const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+      const path = '/live_graph/test/remove';
+      const url = this.urlFor(path);
       const data = {
         test: test.name,
         start_time: test.date
@@ -130,8 +130,8 @@ export class LiveGraphService extends APIBase {
       this.stopTest().subscribe();
     }
 
-    const path = 'live_graph/test/remove';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/live_graph/test/remove';
+    const url = this.urlFor(path);
     const ts = _.map(tests, t => {
       return {
         test: t.name,
@@ -142,14 +142,14 @@ export class LiveGraphService extends APIBase {
   }
 
   stopTest(): Observable<void> {
-    const path = 'system_response/test/stop';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/system_response/test/stop';
+    const url = this.urlFor(path);
     return this.doGet(url);
   }
 
   lastError(): Observable<string> {
-    const path = 'last_error';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/last_error';
+    const url = this.urlFor(path);
     return this.doGet(url).pipe(map((error: any) => error.message));
   }
 }

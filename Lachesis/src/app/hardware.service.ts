@@ -96,8 +96,8 @@ export class HardwareService extends APIBase {
   }
 
   listDrivers(): Observable<Driver[]> {
-    const path = 'hardware/drivers';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/hardware/drivers';
+    const url = this.urlFor(path);
     return this.doGet(url);
   }
 
@@ -107,8 +107,8 @@ export class HardwareService extends APIBase {
     calibrations: Calibration[],
     interlocks: Interlock[]
   ): Observable<void> {
-    const path = 'hardware/configuration';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/hardware/configuration';
+    const url = this.urlFor(path);
     const data: any = driver;
     data.ports = ports;
     data.calibrations = calibrations;
@@ -117,8 +117,8 @@ export class HardwareService extends APIBase {
   }
 
   getConfiguration(): Observable<[Driver, PortConfiguration[], Calibration[], Interlock[]]> {
-    const path = 'hardware/configuration';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/hardware/configuration';
+    const url = this.urlFor(path);
     return this.doGet(url).pipe(map(res => {
       res = res || { ports: [] };
       const calibrations: Calibration[] = res.calibrations || [];

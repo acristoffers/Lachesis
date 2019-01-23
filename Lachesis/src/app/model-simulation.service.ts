@@ -45,8 +45,8 @@ export class ModelSimulationService extends APIBase {
   }
 
   runSimulation(data: SimulationPostData): Observable<any> {
-    const path = 'simulation/run';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/simulation/run';
+    const url = this.urlFor(path);
     return this.doPost(url, data);
   }
 }

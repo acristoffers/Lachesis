@@ -52,4 +52,8 @@ export class APIBase {
     const observable = this.http.post(url, data, options);
     return observable.pipe(map((res: Response) => res.json()));
   }
+
+  protected urlFor(path: string): string {
+    return `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}${path}`;
+  }
 }

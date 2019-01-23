@@ -50,8 +50,8 @@ export class PidService extends APIBase {
   }
 
   run(data: PidPostData): Observable<void> {
-    const path = 'pid/run';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/pid/run';
+    const url = this.urlFor(path);
     return this.doPost(url, data);
   }
 }

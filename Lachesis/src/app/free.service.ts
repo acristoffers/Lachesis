@@ -45,8 +45,8 @@ export class FreeService extends APIBase {
   }
 
   run(data: FreePostData): Observable<void> {
-    const path = 'free/run';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/free/run';
+    const url = this.urlFor(path);
     return this.doPost(url, data);
   }
 }

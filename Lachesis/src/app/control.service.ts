@@ -41,26 +41,26 @@ export class ControlService extends APIBase {
   }
 
   load(): Observable<Controller[]> {
-    const path = 'controllers';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/controllers';
+    const url = this.urlFor(path);
     return this.doGet(url).pipe(map((cs: Controller[]) => _.sortBy(cs, 'name')));
   }
 
   save(cs: Controller[]): Observable<any> {
-    const path = 'controllers';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/controllers';
+    const url = this.urlFor(path);
     return this.doPost(url, cs);
   }
 
   run(controller: Controller): Observable<any> {
-    const path = 'controllers/run';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/controllers/run';
+    const url = this.urlFor(path);
     return this.doPost(url, { controller: controller.id });
   }
 
   stopTest(): Observable<null> {
-    const path = 'system_response/test/stop';
-    const url = `${SharedDataService.scheme}://${SharedDataService.moiraiAddress}/${path}`;
+    const path = '/system_response/test/stop';
+    const url = this.urlFor(path);
     return this.doGet(url);
   }
 }
