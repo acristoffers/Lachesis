@@ -23,7 +23,6 @@ THE SOFTWARE.
 import Dygraph from 'dygraphs';
 import * as _ from 'lodash';
 import { TestData } from './live-graph.service';
-
 export interface DataPoint {
   x?: any;
   label?: any;

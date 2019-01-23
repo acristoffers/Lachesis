@@ -24,9 +24,11 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ConnectComponent } from './connect/connect.component';
 import { ControlComponent } from './control/control.component';
+import { FreeControlComponent } from './free-control/free-control.component';
 import { HardwareComponent } from './hardware/hardware.component';
 import { LiveGraphComponent } from './live-graph/live-graph.component';
 import { ModelSimulationComponent } from './model-simulation/model-simulation.component';
+import { PidComponent } from './pid/pid.component';
 import { SystemResponseComponent } from './system-response/system-response.component';
 
 export class Router {
@@ -64,6 +66,14 @@ export class Router {
       {
         path: 'model-simulation',
         component: ModelSimulationComponent
+      },
+      {
+        path: 'pid',
+        component: PidComponent
+      },
+      {
+        path: 'free-control',
+        component: FreeControlComponent
       }
     ]);
   }

@@ -52,6 +52,8 @@ import {
   MatListModule,
   MatCheckboxModule
 } from '@angular/material';
+import { PidComponent } from './pid/pid.component';
+import { FreeControlComponent } from './free-control/free-control.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import {
     ControlDialogComponent,
     SystemResponseDialogComponent,
     TranslatePipe,
-    RemoveUndefinedPipe
+    RemoveUndefinedPipe,
+    PidComponent,
+    FreeControlComponent
   ],
   imports: [
     CommonModule,

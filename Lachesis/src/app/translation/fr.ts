@@ -161,5 +161,7 @@ export const LANG_FR_TRANS = {
     'Simulate': 'Simuler',
     'Error: ': 'Erreur: ',
     'Supported Models': 'Modèles pris en charge',
-    'Variables': 'Variables'
+    'Variables': 'Variables',
+    'Reference': 'Référence',
+    'Outputs': 'Sortirs'
 };
