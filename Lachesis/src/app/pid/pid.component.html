@@ -49,6 +49,16 @@
           </mat-form-field>
         </div>
 
+        <div flex>
+          <mat-form-field class="width-100">
+            <input matInput [placeholder]="'Min' | translate" [(ngModel)]="data.umin">
+          </mat-form-field>
+
+          <mat-form-field class="width-100">
+            <input matInput [placeholder]="'Max' | translate" [(ngModel)]="data.umax">
+          </mat-form-field>
+        </div>
+
         <h3>{{ 'Fixed outputs' | translate }}</h3>
         <div default-padding>
           <table class="width-100" fixed>

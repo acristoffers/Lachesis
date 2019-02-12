@@ -35,6 +35,8 @@ export interface PidPostData {
   r: number;
   u: string;
   y: string;
+  umin: number;
+  umax: number;
   fixedOutputs: PortValue[];
 }
 

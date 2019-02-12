@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "0.0.0",
+  "version": "1.2.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,7 +24,6 @@
     "@angular/platform-browser-dynamic": "^7.2.1",
     "@angular/router": "^7.2.1",
     "@types/dygraphs": "^1.1.8",
-    "@types/electron": "^1.6.10",
     "@types/electron-settings": "^3.1.1",
     "@types/jquery": "^3.3.29",
     "@types/lodash": "^4.14.120",
@@ -52,13 +51,13 @@
     "codelyzer": "~4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~3.1.4",
+    "karma": "~4.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
+    "ts-node": "~8.0.1",
     "tslint": "~5.12.1",
     "typescript": "~3.2.4"
   }

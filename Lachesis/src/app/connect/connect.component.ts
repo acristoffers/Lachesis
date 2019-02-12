@@ -39,7 +39,7 @@ interface Token {
   styleUrls: ['./connect.component.scss']
 })
 export class ConnectComponent {
-  private expectedMoiraiVersion = '1.2.4';
+  private expectedMoiraiVersion = '1.2.5';
 
   working = false;
   private connections: string[] = [];
