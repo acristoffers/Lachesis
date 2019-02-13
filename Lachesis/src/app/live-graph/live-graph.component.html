@@ -14,7 +14,7 @@
         </div>
         <div id="tests-list">
           <mat-selection-list #testsList>
-            <mat-list-option checkboxPosition="before" [value]="test1" *ngFor="let test1 of tests" [ngClass]="{'mat-elevation-z3': test1 == test}">
+            <mat-list-option checkboxPosition="before" [value]="test1" *ngFor="let test1 of tests" [ngClass]="{'selected': compare(test1, test)}">
               <div flex>
                 <div class="test-name" stretch>
                   <div flex>
@@ -25,9 +25,11 @@
                   </div>
                 </div>
                 <div>
-                  <button mat-raised-button color="primary" (click)="loadTest(test1)">{{ 'Show' |
+                  <button mat-raised-button color="primary"
+                  (click)="loadTest(test1); $event.stopPropagation()">{{
+                    'Show' |
                     translate }}</button>
-                  <button mat-raised-button color="warn" (click)="removeTest(test1)">{{(test1.running
+                  <button mat-raised-button color="warn" (click)="removeTest(test1); $event.stopPropagation()">{{(test1.running
                     ? 'Stop' : 'Remove') | translate }}</button>
                 </div>
               </div>

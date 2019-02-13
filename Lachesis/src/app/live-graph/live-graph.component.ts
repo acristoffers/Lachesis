@@ -326,4 +326,8 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   selectNoneTests() {
     this.testsList.deselectAll();
   }
+
+  compare(a: any, b: any) {
+    return _.isEqual(a, b);
+  }
 }
