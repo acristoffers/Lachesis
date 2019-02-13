@@ -138,19 +138,13 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
   removeTest(test: Test): void {
     const msg = 'Are you sure that you want to delete this item?';
-    const running = this.test != null && this.test.running;
-    const r = running || confirm(this.i18n.instant(msg));
+    const r = test.running || confirm(this.i18n.instant(msg));
     if (r) {
-      if (this.test != null &&
-        this.test.name === test.name &&
-        this.test.date === test.date) {
-        this.test.running = false;
+      if (_.isEqual(this.test, test)) {
         this.test = this.testData = this.testExportVariables = null;
       }
 
-      this.lg.removeTest(test).subscribe(() => this.tests = _.filter(this.tests, t => {
-        return t.name !== test.name || t.date !== test.date;
-      }), this.httpError());
+      this.lg.removeTest(test).subscribe(() => { }, this.httpError());
     }
   }
 
@@ -302,20 +296,18 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
   removeSelectedTests() {
     const msg = 'Are you sure that you want to delete this item?';
-    if (!confirm(this.i18n.instant(msg))) { return; }
+    if (!confirm(this.i18n.instant(msg))) {
+      return;
+    }
 
     const selected = _.map(this.testsList.selectedOptions.selected, 'value');
     selected.forEach(test => {
-      if (this.test != null &&
-        this.test.name === test.name &&
-        this.test.date === test.date) {
-        this.test.running = false;
+      if (_.isEqual(this.test, test)) {
+        test.running = false;
         this.test = this.testData = this.testExportVariables = null;
       }
 
-      this.lg.removeTest(test).subscribe(() => this.tests = _.filter(this.tests, t => {
-        return t.name !== test.name || t.date !== test.date;
-      }), this.httpError());
+      this.lg.removeTest(test).subscribe(() => { }, this.httpError());
     });
   }
 
