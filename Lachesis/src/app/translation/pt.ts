@@ -163,5 +163,6 @@ export const LANG_PT_TRANS = {
     'Supported Models': 'Modelos Suportados',
     'Variables': 'Variáveis',
     'Reference': 'Referência',
-    'Outputs': 'Saídas'
+    'Outputs': 'Saídas',
+    'Remove Selected': 'Remover selecionados'
 };

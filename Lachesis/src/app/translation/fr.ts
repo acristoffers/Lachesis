@@ -163,5 +163,6 @@ export const LANG_FR_TRANS = {
     'Supported Models': 'Modèles pris en charge',
     'Variables': 'Variables',
     'Reference': 'Référence',
-    'Outputs': 'Sortirs'
+    'Outputs': 'Sortirs',
+    'Remove Selected': 'Supprimer les sélectionnés'
 };

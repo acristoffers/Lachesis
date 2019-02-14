@@ -163,5 +163,6 @@ export const LANG_DE_TRANS = {
     'Supported Models': 'Unterstützte Modelle',
     'Variables': 'Variablen',
     'Reference': 'Referenz',
-    'Outputs': 'Ausgänge'
+    'Outputs': 'Ausgänge',
+    'Remove Selected': 'Ausgewählten löschen'
 };
