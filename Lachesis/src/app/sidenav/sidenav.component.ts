@@ -22,6 +22,9 @@ THE SOFTWARE.
 
 import { Component } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
+import { NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'lachesis-sidenav',
@@ -29,7 +32,36 @@ import { SharedDataService } from '../shared-data.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
+  currentRouter = 'connect';
+  private bs = [
+    { text: 'Hardware Setup', route: 'hardware' },
+    { text: 'System Response', route: 'system-response' },
+    { text: 'System Control', route: 'control' },
+    { text: 'Graphs', route: 'live-graph' },
+    { text: 'Model Simulation', route: 'model-simulation' },
+    { text: 'Free Control', route: 'free-control' },
+    { text: 'PID', route: 'pid' },
+  ];
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.currentRouter = event.urlAfterRedirects.replace('/', '');
+      });
+  }
+
   isLoggedIn(): boolean {
     return SharedDataService.accessToken != null;
+  }
+
+  buttons() {
+    return this.isLoggedIn() ? this.bs : [];
+  }
+
+  buttonColor(route: string): string {
+    console.log(route);
+    console.log(this.currentRouter);
+    return route === this.currentRouter ? 'accent' : '';
   }
 }

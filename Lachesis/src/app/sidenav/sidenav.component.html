@@ -1,26 +1,12 @@
 <mat-list id="sidenav">
   <mat-list-item>
-    <button mat-button routerLink="connect">{{ 'Connection' | translate }}</button>
+    <button mat-button routerLink="connect" [color]="buttonColor('connect')">
+      {{ 'Connection' | translate }}
+    </button>
   </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="hardware">{{ 'Hardware Setup' | translate }}</button>
-  </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="system-response">{{ 'System Response' | translate }}</button>
-  </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="control">{{ 'System Control' | translate }}</button>
-  </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="live-graph">{{ 'Graphs' | translate }}</button>
-  </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="model-simulation">{{ 'Model Simulation' | translate }}</button>
-  </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="free-control">{{ 'Free Control' | translate }}</button>
-  </mat-list-item>
-  <mat-list-item *ngIf="isLoggedIn()">
-    <button mat-button routerLink="pid">{{ 'PID' | translate }}</button>
+  <mat-list-item *ngFor="let button of buttons()">
+    <button mat-button [routerLink]="button.route" [color]="buttonColor(button.route)">
+      {{ button.text | translate }}
+    </button>
   </mat-list-item>
 </mat-list>
