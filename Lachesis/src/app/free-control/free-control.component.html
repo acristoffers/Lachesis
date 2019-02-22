@@ -1,17 +1,16 @@
 <div flex>
   <div stretch></div>
   <div id="free">
-    <h1>{{ 'Free Control' | translate }}</h1>
-
     <mat-card>
+      <mat-card-title>
+        {{ 'Free Control' | translate }}
+      </mat-card-title>
       <mat-card-content>
-        <h2>{{ 'Setup' | translate }}</h2>
-
-        <mat-form-field class="width-100">
+        <mat-form-field class="setup-field">
           <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="data.dt">
         </mat-form-field>
 
-        <mat-form-field class="width-100" *ngIf="!freeTimerSubscription">
+        <mat-form-field class="setup-field" *ngIf="!freeTimerSubscription">
           <mat-select placeholder="{{ 'Inputs' | translate }}" class="width-100" [(ngModel)]="data.inputs" multiple>
             <mat-option *ngFor="let in of inputs" [value]="in">{{ in }}</mat-option>
           </mat-select>
@@ -19,11 +18,11 @@
 
         <h3>{{ 'Outputs' | translate }}</h3>
         <div default-padding>
-          <table class="width-100" fixed>
+          <table fixed>
             <tbody>
               <tr *ngFor="let output of data.outputs" inline-form>
                 <td width-60>
-                  <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
+                  <mat-select placeholder="{{ 'Output' | translate }}" class="setup-field" [(ngModel)]="output.alias">
                     <mat-option *ngFor="let out of outputs" [value]="out">{{ out }}</mat-option>
                   </mat-select>
                 </td>
@@ -33,15 +32,15 @@
                   </mat-form-field>
                 </td>
                 <td width-15>
-                  <button mat-raised-button color="warn" (click)="removeOutput(output)">{{ 'Remove' | translate }}</button>
+                  <button mat-flat-button color="warn" (click)="removeOutput(output)">{{ 'Remove' | translate }}</button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button mat-raised-button color="secondary" (click)="addOutput()">{{ 'Add' | translate }}</button>
+          <button mat-flat-button color="secondary" (click)="addOutput()">{{ 'Add' | translate }}</button>
         </div>
 
-        <button mat-raised-button color="primary" (click)="run()">{{ 'Run' | translate }}</button>
+        <button mat-flat-button color="primary" (click)="run()">{{ 'Run' | translate }}</button>
       </mat-card-content>
     </mat-card>
 
@@ -55,9 +54,9 @@
     <mat-card id="charts" *ngIf="testData && !lastError">
       <mat-card-content>
         <div class="toolbar" flex>
-          <button mat-raised-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
-          <button mat-raised-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
-          <button mat-raised-button (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+          <button mat-flat-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
+          <button mat-flat-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
+          <button mat-flat-button (click)="removeAll()">{{ 'Remove all' | translate }}</button>
         </div>
 
         <div class="chart" *ngFor="let graph of this.graphs">
@@ -65,9 +64,9 @@
             <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
               <mat-option *ngFor="let v of variables" [value]="v">{{ v }}</mat-option>
             </mat-select>
-            <button mat-raised-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
-            <button mat-raised-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
-            <button mat-raised-button (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+            <button mat-flat-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
+            <button mat-flat-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
+            <button mat-flat-button (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
           </div>
           <lachesis-chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></lachesis-chart>
         </div>

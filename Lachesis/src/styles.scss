@@ -77,22 +77,22 @@ lachesis-root {
 }
 
 [flex] {
-  display: flex;
+  display: flex !important;
   flex-direction: row;
 }
 
 [inline-flex] {
-  display: inline-flex;
+  display: inline-flex !important;
   flex-direction: row;
 }
 
 [flex-col] {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
 }
 
 [inline-flex-col] {
-  display: inline-flex;
+  display: inline-flex !important;
   flex-direction: column;
 }
 
@@ -167,4 +167,9 @@ table[fixed] {
 
 button {
   margin-right: 5px !important;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 500;
 }

@@ -1,11 +1,11 @@
 <div flex>
   <div stretch></div>
   <div id="model-simulation">
-    <h1>{{ 'Model Simulation' | translate }}</h1>
-
     <mat-card>
+      <mat-card-title>
+        {{ 'Model Simulation' | translate }}
+      </mat-card-title>
       <mat-card-content>
-        <h2>{{ 'Supported Models' | translate }}</h2>
         <table class="mat-table">
           <thead>
             <tr class="mat-header-row">
@@ -37,23 +37,23 @@
         </table>
 
         <h2>{{ 'Simulation Configuration' | translate }}</h2>
-        <mat-form-field class="width-100">
+        <mat-form-field class="setup-fields">
           <input matInput [placeholder]="'Model' | translate" [(ngModel)]="model">
         </mat-form-field>
 
-        <mat-form-field class="width-100">
+        <mat-form-field class="setup-fields">
           <input matInput [placeholder]="'x0' | translate" [(ngModel)]="x0">
         </mat-form-field>
 
-        <mat-form-field class="width-100">
+        <mat-form-field class="setup-fields">
           <input matInput [placeholder]="'u' | translate" [(ngModel)]="u">
         </mat-form-field>
 
-        <mat-form-field class="width-100">
+        <mat-form-field class="setup-fields">
           <input matInput [placeholder]="'Duration' | translate" [(ngModel)]="ts">
         </mat-form-field>
 
-        <button [disabled]='!buttonEnabled' mat-raised-button color="primary" (click)="simulate()">{{
+        <button [disabled]='!buttonEnabled' mat-flat-button color="primary" (click)="simulate()">{{
           'Simulate' | translate }}</button>
       </mat-card-content>
     </mat-card>
@@ -68,9 +68,9 @@
     <mat-card id="charts" *ngIf="testData">
       <mat-card-content>
         <div class="toolbar" flex>
-          <button mat-raised-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
-          <button mat-raised-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
-          <button mat-raised-button (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+          <button mat-flat-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
+          <button mat-flat-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
+          <button mat-flat-button (click)="removeAll()">{{ 'Remove all' | translate }}</button>
         </div>
 
         <div class="chart" *ngFor="let graph of this.graphs">
@@ -80,9 +80,9 @@
                 {{ v }}
               </mat-option>
             </mat-select>
-            <button mat-raised-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
-            <button mat-raised-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
-            <button mat-raised-button (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+            <button mat-flat-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
+            <button mat-flat-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
+            <button mat-flat-button (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
           </div>
           <lachesis-chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></lachesis-chart>
         </div>

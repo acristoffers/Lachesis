@@ -1,18 +1,18 @@
 <div flex>
   <div stretch></div>
   <div id="hardware">
-    <h1>{{ 'Hardware Setup' | translate }}</h1>
-
     <mat-card id="driver">
       <mat-card-title>
-        {{ 'Driver' | translate }}
+        {{ 'Hardware Setup' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <mat-select class="width-100" placeholder="{{ 'Driver' | translate }}" [(ngModel)]="selectedDriver">
-          <mat-option *ngFor="let driver of availableDrivers; trackBy:driveTracker" [value]="driver">
-            {{ driver.name }}
-          </mat-option>
-        </mat-select>
+        <mat-form-field class="width-100">
+          <mat-select [placeholder]="'Driver' | translate" [(ngModel)]="selectedDriver">
+            <mat-option *ngFor="let driver of availableDrivers; trackBy:driveTracker" [value]="driver">
+              {{ driver.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </mat-card-content>
     </mat-card>
 
@@ -20,8 +20,8 @@
       <mat-card-title matTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
         {{ 'Setup' | translate }}
       </mat-card-title>
-      <mat-card-content>
-        <mat-form-field class="width-100" class="setup-argument" *ngFor="let argument of selectedDriver.setup_arguments">
+      <mat-card-content flex-col>
+        <mat-form-field *ngFor="let argument of selectedDriver.setup_arguments">
           <input matInput [placeholder]="argument.name" [value]=" argument.default_value | removeUndefined "
             [(ngModel)]="argument.value">
         </mat-form-field>
@@ -35,21 +35,20 @@
           <thead>
             <tr>
               <th>
-                <span matTooltip="{{ 'The name of the port as known by the AHIO driver.' | translate }}">{{ 'Port Name'
-                  | translate }}</span>
+                <span matTooltip="{{ 'The name of the port as known by the AHIO driver.' | translate }}">
+                  {{ 'Port Name' | translate }}
+                </span>
               </th>
               <th>
-                <span matTooltip="{{ 'A valid python variable name that will be used in code to refer to this port value.' | translate }}">{{
-                  'Port Alias' | translate }}</span>
+                <span matTooltip="{{ 'A valid python variable name that will be used in code to refer to this port value.' | translate }}">
+                  {{ 'Port Alias' | translate }}
+                </span>
               </th>
               <th>
                 <span>{{ 'Port Type' | translate }}</span>
               </th>
               <th>
                 <span>{{ 'Off Value' | translate }}</span>
-              </th>
-              <th>
-                <span>{{ 'Internal ID' | translate }}</span>
               </th>
               <th></th>
             </tr>
@@ -60,12 +59,13 @@
                 <mat-form-field class="width-100" *ngIf="!selectedDriver.ports.length">
                   <input matInput [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
                 </mat-form-field>
-                <mat-select class="width-100" *ngIf="!!selectedDriver.ports.length" [placeholder]="'Port Name' | translate"
-                  [(ngModel)]="port.name">
-                  <mat-option *ngFor="let driverPort of selectedDriver.ports" [value]="driverPort.id">
-                    {{ driverPort.name }}
-                  </mat-option>
-                </mat-select>
+                <mat-form-field class="width-100" *ngIf="!!selectedDriver.ports.length">
+                  <mat-select [placeholder]="'Port Name' | translate" [(ngModel)]="port.name">
+                    <mat-option *ngFor="let driverPort of selectedDriver.ports" [value]="driverPort.id">
+                      {{ driverPort.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
               <td class="port-alias">
                 <mat-form-field class="width-100">
@@ -73,29 +73,28 @@
                 </mat-form-field>
               </td>
               <td class="port-type">
-                <mat-select class="width-100" [placeholder]="'Port Type' | translate" [(ngModel)]="port.type">
-                  <mat-option *ngFor="let p of portTypes(port.name)" [value]="p">
-                    {{ portTypeName(p)[0] | translate }} - {{ portTypeName(p)[1] | translate }}
-                  </mat-option>
-                </mat-select>
+                <mat-form-field class="width-100">
+                  <mat-select [placeholder]="'Port Type' | translate" [(ngModel)]="port.type">
+                    <mat-option *ngFor="let p of portTypes(port.name)" [value]="p">
+                      {{ portTypeName(p)[0] | translate }} - {{ portTypeName(p)[1] | translate }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
               <td class="port-value">
                 <mat-form-field class="width-100">
                   <input matInput [placeholder]="'Off Value' | translate" [(ngModel)]="port.defaultValue">
                 </mat-form-field>
               </td>
-              <td class="port-id">
-                <span>{{ port.id }}</span>
-              </td>
               <td>
-                <button mat-raised-button color="warn" (click)="removePort(port)">{{ 'Remove' | translate }}</button>
+                <button mat-flat-button color="warn" (click)="removePort(port)">{{ 'Remove' | translate }}</button>
               </td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="secondary" (click)="addPort()">{{ 'Add' | translate }}</button>
+        <button mat-stroked-button color="secondary" (click)="addPort()">{{ 'Add' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 
@@ -112,8 +111,14 @@
                 <span>{{ 'Alias' | translate }}</span>
               </th>
               <th>
-                <span matTooltip="{{ 'The formula that calibrates this port. Use the variable x in place of the value of the input. If port is of type Input, the value of the input will be passed through the expression. If it an output, the value assigned to the variable will be passed through the expression before sending to the driver.' | translate }}">{{
-                  'Static Calibration' | translate }}</span>
+                <span matTooltip="{{ 'The formula that calibrates this port. Use
+                the variable x in place of the value of the input. If port is of
+                type Input, the value of the input will be passed through the
+                expression. If it an output, the value assigned to the variable
+                will be passed through the expression before sending to the
+                driver.' | translate }}">
+                  {{ 'Static Calibration' | translate }}
+                </span>
               </th>
               <th></th>
             </tr>
@@ -121,11 +126,13 @@
           <tbody>
             <tr *ngFor="let calibration of calibrations" inline-form>
               <td>
-                <mat-select [placeholder]="'Port' | translate" [(ngModel)]="calibration.port" class="width-100">
-                  <mat-option *ngFor="let port of ports" [value]="port.id">
-                    {{ port.alias }}
-                  </mat-option>
-                </mat-select>
+                <mat-form-field class="width-100">
+                  <mat-select [placeholder]="'Port' | translate" [(ngModel)]="calibration.port" class="width-100">
+                    <mat-option *ngFor="let port of ports" [value]="port.id">
+                      {{ port.alias }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="width-100">
@@ -138,15 +145,16 @@
                 </mat-form-field>
               </td>
               <td>
-                <button mat-raised-button color="warn" (click)="removeCalibration(calibration)">{{ 'Remove' | translate
-                  }}</button>
+                <button mat-flat-button color="warn" (click)="removeCalibration(calibration)">
+                  {{ 'Remove' | translate }}
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="secondary" (click)="addCalibration()">{{ 'Add' | translate }}</button>
+        <button mat-stroked-button color="secondary" (click)="addCalibration()">{{ 'Add' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 
@@ -176,11 +184,13 @@
           <tbody>
             <tr *ngFor="let interlock of interlocks" inline-form>
               <td>
-                <mat-select class="width-100" [placeholder]="'Input' | translate" [(ngModel)]="interlock.sensor">
-                  <mat-option *ngFor="let alias of inputAliases" [value]="alias">
-                    {{ alias }}
-                  </mat-option>
-                </mat-select>
+                <mat-form-field class="width-100">
+                  <mat-select class="width-100" [placeholder]="'Input' | translate" [(ngModel)]="interlock.sensor">
+                    <mat-option *ngFor="let alias of inputAliases" [value]="alias">
+                      {{ alias }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
               <td>
                 <mat-form-field stretch>
@@ -188,11 +198,13 @@
                 </mat-form-field>
               </td>
               <td>
-                <mat-select class="width-100" [placeholder]="'Output' | translate" [(ngModel)]="interlock.actuator">
-                  <mat-option *ngFor="let alias of outputAliases" [value]="alias">
-                    {{ alias }}
-                  </mat-option>
-                </mat-select>
+                <mat-form-field class="width-100">
+                  <mat-select class="width-100" [placeholder]="'Output' | translate" [(ngModel)]="interlock.actuator">
+                    <mat-option *ngFor="let alias of outputAliases" [value]="alias">
+                      {{ alias }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="width-100">
@@ -200,23 +212,23 @@
                 </mat-form-field>
               </td>
               <td>
-                <button mat-raised-button color="warn" (click)="removeInterlock(interlock)">{{ 'Remove' | translate }}</button>
+                <button mat-flat-button color="warn" (click)="removeInterlock(interlock)">{{ 'Remove' | translate }}</button>
               </td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="secondary" (click)="addInterlock()">{{ 'Add' | translate }}</button>
+        <button mat-stroked-button color="secondary" (click)="addInterlock()">{{ 'Add' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 
     <mat-card *ngIf="!!selectedDriver">
       <mat-card-content>
-        <button mat-raised-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
-        <button mat-raised-button (click)="exportConfiguration()">{{ 'Export' | translate }}</button>
-        <button mat-raised-button (click)="importConfiguration()">{{ 'Import' | translate }}</button>
-        <button mat-raised-button (click)="resetDriver()">{{ 'Reset' | translate }}</button>
+        <button mat-flat-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
+        <button mat-stroked-button (click)="exportConfiguration()">{{ 'Export' | translate }}</button>
+        <button mat-stroked-button (click)="importConfiguration()">{{ 'Import' | translate }}</button>
+        <button mat-stroked-button (click)="resetDriver()">{{ 'Reset' | translate }}</button>
       </mat-card-content>
     </mat-card>
   </div>

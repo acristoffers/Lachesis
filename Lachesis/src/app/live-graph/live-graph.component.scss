@@ -39,22 +39,25 @@
     }
   }
 
-  #charts {
-    text-align: center;
+  .date {
+    font-style: italic;
+    padding-left: 1rem;
+  }
 
+  #charts {
     .mat-select {
       width: 300px !important;
     }
   }
 
-  mat-card {
+  mat-card,
+  mat-expansion-panel {
     margin-top: 2rem;
   }
 
   .chart {
     width: 100%;
     padding: 1rem 0;
-    border-top: 1px solid gray;
 
     lachesis-chart {
       height: 256px;
@@ -72,9 +75,11 @@
   }
 
   .toolbar {
-    margin-bottom: 1rem;
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+    align-items: center;
 
-    .mat-select {
+    mat-form-field {
       margin-right: 1rem;
     }
   }

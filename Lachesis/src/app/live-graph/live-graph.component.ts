@@ -55,6 +55,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   exportTypes: string[] = ['CSV', 'JSON', 'MAT'];
   graphs: Graph[] = [];
   counter = 0;
+  pointsExpanded = false;
 
   private timer: Observable<number>;
   private timerSubscription: Subscription;
@@ -126,6 +127,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
       this.graphs = [];
       this.test = test;
       this.testData = data;
+      this.pointsExpanded = false;
       this.testExportVariables = _.map(this.testData, d => {
         return {
           variable: d.sensor,
@@ -321,5 +323,9 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
 
   compare(a: any, b: any) {
     return _.isEqual(a, b);
+  }
+
+  stop(): void {
+    this.lg.stopTest().subscribe();
   }
 }

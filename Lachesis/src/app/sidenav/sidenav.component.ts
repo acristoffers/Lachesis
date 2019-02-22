@@ -60,8 +60,6 @@ export class SidenavComponent {
   }
 
   buttonColor(route: string): string {
-    console.log(route);
-    console.log(this.currentRouter);
     return route === this.currentRouter ? 'accent' : '';
   }
 }

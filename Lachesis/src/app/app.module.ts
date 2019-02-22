@@ -50,7 +50,8 @@ import {
   MatSnackBarModule,
   MatToolbarModule,
   MatListModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatExpansionModule
 } from '@angular/material';
 import { PidComponent } from './pid/pid.component';
 import { FreeControlComponent } from './free-control/free-control.component';
@@ -103,7 +104,8 @@ import { FreeControlComponent } from './free-control/free-control.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatExpansionModule
   ],
   entryComponents: [
     SystemResponseDialogComponent,

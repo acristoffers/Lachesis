@@ -1,32 +1,33 @@
 <div flex>
   <div stretch></div>
   <div id="control">
-    <h1>{{ 'System Control' | translate }}</h1>
-
     <mat-card>
+      <mat-card-title>
+        {{ 'System Control' | translate }}
+      </mat-card-title>
       <mat-card-content>
-        <div flex id="top-bar" *ngIf="controllers.length != 0">
-          <div stretch></div>
-          <button mat-raised-button color="warn" (click)="removeAll()">{{ 'Remove all' | translate }}</button>
-        </div>
         <mat-list>
           <mat-list-item *ngFor="let controller of controllers">
             <div flex>
               <div class="controller-title">{{ controller.name }}</div>
               <div stretch></div>
               <div>
-                <button mat-raised-button color="primary" (click)="run(controller)">{{ 'Run' | translate }}</button>
-                <button mat-raised-button (click)="edit(controller)">{{ 'Edit' | translate }}</button>
-                <button mat-raised-button (click)="clone(controller)">{{ 'Clone' | translate }}</button>
-                <button mat-raised-button color="warn" (click)="remove(controller)">{{ 'Remove' | translate }}</button>
+                <button mat-flat-button color="primary" (click)="run(controller)">{{ 'Run' | translate }}</button>
+                <button mat-stroked-button (click)="edit(controller)">{{ 'Edit' | translate }}</button>
+                <button mat-stroked-button (click)="clone(controller)">{{ 'Clone' | translate }}</button>
+                <button mat-flat-button color="warn" (click)="remove(controller)">{{ 'Remove' | translate }}</button>
               </div>
             </div>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="secondary" (click)="add()">{{ 'Add' | translate }}</button>
-        <button mat-raised-button (click)="stop()">{{ 'Stop' | translate }}</button>
+      <mat-card-actions flex>
+        <button mat-stroked-button (click)="add()">{{ 'Add' | translate }}</button>
+        <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
+        <div stretch></div>
+        <button *ngIf="controllers.length != 0" mat-flat-button color="warn" (click)="removeAll()">
+          {{ 'Remove all' | translate }}
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -29,49 +29,7 @@
     margin-top: 2rem;
   }
 
-  .setup-argument {
-    display: block;
-  }
-
   table {
     width: 100%;
-    table-layout: fixed;
-
-    th,
-    td {
-      text-align: center;
-    }
-  }
-
-  .mat-form-field {
-    width: auto;
-  }
-
-  .calibration-formula {
-    width: 40%;
-  }
-
-  #ports {
-
-    td,
-    th {
-      width: 15%;
-    }
-  }
-
-  #calibration {
-
-    td,
-    th {
-      width: 25%;
-    }
-  }
-
-  #interlocking {
-
-    td,
-    th {
-      width: 20%;
-    }
   }
 }

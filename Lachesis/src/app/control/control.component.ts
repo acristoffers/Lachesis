@@ -49,8 +49,6 @@ export interface Controller {
 export class ControlComponent implements OnInit {
 
   constructor(
-    private http: Http,
-    private toast: MatSnackBar,
     private i18n: TranslateService,
     private dialog: MatDialog,
     private service: ControlService

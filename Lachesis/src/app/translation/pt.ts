@@ -90,7 +90,7 @@ export const LANG_PT_TRANS = {
     'Fixed outputs': 'Saídas fixas',
     'After test outputs': 'Saídas após os testes',
     'Add/Edit Test': 'Adicionar/editar teste',
-    'Step': 'Passo',
+    'Step': 'Degrau',
     'Impulse': 'Impulso',
     'Wide Pulse': 'Pulso largo',
     'Stair': 'Escada',
