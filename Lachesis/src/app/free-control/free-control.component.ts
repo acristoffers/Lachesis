@@ -69,7 +69,7 @@ export class FreeControlComponent implements OnDestroy {
     private sanitizer: DomSanitizer
   ) {
     this.data = {
-      dt: 0.25,
+      dt: 1,
       inputs: [],
       outputs: []
     };

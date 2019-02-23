@@ -33,9 +33,9 @@
       <mat-card-actions flex *ngIf="tests.length != 0">
         <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
         <div stretch></div>
-        <button mat-stroked-button (click)="removeSelectedTests()">{{ 'Remove Selected' | translate }}</button>
-        <button mat-stroked-button (click)="selectNoneTests()">{{ 'Select None' | translate }}</button>
         <button mat-stroked-button (click)="selectAllTests()">{{ 'Select All' | translate }}</button>
+        <button mat-stroked-button (click)="selectNoneTests()">{{ 'Select None' | translate }}</button>
+        <button mat-flat-button color="warn" (click)="removeSelectedTests()">{{ 'Remove Selected' | translate }}</button>
         <button mat-flat-button color="warn" (click)="removeAllTests()">{{ 'Remove all' | translate }}</button>
       </mat-card-actions>
     </mat-card>

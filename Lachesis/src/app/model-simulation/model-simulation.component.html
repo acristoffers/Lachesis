@@ -77,8 +77,8 @@
           <div class="toolbar" flex>
             <mat-form-field stretch>
               <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
-                <mat-option *ngFor="let v of testExportVariables" [value]="v.variable">
-                  {{ v.variable }}
+                <mat-option *ngFor="let v of variables" [value]="v">
+                  {{ v }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
