@@ -85,8 +85,6 @@ export const LANG_PT_TRANS = {
     'Input/Output Configuration': 'Configuração de entrada/saída',
     'Output to control': 'Saída a controlar',
     'Inputs to log': 'Entradas a registrar',
-    'Log Rate': 'Taxa de registro',
-    'Log Rate (seconds)': 'Taxa de registro (segundos)',
     'Fixed outputs': 'Saídas fixas',
     'After test outputs': 'Saídas após os testes',
     'Add/Edit Test': 'Adicionar/editar teste',

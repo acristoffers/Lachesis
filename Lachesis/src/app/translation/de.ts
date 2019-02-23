@@ -85,8 +85,6 @@ export const LANG_DE_TRANS = {
     'Input/Output Configuration': 'Ein-/Ausgang Einstellung',
     'Output to control': 'Ausgang zu steuern',
     'Inputs to log': 'Eingangen zu protrokollieren',
-    'Log Rate': 'Protokollrate',
-    'Log Rate (seconds)': 'Protokollrate (Sekunden)',
     'Fixed outputs': 'Fixierte Ausgangen',
     'After test outputs': 'Ausgangen nach Tests',
     'Add/Edit Test': 'Test einfügen/bearbeiten',

@@ -85,8 +85,6 @@ export const LANG_FR_TRANS = {
     'Input/Output Configuration': 'Configuration des entrées/sorties',
     'Output to control': 'Sortie à contrôler',
     'Inputs to log': 'Entrées pour journaliser',
-    'Log Rate': 'Taux de journalisation',
-    'Log Rate (seconds)': 'Taux de journalisation (secondes)',
     'Fixed outputs': 'Sorties fixes',
     'After test outputs': 'Sorties après le test',
     'Add/Edit Test': 'Ajouter/modifier test',
