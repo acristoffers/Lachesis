@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -12,12 +11,14 @@ import { ConnectComponent } from './connect/connect.component';
 import { ControlDialogComponent } from './control.dialog/control.dialog.component';
 import { ControlService } from './control.service';
 import { ControlComponent } from './control/control.component';
+import { FreeControlComponent } from './free-control/free-control.component';
 import { HardwareService } from './hardware.service';
 import { HardwareComponent } from './hardware/hardware.component';
 import { LiveGraphService } from './live-graph.service';
 import { LiveGraphComponent } from './live-graph/live-graph.component';
 import { ModelSimulationService } from './model-simulation.service';
 import { ModelSimulationComponent } from './model-simulation/model-simulation.component';
+import { PidComponent } from './pid/pid.component';
 import { RemoveUndefinedPipe } from './remove-undefined.pipe';
 import { Router } from './router.service';
 import { SharedDataService } from './shared-data.service';
@@ -31,8 +32,8 @@ import { SystemResponseStepComponent } from './system-response.step/system-respo
 import { SystemResponseWidePulseComponent } from './system-response.wide-pulse/system-response.wide-pulse.component';
 import { SystemResponseComponent } from './system-response/system-response.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { TranslatePipe } from './translation/translation.pipe';
 import { TRANSLATION_PROVIDERS } from './translation/translation';
+import { TranslatePipe } from './translation/translation.pipe';
 import { TranslateService } from './translation/translation.service';
 
 import {
@@ -53,8 +54,6 @@ import {
   MatCheckboxModule,
   MatExpansionModule
 } from '@angular/material';
-import { PidComponent } from './pid/pid.component';
-import { FreeControlComponent } from './free-control/free-control.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +83,6 @@ import { FreeControlComponent } from './free-control/free-control.component';
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

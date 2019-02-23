@@ -20,13 +20,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import * as _ from 'lodash';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs';
-import { SharedDataService } from './shared-data.service';
 import { APIBase } from './api-base';
 import { ChartService, DataPoint } from './chart.service';
+import { SharedDataService } from './shared-data.service';
 
 export interface ResponseTest {
   id: number;
@@ -50,7 +50,7 @@ export interface PortValue {
 })
 export class SystemResponseService extends APIBase {
   constructor(
-    http: Http,
+    http: HttpClient,
     sharedData: SharedDataService
   ) {
     super(http, sharedData);

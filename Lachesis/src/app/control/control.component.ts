@@ -21,8 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
@@ -51,8 +50,7 @@ export class ControlComponent implements OnInit {
   constructor(
     private i18n: TranslateService,
     private dialog: MatDialog,
-    private service: ControlService
-    ,
+    private service: ControlService,
     private router: Router
   ) {
   }

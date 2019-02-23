@@ -204,7 +204,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     } else if (this.exportType === 'MAT') {
       this.lg.downloadMAT(this.test, dict).subscribe(data => {
         const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(data.blob());
+        link.href = window.URL.createObjectURL(data);
         link.download = `${this.test.name}.mat`;
         link.click();
       }, this.httpError());

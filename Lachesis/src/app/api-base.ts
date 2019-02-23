@@ -20,37 +20,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SharedDataService } from './shared-data.service';
 
 export class APIBase {
   protected constructor(
-    protected http: Http,
+    protected http: HttpClient,
     protected sharedData: SharedDataService
   ) { }
 
   protected doGet(url: string): Observable<any> {
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${SharedDataService.accessToken}`
     });
-    const options = new RequestOptions({ headers: headers });
+    const options = { headers: headers };
     const observable = this.http.get(url, options);
-    return observable.pipe(map((res: Response) => res.json()));
+    return observable.pipe(map(res => JSON.parse(JSON.stringify(res))));
   }
 
   protected doPost(url: string, data: any, type: string = 'application/json'): Observable<any> {
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': type,
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${SharedDataService.accessToken}`
     });
-    const options = new RequestOptions({ headers: headers });
+    const options = { headers: headers };
     const observable = this.http.post(url, data, options);
-    return observable.pipe(map((res: Response) => res.json()));
+    return observable.pipe(map(res => JSON.parse(JSON.stringify(res))));
   }
 
   protected urlFor(path: string): string {

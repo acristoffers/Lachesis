@@ -128,4 +128,8 @@ export class SystemResponseComponent implements OnInit {
   presentType(type: string): string {
     return _.join(_.map(_.split(type, '-'), s => s[0].toUpperCase() + s.substring(1)), ' ');
   }
+
+  stop(): void {
+    this.sr.stopTest().subscribe();
+  }
 }

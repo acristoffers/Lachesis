@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APIBase } from './api-base';
@@ -89,7 +89,7 @@ export interface Interlock {
 })
 export class HardwareService extends APIBase {
   constructor(
-    http: Http,
+    http: HttpClient,
     sharedData: SharedDataService
   ) {
     super(http, sharedData);

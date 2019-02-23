@@ -23,6 +23,7 @@
       </mat-card-content>
       <mat-card-actions flex>
         <button mat-stroked-button color="secondary" (click)="addTest()">{{ 'Add' | translate }}</button>
+        <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
         <div stretch></div>
         <button *ngIf="tests.length != 0" mat-flat-button color="warn" (click)="removeAll()">
           {{ 'Remove all' | translate }}

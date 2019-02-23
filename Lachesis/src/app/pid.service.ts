@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { APIBase } from './api-base';
 import { SharedDataService } from './shared-data.service';
@@ -45,7 +45,7 @@ export interface PidPostData {
 })
 export class PidService extends APIBase {
   constructor(
-    http: Http,
+    http: HttpClient,
     sharedData: SharedDataService
   ) {
     super(http, sharedData);

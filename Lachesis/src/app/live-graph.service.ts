@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response, ResponseContentType } from '@angular/http';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -50,7 +50,7 @@ export interface VariableRename {
 })
 export class LiveGraphService extends APIBase {
   constructor(
-    http: Http,
+    http: HttpClient,
     sharedData: SharedDataService
   ) {
     super(http, sharedData);
@@ -87,7 +87,7 @@ export class LiveGraphService extends APIBase {
     }));
   }
 
-  downloadMAT(test: Test, variables: VariableRename): Observable<Response> {
+  downloadMAT(test: Test, variables: VariableRename): Observable<Blob> {
     const path = '/live_graph/test/export';
     const url = this.urlFor(path);
     const data = {
@@ -96,16 +96,16 @@ export class LiveGraphService extends APIBase {
       variables: variables
     };
 
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/octet-stream',
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${SharedDataService.accessToken}`
     });
 
-    const options = new RequestOptions({
+    const options = {
       headers: headers,
-      responseType: ResponseContentType.Blob
-    });
+      responseType: 'blob' as 'blob'
+    };
 
     return this.http.post(url, data, options);
   }

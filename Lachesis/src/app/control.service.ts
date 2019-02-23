@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,7 +34,7 @@ import { SharedDataService } from './shared-data.service';
 })
 export class ControlService extends APIBase {
   constructor(
-    http: Http,
+    http: HttpClient,
     sharedData: SharedDataService
   ) {
     super(http, sharedData);
