@@ -16,7 +16,7 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card id="setup" *ngIf="!!selectedDriver && selectedDriver.has_setup">
+    <mat-card id="setup" *ngIf="showSetup()">
       <mat-card-title matTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
         {{ 'Setup' | translate }}
       </mat-card-title>

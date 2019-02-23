@@ -265,4 +265,10 @@ export class HardwareComponent implements OnInit {
     const as = _.concat(ps, cs);
     return _.uniq(as);
   }
+
+  showSetup(): boolean {
+    return !!this.selectedDriver &&
+      this.selectedDriver.has_setup &&
+      this.selectedDriver.setup_arguments.length > 0;
+  }
 }
