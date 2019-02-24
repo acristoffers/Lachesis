@@ -70,6 +70,7 @@ export class HardwareComponent implements OnInit {
   ngOnInit(): void {
     this.hardwareService.listDrivers().pipe(flatMap((drivers: Driver[]) => {
       this.availableDrivers = drivers;
+      this.availableDrivers.forEach(driver => driver.setup_arguments.forEach(arg => arg.value = arg.default_value));
       return this.hardwareService.getConfiguration();
     })).pipe(map(([driver, ports, calibrations, interlocks]) => {
       driver = driver as Driver;
@@ -210,10 +211,12 @@ export class HardwareComponent implements OnInit {
         const json = event.target.result;
         const values = JSON.parse(json);
 
-        this.selectedDriver = _.first(_.filter(this.availableDrivers, d => d.name === values.selectedDriver.name));
+        this.selectedDriver = this.findDriverByName(values.selectedDriver.name);
         this.ports = values.ports;
         this.calibrations = values.calibrations;
         this.interlocks = values.interlocks;
+
+        this.selectedDriver.setup_arguments = values.selectedDriver.setup_arguments;
       };
 
       reader.readAsText(file);

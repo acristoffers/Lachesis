@@ -21,8 +21,7 @@
       </mat-card-title>
       <mat-card-content flex-col>
         <mat-form-field *ngFor="let argument of selectedDriver.setup_arguments">
-          <input matInput [placeholder]="argument.name" [value]=" argument.default_value | removeUndefined "
-            [(ngModel)]="argument.value">
+          <input matInput [placeholder]="argument.name" [(ngModel)]="argument.value">
         </mat-form-field>
       </mat-card-content>
     </mat-card>

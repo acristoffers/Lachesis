@@ -38,6 +38,7 @@ export enum Types {
 interface SetupArgument {
   name: string;
   default_value?: string;
+  value?: string;
 }
 
 interface Port {
