@@ -1,5 +1,4 @@
-<div flex>
-  <div stretch></div>
+<div flex-col>
   <div id="model-simulation">
     <mat-card>
       <mat-card-title>
@@ -36,25 +35,31 @@
           </tbody>
         </table>
 
-        <h2>{{ 'Simulation Configuration' | translate }}</h2>
-        <mat-form-field class="setup-fields">
-          <input matInput [placeholder]="'Model' | translate" [(ngModel)]="model">
-        </mat-form-field>
+        <mat-list>
+          <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
 
-        <mat-form-field class="setup-fields">
-          <input matInput [placeholder]="'x0' | translate" [(ngModel)]="x0">
-        </mat-form-field>
+          <mat-list-item flex-col>
+            <mat-form-field class="setup-fields">
+              <input matInput [placeholder]="'Model' | translate" [(ngModel)]="model">
+            </mat-form-field>
 
-        <mat-form-field class="setup-fields">
-          <input matInput [placeholder]="'u' | translate" [(ngModel)]="u">
-        </mat-form-field>
+            <mat-form-field class="setup-fields">
+              <input matInput [placeholder]="'x0' | translate" [(ngModel)]="x0">
+            </mat-form-field>
 
-        <mat-form-field class="setup-fields">
-          <input matInput [placeholder]="'Duration' | translate" [(ngModel)]="ts">
-        </mat-form-field>
+            <mat-form-field class="setup-fields">
+              <input matInput [placeholder]="'u' | translate" [(ngModel)]="u">
+            </mat-form-field>
 
-        <button [disabled]='!buttonEnabled' mat-flat-button color="primary" (click)="simulate()">{{
-          'Simulate' | translate }}</button>
+            <mat-form-field class="setup-fields">
+              <input matInput [placeholder]="'Duration' | translate" [(ngModel)]="ts">
+            </mat-form-field>
+          </mat-list-item>
+        </mat-list>
+
+        <button [disabled]='!buttonEnabled' mat-flat-button color="primary" (click)="simulate()">
+          {{ 'Simulate' | translate }}
+        </button>
       </mat-card-content>
     </mat-card>
 
@@ -91,5 +96,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div stretch></div>
 </div>

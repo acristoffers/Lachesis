@@ -21,9 +21,7 @@
  */
 
 #system-response-free {
-  h2 {
-    margin-bottom: 1rem;
-  }
+  align-items: flex-start;
 
   #free-graph {
     margin-top: 1rem;
@@ -38,6 +36,37 @@
       display: block;
       width: 100%;
       height: 100px;
+    }
+  }
+
+  .mat-list-item {
+    height: auto;
+  }
+
+  ::ng-deep .mat-list-item[flex-col] {
+    .mat-list-item-content {
+      flex-direction: column;
+    }
+  }
+
+  .mat-list-item-content {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-tab-body-content {
+    padding-top: 1rem;
+  }
+
+  #fixed-outputs,
+  #data-points {
+    width: 100%;
+
+    mat-form-field {
+      margin-right: 1rem;
+    }
+
+    .mat-list-item-content {
+      width: 100%;
     }
   }
 

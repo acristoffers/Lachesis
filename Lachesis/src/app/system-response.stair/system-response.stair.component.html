@@ -3,99 +3,103 @@
     <div id='stair-graph-legend'></div>
     <div id="stair-graph"></div>
   </div>
+
   <div stretch default-padding>
-    <h2>{{ 'Curve data' | translate }}</h2>
+    <mat-list>
+      <h3 mat-subheader>{{ 'Curve data' | translate }}</h3>
 
-    <div default-padding>
-      <mat-form-field class="width-100">
-        <input matInput placeholder="V0" [(ngModel)]="v0" (blur)="plotPoints()" type="number">
-      </mat-form-field>
-      <mat-form-field class="width-100">
-        <input matInput placeholder="V1" [(ngModel)]="v1" (blur)="plotPoints()" type="number">
-      </mat-form-field>
-      <mat-form-field class="width-100">
-        <input matInput placeholder="n" [(ngModel)]="n" (blur)="plotPoints()" type="number">
-      </mat-form-field>
-      <mat-form-field class="width-100">
-        <input matInput [placeholder]="'t (seconds)' | translate" [(ngModel)]="t" (blur)="plotPoints()" type="number">
-      </mat-form-field>
-    </div>
+      <mat-list-item flex-col>
+        <mat-form-field class="width-100">
+          <input matInput placeholder="V0" [(ngModel)]="v0" (blur)="plotPoints()" type="number">
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <input matInput placeholder="V1" [(ngModel)]="v1" (blur)="plotPoints()" type="number">
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <input matInput placeholder="n" [(ngModel)]="n" (blur)="plotPoints()" type="number">
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <input matInput [placeholder]="'t (seconds)' | translate" [(ngModel)]="t" (blur)="plotPoints()" type="number">
+        </mat-form-field>
+      </mat-list-item>
 
-    <h2>{{ 'Input/Output Configuration' | translate }}</h2>
+      <h3 mat-subheader>{{ 'Output to control' | translate }}</h3>
 
-    <h3>{{ 'Output to control' | translate }}</h3>
-    <div default-padding>
-      <div *ngFor="let output of outputs" class="input">
-        <mat-checkbox [(ngModel)]="output[1]" (change)="updateOutputs()">{{ output[0] }}</mat-checkbox>
-      </div>
-    </div>
+      <mat-list-item>
+        <div>
+          <div *ngFor="let output of outputs" class="input">
+            <mat-checkbox [(ngModel)]="output[1]" (change)="updateOutputs()">{{ output[0] }}</mat-checkbox>
+          </div>
+        </div>
+      </mat-list-item>
 
-    <h3>{{ 'Inputs to log' | translate }}</h3>
-    <div default-padding>
-      <div *ngFor="let input of inputs" class="input">
-        <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</mat-checkbox>
-      </div>
-    </div>
+      <h3 mat-subheader>{{ 'Inputs to log' | translate }}</h3>
 
-    <h3>{{ 'Sampling Time' | translate }}</h3>
-    <div default-padding>
-      <mat-form-field class="width-100">
-        <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="test.logRate" type="number">
-      </mat-form-field>
-    </div>
+      <mat-list-item>
+        <div>
+          <div *ngFor="let input of inputs" class="input">
+            <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</mat-checkbox>
+          </div>
+        </div>
+      </mat-list-item>
 
-    <h3>{{ 'Fixed outputs' | translate }}</h3>
-    <div default-padding>
-      <table class="width-100" fixed>
-        <tbody>
-          <tr *ngFor="let output of test.fixedOutputs" inline-form>
-            <td width-60>
-              <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
-                <mat-option *ngFor="let out of outputs" [value]="out[0]">
-                  {{ out[0] }}
-                </mat-option>
-              </mat-select>
-            </td>
-            <td width-15>
-              <mat-form-field class="width-100">
+      <h3 mat-subheader>{{ 'Sampling Time' | translate }}</h3>
+
+      <mat-list-item>
+        <mat-form-field class="width-100">
+          <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="test.logRate" type="number">
+        </mat-form-field>
+      </mat-list-item>
+
+      <h3 mat-subheader>{{ 'Fixed outputs' | translate }}</h3>
+
+      <mat-list-item>
+        <div id="fixed-outputs">
+          <div flex-col>
+            <div class="width-100" flex *ngFor="let output of test.fixedOutputs">
+              <mat-form-field stretch>
+                <mat-select placeholder="{{ 'Output' | translate }}" class="setup-select" [(ngModel)]="output.alias">
+                  <mat-option *ngFor="let out of outputs" [value]="out[0]">
+                    {{ out[0] }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field stretch>
                 <input matInput [placeholder]="'Value' | translate" [(ngModel)]="output.value" type="number">
               </mat-form-field>
-            </td>
-            <td width-15>
-              <button mat-flat-button color="warn" (click)="removeFixedOutput(output)">{{ 'Remove' |
-                translate }}</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button mat-stroked-button (click)="addFixedOutput()">{{ 'Add' | translate }}</button>
-    </div>
+              <button mat-icon-button color="warn" (click)="removeFixedOutput(output)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <button mat-stroked-button (click)="addFixedOutput()">{{ 'Add' | translate }}</button>
+        </div>
+      </mat-list-item>
 
-    <h3>{{ 'After test outputs' | translate }}</h3>
-    <div default-padding>
-      <table class="width-100" fixed>
-        <tbody>
-          <tr *ngFor="let output of test.afterOutputs" inline-form>
-            <td width-60>
-              <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="output.alias">
-                <mat-option *ngFor="let out of outputs" [value]="out[0]">
-                  {{ out[0] }}
-                </mat-option>
-              </mat-select>
-            </td>
-            <td width-15>
-              <mat-form-field class="width-100">
+      <h3 mat-subheader>{{ 'After test outputs' | translate }}</h3>
+
+      <mat-list-item>
+        <div id="fixed-outputs">
+          <div flex-col>
+            <div class="width-100" flex *ngFor="let output of test.afterOutputs">
+              <mat-form-field stretch>
+                <mat-select placeholder="{{ 'Output' | translate }}" class="setup-select" [(ngModel)]="output.alias">
+                  <mat-option *ngFor="let out of outputs" [value]="out[0]">
+                    {{ out[0] }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field stretch>
                 <input matInput [placeholder]="'Value' | translate" [(ngModel)]="output.value" type="number">
               </mat-form-field>
-            </td>
-            <td width-15>
-              <button mat-flat-button color="warn" (click)="removeAfterOutput(output)">{{ 'Remove' |
-                translate }}</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button mat-stroked-button (click)="addAfterOutput()">{{ 'Add' | translate }}</button>
-    </div>
+              <button mat-icon-button color="warn" (click)="removeAfterOutput(output)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <button mat-stroked-button (click)="addAfterOutput()">{{ 'Add' | translate }}</button>
+        </div>
+      </mat-list-item>
+    </mat-list>
   </div>
 </div>

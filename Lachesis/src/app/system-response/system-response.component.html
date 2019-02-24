@@ -1,5 +1,4 @@
-<div flex>
-  <div stretch></div>
+<div flex-col>
   <div id="system-response">
     <mat-card>
       <mat-card-title>
@@ -12,10 +11,18 @@
               <div class="test-title">{{ test.name }} - {{ presentType(test.type) | translate }}</div>
               <div stretch></div>
               <div>
-                <button mat-flat-button color="primary" (click)="runTest(test)">{{ 'Run' | translate }}</button>
-                <button mat-stroked-button (click)="editTest(test)">{{ 'Edit' | translate }}</button>
-                <button mat-stroked-button (click)="clone(test)">{{ 'Clone' | translate }}</button>
-                <button mat-flat-button color="warn" (click)="removeTest(test)">{{ 'Remove' | translate }}</button>
+                <button mat-icon-button color="primary" (click)="runTest(test)">
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <button mat-icon-button (click)="editTest(test)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="clone(test)">
+                  <mat-icon>content_copy</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="removeTest(test)">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
             </div>
           </mat-list-item>
@@ -31,5 +38,4 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div stretch></div>
 </div>

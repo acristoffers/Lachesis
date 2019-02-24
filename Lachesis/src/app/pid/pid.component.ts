@@ -72,7 +72,7 @@ export class PidComponent implements OnDestroy {
       Kp: 0,
       Ki: 0,
       Kd: 0,
-      dt: 0.25,
+      dt: 1,
       u: '',
       y: '',
       r: 0,

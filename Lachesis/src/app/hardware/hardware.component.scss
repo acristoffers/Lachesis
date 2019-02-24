@@ -21,15 +21,33 @@
  */
 
 #hardware {
+  margin: auto;
   padding: 1rem;
-  min-width: 66%;
+  min-width: 900px;
   max-width: 90%;
 
   mat-card {
-    margin-top: 2rem;
+    margin: 1rem;
   }
 
   table {
     width: 100%;
+  }
+
+  .row {
+    >* {
+      width: 100%;
+      margin: 0 1px;
+    }
+
+    :last-child {
+      width: auto;
+      min-width: 40px;
+    }
+  }
+
+  .header {
+    font-weight: bold;
+    text-align: center;
   }
 }

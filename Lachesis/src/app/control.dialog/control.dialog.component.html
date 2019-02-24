@@ -1,35 +1,55 @@
-<mat-card-title>{{ 'Add/Edit Controller' | translate }}</mat-card-title>
+<mat-card-title>
+  {{ 'Add/Edit Controller' | translate }}
+</mat-card-title>
 <mat-card-content id="control-dialog">
-  <mat-form-field class="width-100">
-    <input matInput [placeholder]="'Name' | translate" [(ngModel)]="controller.name">
-  </mat-form-field>
+  <mat-list>
+    <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
 
-  <mat-form-field class="width-100">
-    <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="controller.tau">
-  </mat-form-field>
+    <mat-list-item flex-col>
+      <mat-form-field class="width-100">
+        <input matInput [placeholder]="'Name' | translate" [(ngModel)]="controller.name">
+      </mat-form-field>
 
-  <mat-form-field class="width-100">
-    <input matInput [placeholder]="'Total Run Time' | translate" [(ngModel)]="controller.runTime">
-  </mat-form-field>
+      <mat-form-field class="width-100">
+        <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="controller.tau">
+      </mat-form-field>
 
-  <h1>{{ 'Inputs' | translate }}</h1>
-  <span>{{ 'For better performance, not all inputs are scanned. Choose the ones you need below.' | translate }}</span>
-  <div default-padding>
-    <div *ngFor="let input of inputs" class="input">
-      <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</mat-checkbox>
-    </div>
-  </div>
+      <mat-form-field class="width-100">
+        <input matInput [placeholder]="'Total Run Time' | translate" [(ngModel)]="controller.runTime">
+      </mat-form-field>
+    </mat-list-item>
 
-  <h1>{{ 'Before' | translate }}</h1>
-  <span>{{ 'This code will be executed before the controller starts.' | translate }}</span>
-  <ace-editor [(text)]="controller.before" mode="python" theme="xcode"></ace-editor>
+    <h3 mat-subheader>{{ 'Inputs' | translate }}</h3>
 
-  <h1>{{ 'Controller' | translate }}</h1>
-  <ace-editor [(text)]="controller.controller" mode="python" theme="xcode"></ace-editor>
+    <mat-list-item flex-col>
+      <span>{{ 'For better performance, not all inputs are scanned. Choose the ones you need below.' | translate }}</span>
+      <div default-padding>
+        <div *ngFor="let input of inputs" class="input">
+          <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</mat-checkbox>
+        </div>
+      </div>
+    </mat-list-item>
 
-  <h1>{{ 'After' | translate }}</h1>
-  <span>{{ 'This code will be executed after the controller leaves. Even if something goes wrong.' | translate }}</span>
-  <ace-editor [(text)]="controller.after" mode="python" theme="xcode"></ace-editor>
+    <h3 mat-subheader>{{ 'Before' | translate }}</h3>
+
+    <mat-list-item flex-col>
+      <span>{{ 'This code will be executed before the controller starts.' | translate }}</span>
+      <ace-editor [(text)]="controller.before" mode="python" theme="xcode"></ace-editor>
+    </mat-list-item>
+
+    <h3 mat-subheader>{{ 'Controller' | translate }}</h3>
+
+    <mat-list-item>
+      <ace-editor [(text)]="controller.controller" mode="python" theme="xcode"></ace-editor>
+    </mat-list-item>
+
+    <h3 mat-subheader>{{ 'After' | translate }}</h3>
+
+    <mat-list-item flex-col>
+      <span>{{ 'This code will be executed after the controller leaves. Even if something goes wrong.' | translate }}</span>
+      <ace-editor [(text)]="controller.after" mode="python" theme="xcode"></ace-editor>
+    </mat-list-item>
+  </mat-list>
 </mat-card-content>
 <mat-card-actions>
   <button mat-flat-button color="primary" (click)="save()">{{ 'Save' | translate }}</button>

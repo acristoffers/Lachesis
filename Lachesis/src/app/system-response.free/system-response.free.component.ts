@@ -110,6 +110,7 @@ export class SystemResponseFreeComponent implements AfterViewInit {
 
   removePoint(point: DataPoint): void {
     this.test.points = _.filter(this.test.points, f => f !== point);
+    this.plotPoints();
   }
 
   importData(): void {

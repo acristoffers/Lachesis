@@ -1,44 +1,50 @@
-<div flex>
-  <div stretch></div>
+<div flex-col>
   <div id="free">
     <mat-card>
       <mat-card-title>
         {{ 'Free Control' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <mat-form-field class="setup-field">
-          <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="data.dt">
-        </mat-form-field>
+        <mat-list>
+          <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
 
-        <mat-form-field class="setup-field" *ngIf="!freeTimerSubscription">
-          <mat-select placeholder="{{ 'Inputs' | translate }}" class="width-100" [(ngModel)]="data.inputs" multiple>
-            <mat-option *ngFor="let in of inputs" [value]="in">{{ in }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-list-item>
+            <mat-form-field class="setup-field">
+              <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="data.dt">
+            </mat-form-field>
 
-        <h3>{{ 'Outputs' | translate }}</h3>
-        <div default-padding>
-          <table fixed>
-            <tbody>
-              <tr *ngFor="let output of data.outputs" inline-form>
-                <td width-60>
-                  <mat-select placeholder="{{ 'Output' | translate }}" class="setup-field" [(ngModel)]="output.alias">
-                    <mat-option *ngFor="let out of outputs" [value]="out">{{ out }}</mat-option>
-                  </mat-select>
-                </td>
-                <td width-15>
-                  <mat-form-field class="width-100">
+            <mat-form-field class="setup-field" *ngIf="!freeTimerSubscription">
+              <mat-select placeholder="{{ 'Inputs' | translate }}" class="width-100" [(ngModel)]="data.inputs" multiple>
+                <mat-option *ngFor="let in of inputs" [value]="in">{{ in }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-list-item>
+
+          <h3 mat-subheader>{{ 'Outputs' | translate }}</h3>
+
+          <mat-list-item>
+            <div id="fixed-outputs">
+              <div flex-col>
+                <div class="width-100" flex *ngFor="let output of data.outputs">
+                  <mat-form-field stretch>
+                    <mat-select placeholder="{{ 'Output' | translate }}" class="setup-select" [(ngModel)]="output.alias">
+                      <mat-option *ngFor="let out of outputs" [value]="out">
+                        {{ out }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field stretch>
                     <input matInput [placeholder]="'Value' | translate" [(ngModel)]="output.value" type="number">
                   </mat-form-field>
-                </td>
-                <td width-15>
-                  <button mat-flat-button color="warn" (click)="removeOutput(output)">{{ 'Remove' | translate }}</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <button mat-stroked-button (click)="addOutput()">{{ 'Add' | translate }}</button>
-        </div>
+                  <button mat-icon-button color="warn" (click)="removeOutput(output)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <button mat-stroked-button (click)="addOutput()">{{ 'Add' | translate }}</button>
+            </div>
+          </mat-list-item>
+        </mat-list>
 
         <button mat-flat-button color="primary" (click)="run()">{{ 'Run' | translate }}</button>
       </mat-card-content>
@@ -61,9 +67,11 @@
 
         <div class="chart" *ngFor="let graph of this.graphs">
           <div class="toolbar" flex>
-            <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
-              <mat-option *ngFor="let v of variables" [value]="v">{{ v }}</mat-option>
-            </mat-select>
+            <mat-form-field stretch>
+              <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
+                <mat-option *ngFor="let v of variables" [value]="v">{{ v }}</mat-option>
+              </mat-select>
+            </mat-form-field>
             <button mat-stroked-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
             <button mat-stroked-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
             <button mat-flat-button color="warn" (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
@@ -73,5 +81,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div stretch></div>
 </div>

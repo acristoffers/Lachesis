@@ -189,6 +189,10 @@ export class HardwareComponent implements OnInit {
     return driver.name;
   }
 
+  portTracker(index: number, port: PortConfiguration): number {
+    return port.id;
+  }
+
   resetDriver(): void {
     this.selectedDriver = null;
   }
@@ -206,7 +210,7 @@ export class HardwareComponent implements OnInit {
         const json = event.target.result;
         const values = JSON.parse(json);
 
-        this.selectedDriver = values.selectedDriver;
+        this.selectedDriver = _.first(_.filter(this.availableDrivers, d => d.name === values.selectedDriver.name));
         this.ports = values.ports;
         this.calibrations = values.calibrations;
         this.interlocks = values.interlocks;

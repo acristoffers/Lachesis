@@ -21,8 +21,10 @@
  */
 
 #live-graph {
+  margin: auto;
   padding: 1rem;
-  min-width: 66%;
+  min-width: 900px;
+  max-width: 90%;
 
   #tests-list {
     max-height: 20rem;
@@ -52,7 +54,7 @@
 
   mat-card,
   mat-expansion-panel {
-    margin-top: 2rem;
+    margin: 1rem;
   }
 
   .chart {

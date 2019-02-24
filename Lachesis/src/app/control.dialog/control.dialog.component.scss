@@ -58,4 +58,23 @@
     width: 25%;
     display: inline-block;
   }
+
+  .mat-list-item {
+    height: auto;
+  }
+
+  ::ng-deep .mat-list-item[flex-col] {
+    .mat-list-item-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .mat-list-item-content {
+    width: 100%;
+  }
+
+  mat-list {
+    margin-bottom: 1rem;
+  }
 }

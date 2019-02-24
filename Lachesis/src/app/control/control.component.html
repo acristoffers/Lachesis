@@ -1,5 +1,4 @@
-<div flex>
-  <div stretch></div>
+<div flex-col>
   <div id="control">
     <mat-card>
       <mat-card-title>
@@ -12,10 +11,18 @@
               <div class="controller-title">{{ controller.name }}</div>
               <div stretch></div>
               <div>
-                <button mat-flat-button color="primary" (click)="run(controller)">{{ 'Run' | translate }}</button>
-                <button mat-stroked-button (click)="edit(controller)">{{ 'Edit' | translate }}</button>
-                <button mat-stroked-button (click)="clone(controller)">{{ 'Clone' | translate }}</button>
-                <button mat-flat-button color="warn" (click)="remove(controller)">{{ 'Remove' | translate }}</button>
+                <button mat-icon-button color="primary" (click)="run(controller)">
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <button mat-icon-button (click)="edit(controller)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="clone(controller)">
+                  <mat-icon>content_copy</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="remove(controller)">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
             </div>
           </mat-list-item>
@@ -31,5 +38,4 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div stretch></div>
 </div>

@@ -21,11 +21,13 @@
  */
 
 #system-response {
+  margin: auto;
   padding: 1rem;
-  min-width: 66%;
+  min-width: 900px;
+  max-width: 90%;
 
   mat-card {
-    margin-top: 2rem;
+    margin: 1rem;
 
     mat-list-item {
       div[flex] {

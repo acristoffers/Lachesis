@@ -1,5 +1,4 @@
-<div flex>
-  <div stretch></div>
+<div flex-col>
   <div id="live-graph">
     <mat-card>
       <mat-card-title>
@@ -19,11 +18,12 @@
                   </div>
                 </div>
                 <div>
-                  <button mat-flat-button color="primary" (click)="loadTest(test1); $event.stopPropagation()">{{
-                    'Show' |
-                    translate }}</button>
-                  <button mat-flat-button color="warn" (click)="removeTest(test1); $event.stopPropagation()">{{(test1.running
-                    ? 'Stop' : 'Remove') | translate }}</button>
+                  <button mat-icon-button color="primary" (click)="loadTest(test1); $event.stopPropagation()">
+                    <mat-icon>show_chart</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" (click)="removeTest(test1); $event.stopPropagation()">
+                    <mat-icon>{{test1.running ? 'stop' : 'delete' }}</mat-icon>
+                  </button>
                 </div>
               </div>
             </mat-list-option>
@@ -93,7 +93,7 @@
           <button mat-flat-button color="warn" (click)="removeAll()">{{ 'Remove all' | translate }}</button>
         </div>
 
-        <div class="chart" *ngFor="let graph of this.graphs">
+        <div class="chart" *ngFor="let graph of this.graphs; trackBy:graph?.id">
           <div class="toolbar" flex>
             <mat-form-field stretch>
               <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
@@ -111,5 +111,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div stretch></div>
 </div>
