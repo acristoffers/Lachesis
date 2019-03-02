@@ -25,6 +25,8 @@ like a Raspberry Pi, and _Lachesis_ in another one, using _Lachesis_ like a
 remote control for your control system. This allows various user to share plant
 configuration.
 
+Manual (in Portuguese) [available here](https://github.com/acristoffers/Manual-Lachesis/raw/master/document.pdf).
+
 ## Instalation
 
 Under [releases](https://github.com/acristoffers/Lachesis/releases), download
