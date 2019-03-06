@@ -38,10 +38,10 @@ interface Graph {
   styleUrls: ['./model-simulation.component.scss']
 })
 export class ModelSimulationComponent {
-  model = '([[-0.02,0.02],[0.02,-0.04]],[[331e-6],[0]],[[0,1]],[[0]])';
-  x0 = '[[0],[0]]';
-  u = '80';
-  ts = '100';
+  model = '([[0.5]], [[1]], [[1]], [[0]], 1)';
+  x0 = '[[0]]';
+  u = '1';
+  ts = '40';
   buttonEnabled = true;
 
   variables: string[];
