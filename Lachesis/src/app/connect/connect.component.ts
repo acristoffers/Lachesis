@@ -20,9 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ApplicationRef, Component, NgZone } from '@angular/core';
-import { Response } from '@angular/http';
 import { MatSnackBar } from '@angular/material';
 import * as _ from 'lodash';
 import * as semver from 'semver';
@@ -184,9 +183,9 @@ export class ConnectComponent {
     input.click();
   }
 
-  httpError(): (res: Response) => void {
+  httpError(): (res: HttpErrorResponse) => void {
     const self: ConnectComponent = this;
-    return (error: any) => {
+    return (error: HttpErrorResponse) => {
       this.working = false;
       if (!error.ok) {
         let str: string;
@@ -203,5 +202,10 @@ export class ConnectComponent {
 
   fillLogin(address: string) {
     this.connectionAddress = address;
+  }
+
+  remove(address: string) {
+    this.connections = _.filter(this.connections, c => address !== c);
+    localStorage.setItem('connections', JSON.stringify(this.connections));
   }
 }

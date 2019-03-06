@@ -4,13 +4,20 @@
       {{ 'Connect' | translate }}
     </mat-card-title>
     <mat-card-content>
-      <mat-list>
+      <mat-action-list>
         <h3 mat-subheader>{{ 'Past connections' | translate }}</h3>
 
         <mat-list-item *ngFor='let connection of connections'>
-          <button class="width-100" mat-button (click)='fillLogin(connection)'>{{connection}}</button>
+          <button mat-list-item (click)='fillLogin(connection)'>
+            <span flex class="width-100">
+              <span stretch>{{connection}}</span>
+              <button mat-icon-button color="warn" (click)="remove(connection); $event.stopPropagation()">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </span>
+          </button>
         </mat-list-item>
-      </mat-list>
+      </mat-action-list>
 
       <mat-form-field class="width-100">
         <input matInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress" (keydown.enter)="connect()">
