@@ -79,7 +79,7 @@
     "dist:mac": "yarn run build --mac",
     "dist:all": "yarn run dist:mac && yarn run dist:linux && yarn run dist:win",
     "release:win": "yarn run build --publish always --win --x64 --ia32",
-    "release:linux": "yarn run build --publish always --linux --x64",
+    "release:linux": "umask 000 && yarn run build --publish always --linux --x64",
     "release:mac": "yarn run build --publish always --mac",
     "release": "yarn run release:mac && yarn run release:linux && yarn run release:win"
   }
