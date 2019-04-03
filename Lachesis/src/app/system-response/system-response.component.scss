@@ -44,4 +44,8 @@
       line-height: 36px;
     }
   }
+
+  mat-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
 }
