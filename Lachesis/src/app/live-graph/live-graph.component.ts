@@ -247,7 +247,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
       second: 'numeric'
     };
 
-    return new Date(date).toLocaleString(this.i18n.currentLang, options);
+    return new Date(`${date}Z`).toLocaleString(this.i18n.currentLang, options);
   }
 
   private makeValidVariable(variable: string): string {
