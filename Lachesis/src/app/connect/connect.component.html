@@ -8,7 +8,7 @@
         <h3 mat-subheader>{{ 'Past connections' | translate }}</h3>
 
         <mat-list-item *ngFor='let connection of connections'>
-          <button mat-list-item (click)='fillLogin(connection)'>
+          <button class="connection" (click)='fillLogin(connection)'>
             <span flex class="width-100">
               <span stretch>{{connection}}</span>
               <button mat-icon-button color="warn" (click)="remove(connection); $event.stopPropagation()">
@@ -20,7 +20,8 @@
       </mat-action-list>
 
       <mat-form-field class="width-100">
-        <input matInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress" (keydown.enter)="connect()">
+        <input matInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress"
+          (keydown.enter)="connect()">
       </mat-form-field>
 
       <mat-form-field class="width-100">
@@ -79,8 +80,10 @@
       <div>{{ 'This can take some time.' | translate }}</div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-flat-button [disabled]='working' color="primary" (click)="backup()">{{ 'Backup' | translate }}</button>
-      <button mat-flat-button [disabled]='working' color="primary" (click)="restore()">{{ 'Restore' | translate }}</button>
+      <button mat-flat-button [disabled]='working' color="primary"
+        (click)="backup()">{{ 'Backup' | translate }}</button>
+      <button mat-flat-button [disabled]='working' color="primary"
+        (click)="restore()">{{ 'Restore' | translate }}</button>
     </mat-card-actions>
   </mat-card>
 
