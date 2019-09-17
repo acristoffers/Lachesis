@@ -162,5 +162,6 @@ export const LANG_PT_TRANS = {
     'Variables': 'Variáveis',
     'Reference': 'Referência',
     'Outputs': 'Saídas',
-    'Remove Selected': 'Remover selecionados'
+    'Remove Selected': 'Remover selecionados',
+    'Filter': 'Filtrar'
 };

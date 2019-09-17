@@ -5,8 +5,12 @@
         {{ 'System Response' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let test of tests">
+        <mat-form-field class="width-100">
+          <input matInput [placeholder]="'Filter' | translate" [(ngModel)]="filter">
+        </mat-form-field>
+        <mat-selection-list [(ngModel)]="selection">
+          <mat-list-option checkboxPosition="before" [value]="test" *ngFor="let test of tests"
+            [ngClass]="{'gone': !test.name.toLowerCase().includes(filter.toLowerCase())}">
             <div flex>
               <div class="test-title">{{ test.name }} - {{ presentType(test.type) | translate }}</div>
               <div stretch></div>
@@ -25,13 +29,16 @@
                 </button>
               </div>
             </div>
-          </mat-list-item>
-        </mat-list>
+          </mat-list-option>
+        </mat-selection-list>
       </mat-card-content>
       <mat-card-actions flex>
         <button mat-stroked-button color="secondary" (click)="addTest()">{{ 'Add' | translate }}</button>
         <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
         <div stretch></div>
+        <button mat-stroked-button (click)="selectAll()">{{ 'Select All' | translate }}</button>
+        <button mat-stroked-button (click)="selectNone()">{{ 'Select None' | translate }}</button>
+        <button mat-flat-button color="warn" (click)="removeSelected()">{{ 'Remove Selected' | translate }}</button>
         <button *ngIf="tests.length != 0" mat-flat-button color="warn" (click)="removeAll()">
           {{ 'Remove all' | translate }}
         </button>

@@ -5,8 +5,12 @@
         {{ 'System Control' | translate }}
       </mat-card-title>
       <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let controller of controllers">
+        <mat-form-field class="width-100">
+          <input matInput [placeholder]="'Filter' | translate" [(ngModel)]="filter">
+        </mat-form-field>
+        <mat-selection-list [(ngModel)]="selection">
+          <mat-list-option checkboxPosition="before" [value]="controller" *ngFor="let controller of controllers"
+            [ngClass]="{'gone': !controller.name.toLowerCase().includes(filter.toLowerCase())}">
             <div flex>
               <div class="controller-title">{{ controller.name }}</div>
               <div stretch></div>
@@ -25,13 +29,16 @@
                 </button>
               </div>
             </div>
-          </mat-list-item>
-        </mat-list>
+          </mat-list-option>
+        </mat-selection-list>
       </mat-card-content>
       <mat-card-actions flex>
         <button mat-stroked-button (click)="add()">{{ 'Add' | translate }}</button>
         <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
         <div stretch></div>
+        <button mat-stroked-button (click)="selectAll()">{{ 'Select All' | translate }}</button>
+        <button mat-stroked-button (click)="selectNone()">{{ 'Select None' | translate }}</button>
+        <button mat-flat-button color="warn" (click)="removeSelected()">{{ 'Remove Selected' | translate }}</button>
         <button *ngIf="controllers.length != 0" mat-flat-button color="warn" (click)="removeAll()">
           {{ 'Remove all' | translate }}
         </button>

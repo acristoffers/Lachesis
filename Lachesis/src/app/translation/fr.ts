@@ -162,5 +162,6 @@ export const LANG_FR_TRANS = {
     'Variables': 'Variables',
     'Reference': 'Référence',
     'Outputs': 'Sortirs',
-    'Remove Selected': 'Supprimer les sélectionnés'
+    'Remove Selected': 'Supprimer les sélectionnés',
+    'Filter': 'Filtrer'
 };

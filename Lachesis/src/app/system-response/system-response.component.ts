@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatSnackBar, MatSelectionList } from '@angular/material';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
@@ -36,6 +36,8 @@ import { TranslateService } from '../translation/translation.service';
 })
 export class SystemResponseComponent implements OnInit {
   tests: ResponseTest[] = [];
+  selection: ResponseTest[] = [];
+  filter = '';
 
   constructor(
     private toast: MatSnackBar,
@@ -88,6 +90,17 @@ export class SystemResponseComponent implements OnInit {
     }
   }
 
+  removeSelected() {
+    const msg = 'Are you sure that you want to delete this item?';
+    if (!confirm(this.i18n.instant(msg))) {
+      return;
+    }
+
+    const selected = _.map(this.selection, 'id');
+    this.tests = this.tests.filter(t => !_.includes(selected, t.id));
+    this.saveTests();
+  }
+
   removeAll(): void {
     const msg = 'Are you sure that you want to delete this item?';
     if (confirm(this.i18n.instant(msg))) {
@@ -131,5 +144,14 @@ export class SystemResponseComponent implements OnInit {
 
   stop(): void {
     this.sr.stopTest().subscribe();
+  }
+
+  selectAll() {
+    const cs = _.filter(this.tests, c => _.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
+    this.selection = _.uniq(_.concat(this.selection, cs));
+  }
+
+  selectNone() {
+    this.selection = _.filter(this.selection, c => !_.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
   }
 }

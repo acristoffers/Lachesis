@@ -48,4 +48,8 @@
   mat-list-item:hover {
     background-color: rgba(0, 0, 0, 0.04);
   }
+
+  .gone {
+    display: none !important;
+  }
 }

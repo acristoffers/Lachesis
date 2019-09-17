@@ -6,8 +6,12 @@
       </mat-card-title>
       <mat-card-content>
         <div id="tests-list">
-          <mat-selection-list #testsList>
-            <mat-list-option checkboxPosition="before" [value]="test1" *ngFor="let test1 of tests" [ngClass]="{'selected': compare(test1, test)}">
+          <mat-form-field class="width-100">
+            <input matInput [placeholder]="'Filter' | translate" [(ngModel)]="filter">
+          </mat-form-field>
+          <mat-selection-list [(ngModel)]="selection">
+            <mat-list-option checkboxPosition="before" [value]="test1" *ngFor="let test1 of tests"
+              [ngClass]="{'selected': compare(test1, test), 'gone': !test1.name.toLowerCase().includes(filter.toLowerCase())}">
               <div flex>
                 <div class="test-name" stretch>
                   <div flex>
@@ -35,7 +39,8 @@
         <div stretch></div>
         <button mat-stroked-button (click)="selectAllTests()">{{ 'Select All' | translate }}</button>
         <button mat-stroked-button (click)="selectNoneTests()">{{ 'Select None' | translate }}</button>
-        <button mat-flat-button color="warn" (click)="removeSelectedTests()">{{ 'Remove Selected' | translate }}</button>
+        <button mat-flat-button color="warn"
+          (click)="removeSelectedTests()">{{ 'Remove Selected' | translate }}</button>
         <button mat-flat-button color="warn" (click)="removeAllTests()">{{ 'Remove all' | translate }}</button>
       </mat-card-actions>
     </mat-card>
@@ -70,7 +75,8 @@
               </td>
               <td>
                 <mat-form-field class="width-100">
-                  <input matInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName" (blur)="validateVariable()">
+                  <input matInput [placeholder]="'Exported Name' | translate" [(ngModel)]="test.exportName"
+                    (blur)="validateVariable()">
                 </mat-form-field>
               </td>
             </tr>
@@ -104,7 +110,8 @@
             </mat-form-field>
             <button mat-stroked-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
             <button mat-stroked-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
-            <button mat-flat-button color="warn" (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+            <button mat-flat-button color="warn"
+              (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
           </div>
           <lachesis-chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></lachesis-chart>
         </div>

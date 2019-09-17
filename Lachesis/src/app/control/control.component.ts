@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatSelectionList } from '@angular/material';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
@@ -54,6 +54,9 @@ export class ControlComponent implements OnInit {
     private router: Router
   ) {
   }
+
+  filter = '';
+  selection: Controller[] = [];
   controllers: Controller[] = [];
 
   // tslint:disable-next-line:max-line-length
@@ -131,6 +134,19 @@ export class ControlComponent implements OnInit {
     }
   }
 
+  removeSelected() {
+    const msg = 'Are you sure that you want to delete this item?';
+    if (!confirm(this.i18n.instant(msg))) {
+      return;
+    }
+
+    const selected = this.selection;
+    this.controllers = _.filter(this.controllers, c => !_.includes(selected, c));
+    this.service.save(this.controllers).subscribe(() => {
+      this.service.load().subscribe(cs => this.controllers = cs);
+    });
+  }
+
   removeAll(): void {
     const msg = 'Are you sure that you want to delete this item?';
     if (confirm(this.i18n.instant(msg))) {
@@ -148,5 +164,14 @@ export class ControlComponent implements OnInit {
 
   stop(): void {
     this.service.stopTest().subscribe();
+  }
+
+  selectAll() {
+    const cs = _.filter(this.controllers, c => _.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
+    this.selection = _.uniq(_.concat(this.selection, cs));
+  }
+
+  selectNone() {
+    this.selection = _.filter(this.selection, c => !_.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
   }
 }

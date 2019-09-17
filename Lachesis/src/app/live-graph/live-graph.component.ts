@@ -47,6 +47,7 @@ interface Graph {
 })
 export class LiveGraphComponent implements OnInit, OnDestroy {
   tests: Test[] = [];
+  selection: Test[] = [];
   lastError?: SafeHtml = null;
   test: Test;
   testData: TestData[];
@@ -56,13 +57,13 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   graphs: Graph[] = [];
   counter = 0;
   pointsExpanded = false;
+  filter = '';
 
   private timer: Observable<number>;
   private timerSubscription: Subscription;
   private processData = true;
 
   @ViewChildren(ChartComponent) charts: QueryList<ChartComponent>;
-  @ViewChild('testsList', { static: false }) testsList: MatSelectionList;
 
   constructor(
     private toast: MatSnackBar,
@@ -302,7 +303,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const selected = _.map(this.testsList.selectedOptions.selected, 'value');
+    const selected = this.selection;
     selected.forEach(test => {
       if (_.isEqual(this.test, test)) {
         test.running = false;
@@ -314,11 +315,12 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   }
 
   selectAllTests() {
-    this.testsList.selectAll();
+    const cs = _.filter(this.tests, c => _.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
+    this.selection = _.uniq(_.concat(this.selection, cs));
   }
 
   selectNoneTests() {
-    this.testsList.deselectAll();
+    this.selection = _.filter(this.selection, c => !_.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
   }
 
   compare(a: any, b: any) {
