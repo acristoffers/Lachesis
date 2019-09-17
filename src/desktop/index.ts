@@ -114,7 +114,7 @@ const editMenu: Electron.MenuItemConstructorOptions = {
         }, {
             role: 'selectall'
         }
-    ]
+    ] as Electron.MenuItemConstructorOptions[]
 }
 
 const viewMenu: Electron.MenuItemConstructorOptions = {
@@ -149,7 +149,7 @@ const viewMenu: Electron.MenuItemConstructorOptions = {
         }, {
             role: 'togglefullscreen'
         }
-    ]
+    ] as Electron.MenuItemConstructorOptions[]
 }
 
 const windowMenu: Electron.MenuItemConstructorOptions = {
@@ -210,7 +210,7 @@ if (process.platform === 'darwin') {
             }, {
                 role: 'quit'
             }
-        ]
+        ] as Electron.MenuItemConstructorOptions[]
     })
 
     template[3].submenu = [

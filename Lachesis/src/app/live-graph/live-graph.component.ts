@@ -62,7 +62,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   private processData = true;
 
   @ViewChildren(ChartComponent) charts: QueryList<ChartComponent>;
-  @ViewChild('testsList') testsList: MatSelectionList;
+  @ViewChild('testsList', { static: false }) testsList: MatSelectionList;
 
   constructor(
     private toast: MatSnackBar,
