@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { MatSelectionList, MatSnackBar } from '@angular/material';
+import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as _ from 'lodash';
 import { Observable, Subscription, timer } from 'rxjs';

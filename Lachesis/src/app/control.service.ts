@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
@@ -62,5 +62,38 @@ export class ControlService extends APIBase {
     const path = '/system_response/test/stop';
     const url = this.urlFor(path);
     return this.doGet(url);
+  }
+
+  export(controllers: Controller[]): Observable<Blob> {
+    const path = '/controllers/export';
+    const url = this.urlFor(path);
+    const data = {
+      controllers: _.map(controllers, 'id')
+    };
+
+    const headers = new HttpHeaders({
+      'Accept': 'application/octet-stream',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${SharedDataService.accessToken}`
+    });
+
+    const options = {
+      headers: headers,
+      responseType: 'blob' as 'blob'
+    };
+
+    return this.http.post(url, data, options);
+  }
+
+  import(formData: FormData): Observable<Object> {
+    const path = '/controllers/import';
+    const url = this.urlFor(path);
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${SharedDataService.accessToken}`
+    });
+
+    const options = { headers: headers };
+    return this.http.post(url, formData, options);
   }
 }

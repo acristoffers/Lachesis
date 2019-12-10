@@ -36,12 +36,30 @@
         <button mat-stroked-button (click)="add()">{{ 'Add' | translate }}</button>
         <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
         <div stretch></div>
-        <button mat-stroked-button (click)="selectAll()">{{ 'Select All' | translate }}</button>
-        <button mat-stroked-button (click)="selectNone()">{{ 'Select None' | translate }}</button>
-        <button mat-flat-button color="warn" (click)="removeSelected()">{{ 'Remove Selected' | translate }}</button>
-        <button *ngIf="controllers.length != 0" mat-flat-button color="warn" (click)="removeAll()">
-          {{ 'Remove all' | translate }}
+
+        <button mat-stroked-button [matMenuTriggerFor]="exportMenu">
+          <mat-icon>import_export</mat-icon>
         </button>
+        <mat-menu #exportMenu="matMenu">
+          <button mat-menu-item (click)="exportSelected()">{{ 'Export' | translate }}</button>
+          <button mat-menu-item (click)="import()">{{ 'Import' | translate }}</button>
+        </mat-menu>
+
+        <button mat-stroked-button [matMenuTriggerFor]="selectMenu">
+          <mat-icon>select_all</mat-icon>
+        </button>
+        <mat-menu #selectMenu="matMenu">
+          <button mat-menu-item (click)="selectAll()">{{ 'Select All' | translate }}</button>
+          <button mat-menu-item (click)="selectNone()">{{ 'Select None' | translate }}</button>
+        </mat-menu>
+
+        <button mat-stroked-button color="warn" [matMenuTriggerFor]="removeMenu">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <mat-menu #removeMenu="matMenu">
+          <button mat-menu-item (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+          <button mat-menu-item (click)="removeSelected()">{{ 'Remove Selected' | translate }}</button>
+        </mat-menu>
       </mat-card-actions>
     </mat-card>
   </div>

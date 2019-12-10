@@ -20,8 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatSelectionList } from '@angular/material';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
@@ -51,7 +51,9 @@ export class ControlComponent implements OnInit {
     private i18n: TranslateService,
     private dialog: MatDialog,
     private service: ControlService,
-    private router: Router
+    private router: Router,
+    private toast: MatSnackBar,
+    private zone: NgZone
   ) {
   }
 
@@ -173,5 +175,40 @@ export class ControlComponent implements OnInit {
 
   selectNone() {
     this.selection = _.filter(this.selection, c => !_.includes(c.name.toLowerCase(), this.filter.toLowerCase()));
+  }
+
+  exportSelected() {
+    const selected = this.selection;
+    const controllers = _.filter(this.controllers, c => _.includes(selected, c));
+    this.service.export(controllers).subscribe(blob => {
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'controllers.zip';
+      link.click();
+    }, this.httpError());
+  }
+
+  import() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = () => {
+      this.zone.run(() => {
+        const file = input.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        this.service.import(formData).subscribe(() => {
+          this.service.load().subscribe(cs => this.controllers = cs);
+        }, this.httpError());
+      });
+    };
+    input.click();
+  }
+
+  httpError(): () => void {
+    return () => {
+      const str = 'Error when connecting. Check address and try again.';
+      const message = this.i18n.instant(str);
+      this.toast.open(message, null, { duration: 2000 });
+    };
   }
 }
