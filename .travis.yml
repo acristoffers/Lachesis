@@ -16,11 +16,11 @@ cache:
         - $HOME/.cache/electron-builder
 
 script:
-    - brew install libicns yarn
+    - brew install libicns yarn imagemagick
     - yarn release
 
 before_cache:
     - rm -rf $HOME/.cache/electron-builder/wine
 
 notifications:
-    email: false
+    email: true
