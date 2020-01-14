@@ -16,9 +16,8 @@ cache:
         - $HOME/.cache/electron-builder
 
 script:
-    - |
-        brew install libicns
-        yarn release
+    - brew install libicns yarn
+    - yarn release
 
 before_cache:
     - rm -rf $HOME/.cache/electron-builder/wine
