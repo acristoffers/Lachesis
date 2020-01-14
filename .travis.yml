@@ -1,13 +1,12 @@
-# based on https://github.com/develar/onshape-desktop-shell/blob/51c8894e2857412dcf2ff4d68f8578bd4653b7a3/.travis.yml
 matrix:
     include:
         - os: osx
-            osx_image: xcode11.3
-            language: node_js
-            node_js: "13"
-            env:
-                - ELECTRON_CACHE=$HOME/.cache/electron
-                - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+    osx_image: xcode11.3
+    language: node_js
+    node_js: "13"
+    env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 cache:
     directories:
