@@ -19,18 +19,19 @@
     "prestart": "yarn build",
     "start": "cd desktop && yarn run electron www",
     "predist": "yarn build",
-    "dist": "bash dist.sh --prod",
+    "dist": "bash dist.sh",
     "build:fast": "bash build-fast.sh",
     "predist:pack": "yarn build",
     "dist:pack": "cd desktop && yarn dist:pack",
     "prestart:fast": "yarn build:fast",
-    "start:fast": "cd desktop && yarn run electron www"
+    "start:fast": "cd desktop && yarn run electron www",
+    "release": "bash release.sh"
   },
   "dependencies": {
     "fs-extra": ">=8.1.0",
     "lodash": ">=4.17.15",
     "ncp": ">=2.0.0",
-    "npm-check-updates": "^3.1.23",
+    "npm-check-updates": "^4.0.1",
     "rimraf": ">=3.0.0"
   }
 }

@@ -13,8 +13,8 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "electron": ">=6.0.9",
-    "electron-builder": "~21.2.0"
+    "electron": ">=7.1.9",
+    "electron-builder": "~22.2.0"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
