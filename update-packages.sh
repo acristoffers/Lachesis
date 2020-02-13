@@ -21,13 +21,13 @@
 # THE SOFTWARE.
 
 # yarn global add npm-check-updates
-ncu --upgrade --upgradeAll
+ncu --upgrade
 pushd Lachesis
 yarn ng update --all
 popd
 pushd src/desktop
-ncu --upgrade --upgradeAll
+ncu --upgrade
 popd
 pushd desktop
-ncu --upgrade --upgradeAll
+ncu --upgrade
 popd
