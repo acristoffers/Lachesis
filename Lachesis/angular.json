@@ -10,7 +10,7 @@
       "prefix": "lachesis",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -41,10 +41,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -133,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "Lachesis"
+  "defaultProject": "Lachesis",
+  "cli": {
+    "analytics": "b0ec6cbc-5fcb-4b92-bf8c-892763dfde69"
+  }
 }

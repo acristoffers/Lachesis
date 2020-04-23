@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { InjectionToken } from '@angular/core';
+import { InjectionToken, Injectable } from '@angular/core';
 
 import { LANG_DE_NAME, LANG_DE_TRANS } from './de';
 import { LANG_FR_NAME, LANG_FR_TRANS } from './fr';
@@ -28,6 +28,7 @@ import { LANG_PT_NAME, LANG_PT_TRANS } from './pt';
 
 export const TRANSLATIONS = new InjectionToken('translations');
 
+@Injectable()
 export class Dictionary {
     private dictionary = {
         [LANG_DE_NAME]: LANG_DE_TRANS,

@@ -23,7 +23,7 @@ THE SOFTWARE.
 // tslint:disable:no-bitwise
 
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
 import { flatMap, map } from 'rxjs/operators';
 import { Calibration, Driver, HardwareService, Interlock, PortConfiguration, Types } from '../hardware.service';

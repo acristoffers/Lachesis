@@ -21,7 +21,9 @@ THE SOFTWARE.
 */
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatSnackBar, MatSelectionList } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSelectionList } from '@angular/material/list';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import * as _ from 'lodash';

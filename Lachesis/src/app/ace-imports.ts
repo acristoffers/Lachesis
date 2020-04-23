@@ -35,7 +35,6 @@ import 'ace-builds/src-noconflict/mode-redshift';
 import 'ace-builds/src-noconflict/mode-batchfile';
 import 'ace-builds/src-noconflict/mode-jade';
 import 'ace-builds/src-noconflict/mode-rhtml';
-import 'ace-builds/src-noconflict/mode-bro';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/mode-rst';
 import 'ace-builds/src-noconflict/mode-c9search';

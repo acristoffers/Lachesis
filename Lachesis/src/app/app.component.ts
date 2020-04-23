@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component, NgZone, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ipcRenderer } from 'electron';
 import * as settings from 'electron-settings';
 import * as $ from 'jquery';

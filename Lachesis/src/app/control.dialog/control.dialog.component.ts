@@ -23,7 +23,7 @@ THE SOFTWARE.
 // tslint:disable:no-bitwise
 
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import * as _ from 'lodash';
 import { ControlComponent, Controller } from '../control/control.component';
 import { HardwareService, PortConfiguration, Types } from '../hardware.service';

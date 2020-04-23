@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ResponseTest } from '../system-response.service';
 import { SystemResponseComponent } from '../system-response/system-response.component';
 

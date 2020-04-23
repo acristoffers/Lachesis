@@ -23,7 +23,7 @@ THE SOFTWARE.
 // tslint:disable:no-bitwise
 
 import { Component, OnDestroy } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as _ from 'lodash';
 import { Observable, Subscription, timer } from 'rxjs';

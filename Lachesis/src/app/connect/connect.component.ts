@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ApplicationRef, Component, NgZone } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
 import * as semver from 'semver';
 import { SharedDataService } from '../shared-data.service';

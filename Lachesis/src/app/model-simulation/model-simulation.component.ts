@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
 import { TestData } from '../live-graph.service';
 import { ModelSimulationService } from '../model-simulation.service';
