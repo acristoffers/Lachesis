@@ -13,8 +13,8 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "electron": ">=8.2.3",
-    "electron-builder": "~22.5.1"
+    "electron": ">=9.1.0",
+    "electron-builder": "~22.7.0"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
@@ -23,21 +23,25 @@
       "app": "www",
       "buildResources": "build"
     },
-    "extraResources": [{
-      "from": "www/node_modules",
-      "to": "node_modules"
-    }],
+    "extraResources": [
+      {
+        "from": "www/node_modules",
+        "to": "node_modules"
+      }
+    ],
     "appId": "me.acristoffers.lachesis",
     "productName": "Lachesis",
     "asar": true,
     "copyright": "Copyright © 2017 Álan Crístoffer",
-    "protocols": [{
-      "name": "Moirai supervisor",
-      "role": "Editor",
-      "schemes": [
-        "http"
-      ]
-    }],
+    "protocols": [
+      {
+        "name": "Moirai supervisor",
+        "role": "Editor",
+        "schemes": [
+          "http"
+        ]
+      }
+    ],
     "linux": {
       "category": "Engineering",
       "packageCategory": "productivity",

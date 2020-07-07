@@ -20,6 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+pkg="yarn"
+
+if [ "$1" = "npm" ]; then
+    pkg="npm"
+fi
+
 # Remove old files
 touch desktop/www desktop/build desktop/dist desktop/node_modules
 rm -r desktop/www desktop/build desktop/dist desktop/node_modules
@@ -29,19 +35,15 @@ mkdir -p desktop/www desktop/build
 echo ""
 echo "Installing build dependencies"
 echo ""
-yarn install
-yarn install -D
+$pkg install
 pushd Lachesis
-yarn install
-yarn install -D
+$pkg install
 popd
 cp -r src/desktop/* desktop/www/
 pushd desktop
-yarn install
-yarn install -D
+$pkg install
 pushd www
-yarn install
-yarn install -D
+$pkg install
 popd
 popd
 
@@ -50,12 +52,13 @@ echo ""
 echo "Building root and copying dependencies"
 echo ""
 pushd desktop/www
-yarn run tsc
-rm -r node_modules yarn.lock ../yarn.lock index.ts tsconfig.json
-yarn --prod
+node_modules/.bin/tsc
+rm -r node_modules yarn.lock package-lock.json ../yarn.lock \
+      ../package-lock.json index.ts tsconfig.json
+$pkg install --production
 popd
 
-bash build-fast.sh $1
+bash build-fast.sh $pkg "$2"
 
 # Generate icons
 node gen-icons.js

@@ -40,7 +40,7 @@ export class ChartService {
     private id: string,
     data: TestData[]
   ) {
-    const options = {
+    const options: dygraphs.Options = {
       drawPoints: true,
       valueRange: [0, 1],
       labelsDiv: `${this.id}-legend`,
@@ -66,7 +66,7 @@ export class ChartService {
     const min = _.min(_.map(dseries, d => _.min(d.slice(1))));
     const max = _.max(_.map(dseries, d => _.max(d.slice(1))));
 
-    const options = {
+    const options: dygraphs.Options = {
       file: dseries,
       drawPoints: true,
       valueRange: [
@@ -89,7 +89,7 @@ export class ChartService {
     const min = _.min(_.map(data, 'y'));
     const max = _.max(_.map(data, 'y'));
 
-    const options = {
+    const options: dygraphs.Options = {
       file: dseries,
       drawPoints: true,
       valueRange: [

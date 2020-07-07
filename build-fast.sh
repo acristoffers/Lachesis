@@ -20,12 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+pkg="yarn"
+
+if [ "$1" = "npm" ]; then
+    pkg="npm"
+fi
+
 # Compile TypeScript
 echo ""
 echo "Compiling TypeScript"
 echo ""
 pushd Lachesis
-yarn run ng build $1
+$pkg run ng build "$2"
 popd
 rm -r desktop/www/Lachesis
 mv Lachesis/dist/Lachesis desktop/www/Lachesis

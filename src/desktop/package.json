@@ -13,14 +13,14 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "@types/node": ">=13.7.1",
-    "electron": ">=8.0.0",
-    "typescript": "^3.7"
+    "@types/node": "^12.0",
+    "electron": ">=9.1.0",
+    "typescript": "^3.9"
   },
   "dependencies": {
-    "@types/semver": "^7.1.0",
-    "electron-log": ">=4.0.6",
-    "electron-settings": ">=3.2.0",
-    "electron-updater": "4.2.0"
+    "@types/semver": "^7.3.1",
+    "electron-log": ">=4.2.2",
+    "electron-settings": ">=4.0.2",
+    "electron-updater": "4.3.1"
   }
 }

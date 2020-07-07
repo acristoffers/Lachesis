@@ -32,7 +32,7 @@ import { PidComponent } from './pid/pid.component';
 import { SystemResponseComponent } from './system-response/system-response.component';
 
 export class Router {
-  static module(): ModuleWithProviders {
+  static module(): ModuleWithProviders<RouterModule> {
     return RouterModule.forRoot([
       {
         path: 'index.html',

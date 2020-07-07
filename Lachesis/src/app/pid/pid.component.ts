@@ -27,7 +27,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as _ from 'lodash';
 import { Observable, Subscription, timer } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { HardwareService, PortConfiguration, Types } from '../hardware.service';
 import { LiveGraphService, Test, TestData } from '../live-graph.service';
 import { PidPostData, PidService } from '../pid.service';
@@ -148,7 +148,7 @@ export class PidComponent implements OnDestroy {
     }
 
     this.pidTimer = timer(0, _.max([1000, this.data.dt * 1000]));
-    this.pidTimerSubscription = this.pidTimer.pipe(flatMap(() => {
+    this.pidTimerSubscription = this.pidTimer.pipe(mergeMap(() => {
       if (this.data.dt !== this.lastDt) {
         this.lastDt = this.data.dt;
         this.run();

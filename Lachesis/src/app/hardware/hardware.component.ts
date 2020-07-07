@@ -25,7 +25,7 @@ THE SOFTWARE.
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
-import { flatMap, map } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
 import { Calibration, Driver, HardwareService, Interlock, PortConfiguration, Types } from '../hardware.service';
 import { TranslateService } from '../translation/translation.service';
 
@@ -68,7 +68,7 @@ export class HardwareComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.hardwareService.listDrivers().pipe(flatMap((drivers: Driver[]) => {
+    this.hardwareService.listDrivers().pipe(mergeMap((drivers: Driver[]) => {
       this.availableDrivers = drivers;
       this.availableDrivers.forEach(driver => driver.setup_arguments.forEach(arg => arg.value = arg.default_value));
       return this.hardwareService.getConfiguration();
