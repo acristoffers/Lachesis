@@ -35,6 +35,13 @@ the latest version for your system. The Windows installer works with both 32 and
 distribution-agnostic, just download and execute. It's also available as a snap:
 `snap install lachesis`.
 
+On macOS, using Homebrew, you can install with:
+
+```bash
+brew tap acristoffers/repo
+brew cask install lachesis
+```
+
 If you work with another system, like Linux ARM, BSD or Solaris, you can
 checkout this repository and build the project yourself. It should run anywhere
 electron and node runs. The best way to build this project is to install node
