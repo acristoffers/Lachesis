@@ -60,5 +60,5 @@ popd
 
 bash build-fast.sh $pkg "$2"
 
-# Generate icons
-node gen-icons.js
+# Copy icons
+cp -r src/icons/* desktop/build/
