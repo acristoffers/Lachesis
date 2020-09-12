@@ -20,6 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-bash build.sh --prod
+pkg="yarn"
+
+if [ "$1" = "npm" ]; then
+    pkg="npm"
+fi
+
+bash build.sh $pkg --prod
 cd desktop
-yarn run dist
+$pkg run dist

@@ -33,7 +33,8 @@ function createWindow(): Electron.BrowserWindow {
         show: false,
         icon: nativeImage.createFromPath(`file://${__dirname}/Lachesis/assets/imgs/icon.png`),
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         }
     })
     win.loadURL(`file://${__dirname}/Lachesis/index.html`)
