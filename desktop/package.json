@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Moirai supervisor",
   "license": "MIT",
   "author": {
@@ -13,8 +13,8 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "electron": ">=10.1.1",
-    "electron-builder": "~22.8.0"
+    "electron": ">=15.3.0",
+    "electron-builder": "~22.13.1"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
@@ -37,36 +37,23 @@
       {
         "name": "Moirai supervisor",
         "role": "Editor",
-        "schemes": [
-          "http"
-        ]
+        "schemes": ["http"]
       }
     ],
     "linux": {
       "category": "Engineering",
       "packageCategory": "productivity",
-      "target": [
-        "AppImage",
-        "snap"
-      ],
-      "publish": [
-        "github"
-      ]
+      "target": ["AppImage", "snap"],
+      "publish": ["github"]
     },
     "mac": {
       "category": "public.app-category.productivity",
       "type": "distribution",
-      "publish": [
-        "github"
-      ]
+      "publish": ["github"]
     },
     "win": {
-      "target": [
-        "nsis"
-      ],
-      "publish": [
-        "github"
-      ]
+      "target": ["nsis"],
+      "publish": ["github"]
     },
     "nsis": {},
     "snap": {
@@ -80,11 +67,11 @@
     "dist:pack": "yarn run electron-builder --dir",
     "dist:win": "yarn run electron-builder --win --x64 --ia32",
     "dist:linux": "yarn run electron-builder --linux --x64",
-    "dist:mac": "yarn run electron-builder --mac",
+    "dist:mac": "yarn run electron-builder --mac --x64 --arm64",
     "dist:all": "yarn run dist:mac && yarn run dist:linux && yarn run dist:win",
     "release:win": "yarn run electron-builder --publish always --win --x64 --ia32",
     "release:linux": "umask 000 && yarn run electron-builder --publish always --linux --x64",
-    "release:mac": "yarn run electron-builder --publish always --mac",
+    "release:mac": "yarn run electron-builder --publish always --mac --x64 --arm64",
     "release": "yarn run release:mac && yarn run release:linux && yarn run release:win"
   }
 }

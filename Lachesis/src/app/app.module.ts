@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AceEditorModule } from 'ng2-ace-editor';
+import { AceModule, ACE_CONFIG, AceConfigInterface } from 'ngx-ace-wrapper';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { ConnectComponent } from './connect/connect.component';
@@ -53,70 +53,76 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
+
 @NgModule({
-    declarations: [
-        AppComponent,
-        HardwareComponent,
-        SystemResponseComponent,
-        SystemResponseImpulseComponent,
-        SystemResponseStairComponent,
-        SystemResponseWidePulseComponent,
-        SystemResponseStepComponent,
-        SystemResponseFreeComponent,
-        ChartComponent,
-        LiveGraphComponent,
-        ConnectComponent,
-        ToolbarComponent,
-        ControlComponent,
-        ModelSimulationComponent,
-        SidenavComponent,
-        ControlDialogComponent,
-        SystemResponseDialogComponent,
-        TranslatePipe,
-        RemoveUndefinedPipe,
-        PidComponent,
-        FreeControlComponent
-    ],
-    imports: [
-        CommonModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        Router.module(),
-        AceEditorModule,
-        MatDialogModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatInputModule,
-        MatCardModule,
-        MatTooltipModule,
-        MatTabsModule,
-        MatRadioModule,
-        MatMenuModule,
-        MatIconModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatExpansionModule
-    ],
-    entryComponents: [
-        SystemResponseDialogComponent,
-        ControlDialogComponent
-    ],
-    providers: [
-        TRANSLATION_PROVIDERS,
-        SharedDataService,
-        TranslateService,
-        HardwareService,
-        SystemResponseService,
-        LiveGraphService,
-        ControlService,
-        ModelSimulationService
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HardwareComponent,
+    SystemResponseComponent,
+    SystemResponseImpulseComponent,
+    SystemResponseStairComponent,
+    SystemResponseWidePulseComponent,
+    SystemResponseStepComponent,
+    SystemResponseFreeComponent,
+    ChartComponent,
+    LiveGraphComponent,
+    ConnectComponent,
+    ToolbarComponent,
+    ControlComponent,
+    ModelSimulationComponent,
+    SidenavComponent,
+    ControlDialogComponent,
+    SystemResponseDialogComponent,
+    TranslatePipe,
+    RemoveUndefinedPipe,
+    PidComponent,
+    FreeControlComponent
+  ],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Router.module(),
+    AceModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatExpansionModule
+  ],
+  entryComponents: [
+    SystemResponseDialogComponent,
+    ControlDialogComponent
+  ],
+  providers: [
+    TRANSLATION_PROVIDERS,
+    SharedDataService,
+    TranslateService,
+    HardwareService,
+    SystemResponseService,
+    LiveGraphService,
+    ControlService,
+    ModelSimulationService,
+    {
+      provide: ACE_CONFIG,
+      useValue: DEFAULT_ACE_CONFIG
+    }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

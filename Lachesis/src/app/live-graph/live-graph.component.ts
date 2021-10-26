@@ -74,46 +74,59 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.lg.listTests().subscribe(tests => {
-      this.tests = _.reverse(_.sortBy(tests, t => new Date(t.date)));
-    }, this.httpError());
+    this.lg.listTests().subscribe({
+      next: tests => {
+        this.tests = _.reverse(_.sortBy(tests, t => new Date(t.date)));
+      },
+      error: this.httpError()
+    });
 
-    this.timer = timer(1000, 1000);
-    this.timerSubscription = this.timer.subscribe(() => {
-      this.lg.lastError().subscribe(error => {
-        if (error != null && error.length > 0) {
-          this.lastError = this.sanitizer.bypassSecurityTrustHtml(error.replace('\n', '<br>'));
-        } else {
-          this.lastError = null;
-        }
-      }, () => this.lastError = null);
-
-      this.lg.listTests().subscribe(tests => {
-        const ts = _.reverse(_.sortBy(tests, t => new Date(t.date)));
-        const us = _.uniqWith(ts.concat(this.tests), _.isEqual);
-        if (us.length !== this.tests.length || ts.length !== us.length) {
-          this.tests = ts;
-        }
-      }, this.httpError());
-
-      if (this.processData) {
-        if (this.test != null && this.testData != null) {
-          this.processData = false;
-          const testName = this.test.name;
-          const testDate = this.test.date;
-          const testSkip = this.testData[0].points.length * this.testData.length;
-          this.lg.fetchTest(testName, testDate, testSkip).subscribe(data => {
-            this.processData = true;
-            if (data.length > 0) {
-              const sensors = _.map(data, 'sensor');
-              sensors.forEach(sensor => {
-                const oldPoints = _.find(this.testData, d => d.sensor === sensor).points;
-                const newPoints = _.find(data, d => d.sensor === sensor).points;
-                const ps = oldPoints.concat(newPoints);
-                _.find(this.testData, d => d.sensor === sensor).points = ps;
-              });
+    this.timer = timer(1000, 1000); this.timerSubscription = this.timer.subscribe({
+      next: () => {
+        this.lg.lastError().subscribe({
+          next: error => {
+            if (error != null && error.length > 0) {
+              this.lastError = this.sanitizer.bypassSecurityTrustHtml(error.replace('\n', '<br>'));
+            } else {
+              this.lastError = null;
             }
-          }, this.httpError());
+          },
+          error: () => this.lastError = null
+        });
+
+        this.lg.listTests().subscribe({
+          next: tests => {
+            const ts = _.reverse(_.sortBy(tests, t => new Date(t.date)));
+            const us = _.uniqWith(ts.concat(this.tests), _.isEqual);
+            if (us.length !== this.tests.length || ts.length !== us.length) {
+              this.tests = ts;
+            }
+          },
+          error: this.httpError()
+        });
+
+        if (this.processData) {
+          if (this.test != null && this.testData != null) {
+            this.processData = false;
+            const testName = this.test.name;
+            const testDate = this.test.date;
+            const testSkip = this.testData[0].points.length * this.testData.length;
+            this.lg.fetchTest(testName, testDate, testSkip).subscribe({
+              next: data => {
+                this.processData = true;
+                if (data.length > 0) {
+                  const sensors = _.map(data, 'sensor');
+                  sensors.forEach(sensor => {
+                    const oldPoints = _.find(this.testData, d => d.sensor === sensor).points;
+                    const newPoints = _.find(data, d => d.sensor === sensor).points;
+                    const ps = oldPoints.concat(newPoints);
+                    _.find(this.testData, d => d.sensor === sensor).points = ps;
+                  });
+                }
+              },
+              error: this.httpError()
+            });
+          }
         }
       }
     });
@@ -124,19 +137,22 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   }
 
   loadTest(test: Test): void {
-    this.lg.fetchTest(test.name, test.date).subscribe(data => {
-      this.graphs = [];
-      this.test = test;
-      this.testData = data;
-      this.pointsExpanded = false;
-      this.testExportVariables = _.map(this.testData, d => {
-        return {
-          variable: d.sensor,
-          exportName: d.sensor,
-          export: true,
-        } as ExportVariable;
-      });
-    }, this.httpError());
+    this.lg.fetchTest(test.name, test.date).subscribe({
+      next: data => {
+        this.graphs = [];
+        this.test = test;
+        this.testData = data;
+        this.pointsExpanded = false;
+        this.testExportVariables = _.map(this.testData, d => {
+          return {
+            variable: d.sensor,
+            exportName: d.sensor,
+            export: true,
+          } as ExportVariable;
+        });
+      },
+      error: this.httpError()
+    });
   }
 
   removeTest(test: Test): void {
@@ -146,8 +162,10 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
       if (_.isEqual(this.test, test)) {
         this.test = this.testData = this.testExportVariables = null;
       }
-
-      this.lg.removeTest(test).subscribe(() => { }, this.httpError());
+      this.lg.removeTest(test).subscribe({
+        next: () => { },
+        error: this.httpError()
+      });
     }
   }
 
@@ -155,7 +173,10 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
     const msg = 'Are you sure that you want to delete this item?';
     if (confirm(this.i18n.instant(msg))) {
       this.test = this.testData = this.testExportVariables = null;
-      this.lg.removeAll(this.tests).subscribe(() => { }, this.httpError());
+      this.lg.removeAll(this.tests).subscribe({
+        next: () => { },
+        error: this.httpError()
+      });
     }
   }
 
@@ -203,12 +224,15 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
       const csv = _.join(zd, '\n');
       this.saveFile(`${this.test.name}.csv`, csv);
     } else if (this.exportType === 'MAT') {
-      this.lg.downloadMAT(this.test, dict).subscribe(data => {
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(data);
-        link.download = `${this.test.name}.mat`;
-        link.click();
-      }, this.httpError());
+      this.lg.downloadMAT(this.test, dict).subscribe({
+        next: data => {
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(data);
+          link.download = `${this.test.name}.mat`;
+          link.click();
+        },
+        error: this.httpError()
+      });
     }
   }
 
@@ -238,7 +262,7 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
   }
 
   formatDate(date: string): string {
-    const options = {
+    const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       year: 'numeric',
       month: 'numeric',
@@ -310,7 +334,10 @@ export class LiveGraphComponent implements OnInit, OnDestroy {
         this.test = this.testData = this.testExportVariables = null;
       }
 
-      this.lg.removeTest(test).subscribe(() => { }, this.httpError());
+      this.lg.removeTest(test).subscribe({
+        next: () => { },
+        error: this.httpError()
+      });
     });
   }
 

@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:no-bitwise
+/* eslint-disable no-bitwise */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as $ from 'jquery';
@@ -69,7 +69,7 @@ export class SystemResponseWidePulseComponent {
     private service: SystemResponseService,
     private hardware: HardwareService
   ) {
-    this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {
+    this.hardware.getConfiguration().subscribe(([_driver, ports, calibration, _locks]) => {
       const isInput = (p: PortConfiguration) => (p.type & Types.Input) > 0;
       const isOutput = (p: PortConfiguration) => (p.type & (Types.Output | Types.PWM)) > 0;
 

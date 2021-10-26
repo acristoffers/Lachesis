@@ -31,7 +31,7 @@ echo ""
 echo "Compiling TypeScript"
 echo ""
 pushd Lachesis
-$pkg run ng build "$2"
+$pkg run ng build $2
 popd
 rm -r desktop/www/Lachesis
 mv Lachesis/dist/Lachesis desktop/www/Lachesis

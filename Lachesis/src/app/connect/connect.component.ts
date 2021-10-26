@@ -65,19 +65,24 @@ export class ConnectComponent {
   connect(): void {
     this.working = true;
     const version = `${SharedDataService.scheme}://${this.connectionAddress}/version`;
-    this.http.get(version).subscribe((v: any) => {
-      if (semver.lt(v.version, this.expectedMoiraiVersion)) {
-        const str = 'Moirai is outdated. Cannot connect.';
-        const message = this.i18n.instant(str);
-        this.toast.open(message, null, { duration: 2000 });
-        return;
-      }
+    this.http.get(version).subscribe({
+      next: (v: any) => {
+        {
+          if (semver.lt(v.version, this.expectedMoiraiVersion)) {
+            const str = 'Moirai is outdated. Cannot connect.';
+            const message = this.i18n.instant(str);
+            this.toast.open(message, null, { duration: 2000 });
+            return;
+          }
 
-      const url = `${SharedDataService.scheme}://${this.connectionAddress}/login`;
-      const postData = { password: this.connectionPassword };
-      const observer = this.http.post<Token>(url, postData);
-      observer.subscribe(this.loginSuccessiful(), this.httpError());
-    }, this.httpError());
+          const url = `${SharedDataService.scheme}://${this.connectionAddress}/login`;
+          const postData = { password: this.connectionPassword };
+          const observer = this.http.post<Token>(url, postData);
+          observer.subscribe({ next: this.loginSuccessiful(), error: this.httpError() });
+        }
+      },
+      error: this.httpError()
+    });
   }
 
   loginSuccessiful(): (data: Token) => void {
@@ -119,12 +124,15 @@ export class ConnectComponent {
       const postData = { password: this.newPassword };
       const observer = this.http.post(url, postData, options);
       this.newPassword = this.newPasswordConfirmation = '';
-      observer.subscribe(() => {
-        this.working = false;
-        const str = 'Success!';
-        const message = this.i18n.instant(str);
-        this.toast.open(message, null, { duration: 2000 });
-      }, this.httpError());
+      observer.subscribe({
+        next: () => {
+          this.working = false;
+          const str = 'Success!';
+          const message = this.i18n.instant(str);
+          this.toast.open(message, null, { duration: 2000 });
+        },
+        error: this.httpError()
+      });
       this.working = true;
     }
   }
@@ -140,16 +148,16 @@ export class ConnectComponent {
       responseType: 'blob' as 'blob'
     };
     const url = `${SharedDataService.scheme}://${this.connectionAddress}/db/dump`;
-    this.http.get(url, options).subscribe(
-      data => {
+    this.http.get(url, options).subscribe({
+      next: data => {
         this.working = false;
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(data);
         link.download = 'dump.zip';
         link.click();
       },
-      this.httpError()
-    );
+      error: this.httpError()
+    });
     this.working = true;
   }
 
@@ -169,13 +177,13 @@ export class ConnectComponent {
         });
 
         const options = { headers: headers };
-        this.http.post(url, formData, options).subscribe(
-          () => {
+        this.http.post(url, formData, options).subscribe({
+          next: () => {
             this.working = false;
             this.disconnect();
           },
-          this.httpError()
-        );
+          error: this.httpError()
+        });
 
         this.working = true;
       });

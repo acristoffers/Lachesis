@@ -23,35 +23,29 @@ THE SOFTWARE.
 import * as _ from 'lodash';
 import { Injectable, Inject } from '@angular/core';
 import { TRANSLATIONS } from './translation';
-import * as settings from 'electron-settings';
 
 @Injectable()
 export class TranslateService {
-    private _currentLang: string;
+  private _currentLang: string;
 
-    public get currentLang(): string {
-        return this._currentLang;
-    }
+  public get currentLang(): string {
+    return this._currentLang;
+  }
 
-    constructor(@Inject(TRANSLATIONS) private _translations: any) {
-    }
+  constructor(@Inject(TRANSLATIONS) private _translations: any) {
+  }
 
-    public use(lang: string): void {
-        this._currentLang = lang;
-        settings.set('language', lang);
-    }
+  public use(lang: string): void {
+    this._currentLang = lang;
+    localStorage.setItem('language', lang);
+  }
 
-    private translate(key: string): string {
-        const lang = this._translations.get(this.currentLang) || {};
-        return lang[key] || key;
-        // const translation = lang[key] || key
-        // if (!_.has(lang, key)) {
-        //     console.log(`No translation for ${key} in ${this.currentLang}`)
-        // }
-        // return translation
-    }
+  private translate(key: string): string {
+    const lang = this._translations.get(this.currentLang) || {};
+    return lang[key] || key;
+  }
 
-    public instant(key: string): string {
-        return this.translate(key);
-    }
+  public instant(key: string): string {
+    return this.translate(key);
+  }
 }

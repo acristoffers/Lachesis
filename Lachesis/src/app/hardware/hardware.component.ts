@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:no-bitwise
+/* eslint-disable no-bitwise */
 
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -79,7 +79,10 @@ export class HardwareComponent implements OnInit {
       this.ports = ports as PortConfiguration[];
       this.calibrations = calibrations as Calibration[];
       this.interlocks = interlocks as Interlock[];
-    })).subscribe(() => { }, this.httpError());
+    })).subscribe({
+      next: () => { },
+      error: this.httpError()
+    });
   }
 
   httpError(): () => void {
@@ -179,18 +182,21 @@ export class HardwareComponent implements OnInit {
       driver,
       ports,
       calibrations,
-      interlocks).subscribe(() => {
-        const str = 'Success!';
-        const message = this.i18n.instant(str);
-        this.toast.open(message, null, { duration: 2000 });
-      }, this.httpError());
+      interlocks).subscribe({
+        next: () => {
+          const str = 'Success!';
+          const message = this.i18n.instant(str);
+          this.toast.open(message, null, { duration: 2000 });
+        },
+        error: this.httpError()
+      });
   }
 
-  driveTracker(index: number, driver: Driver): string {
+  driveTracker(_: number, driver: Driver): string {
     return driver.name;
   }
 
-  portTracker(index: number, port: PortConfiguration): number {
+  portTracker(_: number, port: PortConfiguration): number {
     return port.id;
   }
 

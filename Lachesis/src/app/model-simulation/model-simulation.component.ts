@@ -69,34 +69,37 @@ export class ModelSimulationComponent {
       duration: this.ts
     };
 
-    this.service.runSimulation(simData).subscribe(data => {
-      this.buttonEnabled = true;
+    this.service.runSimulation(simData).subscribe({
+      next: data => {
+        this.buttonEnabled = true;
 
-      if ('error' in data) {
+        if ('error' in data) {
+          this.graphs = graphs;
+          this.error = data.error;
+          return;
+        }
+
+        this.error = null;
+
         this.graphs = graphs;
-        this.error = data.error;
-        return;
+        this.variables = _.filter(_.keys(data), k => k !== 't');
+        this.testData = _.map(this.variables, k => {
+          return {
+            sensor: k,
+            points: _.map(_.zip(data['t'], data[k]) as [number, number][], o => {
+              return {
+                x: o[0],
+                y: o[1]
+              };
+            })
+          };
+        });
+      },
+      error: () => {
+        this.graphs = graphs;
+        const stdError = this.httpError();
+        stdError();
       }
-
-      this.error = null;
-
-      this.graphs = graphs;
-      this.variables = _.filter(_.keys(data), k => k !== 't');
-      this.testData = _.map(this.variables, k => {
-        return {
-          sensor: k,
-          points: _.map(_.zip(data['t'], data[k]) as [number, number][], o => {
-            return {
-              x: o[0],
-              y: o[1]
-            };
-          })
-        };
-      });
-    }, () => {
-      this.graphs = graphs;
-      const stdError = this.httpError();
-      stdError();
     });
   }
 

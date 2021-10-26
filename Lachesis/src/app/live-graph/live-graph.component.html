@@ -34,7 +34,7 @@
           </mat-selection-list>
         </div>
       </mat-card-content>
-      <mat-card-actions flex *ngIf="tests.length != 0">
+      <mat-card-actions flex *ngIf="tests.length !== 0">
         <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
         <div stretch></div>
 

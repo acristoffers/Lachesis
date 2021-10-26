@@ -5,19 +5,19 @@
   </mat-form-field>
   <mat-tab-group [(selectedIndex)]="selectedTabIndex" [@.disabled]="true">
     <mat-tab label="{{ 'Step' | translate }}">
-      <lachesis-system-response-step *ngIf="test.type == 'step'" [(test)]="test"></lachesis-system-response-step>
+      <lachesis-system-response-step *ngIf="test.type === 'step'" [(test)]="test"></lachesis-system-response-step>
     </mat-tab>
     <mat-tab label="{{ 'Impulse' | translate }}">
-      <lachesis-system-response-impulse *ngIf="test.type == 'impulse'" [(test)]="test"></lachesis-system-response-impulse>
+      <lachesis-system-response-impulse *ngIf="test.type === 'impulse'" [(test)]="test"></lachesis-system-response-impulse>
     </mat-tab>
     <mat-tab label="{{ 'Wide Pulse' | translate }}">
-      <lachesis-system-response-wide-pulse *ngIf="test.type == 'wide-pulse'" [(test)]="test"></lachesis-system-response-wide-pulse>
+      <lachesis-system-response-wide-pulse *ngIf="test.type === 'wide-pulse'" [(test)]="test"></lachesis-system-response-wide-pulse>
     </mat-tab>
     <mat-tab label="{{ 'Stair' | translate }}">
-      <lachesis-system-response-stair *ngIf="test.type == 'stair'" [(test)]="test"></lachesis-system-response-stair>
+      <lachesis-system-response-stair *ngIf="test.type === 'stair'" [(test)]="test"></lachesis-system-response-stair>
     </mat-tab>
     <mat-tab label="{{ 'Free Form' | translate }}">
-      <lachesis-system-response-free *ngIf="test.type == 'free'" [(test)]="test"></lachesis-system-response-free>
+      <lachesis-system-response-free *ngIf="test.type === 'free'" [(test)]="test"></lachesis-system-response-free>
     </mat-tab>
   </mat-tab-group>
 </mat-card-content>

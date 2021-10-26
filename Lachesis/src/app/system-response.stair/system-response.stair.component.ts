@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:no-bitwise
+/* eslint-disable no-bitwise */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as $ from 'jquery';

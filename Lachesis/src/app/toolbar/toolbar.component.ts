@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2016 Álan Crístoffer
+Copyright (c) 2016 Álan Christopher
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, NgZone } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as $ from 'jquery';
 import * as _ from 'lodash';
 import { TranslateService } from '../translation/translation.service';
+import { ipcRenderer } from 'electron';
 
 @Component({
   selector: 'lachesis-toolbar',
@@ -54,10 +55,16 @@ export class ToolbarComponent {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private zone: NgZone
   ) {
     this.registerImages();
-    this.version = require('electron').remote.app.getVersion();
+
+    ipcRenderer.on('get-version', (_: any, version: any) => {
+      this.zone.run(() => { this.version = version; });
+    });
+
+    ipcRenderer.send('get-version');
   }
 
   registerImages(): void {

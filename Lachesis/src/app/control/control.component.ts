@@ -62,11 +62,11 @@ export class ControlComponent implements OnInit {
   selection: Controller[] = [];
   controllers: Controller[] = [];
 
-  // tslint:disable-next-line:max-line-length
+  // eslint-disable-next-line max-len
   private beforeText = `# Use this scope to set constants and do any startup need.\n# For example, it can be used to turn on subsystems, do heavy one-shot math, or\n# to define constants.\n\n# Some global variables are set automatically. They are:\n# inputs -- a dictionary whose keys are the inputs define above.\n# outputs = dict() -- the key is the output name, the value what should be set.\n# s = dict() -- This is a state variable. It persists across scopes and runs.\n# dt: float -- The sampling interval\n# np: np -- import numpy as np\n# math: math -- import math\n\n# To set an output, use the outputs dictionary:\noutputs['SystemOnOff'] = 1\noutputs['Pump1OnOff']  = 1\noutputs['Pump1PC']     = 100\n\n# To read an input, you must first check its checkbox above. After that it will\n# be accessible through the inputs dict.\ny = inputs['Level1CM']\n\n# Use the s dict to define constants and save values to use on next iterations.\ns['Kp'] = 1\ns['Ki'] = 2\ns['Kd'] = 3\n\n# You can also use the s dict to save functions, but be careful not to rely on\n# global variables, as they won't be available in the next scope/run. All\n# variables are lost between scopes/runs, except for s.\n\n# The timer only starts ticking AFTER this scope has finished, so you can put\n# long running logic here, like advanced controller matrix pré-multiplication.\n# Function declaration has no impact on performance, as the code is compiled\n# once and only rerun, so there's no problem in putting them in the next scope.`;
-  // tslint:disable-next-line:max-line-length
+  // eslint-disable-next-line max-len
   private controllerText = `# This scope will be run every dt seconds. If it runs for longer than dt\n# seconds, it will run on the next multiple of dt seconds since the start of the\n# test.\n\n# All variables from the Before section will be present here, plus:\n# t: float -- Time since the test started, in seconds.\n# log: dict() -- Will log the value for the key as if it was an output or input.\n\n# For example, let's recover the PID constants defined in Before:\nKp, Ki, Kd = s['Kp'], s['Ki'], s['Kd']\n\n# Let's calculate the error. It's the setpoint minus the reading\nerror = 1 - inputs['Level1CM']\n\n# Let's log the error. Now we get a nice live graph for it too.\nlog['error'] = error\n\n# You know how to do PID, let's just close the loop here:\noutputs['Pump1PC'] = error\n`;
-  // tslint:disable-next-line:max-line-length
+  // eslint-disable-next-line max-len
   private afterText = `# Use it to finish before exiting. Like shutting the power off.\noutputs['SystemOnOff'] = 0\n# state and log are not available here`;
 
   ngOnInit(): void {
@@ -181,12 +181,15 @@ export class ControlComponent implements OnInit {
   exportSelected() {
     const selected = this.selection;
     const controllers = _.filter(this.controllers, c => _.includes(selected, c));
-    this.service.export(controllers).subscribe(blob => {
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = 'controllers.zip';
-      link.click();
-    }, this.httpError());
+    this.service.export(controllers).subscribe({
+      next: blob => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'controllers.zip';
+        link.click();
+      },
+      error: this.httpError()
+    });
   }
 
   import() {
@@ -197,9 +200,12 @@ export class ControlComponent implements OnInit {
         const file = input.files[0];
         const formData = new FormData();
         formData.append('file', file);
-        this.service.import(formData).subscribe(() => {
-          this.service.load().subscribe(cs => this.controllers = cs);
-        }, this.httpError());
+        this.service.import(formData).subscribe({
+          next: () => {
+            this.service.load().subscribe(cs => this.controllers = cs);
+          },
+          error: this.httpError()
+        });
       });
     };
     input.click();

@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:no-bitwise
+/* eslint-disable no-bitwise */
 
 import { Component, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -74,7 +74,7 @@ export class FreeControlComponent implements OnDestroy {
       outputs: []
     };
 
-    this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {
+    this.hardware.getConfiguration().subscribe(([_driver, ports, calibration, _locks]) => {
       const isInput = (p: PortConfiguration) => (p.type & Types.Input) > 0;
       const isOutput = (p: PortConfiguration) => (p.type & (Types.Output | Types.PWM)) > 0;
 
@@ -87,8 +87,8 @@ export class FreeControlComponent implements OnDestroy {
 
     this.timer = timer(1000, 1000);
     this.timerSubscription = this.timer.subscribe(() => {
-      this.lg.lastError().subscribe(
-        error => {
+      this.lg.lastError().subscribe({
+        next: error => {
           if (error != null && error.length > 0) {
             this.lastError = this.sanitizer.bypassSecurityTrustHtml(error.replace('\n', '<br>'));
             if (this.freeTimerSubscription != null) {
@@ -97,40 +97,50 @@ export class FreeControlComponent implements OnDestroy {
           } else {
             this.lastError = null;
           }
-        }, () => this.lastError = null
-      );
+        },
+        error: () => this.lastError = null
+      });
 
-      this.lg.listTests().subscribe(tests => {
-        const ts = _.reverse(_.sortBy(_.filter(tests, t => t.name === 'Free'), t => new Date(t.date)));
-        const test = _.first(ts);
-        if (!_.isEqual(this.test, test)) {
-          this.test = test;
-          this.testData = [];
-        }
-      }, this.httpError());
+      this.lg.listTests().subscribe({
+        next: tests => {
+          const ts = _.reverse(_.sortBy(_.filter(tests, t => t.name === 'Free'), t => new Date(t.date)));
+          const test = _.first(ts);
+          if (!_.isEqual(this.test, test)) {
+            this.test = test;
+            this.testData = [];
+          }
+        },
+        error: this.httpError()
+      });
 
       if (this.test != null && this.testData != null && this.testData.length > 0) {
         const testName = this.test.name;
         const testDate = this.test.date;
         const testSkip = this.testData[0].points.length * this.testData.length;
-        this.lg.fetchTest(testName, testDate, testSkip).subscribe(data => {
-          if (data.length > 0) {
-            const sensors = _.map(data, 'sensor');
-            sensors.forEach(sensor => {
-              const oldPoints = _.find(this.testData, d => d.sensor === sensor).points;
-              const newPoints = _.find(data, d => d.sensor === sensor).points;
-              const ps = oldPoints.concat(newPoints);
-              _.find(this.testData, d => d.sensor === sensor).points = ps;
-            });
-          }
-        }, this.httpError());
+        this.lg.fetchTest(testName, testDate, testSkip).subscribe({
+          next: data => {
+            if (data.length > 0) {
+              const sensors = _.map(data, 'sensor');
+              sensors.forEach(sensor => {
+                const oldPoints = _.find(this.testData, d => d.sensor === sensor).points;
+                const newPoints = _.find(data, d => d.sensor === sensor).points;
+                const ps = oldPoints.concat(newPoints);
+                _.find(this.testData, d => d.sensor === sensor).points = ps;
+              });
+            }
+          },
+          error: this.httpError()
+        });
       } else if (this.test != null && this.testData != null && this.testData.length === 0) {
         const testName = this.test.name;
         const testDate = this.test.date;
-        this.lg.fetchTest(testName, testDate).subscribe(data => {
-          this.testData = data;
-          this.variables = _.map(this.testData, d => d.sensor);
-        }, this.httpError());
+        this.lg.fetchTest(testName, testDate).subscribe({
+          next: data => {
+            this.testData = data;
+            this.variables = _.map(this.testData, d => d.sensor);
+          },
+          error: this.httpError()
+        });
       }
     });
   }

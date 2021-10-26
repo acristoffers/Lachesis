@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:no-bitwise
+/* eslint-disable no-bitwise */
 
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as $ from 'jquery';
@@ -60,7 +60,7 @@ export class SystemResponseFreeComponent implements AfterViewInit {
   @Output() testChange = new EventEmitter<ResponseTest>();
 
   // Too long to fit in HTML. Was breaking.
-  // tslint:disable-next-line:max-line-length
+  // eslint-disable-next-line max-len
   csvText = 'CSV: x in first column, y in second. Use csvwrite("data.csv", transpose([x; y])) in MATLAB/Octave to generate such file from x and y variables.';
 
   constructor(
@@ -70,7 +70,7 @@ export class SystemResponseFreeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {
+    this.hardware.getConfiguration().subscribe(([_driver, ports, calibration, _locks]) => {
       const isInput = (p: PortConfiguration) => (p.type & Types.Input) > 0;
       const isOutput = (p: PortConfiguration) => (p.type & (Types.Output | Types.PWM)) > 0;
 

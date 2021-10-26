@@ -20,9 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSelectionList } from '@angular/material/list';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
@@ -54,9 +53,12 @@ export class SystemResponseComponent implements OnInit {
   }
 
   loadTests(): void {
-    this.sr.loadTests().subscribe(tests => {
-      this.tests = _.sortBy(tests, ['name', 'id']);
-    }, this.httpError());
+    this.sr.loadTests().subscribe({
+      next: tests => {
+        this.tests = _.sortBy(tests, ['name', 'id']);
+      },
+      error: this.httpError()
+    });
   }
 
   saveTests(): void {

@@ -82,6 +82,7 @@ export class SystemResponseDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    return; // silences linter
   }
 
   save(): void {

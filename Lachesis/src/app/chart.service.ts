@@ -20,9 +20,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+import { dygraphs } from 'dygraphs';
 import Dygraph from 'dygraphs';
 import * as _ from 'lodash';
 import { TestData } from './live-graph.service';
+
 export interface DataPoint {
   x?: any;
   label?: any;

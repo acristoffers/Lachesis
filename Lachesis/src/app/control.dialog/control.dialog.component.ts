@@ -20,13 +20,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:no-bitwise
+/* eslint-disable no-bitwise */
 
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as _ from 'lodash';
 import { ControlComponent, Controller } from '../control/control.component';
 import { HardwareService, PortConfiguration, Types } from '../hardware.service';
+import 'brace';
+import 'brace/mode/python';
+import 'brace/theme/github';
 
 @Component({
   selector: 'lachesis-control.dialog',
@@ -44,7 +47,7 @@ export class ControlDialogComponent {
     private hardware: HardwareService
   ) {
     dialogRef.disableClose = true;
-    this.hardware.getConfiguration().subscribe(([driver, ports, calibration, locks]) => {
+    this.hardware.getConfiguration().subscribe(([_driver, ports, calibration, _locks]) => {
       const isInput = (p: PortConfiguration) => (p.type & Types.Input) > 0;
 
       this.inputs = _.map(_.filter(ports, isInput), p => [p.alias, false] as [string, boolean]);

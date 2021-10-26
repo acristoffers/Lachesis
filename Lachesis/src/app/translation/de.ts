@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// tslint:disable:max-line-length
+/* eslint-disable max-len */
 
 export const LANG_DE_NAME = 'de';
 
