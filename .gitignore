@@ -50,3 +50,5 @@ www
 
 # YARN lock file
 yarn.lock
+
+.DS_Store
