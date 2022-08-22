@@ -23,7 +23,7 @@
 # yarn global add npm-check-updates
 ncu --upgrade
 pushd Lachesis
-yarn ng update --all
+yarn ng update
 popd
 pushd src/desktop
 ncu --upgrade
