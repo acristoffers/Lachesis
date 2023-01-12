@@ -36,27 +36,27 @@ echo ""
 echo "Installing build dependencies"
 echo ""
 $pkg install
-pushd Lachesis
+pushd Lachesis || exit
 $pkg install
-popd
+popd || exit
 cp -r src/desktop/* desktop/www/
-pushd desktop
+pushd desktop || exit
 $pkg install
-pushd www
+pushd www || exit
 $pkg install
-popd
-popd
+popd || exit
+popd || exit
 
 # Copy files
 echo ""
 echo "Building root and copying dependencies"
 echo ""
-pushd desktop/www
+pushd desktop/www || exit
 node_modules/.bin/tsc
 rm -r node_modules yarn.lock package-lock.json ../yarn.lock \
       ../package-lock.json index.ts tsconfig.json
 $pkg install --production
-popd
+popd || exit
 
 bash build-fast.sh $pkg "$2"
 

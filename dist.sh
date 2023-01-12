@@ -27,5 +27,5 @@ if [ "$1" = "npm" ]; then
 fi
 
 bash build.sh $pkg "--configuration production"
-cd desktop
+cd desktop || exit
 $pkg run dist
