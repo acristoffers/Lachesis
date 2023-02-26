@@ -26,27 +26,23 @@
   min-width: 900px;
   max-width: 90%;
 
-  mat-card {
+  mat-card-header {
     margin: 1rem;
+  }
 
-    mat-list-item {
-      div[flex] {
-        width: 100%;
-      }
-    }
-
-    #top-bar {
-      margin-bottom: 1rem;
-    }
-
-    .controller-title {
-      vertical-align: middle;
-      line-height: 36px;
+  mat-list-item {
+    div[flex] {
+      width: 100%;
     }
   }
 
-  mat-list-item:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+  #top-bar {
+    margin-bottom: 1rem;
+  }
+
+  .controller-title {
+    vertical-align: middle;
+    line-height: 36px;
   }
 
   .gone {

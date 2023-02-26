@@ -48,7 +48,4 @@ www
 .sass-cache
 .gradle
 
-# YARN lock file
-yarn.lock
-
 .DS_Store

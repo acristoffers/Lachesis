@@ -20,28 +20,23 @@
  * THE SOFTWARE.
  */
 
-.connect-wrapper {
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  padding: 1rem;
-  overflow: auto;
-}
-
-div[stretch] {
-  min-height: 1rem;
-}
-
-.connection {
-  width: 100%;
-}
-
-mat-card {
+#connection {
   margin: auto;
+  padding: 1rem;
   min-width: 400px;
+  max-width: 90%;
+
+  div[stretch] {
+    min-height: 1rem;
+  }
+
+  .connection {
+    width: 100%;
+  }
+
+  mat-card-header {
+    margin: 1rem;
+  }
 
   a {
     cursor: pointer;

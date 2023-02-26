@@ -1,9 +1,9 @@
 <div flex-col>
   <div id="system-response">
-    <mat-card>
-      <mat-card-title>
+    <mat-card appearance="outlined">
+      <mat-card-header>
         {{ 'System Response' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <mat-form-field class="width-100">
           <input matInput [placeholder]="'Filter' | translate" [(ngModel)]="filter">

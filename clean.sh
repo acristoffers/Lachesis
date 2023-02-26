@@ -20,8 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-rm -fr desktop/www desktop/build desktop/dist &> /dev/null
-rm -fr node_modules Lachesis/node_modules desktop/node_modules &> /dev/null
-rm -fr Lachesis/dist &> /dev/null
-rm yarn.lock Lachesis/yarn.lock desktop/yarn.lock &> /dev/null
-rm package-lock.json Lachesis/package-lock.json desktop/package-lock.json &> /dev/null
+[ -d desktop/www ]           && rm -rf desktop/www
+[ -d desktop/build ]         && rm -rf desktop/build
+[ -d desktop/dist ]          && rm -rf desktop/dist
+[ -d node_modules ]          && rm -rf node_modules
+[ -d Lachesis/node_modules ] && rm -rf Lachesis/node_modules
+[ -d desktop/node_modules ]  && rm -rf desktop/node_modules
+[ -d Lachesis/dist ]         && rm -rf Lachesis/dist

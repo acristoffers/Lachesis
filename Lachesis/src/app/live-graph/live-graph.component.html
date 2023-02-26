@@ -1,9 +1,9 @@
 <div flex-col>
   <div id="live-graph">
-    <mat-card>
-      <mat-card-title>
+    <mat-card appearance="outlined">
+      <mat-card-header>
         {{ 'Graphs' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <div id="tests-list">
           <mat-form-field class="width-100">
@@ -56,7 +56,7 @@
       </mat-card-actions>
     </mat-card>
 
-    <mat-card *ngIf="lastError">
+    <mat-card appearance="outlined" *ngIf="lastError">
       <mat-card-content>
         <b>{{ 'Last error: ' | translate }}</b>
         <span [innerHtml]="lastError"></span>
@@ -98,11 +98,11 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-card id="charts" *ngIf="testData">
-      <mat-card-title>
+    <mat-card appearance="outlined" id="charts" *ngIf="testData">
+      <mat-card-header>
         <span>{{ test.name }}</span>
         <span class="date">{{ formatDate(test.date) }}</span>
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <div class="toolbar" flex>
           <button mat-stroked-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>

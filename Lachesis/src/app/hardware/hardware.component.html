@@ -1,9 +1,9 @@
 <div flex-col>
   <div id="hardware">
-    <mat-card id="driver">
-      <mat-card-title>
+    <mat-card appearance="outlined" id="driver">
+      <mat-card-header>
         {{ 'Hardware Setup' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <mat-form-field class="width-100">
           <mat-select [placeholder]="'Driver' | translate" [(ngModel)]="selectedDriver">
@@ -15,10 +15,10 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card id="setup" *ngIf="showSetup()">
-      <mat-card-title matTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
+    <mat-card appearance="outlined" id="setup" *ngIf="showSetup()">
+      <mat-card-header matTooltip="{{ 'Fill the driver setup options. For information about the properties, read the documentation of the AHIO library.' | translate }}">
         {{ 'Setup' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content flex-col>
         <mat-form-field *ngFor="let argument of selectedDriver.setup_arguments">
           <input matInput [placeholder]="argument.name" [(ngModel)]="argument.value">
@@ -26,8 +26,8 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card id="ports" *ngIf="!!selectedDriver">
-      <mat-card-title>{{ 'Ports' | translate }}</mat-card-title>
+    <mat-card appearance="outlined" id="ports" *ngIf="!!selectedDriver">
+      <mat-card-header>{{ 'Ports' | translate }}</mat-card-header>
       <mat-card-content>
         <div class="row header" flex>
           <span matTooltip="{{ 'The name of the port as known by the AHIO driver.' | translate }}">
@@ -75,8 +75,8 @@
       </mat-card-actions>
     </mat-card>
 
-    <mat-card id="calibration" *ngIf="!!selectedDriver && ((inputAliases?.length > 0) || (outputAliases?.length > 0))">
-      <mat-card-title>{{ 'Calibration' | translate }}</mat-card-title>
+    <mat-card appearance="outlined" id="calibration" *ngIf="!!selectedDriver && ((inputAliases?.length > 0) || (outputAliases?.length > 0))">
+      <mat-card-header>{{ 'Calibration' | translate }}</mat-card-header>
       <mat-card-content>
         <div class="row header" flex>
           <span>{{ 'Port' | translate }}</span>
@@ -116,10 +116,10 @@
       </mat-card-actions>
     </mat-card>
 
-    <mat-card id="interlocking" *ngIf="!!selectedDriver && (inputAliases?.length > 0) && (outputAliases?.length > 0)">
-      <mat-card-title matTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">
+    <mat-card appearance="outlined" id="interlocking" *ngIf="!!selectedDriver && (inputAliases?.length > 0) && (outputAliases?.length > 0)">
+      <mat-card-header matTooltip="{{ 'Sets the output of some port to some value if Expression evaluates to true.' | translate }}">
         {{ 'Interlock' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <div class="row header" flex>
           <span>{{ 'Input' | translate }}</span>
@@ -163,7 +163,7 @@
       </mat-card-actions>
     </mat-card>
 
-    <mat-card *ngIf="!!selectedDriver">
+    <mat-card appearance="outlined" *ngIf="!!selectedDriver">
       <mat-card-content>
         <button mat-flat-button color="primary" (click)="applyDriver()">{{ 'Apply' | translate }}</button>
         <button mat-stroked-button (click)="exportConfiguration()">{{ 'Export' | translate }}</button>

@@ -8,7 +8,7 @@
     <mat-list>
       <h3 mat-subheader>{{ 'Curve data' | translate }}</h3>
 
-      <mat-list-item flex-col>
+      <mat-list-item>
         <mat-tab-group class="width-100">
           <mat-tab [label]="'Data Points' | translate">
             <div id="data-points" flex-col>
@@ -48,7 +48,7 @@
       <h3 mat-subheader>{{ 'Output to control' | translate }}</h3>
 
       <mat-list-item>
-        <div>
+        <div grid>
           <div *ngFor="let output of outputs" class="input">
             <mat-checkbox [(ngModel)]="output[1]" (change)="updateOutputs()">{{ output[0] }}</mat-checkbox>
           </div>
@@ -58,7 +58,7 @@
       <h3 mat-subheader>{{ 'Inputs to log' | translate }}</h3>
 
       <mat-list-item>
-        <div>
+        <div grid>
           <div *ngFor="let input of inputs" class="input">
             <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</mat-checkbox>
           </div>

@@ -1,91 +1,149 @@
-<div flex-col class="connect-wrapper">
-  <mat-card *ngIf="!isLoggedIn()">
-    <mat-card-title>
-      {{ 'Connect' | translate }}
-    </mat-card-title>
-    <mat-card-content>
-      <mat-action-list>
-        <h3 mat-subheader>{{ 'Past connections' | translate }}</h3>
+<div flex-col>
+  <div id="connection">
+    <div stretch></div>
 
-        <mat-list-item *ngFor='let connection of connections'>
-          <button class="connection" (click)='fillLogin(connection)'>
-            <span flex class="width-100">
-              <span stretch>{{connection}}</span>
-              <button mat-icon-button color="warn" (click)="remove(connection); $event.stopPropagation()">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </span>
-          </button>
-        </mat-list-item>
-      </mat-action-list>
-
-      <mat-form-field class="width-100">
-        <input matInput [placeholder]="'Moirai Address' | translate" [(ngModel)]="connectionAddress"
-          (keydown.enter)="connect()">
-      </mat-form-field>
-
-      <mat-form-field class="width-100">
-        <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="connectionPassword"
-          (keydown.enter)="connect()" autofocus>
-      </mat-form-field>
-
-      <button class="width-100" [disabled]='working' mat-flat-button color="primary" (click)="connect()">
+    <mat-card appearance="outlined" *ngIf="!isLoggedIn()">
+      <mat-card-header>
         {{ 'Connect' | translate }}
-      </button>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-action-list>
+          <h3 mat-subheader>{{ 'Past connections' | translate }}</h3>
 
-  <div stretch *ngIf="isLoggedIn()"></div>
+          <mat-list-item *ngFor="let connection of connections">
+            <button class="connection" (click)="fillLogin(connection)">
+              <span flex class="width-100">
+                <span stretch>{{ connection }}</span>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="remove(connection); $event.stopPropagation()"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </span>
+            </button>
+          </mat-list-item>
+        </mat-action-list>
 
-  <mat-card *ngIf="isLoggedIn()">
-    <mat-card-title>
-      {{ 'Connected' | translate }}
-    </mat-card-title>
-    <mat-card-content>
-      <button class="width-100" [disabled]='working' mat-flat-button color="primary" (click)="disconnect()">
-        {{ 'Disconnect' | translate }}
-      </button>
-    </mat-card-content>
-  </mat-card>
+        <mat-form-field class="width-100">
+          <input
+            matInput
+            [placeholder]="'Moirai Address' | translate"
+            [(ngModel)]="connectionAddress"
+            (keydown.enter)="connect()"
+          />
+        </mat-form-field>
 
-  <div stretch *ngIf="isLoggedIn()"></div>
+        <mat-form-field class="width-100">
+          <input
+            type="password"
+            matInput
+            [placeholder]="'Password' | translate"
+            [(ngModel)]="connectionPassword"
+            (keydown.enter)="connect()"
+            autofocus
+          />
+        </mat-form-field>
 
-  <mat-card *ngIf="isLoggedIn()">
-    <mat-card-title>
-      {{ 'Change Password' | translate }}
-    </mat-card-title>
-    <mat-card-content>
-      <mat-form-field class="width-100">
-        <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="newPassword">
-      </mat-form-field>
-      <mat-form-field class="width-100">
-        <input type="password" matInput [placeholder]="'Password' | translate" [(ngModel)]="newPasswordConfirmation">
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class="width-100" [disabled]='working' mat-flat-button color="primary" (click)="setPassword()">
-        {{ 'Apply' | translate }}
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        <button
+          class="width-100"
+          [disabled]="working"
+          mat-flat-button
+          color="primary"
+          (click)="connect()"
+        >
+          {{ 'Connect' | translate }}
+        </button>
+      </mat-card-content>
+    </mat-card>
 
-  <div stretch *ngIf="isLoggedIn()"></div>
+    <div stretch></div>
 
-  <mat-card *ngIf="isLoggedIn()">
-    <mat-card-title>
-      {{ 'Backup/Restore' | translate }}
-    </mat-card-title>
-    <mat-card-content>
-      <div>{{ 'Backup or restore the whole database.' | translate }}</div>
-      <div>{{ 'This can take some time.' | translate }}</div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-flat-button [disabled]='working' color="primary"
-        (click)="backup()">{{ 'Backup' | translate }}</button>
-      <button mat-flat-button [disabled]='working' color="primary"
-        (click)="restore()">{{ 'Restore' | translate }}</button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card appearance="outlined" *ngIf="isLoggedIn()">
+      <mat-card-header>
+        {{ 'Connected' | translate }}
+      </mat-card-header>
+      <mat-card-content>
+        <button
+          class="width-100"
+          [disabled]="working"
+          mat-flat-button
+          color="primary"
+          (click)="disconnect()"
+        >
+          {{ 'Disconnect' | translate }}
+        </button>
+      </mat-card-content>
+    </mat-card>
 
-  <div stretch *ngIf="isLoggedIn()"></div>
+    <div stretch *ngIf="isLoggedIn()"></div>
+
+    <mat-card appearance="outlined" *ngIf="isLoggedIn()">
+      <mat-card-header>
+        {{ 'Change Password' | translate }}
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="width-100">
+          <input
+            type="password"
+            matInput
+            [placeholder]="'Password' | translate"
+            [(ngModel)]="newPassword"
+          />
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <input
+            type="password"
+            matInput
+            [placeholder]="'Password' | translate"
+            [(ngModel)]="newPasswordConfirmation"
+          />
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          class="width-100"
+          [disabled]="working"
+          mat-flat-button
+          color="primary"
+          (click)="setPassword()"
+        >
+          {{ 'Apply' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div stretch *ngIf="isLoggedIn()"></div>
+
+    <mat-card appearance="outlined" *ngIf="isLoggedIn()">
+      <mat-card-header>
+        {{ 'Backup/Restore' | translate }}
+      </mat-card-header>
+      <mat-card-content>
+        <div>{{ 'Backup or restore the whole database.' | translate }}</div>
+        <div>{{ 'This can take some time.' | translate }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-flat-button
+          [disabled]="working"
+          color="primary"
+          (click)="backup()"
+        >
+          {{ 'Backup' | translate }}
+        </button>
+        <button
+          mat-flat-button
+          [disabled]="working"
+          color="primary"
+          (click)="restore()"
+        >
+          {{ 'Restore' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div stretch *ngIf="isLoggedIn()"></div>
+  </div>
 </div>

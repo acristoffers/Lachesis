@@ -95,9 +95,10 @@
       }
     }
   },
-  "defaultProject": "Lachesis",
   "cli": {
     "analytics": "b0ec6cbc-5fcb-4b92-bf8c-892763dfde69",
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

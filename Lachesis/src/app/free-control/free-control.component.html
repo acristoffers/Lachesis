@@ -1,9 +1,9 @@
 <div flex-col>
   <div id="free">
-    <mat-card>
-      <mat-card-title>
+    <mat-card appearance="outlined">
+      <mat-card-header>
         {{ 'Free Control' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <mat-list>
           <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
@@ -50,14 +50,14 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card *ngIf="lastError">
+    <mat-card appearance="outlined" *ngIf="lastError">
       <mat-card-content>
         <b>{{ 'Error: ' | translate }}</b>
         <span [innerHtml]="lastError"></span>
       </mat-card-content>
     </mat-card>
 
-    <mat-card id="charts" *ngIf="testData && !lastError">
+    <mat-card appearance="outlined" id="charts" *ngIf="testData && !lastError">
       <mat-card-content>
         <div class="toolbar" flex>
           <button mat-stroked-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>

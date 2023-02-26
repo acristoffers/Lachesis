@@ -25,18 +25,18 @@
   flex-direction: column;
   height: 100%;
 
-  .mat-card-title {
+  .mat-mdc-card-title {
     display: flex !important;
     flex-direction: row;
     flex-shrink: 0;
   }
 
-  .mat-card-content {
+  .mat-mdc-card-content {
     flex-grow: 1;
     overflow: auto;
   }
 
-  .mat-card-actions {
+  .mat-mdc-card-actions {
     display: flex !important;
     flex-direction: row;
     flex-shrink: 0;

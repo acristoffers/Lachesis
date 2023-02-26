@@ -39,22 +39,8 @@
     }
   }
 
-  .mat-list-item {
+  .mat-mdc-list-item {
     height: auto;
-  }
-
-  ::ng-deep .mat-list-item[flex-col] {
-    .mat-list-item-content {
-      flex-direction: column;
-    }
-  }
-
-  .mat-list-item-content {
-    width: 100%;
-  }
-
-  ::ng-deep .mat-tab-body-content {
-    padding-top: 1rem;
   }
 
   #fixed-outputs,
@@ -64,10 +50,11 @@
     mat-form-field {
       margin-right: 1rem;
     }
+  }
 
-    .mat-list-item-content {
-      width: 100%;
-    }
+  [grid] {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .input {

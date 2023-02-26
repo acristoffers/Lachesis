@@ -26,33 +26,33 @@
   min-width: 900px;
   max-width: 90%;
 
-  mat-card {
+  mat-card-header {
     margin: 1rem;
+  }
 
-    table {
-      margin: 1rem 0;
-      width: 100%;
+  table {
+    margin: 1rem 0;
+    width: 100%;
 
-      .mat-row,
-      .mat-header-row {
-        height: 2rem;
-      }
-
-      .mat-cell {
-        text-align: center;
-      }
+    .mat-mdc-row,
+    .mat-mdc-header-row {
+      height: 2rem;
     }
 
-    .setup-fields {
-      display: block !important;
-      width: 100%;
+    .mat-mdc-cell {
+      text-align: center;
     }
+  }
+
+  .setup-fields {
+    display: block !important;
+    width: 100%;
   }
 
   #charts {
     text-align: center;
 
-    .mat-select {
+    .mat-mdc-select {
       width: 300px !important;
     }
   }
@@ -76,13 +76,7 @@
     }
   }
 
-  ::ng-deep .mat-list-item[flex-col] {
-    .mat-list-item-content {
-      flex-direction: column;
-    }
-  }
-
-  .mat-list-item {
+  .mat-mdc-list-item {
     height: auto;
   }
 }

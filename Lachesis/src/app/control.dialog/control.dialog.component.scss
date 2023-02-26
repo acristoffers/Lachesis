@@ -25,18 +25,18 @@
   flex-direction: column;
   height: 100%;
 
-  .mat-card-title {
+  .mat-mdc-card-title {
     display: flex !important;
     flex-direction: row;
     flex-shrink: 0;
   }
 
-  .mat-card-content {
+  .mat-mdc-card-content {
     flex-grow: 1;
     overflow: auto;
   }
 
-  .mat-card-actions {
+  .mat-mdc-card-actions {
     display: flex !important;
     flex-direction: row;
     flex-shrink: 0;
@@ -54,27 +54,17 @@
     margin-top: 1rem;
   }
 
+  [grid] {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .input {
     width: 25%;
     display: inline-block;
   }
 
-  .mat-list-item {
+  .mat-mdc-list-item {
     height: auto;
-  }
-
-  ::ng-deep .mat-list-item[flex-col] {
-    .mat-list-item-content {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  .mat-list-item-content {
-    width: 100%;
-  }
-
-  mat-list {
-    margin-bottom: 1rem;
   }
 }

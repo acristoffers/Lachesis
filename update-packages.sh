@@ -20,14 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# yarn global add npm-check-updates
+# npm -g install npm-check-updates
 ncu --upgrade
-pushd Lachesis
-yarn ng update
-popd
-pushd src/desktop
+pushd Lachesis || exit
+npm run ng update
+popd || exit
+pushd src/desktop || exit
 ncu --upgrade
-popd
-pushd desktop
+popd || exit
+pushd desktop || exit
 ncu --upgrade
-popd
+popd || exit

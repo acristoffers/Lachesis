@@ -20,42 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# Remove old files
-touch desktop/www desktop/build desktop/dist desktop/node_modules
-rm -r desktop/www desktop/build desktop/dist desktop/node_modules
-mkdir -p desktop/www desktop/build
-
-# Install build deps
-echo ""
-echo "Installing build dependencies"
-echo ""
-npm install
-pushd Lachesis || exit
-npm install
-popd || exit
-cp -r src/desktop/* desktop/www/
-pushd desktop || exit
-npm install
-pushd www || exit
-npm install
-popd || exit
-popd || exit
-
-# Copy files
-echo ""
-echo "Building root and copying dependencies"
-echo ""
-pushd desktop/www || exit
-node_modules/.bin/tsc
-rm -r node_modules index.ts tsconfig.json
-npm install --omit=dev
-popd || exit
-
-if [ -z "$1" ]; then
-    $SHELL build-fast.sh
-else
-    $SHELL build-fast.sh "$1"
+if [ ! -d desktop/www/Lachesis ]; then
+$SHELL build.sh "--configuration production"
 fi
 
-# Copy icons
-cp -r src/icons/* desktop/build/
+$SHELL build-fast.sh
+pushd desktop/www || exit
+npx electron .
+popd || exit

@@ -1,9 +1,9 @@
 <div flex-col>
   <div id="model-simulation">
-    <mat-card>
-      <mat-card-title>
+    <mat-card appearance="outlined">
+      <mat-card-header>
         {{ 'Model Simulation' | translate }}
-      </mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <table class="mat-table">
           <thead>
@@ -38,7 +38,7 @@
         <mat-list>
           <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
 
-          <mat-list-item flex-col>
+          <mat-list-item>
             <mat-form-field class="setup-fields">
               <input matInput [placeholder]="'Model' | translate" [(ngModel)]="model">
             </mat-form-field>
@@ -63,14 +63,14 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card *ngIf="error">
+    <mat-card appearance="outlined" *ngIf="error">
       <mat-card-content>
         <b>{{ 'Error: ' | translate }}</b>
         <span [innerHtml]="error"></span>
       </mat-card-content>
     </mat-card>
 
-    <mat-card id="charts" *ngIf="testData">
+    <mat-card appearance="outlined" id="charts" *ngIf="testData">
       <mat-card-content>
         <div class="toolbar" flex>
           <button mat-stroked-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>

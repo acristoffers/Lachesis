@@ -20,12 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-pkg="yarn"
-
-if [ "$1" = "npm" ]; then
-    pkg="npm"
+if [ ! -d desktop/www/Lachesis ]; then
+    bash build.sh "--configuration production"
 fi
 
-bash build.sh $pkg "--configuration production"
-cd desktop
-$pkg run release
+cd desktop || exit
+if [ "$(uname -s)" = "Darwin" ]; then
+    npm run release
+else
+    npm run release:linux
+    if command -v wine &> /dev/null
+    then
+        npm run release:win
+    else
+        if command -v nix-shell &> /dev/null
+        then
+            nix-shell -p wine --command "npm run release:win"
+        else
+            echo Cannot build for windows, wine not found.
+        fi
+    fi
+fi

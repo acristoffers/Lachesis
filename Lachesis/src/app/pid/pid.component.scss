@@ -26,21 +26,21 @@
   min-width: 900px;
   max-width: 90%;
 
-  mat-card {
+  mat-card-header {
     margin: 1rem;
+  }
 
-    h2 {
-      margin-bottom: 1rem;
-    }
+  h2 {
+    margin-bottom: 1rem;
+  }
 
-    .setup-field {
-      width: 100%;
-      margin: 0 0.5rem;
-    }
+  .setup-field {
+    width: 100%;
+    margin: 0 0.5rem;
+  }
 
-    .setup-select {
-      display: block !important;
-    }
+  .setup-select {
+    display: block !important;
   }
 
   .toolbar {
@@ -55,7 +55,7 @@
   #charts {
     text-align: center;
 
-    .mat-select {
+    .mat-mdc-select {
       width: 300px !important;
     }
   }
@@ -70,12 +70,8 @@
     }
   }
 
-  .mat-list-item {
+  .mat-mdc-list-item {
     height: auto;
-  }
-
-  mat-list {
-    margin-bottom: 1rem;
   }
 
   #fixed-outputs {
@@ -83,10 +79,6 @@
 
     mat-form-field {
       margin-right: 1rem;
-    }
-
-    .mat-list-item-content {
-      width: 100%;
     }
   }
 }
