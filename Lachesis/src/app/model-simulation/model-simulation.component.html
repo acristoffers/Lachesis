@@ -2,70 +2,87 @@
   <div id="model-simulation">
     <mat-card appearance="outlined">
       <mat-card-header>
-        {{ 'Model Simulation' | translate }}
+        {{ "Model Simulation" | translate }}
       </mat-card-header>
       <mat-card-content>
         <table class="mat-table">
           <thead>
             <tr class="mat-header-row">
               <th class="mat-header-cell"></th>
-              <th class="mat-header-cell">{{ 'Continuous Time' | translate }}</th>
-              <th class="mat-header-cell">{{ 'Discrete Time' | translate }}</th>
+              <th class="mat-header-cell">
+                {{ "Continuous Time" | translate }}
+              </th>
+              <th class="mat-header-cell">{{ "Discrete Time" | translate }}</th>
             </tr>
           </thead>
           <tbody>
             <tr class="mat-row">
-              <td class="mat-header-cell">{{ 'Transfer Function' | translate }}</td>
+              <td class="mat-header-cell">
+                {{ "Transfer Function" | translate }}
+              </td>
               <td class="mat-cell">(num, den)</td>
               <td class="mat-cell">(num, den, dt)</td>
             </tr>
             <tr class="mat-row">
-              <td class="mat-header-cell">{{ 'State Space' | translate }}</td>
+              <td class="mat-header-cell">{{ "State Space" | translate }}</td>
               <td class="mat-cell">(A, B, C, D)</td>
               <td class="mat-cell">(A, B, C, D, dt)</td>
             </tr>
             <tr class="mat-row">
-              <td class="mat-cell" colspan="3">{{ 'All arguments must be compatible with np.array.' |
-                translate }}</td>
+              <td class="mat-cell" colspan="3">
+                {{
+                  "All arguments must be compatible with np.array." | translate
+                }}
+              </td>
             </tr>
             <tr class="mat-row">
-              <td class="mat-cell" colspan="3">{{ 'You can set u to a vector of outputs.' |
-                translate }}</td>
+              <td class="mat-cell" colspan="3">
+                {{ "You can set u to a vector of outputs." | translate }}
+              </td>
             </tr>
           </tbody>
         </table>
 
         <mat-list>
-          <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
+          <h3 mat-subheader>{{ "Setup" | translate }}</h3>
 
           <mat-list-item>
             <mat-form-field class="setup-fields">
-              <input matInput [placeholder]="'Model' | translate" [(ngModel)]="model">
+              <mat-label>{{ "Model" | translate }}</mat-label>
+              <input matInput [(ngModel)]="model" />
             </mat-form-field>
 
             <mat-form-field class="setup-fields">
-              <input matInput [placeholder]="'x0' | translate" [(ngModel)]="x0">
+              <mat-label>{{ "x0" | translate }}</mat-label>
+              <input matInput [(ngModel)]="x0" />
             </mat-form-field>
 
             <mat-form-field class="setup-fields">
-              <input matInput [placeholder]="'u' | translate" [(ngModel)]="u">
+              <mat-label>{{ "u" | translate }}</mat-label>
+              <input matInput [(ngModel)]="u" />
             </mat-form-field>
 
             <mat-form-field class="setup-fields">
-              <input matInput [placeholder]="'Duration' | translate" [(ngModel)]="ts">
+              <mat-label>{{ "Duration" | translate }}</mat-label>
+              <input matInput [(ngModel)]="ts" />
             </mat-form-field>
           </mat-list-item>
         </mat-list>
 
-        <button [disabled]='!buttonEnabled' mat-flat-button color="primary" (click)="simulate()">
-          {{ 'Simulate' | translate }}
+        <button
+          [disabled]="!buttonEnabled"
+          mat-flat-button
+          color="primary"
+          (click)="simulate()"
+        >
+          {{ "Simulate" | translate }}
         </button>
       </mat-card-content>
     </mat-card>
 
     <mat-card appearance="outlined" *ngIf="error">
       <mat-card-content>
-        <b>{{ 'Error: ' | translate }}</b>
+        <b>{{ "Error: " | translate }}</b>
         <span [innerHtml]="error"></span>
       </mat-card-content>
     </mat-card>
@@ -73,25 +90,45 @@
     <mat-card appearance="outlined" id="charts" *ngIf="testData">
       <mat-card-content>
         <div class="toolbar" flex>
-          <button mat-stroked-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
-          <button mat-stroked-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
-          <button mat-flat-button color="warn" (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+          <button mat-stroked-button (click)="addGraph()">
+            {{ "Add graph" | translate }}
+          </button>
+          <button mat-stroked-button (click)="addAllGraph()">
+            {{ "Add graph for each variable" | translate }}
+          </button>
+          <button mat-flat-button color="warn" (click)="removeAll()">
+            {{ "Remove all" | translate }}
+          </button>
         </div>
 
         <div class="chart" *ngFor="let graph of this.graphs">
           <div class="toolbar" flex>
             <mat-form-field stretch>
-              <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
+              <mat-label>{{ "Variables" | translate }}</mat-label>
+              <mat-select [(ngModel)]="graph.variables" multiple>
                 <mat-option *ngFor="let v of variables" [value]="v">
                   {{ v }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <button mat-stroked-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
-            <button mat-stroked-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
-            <button mat-flat-button color="warn" (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+            <button mat-stroked-button (click)="selectAll(graph)">
+              {{ "Select All" | translate }}
+            </button>
+            <button mat-stroked-button (click)="deselectAll(graph)">
+              {{ "Select None" | translate }}
+            </button>
+            <button
+              mat-flat-button
+              color="warn"
+              (click)="removeGraph(graph.id)"
+            >
+              {{ "Remove Graph" | translate }}
+            </button>
           </div>
-          <lachesis-chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></lachesis-chart>
+          <lachesis-chart
+            [id]="graph.id"
+            [lines]="filterTestData(graph.variables)"
+          ></lachesis-chart>
         </div>
       </mat-card-content>
     </mat-card>

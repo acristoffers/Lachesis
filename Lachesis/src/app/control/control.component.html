@@ -2,20 +2,33 @@
   <div id="control">
     <mat-card appearance="outlined">
       <mat-card-header>
-        {{ 'System Control' | translate }}
+        {{ "System Control" | translate }}
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="width-100">
-          <input matInput [placeholder]="'Filter' | translate" [(ngModel)]="filter">
+          <mat-label>{{ "Filter" | translate }}</mat-label>
+          <input matInput [(ngModel)]="filter" />
         </mat-form-field>
         <mat-selection-list [(ngModel)]="selection">
-          <mat-list-option checkboxPosition="before" [value]="controller" *ngFor="let controller of controllers"
-            [ngClass]="{'gone': !controller.name.toLowerCase().includes(filter.toLowerCase())}">
+          <mat-list-option
+            checkboxPosition="before"
+            [value]="controller"
+            *ngFor="let controller of controllers"
+            [ngClass]="{
+              gone: !controller.name
+                .toLowerCase()
+                .includes(filter.toLowerCase())
+            }"
+          >
             <div flex>
               <div class="controller-title">{{ controller.name }}</div>
               <div stretch></div>
               <div>
-                <button mat-icon-button color="primary" (click)="run(controller)">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="run(controller)"
+                >
                   <mat-icon>launch</mat-icon>
                 </button>
                 <button mat-icon-button (click)="edit(controller)">
@@ -24,7 +37,11 @@
                 <button mat-icon-button (click)="clone(controller)">
                   <mat-icon>content_copy</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="remove(controller)">
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="remove(controller)"
+                >
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -33,32 +50,52 @@
         </mat-selection-list>
       </mat-card-content>
       <mat-card-actions flex>
-        <button mat-stroked-button (click)="add()">{{ 'Add' | translate }}</button>
-        <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
+        <button mat-stroked-button (click)="add()">
+          {{ "Add" | translate }}
+        </button>
+        <button mat-flat-button color="warn" (click)="stop()">
+          {{ "Stop" | translate }}
+        </button>
         <div stretch></div>
 
         <button mat-stroked-button [matMenuTriggerFor]="exportMenu">
           <mat-icon>import_export</mat-icon>
         </button>
         <mat-menu #exportMenu="matMenu">
-          <button mat-menu-item (click)="exportSelected()">{{ 'Export' | translate }}</button>
-          <button mat-menu-item (click)="import()">{{ 'Import' | translate }}</button>
+          <button mat-menu-item (click)="exportSelected()">
+            {{ "Export" | translate }}
+          </button>
+          <button mat-menu-item (click)="import()">
+            {{ "Import" | translate }}
+          </button>
         </mat-menu>
 
         <button mat-stroked-button [matMenuTriggerFor]="selectMenu">
           <mat-icon>select_all</mat-icon>
         </button>
         <mat-menu #selectMenu="matMenu">
-          <button mat-menu-item (click)="selectAll()">{{ 'Select All' | translate }}</button>
-          <button mat-menu-item (click)="selectNone()">{{ 'Select None' | translate }}</button>
+          <button mat-menu-item (click)="selectAll()">
+            {{ "Select All" | translate }}
+          </button>
+          <button mat-menu-item (click)="selectNone()">
+            {{ "Select None" | translate }}
+          </button>
         </mat-menu>
 
-        <button mat-stroked-button color="warn" [matMenuTriggerFor]="removeMenu">
+        <button
+          mat-stroked-button
+          color="warn"
+          [matMenuTriggerFor]="removeMenu"
+        >
           <mat-icon>delete</mat-icon>
         </button>
         <mat-menu #removeMenu="matMenu">
-          <button mat-menu-item (click)="removeAll()">{{ 'Remove all' | translate }}</button>
-          <button mat-menu-item (click)="removeSelected()">{{ 'Remove Selected' | translate }}</button>
+          <button mat-menu-item (click)="removeAll()">
+            {{ "Remove all" | translate }}
+          </button>
+          <button mat-menu-item (click)="removeSelected()">
+            {{ "Remove Selected" | translate }}
+          </button>
         </mat-menu>
       </mat-card-actions>
     </mat-card>

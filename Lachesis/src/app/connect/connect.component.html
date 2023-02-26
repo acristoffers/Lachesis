@@ -4,11 +4,11 @@
 
     <mat-card appearance="outlined" *ngIf="!isLoggedIn()">
       <mat-card-header>
-        {{ 'Connect' | translate }}
+        {{ "Connect" | translate }}
       </mat-card-header>
       <mat-card-content>
         <mat-action-list>
-          <h3 mat-subheader>{{ 'Past connections' | translate }}</h3>
+          <h6 mat-subheader>{{ "Past connections" | translate }}</h6>
 
           <mat-list-item *ngFor="let connection of connections">
             <button class="connection" (click)="fillLogin(connection)">
@@ -27,19 +27,19 @@
         </mat-action-list>
 
         <mat-form-field class="width-100">
+          <mat-label>{{ "Moirai Address" | translate }}</mat-label>
           <input
             matInput
-            [placeholder]="'Moirai Address' | translate"
-            [(ngModel)]="connectionAddress"
+            [ngModel]="connectionAddress"
             (keydown.enter)="connect()"
           />
         </mat-form-field>
 
         <mat-form-field class="width-100">
+          <mat-label>{{ "Password" | translate }}</mat-label>
           <input
             type="password"
             matInput
-            [placeholder]="'Password' | translate"
             [(ngModel)]="connectionPassword"
             (keydown.enter)="connect()"
             autofocus
@@ -53,7 +53,7 @@
           color="primary"
           (click)="connect()"
         >
-          {{ 'Connect' | translate }}
+          {{ "Connect" | translate }}
         </button>
       </mat-card-content>
     </mat-card>
@@ -62,7 +62,7 @@
 
     <mat-card appearance="outlined" *ngIf="isLoggedIn()">
       <mat-card-header>
-        {{ 'Connected' | translate }}
+        {{ "Connected" | translate }}
       </mat-card-header>
       <mat-card-content>
         <button
@@ -72,7 +72,7 @@
           color="primary"
           (click)="disconnect()"
         >
-          {{ 'Disconnect' | translate }}
+          {{ "Disconnect" | translate }}
         </button>
       </mat-card-content>
     </mat-card>
@@ -81,22 +81,18 @@
 
     <mat-card appearance="outlined" *ngIf="isLoggedIn()">
       <mat-card-header>
-        {{ 'Change Password' | translate }}
+        {{ "Change Password" | translate }}
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="width-100">
-          <input
-            type="password"
-            matInput
-            [placeholder]="'Password' | translate"
-            [(ngModel)]="newPassword"
-          />
+          <mat-label>{{ "Password" | translate }}</mat-label>
+          <input type="password" matInput [(ngModel)]="newPassword" />
         </mat-form-field>
         <mat-form-field class="width-100">
+          <mat-label>{{ "Password" | translate }}</mat-label>
           <input
             type="password"
             matInput
-            [placeholder]="'Password' | translate"
             [(ngModel)]="newPasswordConfirmation"
           />
         </mat-form-field>
@@ -109,7 +105,7 @@
           color="primary"
           (click)="setPassword()"
         >
-          {{ 'Apply' | translate }}
+          {{ "Apply" | translate }}
         </button>
       </mat-card-actions>
     </mat-card>
@@ -118,11 +114,11 @@
 
     <mat-card appearance="outlined" *ngIf="isLoggedIn()">
       <mat-card-header>
-        {{ 'Backup/Restore' | translate }}
+        {{ "Backup/Restore" | translate }}
       </mat-card-header>
       <mat-card-content>
-        <div>{{ 'Backup or restore the whole database.' | translate }}</div>
-        <div>{{ 'This can take some time.' | translate }}</div>
+        <div>{{ "Backup or restore the whole database." | translate }}</div>
+        <div>{{ "This can take some time." | translate }}</div>
       </mat-card-content>
       <mat-card-actions>
         <button
@@ -131,7 +127,7 @@
           color="primary"
           (click)="backup()"
         >
-          {{ 'Backup' | translate }}
+          {{ "Backup" | translate }}
         </button>
         <button
           mat-flat-button
@@ -139,7 +135,7 @@
           color="primary"
           (click)="restore()"
         >
-          {{ 'Restore' | translate }}
+          {{ "Restore" | translate }}
         </button>
       </mat-card-actions>
     </mat-card>

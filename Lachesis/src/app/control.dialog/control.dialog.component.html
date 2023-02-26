@@ -1,59 +1,76 @@
 <mat-card-header>
-  {{ 'Add/Edit Controller' | translate }}
+  {{ "Add/Edit Controller" | translate }}
 </mat-card-header>
 <mat-card-content id="control-dialog">
   <mat-list>
-    <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
+    <h3 mat-subheader>{{ "Setup" | translate }}</h3>
 
     <mat-list-item>
       <div flex-col>
         <mat-form-field class="width-100">
-          <input matInput [placeholder]="'Name' | translate" [(ngModel)]="controller.name">
+          <mat-label>{{ "Name" | translate }}</mat-label>
+          <input matInput [(ngModel)]="controller.name" />
         </mat-form-field>
 
         <mat-form-field class="width-100">
-          <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="controller.tau">
+          <mat-label>{{ "Sampling Time" | translate }}</mat-label>
+          <input matInput [(ngModel)]="controller.tau" />
         </mat-form-field>
 
         <mat-form-field class="width-100">
-          <input matInput [placeholder]="'Total Run Time' | translate" [(ngModel)]="controller.runTime">
+          <mat-label>{{ "Total Run Time" | translate }}</mat-label>
+          <input matInput [(ngModel)]="controller.runTime" />
         </mat-form-field>
       </div>
     </mat-list-item>
 
-    <h3 mat-subheader>{{ 'Inputs' | translate }}</h3>
+    <h3 mat-subheader>{{ "Inputs" | translate }}</h3>
 
     <mat-list-item>
-      <span>{{ 'For better performance, not all inputs are scanned. Choose the ones you need below.' | translate }}</span>
+      <span>{{
+        "For better performance, not all inputs are scanned. Choose the ones you need below."
+          | translate
+      }}</span>
       <div default-padding grid>
         <div *ngFor="let input of inputs" class="input">
-          <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{ input[0] }}</mat-checkbox>
+          <mat-checkbox [(ngModel)]="input[1]" (change)="updateInputs()">{{
+            input[0]
+          }}</mat-checkbox>
         </div>
       </div>
     </mat-list-item>
 
-    <h3 mat-subheader>{{ 'Before' | translate }}</h3>
+    <h3 mat-subheader>{{ "Before" | translate }}</h3>
 
     <mat-list-item>
-      <span>{{ 'This code will be executed before the controller starts.' | translate }}</span>
+      <span>{{
+        "This code will be executed before the controller starts." | translate
+      }}</span>
       <ace [(value)]="controller.before" mode="python" theme="github"></ace>
     </mat-list-item>
 
-    <h3 mat-subheader>{{ 'Controller' | translate }}</h3>
+    <h3 mat-subheader>{{ "Controller" | translate }}</h3>
 
     <mat-list-item>
       <ace [(value)]="controller.controller" mode="python" theme="github"></ace>
     </mat-list-item>
 
-    <h3 mat-subheader>{{ 'After' | translate }}</h3>
+    <h3 mat-subheader>{{ "After" | translate }}</h3>
 
     <mat-list-item>
-      <span>{{ 'This code will be executed after the controller leaves. Even if something goes wrong.' | translate }}</span>
+      <span>{{
+        "This code will be executed after the controller leaves. Even if something goes wrong."
+          | translate
+      }}</span>
       <ace [(value)]="controller.after" mode="python" theme="github"></ace>
     </mat-list-item>
   </mat-list>
 </mat-card-content>
 <mat-card-actions>
-  <button mat-flat-button color="primary" (click)="save()">{{ 'Save' | translate }}</button>
-  <button mat-stroked-button (click)="cancel()">{{ 'Cancel' | translate }}</button>
+  <button mat-flat-button color="primary" (click)="save()">
+    {{ "Save" | translate }}
+  </button>
+  <button mat-stroked-button (click)="cancel()">
+    {{ "Cancel" | translate }}
+  </button>
 </mat-card-actions>

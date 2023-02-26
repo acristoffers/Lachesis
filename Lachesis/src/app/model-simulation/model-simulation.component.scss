@@ -26,8 +26,14 @@
   min-width: 900px;
   max-width: 90%;
 
+  mat-card {
+    margin: 1rem 0;
+  }
+
   mat-card-header {
-    margin: 1rem;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 
   table {

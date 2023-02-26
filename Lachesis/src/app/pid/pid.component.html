@@ -2,97 +2,128 @@
   <div id="pid">
     <mat-card appearance="outlined">
       <mat-card-header>
-        {{ 'PID' | translate }}
+        {{ "PID" | translate }}
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <h3 mat-subheader>{{ 'Setup' | translate }}</h3>
+          <h3 mat-subheader>{{ "Setup" | translate }}</h3>
 
           <mat-list-item>
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Kp' | translate" [(ngModel)]="data.Kp">
-            </mat-form-field>
+            <div flex>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Kp" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.Kp" />
+              </mat-form-field>
 
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Ki' | translate" [(ngModel)]="data.Ki">
-            </mat-form-field>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Ki" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.Ki" />
+              </mat-form-field>
 
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Kd' | translate" [(ngModel)]="data.Kd">
-            </mat-form-field>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Kd" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.Kd" />
+              </mat-form-field>
+            </div>
           </mat-list-item>
 
           <mat-list-item>
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Sampling Time' | translate" [(ngModel)]="data.dt">
-            </mat-form-field>
+            <div flex>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Sampling Time" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.dt" />
+              </mat-form-field>
 
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Reference' | translate" [(ngModel)]="data.r">
-            </mat-form-field>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Reference" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.r" />
+              </mat-form-field>
+            </div>
           </mat-list-item>
 
           <mat-list-item>
-            <mat-form-field class="setup-field">
-              <mat-select placeholder="{{ 'Input' | translate }}" class="width-100" [(ngModel)]="data.y">
-                <mat-option *ngFor="let input of inputs" [value]="input">
-                  {{ input }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div flex>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Input" | translate }}</mat-label>
+                <mat-select class="width-100" [(ngModel)]="data.y">
+                  <mat-option *ngFor="let input of inputs" [value]="input">
+                    {{ input }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <mat-form-field class="setup-field">
-              <mat-select placeholder="{{ 'Output' | translate }}" class="width-100" [(ngModel)]="data.u">
-                <mat-option *ngFor="let output of outputs" [value]="output">
-                  {{ output }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Output" | translate }}</mat-label>
+                <mat-select class="width-100" [(ngModel)]="data.u">
+                  <mat-option *ngFor="let output of outputs" [value]="output">
+                    {{ output }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </mat-list-item>
 
           <mat-list-item>
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Min' | translate" [(ngModel)]="data.umin">
-            </mat-form-field>
+            <div flex>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Min" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.umin" />
+              </mat-form-field>
 
-            <mat-form-field class="setup-field">
-              <input matInput [placeholder]="'Max' | translate" [(ngModel)]="data.umax">
-            </mat-form-field>
+              <mat-form-field class="setup-field">
+                <mat-label>{{ "Max" | translate }}</mat-label>
+                <input matInput [(ngModel)]="data.umax" />
+              </mat-form-field>
+            </div>
           </mat-list-item>
 
-          <h3 mat-subheader>{{ 'Outputs' | translate }}</h3>
+          <h3 mat-subheader>{{ "Outputs" | translate }}</h3>
 
           <mat-list-item>
             <div id="fixed-outputs">
               <div flex-col>
-                <div class="width-100" flex *ngFor="let output of data.fixedOutputs">
+                <div
+                  class="width-100"
+                  flex
+                  *ngFor="let output of data.fixedOutputs"
+                >
                   <mat-form-field stretch>
-                    <mat-select placeholder="{{ 'Output' | translate }}" class="setup-select" [(ngModel)]="output.alias">
+                    <mat-label>{{ "Output" | translate }}</mat-label>
+                    <mat-select class="setup-select" [(ngModel)]="output.alias">
                       <mat-option *ngFor="let out of outputs" [value]="out">
                         {{ out }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field stretch>
-                    <input matInput [placeholder]="'Value' | translate" [(ngModel)]="output.value" type="number">
+                    <mat-label>{{ "Value" | translate }}</mat-label>
+                    <input matInput [(ngModel)]="output.value" type="number" />
                   </mat-form-field>
-                  <button mat-icon-button color="warn" (click)="removeFixedOutput(output)">
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="removeFixedOutput(output)"
+                  >
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>
               </div>
-              <button mat-stroked-button (click)="addFixedOutput()">{{ 'Add' | translate }}</button>
+              <button mat-stroked-button (click)="addFixedOutput()">
+                {{ "Add" | translate }}
+              </button>
             </div>
           </mat-list-item>
         </mat-list>
 
-        <button mat-flat-button color="primary" (click)="run()">{{ 'Run' | translate }}</button>
+        <button mat-flat-button color="primary" (click)="run()">
+          {{ "Run" | translate }}
+        </button>
       </mat-card-content>
     </mat-card>
 
     <mat-card appearance="outlined" *ngIf="lastError">
       <mat-card-content>
-        <b>{{ 'Error: ' | translate }}</b>
+        <b>{{ "Error: " | translate }}</b>
         <span [innerHtml]="lastError"></span>
       </mat-card-content>
     </mat-card>
@@ -100,23 +131,45 @@
     <mat-card appearance="outlined" id="charts" *ngIf="testData && !lastError">
       <mat-card-content>
         <div class="toolbar" flex>
-          <button mat-stroked-button (click)="addGraph()">{{ 'Add graph' | translate }}</button>
-          <button mat-stroked-button (click)="addAllGraph()">{{ 'Add graph for each variable' | translate }}</button>
-          <button mat-flat-button color="warn" (click)="removeAll()">{{ 'Remove all' | translate }}</button>
+          <button mat-stroked-button (click)="addGraph()">
+            {{ "Add graph" | translate }}
+          </button>
+          <button mat-stroked-button (click)="addAllGraph()">
+            {{ "Add graph for each variable" | translate }}
+          </button>
+          <button mat-flat-button color="warn" (click)="removeAll()">
+            {{ "Remove all" | translate }}
+          </button>
         </div>
 
         <div class="chart" *ngFor="let graph of this.graphs">
           <div class="toolbar" flex>
             <mat-form-field stretch>
-              <mat-select placeholder="{{ 'Variables' | translate }}" [(ngModel)]="graph.variables" multiple>
-                <mat-option *ngFor="let v of variables" [value]="v">{{ v }}</mat-option>
+              <mat-label>{{ "Variables" | translate }}</mat-label>
+              <mat-select [(ngModel)]="graph.variables" multiple>
+                <mat-option *ngFor="let v of variables" [value]="v">{{
+                  v
+                }}</mat-option>
               </mat-select>
             </mat-form-field>
-            <button mat-stroked-button (click)="selectAll(graph)">{{ 'Select All' | translate }}</button>
-            <button mat-stroked-button (click)="deselectAll(graph)">{{ 'Select None' | translate }}</button>
-            <button mat-flat-button color="warn" (click)="removeGraph(graph.id)">{{ 'Remove Graph' | translate }}</button>
+            <button mat-stroked-button (click)="selectAll(graph)">
+              {{ "Select All" | translate }}
+            </button>
+            <button mat-stroked-button (click)="deselectAll(graph)">
+              {{ "Select None" | translate }}
+            </button>
+            <button
+              mat-flat-button
+              color="warn"
+              (click)="removeGraph(graph.id)"
+            >
+              {{ "Remove Graph" | translate }}
+            </button>
           </div>
-          <lachesis-chart [id]="graph.id" [lines]="filterTestData(graph.variables)"></lachesis-chart>
+          <lachesis-chart
+            [id]="graph.id"
+            [lines]="filterTestData(graph.variables)"
+          ></lachesis-chart>
         </div>
       </mat-card-content>
     </mat-card>

@@ -2,17 +2,26 @@
   <div id="system-response">
     <mat-card appearance="outlined">
       <mat-card-header>
-        {{ 'System Response' | translate }}
+        {{ "System Response" | translate }}
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="width-100">
-          <input matInput [placeholder]="'Filter' | translate" [(ngModel)]="filter">
+          <mat-label>{{ "Filter" | translate }}</mat-label>
+          <input matInput [(ngModel)]="filter" />
         </mat-form-field>
         <mat-selection-list [(ngModel)]="selection">
-          <mat-list-option checkboxPosition="before" [value]="test" *ngFor="let test of tests"
-            [ngClass]="{'gone': !test.name.toLowerCase().includes(filter.toLowerCase())}">
+          <mat-list-option
+            checkboxPosition="before"
+            [value]="test"
+            *ngFor="let test of tests"
+            [ngClass]="{
+              gone: !test.name.toLowerCase().includes(filter.toLowerCase())
+            }"
+          >
             <div flex>
-              <div class="test-title">{{ test.name }} - {{ presentType(test.type) | translate }}</div>
+              <div class="test-title">
+                {{ test.name }} - {{ presentType(test.type) | translate }}
+              </div>
               <div stretch></div>
               <div>
                 <button mat-icon-button color="primary" (click)="runTest(test)">
@@ -33,24 +42,40 @@
         </mat-selection-list>
       </mat-card-content>
       <mat-card-actions flex>
-        <button mat-stroked-button color="secondary" (click)="addTest()">{{ 'Add' | translate }}</button>
-        <button mat-flat-button color="warn" (click)="stop()">{{ 'Stop' | translate }}</button>
+        <button mat-stroked-button color="secondary" (click)="addTest()">
+          {{ "Add" | translate }}
+        </button>
+        <button mat-flat-button color="warn" (click)="stop()">
+          {{ "Stop" | translate }}
+        </button>
         <div stretch></div>
 
         <button mat-stroked-button [matMenuTriggerFor]="selectMenu">
           <mat-icon>select_all</mat-icon>
         </button>
         <mat-menu #selectMenu="matMenu">
-          <button mat-menu-item (click)="selectAll()">{{ 'Select All' | translate }}</button>
-          <button mat-menu-item (click)="selectNone()">{{ 'Select None' | translate }}</button>
+          <button mat-menu-item (click)="selectAll()">
+            {{ "Select All" | translate }}
+          </button>
+          <button mat-menu-item (click)="selectNone()">
+            {{ "Select None" | translate }}
+          </button>
         </mat-menu>
 
-        <button mat-stroked-button color="warn" [matMenuTriggerFor]="removeMenu">
+        <button
+          mat-stroked-button
+          color="warn"
+          [matMenuTriggerFor]="removeMenu"
+        >
           <mat-icon>delete</mat-icon>
         </button>
         <mat-menu #removeMenu="matMenu">
-          <button mat-menu-item (click)="removeAll()">{{ 'Remove all' | translate }}</button>
-          <button mat-menu-item (click)="removeSelected()">{{ 'Remove Selected' | translate }}</button>
+          <button mat-menu-item (click)="removeAll()">
+            {{ "Remove all" | translate }}
+          </button>
+          <button mat-menu-item (click)="removeSelected()">
+            {{ "Remove Selected" | translate }}
+          </button>
         </mat-menu>
       </mat-card-actions>
     </mat-card>

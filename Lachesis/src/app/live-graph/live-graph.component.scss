@@ -46,9 +46,18 @@
     }
   }
 
-  mat-card-header,
   mat-expansion-panel {
     margin: 1rem;
+  }
+
+  mat-card {
+    margin: 1rem 0;
+  }
+
+  mat-card-header {
+    margin: 0.5rem 0;
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 
   .chart {
