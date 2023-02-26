@@ -52,9 +52,9 @@ npm install --omit=dev
 popd || exit
 
 if [ -z "$1" ]; then
-    $SHELL build-fast.sh
+    bash build-fast.sh
 else
-    $SHELL build-fast.sh "$1"
+    bash build-fast.sh "$1"
 fi
 
 # Copy icons

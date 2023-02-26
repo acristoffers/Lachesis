@@ -21,10 +21,10 @@
 # THE SOFTWARE.
 
 if [ ! -d desktop/www/Lachesis ]; then
-$SHELL build.sh "--configuration production"
+bash build.sh "--configuration production"
 fi
 
-$SHELL build-fast.sh
+bash build-fast.sh
 pushd desktop/www || exit
 npx electron .
 popd || exit
