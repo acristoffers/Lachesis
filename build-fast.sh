@@ -26,9 +26,9 @@ echo "Compiling TypeScript"
 echo ""
 pushd Lachesis || exit
 if [ -z "$1" ]; then
-    npm run ng build
+    npx ng build
 else
-    npm run ng build "$1"
+    npx ng build "$1"
 fi
 popd || exit
 [ -d desktop/www/Lachesis ] && rm -r desktop/www/Lachesis

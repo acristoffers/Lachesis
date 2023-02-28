@@ -29,15 +29,15 @@ mkdir -p desktop/www desktop/build
 echo ""
 echo "Installing build dependencies"
 echo ""
-npm install
+yarn install
 pushd Lachesis || exit
-npm install
+yarn install
 popd || exit
 cp -r src/desktop/* desktop/www/
 pushd desktop || exit
-npm install
+yarn install
 pushd www || exit
-npm install
+yarn install
 popd || exit
 popd || exit
 
@@ -48,7 +48,7 @@ echo ""
 pushd desktop/www || exit
 node_modules/.bin/tsc
 rm -r node_modules index.ts tsconfig.json
-npm install --omit=dev
+yarn install --omit=dev
 popd || exit
 
 if [ -z "$1" ]; then

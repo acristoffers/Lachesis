@@ -26,16 +26,16 @@ fi
 
 cd desktop || exit
 if [ "$(uname -s)" = "Darwin" ]; then
-    npm run release
+    yarn run release
 else
-    npm run release:linux
+    yarn run release:linux
     if command -v wine &> /dev/null
     then
-        npm run release:win
+        yarn run release:win
     else
         if command -v nix-shell &> /dev/null
         then
-            nix-shell -p wine --command "npm run release:win"
+            nix-shell -p wine --command "yarn run release:win"
         else
             echo Cannot build for windows, wine not found.
         fi

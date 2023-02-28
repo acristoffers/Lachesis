@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# npm -g install npm-check-updates
+# yarn -g install npm-check-updates
 ncu --upgrade
 pushd Lachesis || exit
-npm run ng update
+npx ng update
 popd || exit
 pushd src/desktop || exit
 ncu --upgrade

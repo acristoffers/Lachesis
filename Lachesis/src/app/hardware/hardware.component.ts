@@ -125,7 +125,7 @@ export class HardwareComponent implements OnInit {
     }
 
     const id = Number(port);
-    if (id !== NaN) {
+    if (!Number.isNaN(id)) {
       const ps = this.selectedDriver.ports.filter(x => x.id === id);
       const p = _.first(ps);
 

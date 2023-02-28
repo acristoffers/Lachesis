@@ -45,7 +45,7 @@ brew cask install lachesis
 If you work with another system, like Linux ARM, BSD or Solaris, you can
 checkout this repository and build the project yourself. It should run anywhere
 electron and node runs. The best way to build this project is to install node
-and npm and execute `npm run dist` in the project root. This will install all
+and yarn and execute `yarn run dist` in the project root. This will install all
 dependencies and build the project into desktop/dist.
 
 ## Screenshots

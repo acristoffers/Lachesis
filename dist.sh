@@ -21,21 +21,21 @@
 # THE SOFTWARE.
 
 if [ ! -d desktop/www/Lachesis ]; then
-    bash build.sh "--configuration production"
+    bash build.sh --configuration production --optimization
 fi
 
 cd desktop || exit
 if [ "$(uname -s)" = "Darwin" ]; then
-    npm run dist
+    yarn run dist
 else
-    npm run dist:linux
+    yarn run dist:linux
     if command -v wine &> /dev/null
     then
-        npm run dist:win
+        yarn run dist:win
     else
         if command -v nix-shell &> /dev/null
         then
-            nix-shell -p wine --command "npm run dist:win"
+            nix-shell -p wine --command "yarn run dist:win"
         else
             echo Cannot build for windows, wine not found.
         fi
