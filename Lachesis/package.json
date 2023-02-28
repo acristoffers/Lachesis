@@ -29,7 +29,7 @@
     "@types/lodash": "^4.14.176",
     "core-js": "^3.19.0",
     "dygraphs": "^2.1.0",
-    "electron": "^15.3.0",
+    "electron": "^18.3.7",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "material-design-icons": "^3.0.1",
