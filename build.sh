@@ -24,22 +24,17 @@
 touch desktop/www desktop/build desktop/dist desktop/node_modules
 rm -r desktop/www desktop/build desktop/dist desktop/node_modules
 mkdir -p desktop/www desktop/build
+cp -r src/desktop/* desktop/www/
 
 # Install build deps
 echo ""
 echo "Installing build dependencies"
 echo ""
+
 yarn install
-pushd Lachesis || exit
-yarn install
-popd || exit
-cp -r src/desktop/* desktop/www/
-pushd desktop || exit
-yarn install
-pushd www || exit
-yarn install
-popd || exit
-popd || exit
+yarn install --cwd Lachesis
+yarn install --cwd desktop
+yarn install --cwd desktop/www
 
 # Copy files
 echo ""
