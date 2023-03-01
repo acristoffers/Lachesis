@@ -24,7 +24,6 @@
 touch desktop/www desktop/build desktop/dist desktop/node_modules
 rm -r desktop/www desktop/build desktop/dist desktop/node_modules
 mkdir -p desktop/www desktop/build
-cp -r src/desktop/* desktop/www/
 
 # Install build deps
 echo ""
@@ -34,7 +33,10 @@ echo ""
 yarn install
 yarn install --cwd Lachesis
 yarn install --cwd desktop
-yarn install --cwd desktop/www
+yarn install --cwd src/desktop
+
+cp -r src/desktop/* desktop/www/
+rm -rf src/desktop/node_modules
 
 # Copy files
 echo ""

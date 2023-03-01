@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-[ -d desktop/www ]           && rm -rf desktop/www
-[ -d desktop/build ]         && rm -rf desktop/build
-[ -d desktop/dist ]          && rm -rf desktop/dist
-[ -d node_modules ]          && rm -rf node_modules
-[ -d Lachesis/node_modules ] && rm -rf Lachesis/node_modules
-[ -d desktop/node_modules ]  && rm -rf desktop/node_modules
-[ -d Lachesis/dist ]         && rm -rf Lachesis/dist
+[ -d desktop/www ]              && rm -rf desktop/www
+[ -d desktop/build ]            && rm -rf desktop/build
+[ -d desktop/dist ]             && rm -rf desktop/dist
+[ -d node_modules ]             && rm -rf node_modules
+[ -d src/desktop/node_modules ] && rm -rf src/desktop/node_modules
+[ -d Lachesis/node_modules ]    && rm -rf Lachesis/node_modules
+[ -d desktop/node_modules ]     && rm -rf desktop/node_modules
+[ -d Lachesis/dist ]            && rm -rf Lachesis/dist
