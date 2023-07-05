@@ -30,10 +30,10 @@ echo ""
 echo "Installing build dependencies"
 echo ""
 
-yarn install
-yarn install --cwd Lachesis
-yarn install --cwd desktop
-yarn install --cwd src/desktop
+npm install
+npm install --prefix Lachesis
+npm install --prefix desktop
+npm install --prefix src/desktop
 
 cp -r src/desktop/* desktop/www/
 rm -rf src/desktop/node_modules
@@ -45,7 +45,7 @@ echo ""
 pushd desktop/www || exit
 node_modules/.bin/tsc
 rm -r node_modules index.ts tsconfig.json
-yarn install --omit=dev
+npm install --omit=dev
 popd || exit
 
 if [ -z "$1" ]; then

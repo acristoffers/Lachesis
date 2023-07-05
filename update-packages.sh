@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# yarn -g install npm-check-updates
+npm -g install npm-check-updates
 ncu --upgrade
 pushd Lachesis || exit
 npx ng update

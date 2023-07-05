@@ -13,8 +13,8 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "electron": ">=23.1.1",
-    "electron-builder": "~23.6.0"
+    "electron": ">=25.2.0",
+    "electron-builder": "~24.4.0"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
@@ -63,15 +63,15 @@
     }
   },
   "scripts": {
-    "dist": "yarn run dist:all",
-    "dist:pack": "npx electron-builder --dir",
-    "dist:win": "npx electron-builder --win --x64 --ia32",
-    "dist:linux": "npx electron-builder --linux --x64",
-    "dist:mac": "npx electron-builder --mac --x64 --arm64",
-    "dist:all": "yarn run dist:mac && yarn run dist:linux && yarn run dist:win",
-    "release:win": "npx electron-builder --publish always --win --x64 --ia32",
-    "release:linux": "umask 000 && npx electron-builder --publish always --linux --x64",
-    "release:mac": "npx electron-builder --publish always --mac --x64 --arm64",
-    "release": "yarn run release:mac && yarn run release:linux && yarn run release:win"
+    "dist": "npm run dist:all",
+    "dist:pack": "npm run electron-builder --dir",
+    "dist:win": "npm run electron-builder --win --x64 --ia32",
+    "dist:linux": "npm run electron-builder --linux --x64",
+    "dist:mac": "npm run electron-builder --mac --x64 --arm64",
+    "dist:all": "npm run dist:mac && npm run dist:linux && npm run dist:win",
+    "release:win": "npm run electron-builder --publish always --win --x64 --ia32",
+    "release:linux": "umask 000 && npm run electron-builder --publish always --linux --x64",
+    "release:mac": "npm run electron-builder --publish always --mac --x64 --arm64",
+    "release": "npm run release:mac && npm run release:linux && npm run release:win"
   }
 }
