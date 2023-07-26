@@ -26,11 +26,5 @@
     "prestart:fast": "npm run build:fast",
     "start:fast": "cd desktop && npm run electron www",
     "release": "bash release.sh"
-  },
-  "dependencies": {
-    "fs-extra": ">=11.1.1",
-    "lodash": ">=4.17.21",
-    "ncp": ">=2.0.0",
-    "rimraf": ">=5.0.1"
   }
 }
