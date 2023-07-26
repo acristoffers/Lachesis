@@ -26,16 +26,16 @@ fi
 
 cd desktop || exit
 if [ "$(uname -s)" = "Darwin" ]; then
-    npx dist
+    npm run dist
 else
-    npx dist:linux
+    npm run dist:linux
     if command -v wine &> /dev/null
     then
-        npx dist:win
+        npm run dist:win
     else
         if command -v nix-shell &> /dev/null
         then
-            nix-shell -p wine --command "npx dist:win"
+            nix-shell -p wine --command "npm run dist:win"
         else
             echo Cannot build for windows, wine not found.
         fi
