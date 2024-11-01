@@ -135,28 +135,6 @@ const viewMenu: Electron.MenuItemConstructorOptions = {
   label: "View",
   submenu: [
     {
-      label: "Reload",
-      accelerator: "CmdOrCtrl+R",
-      click: function(_, focusedWindow) {
-        if (focusedWindow) {
-          return focusedWindow.reload();
-        }
-      },
-    },
-    {
-      label: "Toggle Developer Tools",
-      accelerator:
-        process.platform === "darwin" ? "Alt+Command+I" : "Ctrl+Shift+I",
-      click: function(_, focusedWindow) {
-        if (focusedWindow) {
-          return focusedWindow.webContents.toggleDevTools();
-        }
-      },
-    },
-    {
-      type: "separator",
-    },
-    {
       role: "resetzoom",
     },
     {
