@@ -26,7 +26,7 @@ import { TRANSLATIONS } from './translation';
 
 @Injectable()
 export class TranslateService {
-  private _currentLang: string;
+  private _currentLang: string = "en";
 
   public get currentLang(): string {
     return this._currentLang;
@@ -36,6 +36,9 @@ export class TranslateService {
   }
 
   public use(lang: string): void {
+    if (lang == null) {
+      lang = "en";
+    }
     this._currentLang = lang;
     localStorage.setItem('language', lang);
   }
