@@ -135,21 +135,27 @@ const viewMenu: Electron.MenuItemConstructorOptions = {
   label: "View",
   submenu: [
     {
-      label: "Reload",
-      accelerator: "CmdOrCtrl+R",
-      click: function(_, focusedWindow) {
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      click: () => {
+        const focusedWindow = BrowserWindow.getFocusedWindow();
         if (focusedWindow) {
-          return focusedWindow.reload();
+          focusedWindow.reload();
         }
       },
     },
     {
-      label: "Toggle Developer Tools",
-      accelerator:
-        process.platform === "darwin" ? "Alt+Command+I" : "Ctrl+Shift+I",
-      click: function(_, focusedWindow) {
+      label: 'Toggle Developer Tools',
+      accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+      click: () => {
+        const focusedWindow = BrowserWindow.getFocusedWindow();
         if (focusedWindow) {
-          return focusedWindow.webContents.toggleDevTools();
+          const webContents = focusedWindow.webContents;
+          if (webContents.isDevToolsOpened()) {
+            webContents.closeDevTools();
+          } else {
+            webContents.openDevTools();
+          }
         }
       },
     },
