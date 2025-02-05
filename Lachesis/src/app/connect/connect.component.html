@@ -30,7 +30,7 @@
           <mat-label>{{ "Moirai Address" | translate }}</mat-label>
           <input
             matInput
-            [ngModel]="connectionAddress"
+            [(ngModel)]="connectionAddress"
             (keydown.enter)="connect()"
           />
         </mat-form-field>
