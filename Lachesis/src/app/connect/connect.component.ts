@@ -33,6 +33,7 @@ interface Token {
 }
 
 @Component({
+  standalone: false,
   selector: 'lachesis-connect',
   templateUrl: './connect.component.html',
   styleUrls: ['./connect.component.scss']

@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']

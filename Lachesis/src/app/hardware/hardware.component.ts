@@ -30,6 +30,7 @@ import { Calibration, Driver, HardwareService, Interlock, PortConfiguration, Typ
 import { TranslateService } from '../translation/translation.service';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-hardware',
   templateUrl: './hardware.component.html',
   styleUrls: ['./hardware.component.scss']

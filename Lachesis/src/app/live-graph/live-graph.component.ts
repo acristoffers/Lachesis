@@ -41,6 +41,7 @@ interface Graph {
 }
 
 @Component({
+  standalone: false,
   selector: 'lachesis-live-graph',
   templateUrl: './live-graph.component.html',
   styleUrls: ['./live-graph.component.scss']

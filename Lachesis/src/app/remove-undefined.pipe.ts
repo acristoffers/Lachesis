@@ -22,7 +22,8 @@ THE SOFTWARE.
 
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'removeUndefined' })
+@Pipe({
+  standalone: false, name: 'removeUndefined' })
 export class RemoveUndefinedPipe implements PipeTransform {
     transform(value: string): string {
         return value != null ? value : '';

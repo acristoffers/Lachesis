@@ -22,11 +22,12 @@
 
 import { Component, NgZone, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ipcRenderer } from "electron";
-import * as $ from "jquery";
+const { ipcRenderer } = (window as any).require('electron');
+import $ from "jquery";
 import { TranslateService } from "./translation/translation.service";
 
 @Component({
+  standalone: false,
   selector: "lachesis-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],

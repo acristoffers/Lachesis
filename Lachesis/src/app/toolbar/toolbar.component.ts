@@ -23,12 +23,13 @@ THE SOFTWARE.
 import { Component, EventEmitter, Input, Output, NgZone } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as $ from 'jquery';
+import $ from 'jquery';
 import * as _ from 'lodash';
 import { TranslateService } from '../translation/translation.service';
-import { ipcRenderer } from 'electron';
+const { ipcRenderer } = (window as any).require('electron');
 
 @Component({
+  standalone: false,
   selector: 'lachesis-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']

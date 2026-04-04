@@ -26,6 +26,7 @@ import { ResponseTest } from '../system-response.service';
 import { SystemResponseComponent } from '../system-response/system-response.component';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-system-response-dialog',
   templateUrl: './system-response.dialog.component.html',
   styleUrls: ['./system-response.dialog.component.scss']

@@ -23,10 +23,8 @@ THE SOFTWARE.
 import { app, shell, Menu, ipcMain, nativeImage, BrowserWindow } from "electron";
 import { autoUpdater } from "electron-updater";
 import * as log from "electron-log";
-import { CancellationToken } from "builder-util-runtime/out/CancellationToken";
 
 let window: BrowserWindow = null;
-const token = new CancellationToken();
 
 function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
@@ -84,7 +82,7 @@ app.on("ready", () => {
   });
 
   ipcMain.on("download-update", () => {
-    autoUpdater.downloadUpdate(token);
+    autoUpdater.downloadUpdate();
   });
 
   ipcMain.on("restart", () => {
@@ -120,7 +118,7 @@ const editMenu: Electron.MenuItemConstructorOptions = {
       role: "paste",
     },
     {
-      role: "pasteandmatchstyle",
+      role: "pasteAndMatchStyle",
     },
     {
       role: "delete",

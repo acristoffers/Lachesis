@@ -40,6 +40,7 @@ interface Graph {
 }
 
 @Component({
+  standalone: false,
   selector: 'lachesis-free-control',
   templateUrl: './free-control.component.html',
   styleUrls: ['./free-control.component.scss']

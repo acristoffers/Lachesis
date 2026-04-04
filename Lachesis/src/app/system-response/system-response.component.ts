@@ -24,13 +24,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+import $ from 'jquery';
 import * as _ from 'lodash';
 import { SystemResponseDialogComponent } from '../system-response.dialog/system-response.dialog.component';
 import { ResponseTest, SystemResponseService } from '../system-response.service';
 import { TranslateService } from '../translation/translation.service';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-system-response',
   templateUrl: './system-response.component.html',
   styleUrls: ['./system-response.component.scss']

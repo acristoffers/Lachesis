@@ -24,6 +24,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '../translation/translation.service';
 
 @Pipe({
+  standalone: false,
     name: 'translate',
     pure: false
 })

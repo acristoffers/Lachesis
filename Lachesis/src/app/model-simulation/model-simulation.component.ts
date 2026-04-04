@@ -33,6 +33,7 @@ interface Graph {
 }
 
 @Component({
+  standalone: false,
   selector: 'lachesis-model-simulation',
   templateUrl: './model-simulation.component.html',
   styleUrls: ['./model-simulation.component.scss']

@@ -23,13 +23,14 @@ THE SOFTWARE.
 /* eslint-disable no-bitwise */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import * as $ from 'jquery';
+import $ from 'jquery';
 import * as _ from 'lodash';
 import { ChartService } from '../chart.service';
 import { HardwareService, PortConfiguration, Types } from '../hardware.service';
 import { PortValue, ResponseTest, SystemResponseService } from '../system-response.service';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-system-response-stair',
   templateUrl: './system-response.stair.component.html',
   styleUrls: ['./system-response.stair.component.scss']

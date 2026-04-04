@@ -24,7 +24,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+import $ from 'jquery';
 import * as _ from 'lodash';
 import { ControlDialogComponent } from '../control.dialog/control.dialog.component';
 import { ControlService } from '../control.service';
@@ -42,6 +42,7 @@ export interface Controller {
 }
 
 @Component({
+  standalone: false,
   selector: 'lachesis-control',
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss']

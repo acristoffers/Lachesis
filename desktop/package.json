@@ -15,13 +15,13 @@
   "devDependencies": {
     "@lachesis/angular-app": "*",
     "@lachesis/electron-main": "*",
-    "electron": "34.3.0",
-    "electron-builder": "~25.1.8"
+    "electron": "41.1.1",
+    "electron-builder": "^26.8.1"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
   "build": {
-    "electronVersion": "34.3.0",
+    "electronVersion": "41.1.1",
     "directories": {
       "app": "www",
       "buildResources": "build"

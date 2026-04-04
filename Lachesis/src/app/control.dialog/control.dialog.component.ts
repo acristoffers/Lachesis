@@ -32,6 +32,7 @@ import 'brace/mode/python';
 import 'brace/theme/github';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-control.dialog',
   templateUrl: './control.dialog.component.html',
   styleUrls: ['./control.dialog.component.scss']

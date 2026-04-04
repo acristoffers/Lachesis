@@ -40,6 +40,7 @@ interface Graph {
 }
 
 @Component({
+  standalone: false,
   selector: 'lachesis-pid',
   templateUrl: './pid.component.html',
   styleUrls: ['./pid.component.scss']

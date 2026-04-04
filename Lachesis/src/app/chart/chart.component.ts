@@ -26,6 +26,7 @@ import { ChartService } from '../chart.service';
 import { TestData } from '../live-graph.service';
 
 @Component({
+  standalone: false,
   selector: 'lachesis-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
