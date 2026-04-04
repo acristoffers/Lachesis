@@ -1,7 +1,8 @@
 {
   "name": "lachesis",
   "version": "1.3.13",
-  "description": "Builds Lachesis for desktop and mobile devices",
+  "private": true,
+  "description": "Builds Lachesis for desktop",
   "license": "MIT",
   "author": {
     "name": "Álan Crístoffer",
@@ -12,19 +13,15 @@
     "type": "git",
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
+  "workspaces": ["Lachesis", "src/desktop", "desktop"],
+  "packageManager": "npm@10.9.2",
+  "devDependencies": {
+    "turbo": "^2.5.0"
+  },
   "scripts": {
-    "clean:all": "bash clean.sh",
-    "clean": "rm -rf desktop/www desktop/build desktop/dist",
-    "build": "bash build.sh '--configuration production'",
-    "prestart": "npm run build",
-    "start": "cd desktop && npm run run electron www",
-    "predist": "npm run build",
-    "dist": "bash dist.sh",
-    "build:fast": "bash build-fast.sh",
-    "predist:pack": "npm run build",
-    "dist:pack": "cd desktop && npm run dist:pack",
-    "prestart:fast": "npm run build:fast",
-    "start:fast": "cd desktop && npm run electron www",
-    "release": "bash release.sh"
+    "build": "turbo run build",
+    "dist": "turbo run dist",
+    "release": "turbo run release",
+    "clean": "turbo run clean"
   }
 }

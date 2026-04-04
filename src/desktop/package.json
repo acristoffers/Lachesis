@@ -1,5 +1,5 @@
 {
-  "name": "lachesis",
+  "name": "@lachesis/electron-main",
   "version": "1.3.13",
   "description": "Moirai supervisor",
   "license": "MIT",
@@ -12,9 +12,13 @@
     "type": "git",
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
+  "scripts": {
+    "build": "tsc",
+    "clean": "node -e \"require('fs').rmSync('dist', {recursive:true,force:true})\""
+  },
   "devDependencies": {
     "@types/node": "^22.13",
-    "electron": ">=34.0.2",
+    "electron": "34.3.0",
     "typescript": "^5.7"
   },
   "dependencies": {

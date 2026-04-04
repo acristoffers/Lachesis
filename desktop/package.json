@@ -1,5 +1,5 @@
 {
-  "name": "lachesis",
+  "name": "@lachesis/desktop",
   "version": "1.3.13",
   "description": "Moirai supervisor",
   "license": "MIT",
@@ -13,12 +13,15 @@
     "url": "git://github.com/acristoffers/Lachesis.git"
   },
   "devDependencies": {
-    "electron": ">=34.0.2",
+    "@lachesis/angular-app": "*",
+    "@lachesis/electron-main": "*",
+    "electron": "34.3.0",
     "electron-builder": "~25.1.8"
   },
   "homepage": "https://github.com/acristoffers/Lachesis",
   "productName": "lachesis",
   "build": {
+    "electronVersion": "34.3.0",
     "directories": {
       "app": "www",
       "buildResources": "build"
@@ -63,15 +66,10 @@
     }
   },
   "scripts": {
-    "dist": "npm run dist:all",
+    "build": "node stage.js",
+    "dist": "node dist.js",
     "dist:pack": "npx electron-builder --dir",
-    "dist:win": "npx electron-builder --win --x64 --ia32",
-    "dist:linux": "npx electron-builder --linux --x64",
-    "dist:mac": "npx electron-builder --mac --x64 --arm64",
-    "dist:all": "npm run dist:mac && npm run dist:linux && npm run dist:win",
-    "release:win": "npx electron-builder --publish always --win --x64 --ia32",
-    "release:linux": "umask 000 && npx electron-builder --publish always --linux --x64",
-    "release:mac": "npx electron-builder --publish always --mac --x64 --arm64",
-    "release": "npm run release:mac && npm run release:linux && npm run release:win"
+    "release": "node release.js",
+    "clean": "node -e \"['www','dist','build'].forEach(d => require('fs').rmSync(d, {recursive:true,force:true}))\""
   }
 }

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "target": "es6",
+    "skipLibCheck": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": false,

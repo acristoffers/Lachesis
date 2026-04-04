@@ -1,0 +1,6 @@
+**/node_modules
+**/dist
+**/www
+desktop/build
+.turbo
+/package-lock.json
