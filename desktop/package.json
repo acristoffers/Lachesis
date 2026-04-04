@@ -22,6 +22,7 @@
   "productName": "lachesis",
   "build": {
     "electronVersion": "41.1.1",
+    "executableName": "lachesis",
     "directories": {
       "app": "www",
       "buildResources": "build"
