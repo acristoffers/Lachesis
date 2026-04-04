@@ -1,6 +1,6 @@
 {
   "name": "lachesis",
-  "version": "1.3.13",
+  "version": "1.3.14",
   "private": true,
   "description": "Builds Lachesis for desktop",
   "license": "MIT",
